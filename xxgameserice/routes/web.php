@@ -17,5 +17,7 @@ $router->get('/', function () use ($router) {
 
 $router->get('/login/{uid}&{type}&{value}','GameLoginController@login');
 
-
+$router->get('/test', function () use ($router) {
+    return "holle lumen ";
+});
 
