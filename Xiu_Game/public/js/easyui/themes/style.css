@@ -1,0 +1,31 @@
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:14px;
+    margin:0;
+}
+/*菜单样式*/
+ .mall-menu {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+     margin-top: 0px;
+}
+.mall-menu li {
+    padding: 0;
+}
+.mall-menu li a {
+    display: block;
+    color: #6e6e6e;
+    background: #eeeeee;
+    -moz-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d4d4d4 inset;
+    -webkit-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d4d4d4 inset;
+    box-shadow: 0 1px 0 white inset, 0 -1px 0 #d4d4d4 inset;
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+    padding: 10px 10px;
+    text-decoration: none;
+}
+.mall-menu li a:hover {
+    background: #f6f6f6;
+}
+

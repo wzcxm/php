@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Parameters>
+  <parameter id="staragent">
+    <title>星级代理返卡比例</title>
+    <value>5</value>
+  </parameter>
+  <parameter id="primaryagent">
+    <title>一级代理返卡比例</title>
+    <value>20</value>
+  </parameter>
+  <parameter id="twoagent">
+    <title>二级代理返卡比例</title>
+    <value>10</value>
+  </parameter>
+  <parameter id="threeagent">
+    <title>三级代理返卡比例</title>
+    <value>0</value>
+  </parameter>
+  <parameter id="sharebubble">
+    <title>分享送卡参数</title>
+    <value>10</value>
+  </parameter>
+  <parameter id="realname">
+    <title>实名认证送卡参数</title>
+    <value>10</value>
+  </parameter>
+  <parameter id="winner">
+    <title>大赢家送卡参数</title>
+    <value>10</value>
+  </parameter>
+  <parameter id="firsttime">
+    <title>初次注册返卡参数</title>
+    <value>10</value>
+  </parameter>
+  <parameter id="agentfirst">
+    <title>代理充值标准参数</title>
+    <value>300</value>
+  </parameter>
+  <parameter id="ten">
+    <title>10局扣卡参数</title>
+    <value>1</value>
+  </parameter>
+  <parameter id="twenty">
+    <title>20局扣卡参数</title>
+    <value>2</value>
+  </parameter>
+  <parameter id="backnumber">
+    <title>返卡次数参数</title>
+    <value>0</value>
+  </parameter>
+</Parameters>

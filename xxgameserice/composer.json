@@ -1,0 +1,59 @@
+{
+    "name": "laravel/lumen",
+    "description": "The Laravel Lumen Framework.",
+    "keywords": ["framework", "laravel", "lumen"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/lumen-framework": "5.5.*",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "~0.9"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories",
+            "app/Common/CommonFunc.php",
+            "app/Common/login.pb.php",
+            "app/Libs/Google/Protobuf/descriptor.php",
+            "app/Libs/Google/Protobuf/descriptor_internal.pb.php",
+            "app/Libs/Google/Protobuf/Internal/DescriptorPool.php",
+            "app/Libs/Google/Protobuf/Internal/EnumBuilderContext.php",
+            "app/Libs/Google/Protobuf/Internal/GPBLabel.php",
+            "app/Libs/Google/Protobuf/Internal/GPBType.php",
+            "app/Libs/Google/Protobuf/Internal/GPBUtil.php",
+            "app/Libs/Google/Protobuf/Internal/GPBWire.php",
+            "app/Libs/Google/Protobuf/Internal/InputStream.php",
+            "app/Libs/Google/Protobuf/Internal/MapEntry.php",
+            "app/Libs/Google/Protobuf/Internal/MapField.php",
+            "app/Libs/Google/Protobuf/Internal/Message.php",
+            "app/Libs/Google/Protobuf/Internal/MessageBuilderContext.php",
+            "app/Libs/Google/Protobuf/Internal/OneofField.php",
+            "app/Libs/Google/Protobuf/Internal/OutputStream.php",
+            "app/Libs/Google/Protobuf/Internal/RepeatedField.php",
+            "app/Libs/Google/Protobuf/Internal/Type.php"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "optimize-autoloader": true
+}
