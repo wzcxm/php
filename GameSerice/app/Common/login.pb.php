@@ -225,6 +225,22 @@ class ServerLoginInfo extends \Google\Protobuf\Internal\Message
      * <code>repeated .CsppLogin.ServerDomainInfo domain_info = 12;</code>
      */
     private $domain_info;
+    /**
+     * <pre>
+     *当前厅
+     * </pre>
+     *
+     * <code>uint32 hall_id = 13;</code>
+     */
+    private $hall_id = 0;
+    /**
+     * <pre>
+     *当前茶楼
+     * </pre>
+     *
+     * <code>uint32 tea_id = 14;</code>
+     */
+    private $tea_id = 0;
 
     /**
      * <pre>
@@ -526,6 +542,56 @@ class ServerLoginInfo extends \Google\Protobuf\Internal\Message
         $this->domain_info = $var;
     }
 
+    /**
+     * <pre>
+     *当前厅
+     * </pre>
+     *
+     * <code>uint32 hall_id = 13;</code>
+     */
+    public function getHallId()
+    {
+        return $this->hall_id;
+    }
+
+    /**
+     * <pre>
+     *当前厅
+     * </pre>
+     *
+     * <code>uint32 hall_id = 13;</code>
+     */
+    public function setHallId($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_id = $var;
+    }
+
+    /**
+     * <pre>
+     *当前茶楼
+     * </pre>
+     *
+     * <code>uint32 tea_id = 14;</code>
+     */
+    public function getTeaId()
+    {
+        return $this->tea_id;
+    }
+
+    /**
+     * <pre>
+     *当前茶楼
+     * </pre>
+     *
+     * <code>uint32 tea_id = 14;</code>
+     */
+    public function setTeaId($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->tea_id = $var;
+    }
+
 }
 
 /**
@@ -726,10 +792,10 @@ class ErrorCode
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0ab3040a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
+    "0ad4040a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
     "0f436c69656e744c6f67696e496e666f120b0a0375696418012001280d12" .
     "0c0a047479706518022001280d120e0a0670617373776418032001280922" .
-    "f2010a0f5365727665724c6f67696e496e666f120c0a04636f6465180120" .
+    "93020a0f5365727665724c6f67696e496e666f120c0a04636f6465180120" .
     "01280d120b0a0375696418022001280d12100a086e69636b6e616d651803" .
     "2001280912140a0c686561645f696d675f75726c180420012809120b0a03" .
     "73657818052001280d12100a08726f6f6d6361726418062001280d120e0a" .
@@ -737,13 +803,14 @@ $pool->internalAddGeneratedFile(hex2bin(
     "120b0a0372696418092001280d120d0a05746f6b656e180a20012809120e" .
     "0a06706173737764180b2001280912300a0b646f6d61696e5f696e666f18" .
     "0c2003280b321b2e437370704c6f67696e2e536572766572446f6d61696e" .
-    "496e666f224f0a10536572766572446f6d61696e496e666f120d0a05696e" .
-    "64657818012001280d120e0a06646f6d61696e180220012809120c0a0470" .
-    "6f727418032001280d120e0a0673746174757318042001280d2a8c010a09" .
-    "4572726f72436f6465120c0a084e4f5f4552524f52100012100a0c457272" .
-    "6f725f53797374656d100212180a144572726f725f4e6f745f466f756e64" .
-    "5f55736572100312160a124572726f725f57656958696e5f4c6f67696e10" .
-    "0412130a0f4572726f725f557365725f496e666f100512180a144572726f" .
-    "725f57656958696e5f52654c6f67696e1006620670726f746f33"
+    "496e666f120f0a0768616c6c5f6964180d2001280d120e0a067465615f69" .
+    "64180e2001280d224f0a10536572766572446f6d61696e496e666f120d0a" .
+    "05696e64657818012001280d120e0a06646f6d61696e180220012809120c" .
+    "0a04706f727418032001280d120e0a0673746174757318042001280d2a8c" .
+    "010a094572726f72436f6465120c0a084e4f5f4552524f52100012100a0c" .
+    "4572726f725f53797374656d100212180a144572726f725f4e6f745f466f" .
+    "756e645f55736572100312160a124572726f725f57656958696e5f4c6f67" .
+    "696e100412130a0f4572726f725f557365725f496e666f100512180a1445" .
+    "72726f725f57656958696e5f52654c6f67696e1006620670726f746f33"
 ));
 

@@ -43,19 +43,20 @@ class GameLoginController extends Controller
 	private function youke_login()
 	{
 		$uid = mt_rand(9401, 9500);
-		$user = DB::select('select nickname, sex, roomcard, rid, room_id from xx_user where uid = ?', [$uid]);
+		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
 		$server_login_info = new ServerLoginInfo();
 		$server_login_info->setCode(1);
 		$server_login_info->setUid($uid);
-		foreach ($user as $value){
-			$server_login_info->setNickname($value->nickname);
-			$server_login_info->setSex($value->sex);
-			$server_login_info->setRoomcard($value->roomcard);
-			$server_login_info->setRid($value->rid);
-			$server_login_info->setRoomId($value->room_id);
-		}
+        $server_login_info->setNickname($user->nickname);
+        $server_login_info->setSex($user->sex);
+        $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setRid($user->rid);
+        $server_login_info->setRoomId($user->room_id);
+        $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
+
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -76,19 +77,19 @@ class GameLoginController extends Controller
 		if ($uid < 9000 || $uid > 9400)
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
 		
-		$user = DB::select('select nickname, sex, roomcard, rid, room_id from xx_user where uid = ?', [$uid]);
+		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
 		$server_login_info = new ServerLoginInfo();
 		$server_login_info->setCode(1);
 		$server_login_info->setUid($uid);
-		foreach ($user as $value){
-			$server_login_info->setNickname($value->nickname);
-			$server_login_info->setSex($value->sex);
-			$server_login_info->setRoomcard($value->roomcard);
-			$server_login_info->setRid($value->rid);
-			$server_login_info->setRoomId($value->room_id);
-		}
+        $server_login_info->setNickname($user->nickname);
+        $server_login_info->setSex($user->sex);
+        $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setRid($user->rid);
+        $server_login_info->setRoomId($user->room_id);
+        $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
 
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
@@ -147,8 +148,8 @@ class GameLoginController extends Controller
 				$uid = 0;
 				$room_id = 0;
 				$passwd = CommonFunc::random_string(11);
-
-				$user = DB::select('select uid, roomcard, bubble, ustate, room_id from xx_user where unionid = ?', [$unionid]);
+                $tea_id = 0;
+				$user = DB::table('xx_user')->where("unionid",$unionid)->first();
 				if (empty($user))
 				{
 					//插入数据
@@ -157,13 +158,12 @@ class GameLoginController extends Controller
 				}
 				else
 				{
-					foreach ($user as $value){
-						$uid = $value->uid;
-						$bubble = $value->bubble;
-						$roomcard = $value->roomcard;
-						$ustate = $value->ustate;
-						$room_id = $value->room_id;
-					}
+                    $uid = $user->uid;
+                    $bubble = $user->bubble;
+                    $roomcard = $user->roomcard;
+                    $ustate = $user->ustate;
+                    $room_id = $user->room_id;
+                    $tea_id = $user->tea_id;
 					if ($ustate != 0)
 						goto error_end;
 					//更新数据
@@ -185,6 +185,8 @@ class GameLoginController extends Controller
 				$server_login_info->setRoomId($room_id);
 				$passwd = encrypt($passwd);
 				$server_login_info->setPasswd($passwd);
+                $server_login_info->setTeaId($tea_id);
+                $server_login_info->setHallId($this->each_hall($uid,$tea_id));
 
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
@@ -216,19 +218,16 @@ class GameLoginController extends Controller
 		$old_passwd = $passwd;
 		$passwd = decrypt($passwd);
 		//从数据库获取信息
-		$user = DB::select('select roomcard, bubble, rid, ustate, refresh_token, room_id from xx_user where uid = ? and pwd = ?',
-			[$uid, $passwd]);
+		$user = DB::table('xx_user')->where([["uid",$uid],['pwd',$passwd]])->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
-		
-		foreach ($user as $value){
-			$roomcard = $value->roomcard;
-			$bubble = $value->bubble;
-			$rid = $value->rid;
-			$ustate = $value->ustate;
-			$refresh_token = $value->refresh_token;
-			$room_id = $value->room_id;
-		}
+        $roomcard = $user->roomcard;
+        $bubble = $user->bubble;
+        $rid = $user->rid;
+        $ustate = $user->ustate;
+        $refresh_token = $user->refresh_token;
+        $room_id = $user->room_id;
+        $tea_id = $user->tea_id;
 		if ($ustate != 0)
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
 
@@ -279,6 +278,8 @@ class GameLoginController extends Controller
 				$server_login_info->setRid($rid);
 				$server_login_info->setPasswd($old_passwd);
 				$server_login_info->setRoomId($room_id);
+                $server_login_info->setTeaId($tea_id);
+                $server_login_info->setHallId($this->each_hall($uid,$tea_id));
 
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
@@ -311,4 +312,17 @@ class GameLoginController extends Controller
 		CommonFunc::message_xor($send_data);
 		return $send_data;
 	}
+
+	//获取玩家当前所在的茶楼厅号
+	private function each_hall($uid,$teaid){
+	    if(empty($teaid))
+	        return 0;
+	    $player = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->first();
+	    if(empty($player) ){
+	        return 0;
+        }else{
+	        return $player->hall_id;
+        }
+
+    }
 }
