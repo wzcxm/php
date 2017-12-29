@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../GameSerice/.env" afterPath="$PROJECT_DIR$/../GameSerice/.env" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/DescriptorPool.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/EnumBuilderContext.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/GPBLabel.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/GPBType.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/GPBUtil.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/GPBWire.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/InputStream.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/MapEntry.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/MapField.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/Message.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/MessageBuilderContext.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/OneofField.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/OutputStream.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/RepeatedField.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/Internal/Type.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/descriptor.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Libs/Google/Protobuf/descriptor_internal.pb.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/bootstrap/app.php" afterPath="$PROJECT_DIR$/../GameSerice/bootstrap/app.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/composer.json" afterPath="$PROJECT_DIR$/../GameSerice/composer.json" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/composer.lock" afterPath="$PROJECT_DIR$/../GameSerice/composer.lock" />
       <change beforePath="$PROJECT_DIR$/../GameSerice/routes/web.php" afterPath="$PROJECT_DIR$/../GameSerice/routes/web.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,7 +41,6 @@
                 <element signature="e#11832#15086#0#PHP" expanded="false" />
                 <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
                 <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
-                <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
               </folding>
             </state>
           </provider>
@@ -750,7 +723,6 @@
             <element signature="e#11832#15086#0#PHP" expanded="false" />
             <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
             <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
-            <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
           </folding>
         </state>
       </provider>
