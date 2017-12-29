@@ -2,6 +2,11 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+require_once __DIR__.'/../app/Common/gameserice.pb.php';
+require_once __DIR__.'/../app/Common/login.pb.php';
+require_once __DIR__.'/../app/Common/CommonFunc.php';
+
+
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
@@ -25,7 +30,7 @@ $app = new Laravel\Lumen\Application(
 
  $app->withFacades();
 
-// $app->withEloquent();
+ $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +53,9 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+
+$app->register(Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Register Middleware

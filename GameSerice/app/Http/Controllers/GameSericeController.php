@@ -1,0 +1,1 @@
+<?phpnamespace App\Http\Controllers;use App\Common\CommonFunc;use Illuminate\Support\Facades\DB;use Xxgame\TeaList;class GameSericeController extends Controller{    public function GetTeaList($uid){        try{            return "holle lumen ";        }catch (\Exception $e){            return null;        }    }}
