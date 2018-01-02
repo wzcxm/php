@@ -9,109 +9,39 @@ use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
-/**
- * <pre>
- *登陆
- * </pre>
- *
- * Protobuf type <code>CsppLogin.ClientLoginInfo</code>
- */
 class ClientLoginInfo extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * <pre>
-     *uid
-     * </pre>
-     *
-     * <code>uint32 uid = 1;</code>
-     */
     private $uid = 0;
-    /**
-     * <pre>
-     *1-游客登录, 2-微信登录，3-自动登录, 4-账号登录
-     * </pre>
-     *
-     * <code>uint32 type = 2;</code>
-     */
     private $type = 0;
-    /**
-     * <pre>
-     *密码
-     * </pre>
-     *
-     * <code>string passwd = 3;</code>
-     */
     private $passwd = '';
 
-    /**
-     * <pre>
-     *uid
-     * </pre>
-     *
-     * <code>uint32 uid = 1;</code>
-     */
     public function getUid()
     {
         return $this->uid;
     }
 
-    /**
-     * <pre>
-     *uid
-     * </pre>
-     *
-     * <code>uint32 uid = 1;</code>
-     */
     public function setUid($var)
     {
         GPBUtil::checkUint32($var);
         $this->uid = $var;
     }
 
-    /**
-     * <pre>
-     *1-游客登录, 2-微信登录，3-自动登录, 4-账号登录
-     * </pre>
-     *
-     * <code>uint32 type = 2;</code>
-     */
     public function getType()
     {
         return $this->type;
     }
 
-    /**
-     * <pre>
-     *1-游客登录, 2-微信登录，3-自动登录, 4-账号登录
-     * </pre>
-     *
-     * <code>uint32 type = 2;</code>
-     */
     public function setType($var)
     {
         GPBUtil::checkUint32($var);
         $this->type = $var;
     }
 
-    /**
-     * <pre>
-     *密码
-     * </pre>
-     *
-     * <code>string passwd = 3;</code>
-     */
     public function getPasswd()
     {
         return $this->passwd;
     }
 
-    /**
-     * <pre>
-     *密码
-     * </pre>
-     *
-     * <code>string passwd = 3;</code>
-     */
     public function setPasswd($var)
     {
         GPBUtil::checkString($var, True);
@@ -120,612 +50,236 @@ class ClientLoginInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-/**
- * <pre>
- *-------------服务端返回协议-------------
- * </pre>
- *
- * Protobuf type <code>CsppLogin.ServerLoginInfo</code>
- */
 class ServerLoginInfo extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * <pre>
-     *返回码
-     * </pre>
-     *
-     * <code>uint32 code = 1;</code>
-     */
     private $code = 0;
-    /**
-     * <pre>
-     *用户ID
-     * </pre>
-     *
-     * <code>uint32 uid = 2;</code>
-     */
     private $uid = 0;
-    /**
-     * <pre>
-     *昵称
-     * </pre>
-     *
-     * <code>string nickname = 3;</code>
-     */
     private $nickname = '';
-    /**
-     * <pre>
-     *头像
-     * </pre>
-     *
-     * <code>string head_img_url = 4;</code>
-     */
     private $head_img_url = '';
-    /**
-     * <pre>
-     *性别,1-女，2-男
-     * </pre>
-     *
-     * <code>uint32 sex = 5;</code>
-     */
     private $sex = 0;
-    /**
-     * <pre>
-     *房卡
-     * </pre>
-     *
-     * <code>uint32 roomcard = 6;</code>
-     */
     private $roomcard = 0;
-    /**
-     * <pre>
-     *泡泡数
-     * </pre>
-     *
-     * <code>int32 bubble = 7;</code>
-     */
     private $bubble = 0;
-    /**
-     * <pre>
-     * 房间ID
-     * </pre>
-     *
-     * <code>uint32 room_id = 8;</code>
-     */
     private $room_id = 0;
-    /**
-     * <pre>
-     *角色
-     * </pre>
-     *
-     * <code>uint32 rid = 9;</code>
-     */
     private $rid = 0;
-    /**
-     * <pre>
-     *token
-     * </pre>
-     *
-     * <code>string token = 10;</code>
-     */
     private $token = '';
-    /**
-     * <pre>
-     *随机密码
-     * </pre>
-     *
-     * <code>string passwd = 11;</code>
-     */
     private $passwd = '';
-    /**
-     * <pre>
-     *域名信息
-     * </pre>
-     *
-     * <code>repeated .CsppLogin.ServerDomainInfo domain_info = 12;</code>
-     */
     private $domain_info;
-    /**
-     * <pre>
-     *当前厅
-     * </pre>
-     *
-     * <code>uint32 hall_id = 13;</code>
-     */
     private $hall_id = 0;
-    /**
-     * <pre>
-     *当前茶楼
-     * </pre>
-     *
-     * <code>uint32 tea_id = 14;</code>
-     */
     private $tea_id = 0;
+    private $sign = '';
 
-    /**
-     * <pre>
-     *返回码
-     * </pre>
-     *
-     * <code>uint32 code = 1;</code>
-     */
     public function getCode()
     {
         return $this->code;
     }
 
-    /**
-     * <pre>
-     *返回码
-     * </pre>
-     *
-     * <code>uint32 code = 1;</code>
-     */
     public function setCode($var)
     {
         GPBUtil::checkUint32($var);
         $this->code = $var;
     }
 
-    /**
-     * <pre>
-     *用户ID
-     * </pre>
-     *
-     * <code>uint32 uid = 2;</code>
-     */
     public function getUid()
     {
         return $this->uid;
     }
 
-    /**
-     * <pre>
-     *用户ID
-     * </pre>
-     *
-     * <code>uint32 uid = 2;</code>
-     */
     public function setUid($var)
     {
         GPBUtil::checkUint32($var);
         $this->uid = $var;
     }
 
-    /**
-     * <pre>
-     *昵称
-     * </pre>
-     *
-     * <code>string nickname = 3;</code>
-     */
     public function getNickname()
     {
         return $this->nickname;
     }
 
-    /**
-     * <pre>
-     *昵称
-     * </pre>
-     *
-     * <code>string nickname = 3;</code>
-     */
     public function setNickname($var)
     {
         GPBUtil::checkString($var, True);
         $this->nickname = $var;
     }
 
-    /**
-     * <pre>
-     *头像
-     * </pre>
-     *
-     * <code>string head_img_url = 4;</code>
-     */
     public function getHeadImgUrl()
     {
         return $this->head_img_url;
     }
 
-    /**
-     * <pre>
-     *头像
-     * </pre>
-     *
-     * <code>string head_img_url = 4;</code>
-     */
     public function setHeadImgUrl($var)
     {
         GPBUtil::checkString($var, True);
         $this->head_img_url = $var;
     }
 
-    /**
-     * <pre>
-     *性别,1-女，2-男
-     * </pre>
-     *
-     * <code>uint32 sex = 5;</code>
-     */
     public function getSex()
     {
         return $this->sex;
     }
 
-    /**
-     * <pre>
-     *性别,1-女，2-男
-     * </pre>
-     *
-     * <code>uint32 sex = 5;</code>
-     */
     public function setSex($var)
     {
         GPBUtil::checkUint32($var);
         $this->sex = $var;
     }
 
-    /**
-     * <pre>
-     *房卡
-     * </pre>
-     *
-     * <code>uint32 roomcard = 6;</code>
-     */
     public function getRoomcard()
     {
         return $this->roomcard;
     }
 
-    /**
-     * <pre>
-     *房卡
-     * </pre>
-     *
-     * <code>uint32 roomcard = 6;</code>
-     */
     public function setRoomcard($var)
     {
         GPBUtil::checkUint32($var);
         $this->roomcard = $var;
     }
 
-    /**
-     * <pre>
-     *泡泡数
-     * </pre>
-     *
-     * <code>int32 bubble = 7;</code>
-     */
     public function getBubble()
     {
         return $this->bubble;
     }
 
-    /**
-     * <pre>
-     *泡泡数
-     * </pre>
-     *
-     * <code>int32 bubble = 7;</code>
-     */
     public function setBubble($var)
     {
         GPBUtil::checkInt32($var);
         $this->bubble = $var;
     }
 
-    /**
-     * <pre>
-     * 房间ID
-     * </pre>
-     *
-     * <code>uint32 room_id = 8;</code>
-     */
     public function getRoomId()
     {
         return $this->room_id;
     }
 
-    /**
-     * <pre>
-     * 房间ID
-     * </pre>
-     *
-     * <code>uint32 room_id = 8;</code>
-     */
     public function setRoomId($var)
     {
         GPBUtil::checkUint32($var);
         $this->room_id = $var;
     }
 
-    /**
-     * <pre>
-     *角色
-     * </pre>
-     *
-     * <code>uint32 rid = 9;</code>
-     */
     public function getRid()
     {
         return $this->rid;
     }
 
-    /**
-     * <pre>
-     *角色
-     * </pre>
-     *
-     * <code>uint32 rid = 9;</code>
-     */
     public function setRid($var)
     {
         GPBUtil::checkUint32($var);
         $this->rid = $var;
     }
 
-    /**
-     * <pre>
-     *token
-     * </pre>
-     *
-     * <code>string token = 10;</code>
-     */
     public function getToken()
     {
         return $this->token;
     }
 
-    /**
-     * <pre>
-     *token
-     * </pre>
-     *
-     * <code>string token = 10;</code>
-     */
     public function setToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->token = $var;
     }
 
-    /**
-     * <pre>
-     *随机密码
-     * </pre>
-     *
-     * <code>string passwd = 11;</code>
-     */
     public function getPasswd()
     {
         return $this->passwd;
     }
 
-    /**
-     * <pre>
-     *随机密码
-     * </pre>
-     *
-     * <code>string passwd = 11;</code>
-     */
     public function setPasswd($var)
     {
         GPBUtil::checkString($var, True);
         $this->passwd = $var;
     }
 
-    /**
-     * <pre>
-     *域名信息
-     * </pre>
-     *
-     * <code>repeated .CsppLogin.ServerDomainInfo domain_info = 12;</code>
-     */
     public function getDomainInfo()
     {
         return $this->domain_info;
     }
 
-    /**
-     * <pre>
-     *域名信息
-     * </pre>
-     *
-     * <code>repeated .CsppLogin.ServerDomainInfo domain_info = 12;</code>
-     */
     public function setDomainInfo(&$var)
     {
         GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \CsppLogin\ServerDomainInfo::class);
         $this->domain_info = $var;
     }
 
-    /**
-     * <pre>
-     *当前厅
-     * </pre>
-     *
-     * <code>uint32 hall_id = 13;</code>
-     */
     public function getHallId()
     {
         return $this->hall_id;
     }
 
-    /**
-     * <pre>
-     *当前厅
-     * </pre>
-     *
-     * <code>uint32 hall_id = 13;</code>
-     */
     public function setHallId($var)
     {
         GPBUtil::checkUint32($var);
         $this->hall_id = $var;
     }
 
-    /**
-     * <pre>
-     *当前茶楼
-     * </pre>
-     *
-     * <code>uint32 tea_id = 14;</code>
-     */
     public function getTeaId()
     {
         return $this->tea_id;
     }
 
-    /**
-     * <pre>
-     *当前茶楼
-     * </pre>
-     *
-     * <code>uint32 tea_id = 14;</code>
-     */
     public function setTeaId($var)
     {
         GPBUtil::checkUint32($var);
         $this->tea_id = $var;
     }
 
+    public function getSign()
+    {
+        return $this->sign;
+    }
+
+    public function setSign($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sign = $var;
+    }
+
 }
 
-/**
- * Protobuf type <code>CsppLogin.ServerDomainInfo</code>
- */
 class ServerDomainInfo extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * <pre>
-     * 1-pdk,2-nxmj
-     * </pre>
-     *
-     * <code>uint32 index = 1;</code>
-     */
     private $index = 0;
-    /**
-     * <pre>
-     *域名
-     * </pre>
-     *
-     * <code>string domain = 2;</code>
-     */
     private $domain = '';
-    /**
-     * <pre>
-     *端口
-     * </pre>
-     *
-     * <code>uint32 port = 3;</code>
-     */
     private $port = 0;
-    /**
-     * <pre>
-     *1-新，2-热，3-免费
-     * </pre>
-     *
-     * <code>uint32 status = 4;</code>
-     */
     private $status = 0;
 
-    /**
-     * <pre>
-     * 1-pdk,2-nxmj
-     * </pre>
-     *
-     * <code>uint32 index = 1;</code>
-     */
     public function getIndex()
     {
         return $this->index;
     }
 
-    /**
-     * <pre>
-     * 1-pdk,2-nxmj
-     * </pre>
-     *
-     * <code>uint32 index = 1;</code>
-     */
     public function setIndex($var)
     {
         GPBUtil::checkUint32($var);
         $this->index = $var;
     }
 
-    /**
-     * <pre>
-     *域名
-     * </pre>
-     *
-     * <code>string domain = 2;</code>
-     */
     public function getDomain()
     {
         return $this->domain;
     }
 
-    /**
-     * <pre>
-     *域名
-     * </pre>
-     *
-     * <code>string domain = 2;</code>
-     */
     public function setDomain($var)
     {
         GPBUtil::checkString($var, True);
         $this->domain = $var;
     }
 
-    /**
-     * <pre>
-     *端口
-     * </pre>
-     *
-     * <code>uint32 port = 3;</code>
-     */
     public function getPort()
     {
         return $this->port;
     }
 
-    /**
-     * <pre>
-     *端口
-     * </pre>
-     *
-     * <code>uint32 port = 3;</code>
-     */
     public function setPort($var)
     {
         GPBUtil::checkUint32($var);
         $this->port = $var;
     }
 
-    /**
-     * <pre>
-     *1-新，2-热，3-免费
-     * </pre>
-     *
-     * <code>uint32 status = 4;</code>
-     */
     public function getStatus()
     {
         return $this->status;
     }
 
-    /**
-     * <pre>
-     *1-新，2-热，3-免费
-     * </pre>
-     *
-     * <code>uint32 status = 4;</code>
-     */
     public function setStatus($var)
     {
         GPBUtil::checkUint32($var);
@@ -734,68 +288,23 @@ class ServerDomainInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-/**
- * <pre>
- *-------------错误码-------------
- * </pre>
- *
- * Protobuf enum <code>CsppLogin.ErrorCode</code>
- */
 class ErrorCode
 {
-    /**
-     * <code>NO_ERROR = 0;</code>
-     */
     const NO_ERROR = 0;
-    /**
-     * <pre>
-     *系统忙，请稍候重试
-     * </pre>
-     *
-     * <code>Error_System = 2;</code>
-     */
     const Error_System = 2;
-    /**
-     * <pre>
-     *找不到用户信息
-     * </pre>
-     *
-     * <code>Error_Not_Found_User = 3;</code>
-     */
     const Error_Not_Found_User = 3;
-    /**
-     * <pre>
-     *微信登录失败
-     * </pre>
-     *
-     * <code>Error_WeiXin_Login = 4;</code>
-     */
     const Error_WeiXin_Login = 4;
-    /**
-     * <pre>
-     *用户信息错误
-     * </pre>
-     *
-     * <code>Error_User_Info = 5;</code>
-     */
     const Error_User_Info = 5;
-    /**
-     * <pre>
-     *需要重新验证微信
-     * </pre>
-     *
-     * <code>Error_WeiXin_ReLogin = 6;</code>
-     */
     const Error_WeiXin_ReLogin = 6;
 }
 
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0ad4040a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
+    "0ae2040a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
     "0f436c69656e744c6f67696e496e666f120b0a0375696418012001280d12" .
     "0c0a047479706518022001280d120e0a0670617373776418032001280922" .
-    "93020a0f5365727665724c6f67696e496e666f120c0a04636f6465180120" .
+    "a1020a0f5365727665724c6f67696e496e666f120c0a04636f6465180120" .
     "01280d120b0a0375696418022001280d12100a086e69636b6e616d651803" .
     "2001280912140a0c686561645f696d675f75726c180420012809120b0a03" .
     "73657818052001280d12100a08726f6f6d6361726418062001280d120e0a" .
@@ -804,13 +313,14 @@ $pool->internalAddGeneratedFile(hex2bin(
     "0a06706173737764180b2001280912300a0b646f6d61696e5f696e666f18" .
     "0c2003280b321b2e437370704c6f67696e2e536572766572446f6d61696e" .
     "496e666f120f0a0768616c6c5f6964180d2001280d120e0a067465615f69" .
-    "64180e2001280d224f0a10536572766572446f6d61696e496e666f120d0a" .
-    "05696e64657818012001280d120e0a06646f6d61696e180220012809120c" .
-    "0a04706f727418032001280d120e0a0673746174757318042001280d2a8c" .
-    "010a094572726f72436f6465120c0a084e4f5f4552524f52100012100a0c" .
-    "4572726f725f53797374656d100212180a144572726f725f4e6f745f466f" .
-    "756e645f55736572100312160a124572726f725f57656958696e5f4c6f67" .
-    "696e100412130a0f4572726f725f557365725f496e666f100512180a1445" .
-    "72726f725f57656958696e5f52654c6f67696e1006620670726f746f33"
+    "64180e2001280d120c0a047369676e180f20012809224f0a105365727665" .
+    "72446f6d61696e496e666f120d0a05696e64657818012001280d120e0a06" .
+    "646f6d61696e180220012809120c0a04706f727418032001280d120e0a06" .
+    "73746174757318042001280d2a8c010a094572726f72436f6465120c0a08" .
+    "4e4f5f4552524f52100012100a0c4572726f725f53797374656d10021218" .
+    "0a144572726f725f4e6f745f466f756e645f55736572100312160a124572" .
+    "726f725f57656958696e5f4c6f67696e100412130a0f4572726f725f5573" .
+    "65725f496e666f100512180a144572726f725f57656958696e5f52654c6f" .
+    "67696e1006620670726f746f33"
 ));
 

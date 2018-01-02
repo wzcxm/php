@@ -10,6 +10,7 @@ use CsppLogin\ServerDomainInfo;
 
 class GameLoginController extends Controller
 {
+
 	public function login($uid, $type, $value)
 	{
 		try {
@@ -39,6 +40,7 @@ class GameLoginController extends Controller
 	//游客登录 ID(9401-9500)
 	private function youke_login()
 	{
+
 		$uid = mt_rand(9401, 9500);
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
@@ -53,7 +55,7 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
-
+        $server_login_info->setSign(encrypt(env('SIGN')));
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -87,7 +89,7 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
-
+        $server_login_info->setSign(encrypt(env('SIGN')));
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -184,7 +186,7 @@ class GameLoginController extends Controller
 				$server_login_info->setPasswd($passwd);
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setHallId($this->each_hall($uid,$tea_id));
-
+                $server_login_info->setSign(encrypt(env('SIGN')));
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
@@ -277,7 +279,7 @@ class GameLoginController extends Controller
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setHallId($this->each_hall($uid,$tea_id));
-
+                $server_login_info->setSign(encrypt(env('SIGN')));
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
