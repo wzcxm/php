@@ -27,31 +27,6 @@ $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 $router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlayerList');
 
 //版本控制
-$router->get('/V/{v}/{t}/{res?}/{src?}',function ($v,$t,$res=null,$src=null){
-    $ret = "";
-    if($t==1) { //苹果版
-        if ($v === "3.0") {
-            $ret = "2";
-        } else {
-            if($v < 1.0){
-                $ret = "1";
-            }else{
-                $ret = "0";
-            }
-        }
-    }else if($t==2){
-        if($v==0.5) {
-            $ret = "2";
-        }else if($v < 1.0){
-            $ret = "1";
-        }else{
-            $ret = "0";
-        }
-    }else{ }
-    if($ret=="0"){
-        $ret .= "|1|1|1";
-    }
-    return $ret;
-});
+$router->get('/V/{version}/{type}/{res}/{src}','GameSericeController@GetVersion');
 
 
