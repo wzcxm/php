@@ -56,6 +56,8 @@ class GameLoginController extends Controller
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
         $server_login_info->setSign(encrypt(env('SIGN')));
+        $server_login_info->setMarquee($this->getMsg(1));//跑马灯
+        $server_login_info->setUrgent($this->getMsg(3));//紧急通知
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -90,6 +92,8 @@ class GameLoginController extends Controller
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
         $server_login_info->setSign(encrypt(env('SIGN')));
+        $server_login_info->setMarquee($this->getMsg(1));//跑马灯
+        $server_login_info->setUrgent($this->getMsg(3));//紧急通知
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -187,6 +191,8 @@ class GameLoginController extends Controller
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setHallId($this->each_hall($uid,$tea_id));
                 $server_login_info->setSign(encrypt(env('SIGN')));
+                $server_login_info->setMarquee($this->getMsg(1));//跑马灯
+                $server_login_info->setUrgent($this->getMsg(3));//紧急通知
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
@@ -280,6 +286,8 @@ class GameLoginController extends Controller
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setHallId($this->each_hall($uid,$tea_id));
                 $server_login_info->setSign(encrypt(env('SIGN')));
+                $server_login_info->setMarquee($this->getMsg(1));//跑马灯
+                $server_login_info->setUrgent($this->getMsg(3));//紧急通知
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
@@ -321,6 +329,20 @@ class GameLoginController extends Controller
 	        return 0;
         }else{
 	        return $player->hall_id;
+        }
+
+    }
+
+    //获取游戏公告信息
+    private function getMsg($type){
+        try{
+            $msg = DB::table("xx_sys_message")->get();
+            if(!empty($msg))
+                return collect($msg)->where('mtype',$type)->get('mcontent');
+            else
+                return "";
+        }catch (\Exception $e){
+            return "";
         }
 
     }

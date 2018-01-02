@@ -41,3 +41,9 @@ $router->get('/GetUrl',function (){
 Route::get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
 
+//总战绩
+Route::get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
+//单局战绩
+Route::get('/bigrecord/{roomid}/{time}/{sign}','GameSericeController@BigRecord');
+
+
