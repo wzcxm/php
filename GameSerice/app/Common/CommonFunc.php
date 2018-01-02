@@ -9,8 +9,8 @@ class CommonFunc
 	public static function message_xor(&$strInput)
 	{
 		$key = 109;
-		for ($i = 0; $i < strlen($strInput); $i++)
-			$strInput[$i] = chr(ord($strInput[$i]) ^ $key);
+        for ($i = 0; $i < strlen($strInput); $i++)
+            $strInput[$i] = chr(ord($strInput[$i]) ^ $key);
 	}
 	
 	//生成指定长度的随机字符串

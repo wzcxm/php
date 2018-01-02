@@ -98,6 +98,46 @@ use Illuminate\Support\Facades\DB;
             return 0;
         }
     }
+     //异或加密
+     public static function message_xor(&$strInput)
+     {
+         $key = 109;
+         for ($i = 0; $i < strlen($strInput); $i++)
+             $strInput[$i] = chr(ord($strInput[$i]) ^ $key);
+     }
+
+    //连接服务器
+    public static function connServer($message)
+    {
+        try{
+            //字符串长度
+            $msg_len = strlen($message);
+            //字符串长度不能为0；
+            if($msg_len<=0) return "ERROR:NULL";
+            //端口
+            $port = 10000;
+            //地址
+            $ip = "login.wangqianhong.com";
+            //创建一个socket套接流
+            $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
+            //连接服务端的套接流，这一步就是使客户端与服务器端的套接流建立联系
+            if(socket_connect($socket,$ip,$port) == false){
+                return socket_strerror(socket_last_error());
+            }else{
+                //向服务端写入字符串信息
+                $reslut = socket_write($socket,$message,strlen($message));
+                if($reslut === false){
+                    return socket_strerror(socket_last_error());
+                }else if($reslut==strlen($message)){
+                    return "OK";
+                }
+            }
+            socket_close($socket);//工作完毕，关闭套接流
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+    }
+
      /// <summary>
      /// 更新游戏的房卡数量
      /// </summary>

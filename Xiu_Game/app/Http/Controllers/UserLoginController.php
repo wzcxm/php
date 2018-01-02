@@ -94,7 +94,6 @@ class UserLoginController extends Controller
         }catch (\Exception $e){
             return view('errors.404');
         }
-
     }
 
     private function getRolename($roleid){

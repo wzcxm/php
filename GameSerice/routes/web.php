@@ -17,9 +17,6 @@ $router->get('/', function () use ($router) {
 //登录
 $router->get('/login/{uid}&{type}&{value}','GameLoginController@login');
 
-//获取玩家信息
-$router->get('/getPlayer/{uid}/{sign}','GameSericeController@GetPlayer');
-
 //获取玩家的茶楼列表
 $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 
@@ -44,6 +41,6 @@ Route::get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 //总战绩
 Route::get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
 //单局战绩
-Route::get('/bigrecord/{roomid}/{time}/{sign}','GameSericeController@BigRecord');
+Route::get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
 
 
