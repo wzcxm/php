@@ -122,21 +122,33 @@ use Illuminate\Support\Facades\DB;
             $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
             //连接服务端的套接流，这一步就是使客户端与服务器端的套接流建立联系
             if(socket_connect($socket,$ip,$port) == false){
-                return socket_strerror(socket_last_error());
+                return "ERROR:".socket_strerror(socket_last_error());
             }else{
                 //向服务端写入字符串信息
-                $reslut = socket_write($socket,$message,strlen($message));
+                $reslut = socket_write($socket,$message,$msg_len);
                 if($reslut === false){
-                    return socket_strerror(socket_last_error());
-                }else if($reslut==strlen($message)){
+                    return "ERROR:".socket_strerror(socket_last_error());
+                }else if($reslut==$msg_len){
                     return "OK";
                 }
             }
             socket_close($socket);//工作完毕，关闭套接流
         }catch (\Exception $e){
-            return $e->getMessage();
+            return "ERROR:".$e->getMessage();
         }
     }
+
+
+    //更新玩家数据
+     public static function setPlayer()
+     {
+         $Server_Command_User_Base = 219;    //ServerUserBase
+         $Server_Type_PHP = 2;  //php
+         $message = pack('S2L3',219,2,1,0,0)."";
+         var_dump($message);
+         CommClass::message_xor($message);
+         CommClass::connServer($message);
+     }
 
      /// <summary>
      /// 更新游戏的房卡数量
