@@ -33,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1378">
-              <caret line="201" column="49" lean-forward="false" selection-start-line="201" selection-start-column="49" selection-end-line="201" selection-end-column="49" />
+            <state relative-caret-position="525">
+              <caret line="298" column="94" lean-forward="true" selection-start-line="298" selection-start-column="12" selection-end-line="298" selection-end-column="94" />
               <folding>
                 <element signature="e#78#103#0#PHP" expanded="true" />
                 <element signature="e#5614#7543#0#PHP" expanded="false" />
@@ -127,16 +127,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="231" column="0" lean-forward="false" selection-start-line="231" selection-start-column="0" selection-end-line="257" selection-end-column="3" />
+            <state relative-caret-position="548">
+              <caret line="265" column="0" lean-forward="false" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="65" />
               <folding>
                 <element signature="e#742#7669#1#PHP" expanded="false" />
                 <element signature="e#7770#7821#1#PHP" expanded="false" />
                 <element signature="e#7920#7991#1#PHP" expanded="false" />
-                <element signature="e#8879#9487#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -299,7 +298,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1924" />
     <option name="height" value="1056" />
@@ -437,15 +436,15 @@
       <workItem from="1514515684059" duration="2769000" />
       <workItem from="1514534859850" duration="1930000" />
       <workItem from="1514537681201" duration="617000" />
-      <workItem from="1514858369101" duration="5323000" />
+      <workItem from="1514858369101" duration="5970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62072000" />
+    <option name="totallyTimeSpent" value="62719000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2595949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -869,29 +868,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="265" column="0" lean-forward="false" selection-start-line="265" selection-start-column="0" selection-end-line="265" selection-end-column="65" />
+          <folding>
+            <element signature="e#742#7669#1#PHP" expanded="false" />
+            <element signature="e#7770#7821#1#PHP" expanded="false" />
+            <element signature="e#7920#7991#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1378">
-          <caret line="201" column="49" lean-forward="false" selection-start-line="201" selection-start-column="49" selection-end-line="201" selection-end-column="49" />
+        <state relative-caret-position="525">
+          <caret line="298" column="94" lean-forward="true" selection-start-line="298" selection-start-column="12" selection-end-line="298" selection-end-column="94" />
           <folding>
             <element signature="e#78#103#0#PHP" expanded="true" />
             <element signature="e#5614#7543#0#PHP" expanded="false" />
             <element signature="e#11832#15086#0#PHP" expanded="false" />
             <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
             <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="231" column="0" lean-forward="false" selection-start-line="231" selection-start-column="0" selection-end-line="257" selection-end-column="3" />
-          <folding>
-            <element signature="e#742#7669#1#PHP" expanded="false" />
-            <element signature="e#7770#7821#1#PHP" expanded="false" />
-            <element signature="e#7920#7991#1#PHP" expanded="false" />
-            <element signature="e#8879#9487#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

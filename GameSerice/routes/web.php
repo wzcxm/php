@@ -27,6 +27,17 @@ $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 $router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlayerList');
 
 //版本控制
-$router->get('/V/{version}/{type}/{res}/{src}','GameSericeController@GetVersion');
+$router->get('/V/{version}/{type}','GameSericeController@GetVersion');
+
+//下载地址
+$router->get('/GetUrl',function (){
+    return ['android'=>'http://wyhq.oss-cn-beijing.aliyuncs.com/android/wyhq.apk',
+        'ios'=>'http://fir.im/4zn2',
+        'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
+        'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
+});
+
+//获取回放数据
+Route::get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
 
