@@ -20,4 +20,8 @@ return [
                 ],
 
 	],
+    'GameType'=>[
+        1 =>'xx_nsb_record',
+        2 =>'xx_pdk_record'
+        ]
 ];
