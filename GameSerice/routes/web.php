@@ -23,6 +23,9 @@ $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 //获取茶楼玩家列表
 $router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlayerList');
 
+//添加修改茶楼成员备注
+$router->get('/updateRemark/{teaid}/{uid}/{remark}/{sign}','GameSericeController@updateRemark');
+
 //版本控制
 $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
@@ -36,7 +39,6 @@ $router->get('/GetUrl',function (){
 
 //获取回放数据
 Route::get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
-
 
 //总战绩
 Route::get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
