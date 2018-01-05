@@ -66,6 +66,15 @@ class MessageController extends Controller
             $message->mcontent = isset($data['mcontent'])?$data['mcontent']:"";
             $message->create_date = date("Y-m-d H:i:s");
             $message->save();
+
+            //保存成功，后发送游戏服务器
+            //大厅公告
+            if($message->mtype==1)
+                CommClass::UpGameSer(1,'msg',$message->mcontent);
+            //紧急通知
+            if($message->mtype==3)
+                CommClass::UpGameSer(1,'urgent',$message->mcontent);
+
             return response()->json(['msg'=>1]);
         }catch (\Exception $e){
             return response()->json(['msg'=>$e->getMessage()]);

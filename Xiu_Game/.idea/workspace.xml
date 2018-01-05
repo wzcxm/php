@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Common/CommClass.php" afterPath="$PROJECT_DIR$/app/Common/CommClass.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,17 +67,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommClass.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommClass.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+            <state relative-caret-position="377">
+              <caret line="187" column="35" lean-forward="false" selection-start-line="187" selection-start-column="29" selection-end-line="187" selection-end-column="35" />
               <folding>
                 <element signature="e#29#50#0#PHP" expanded="true" />
                 <element signature="e#277#839#0#PHP" expanded="false" />
                 <element signature="e#865#2356#0#PHP" expanded="false" />
                 <element signature="e#2383#2894#0#PHP" expanded="false" />
                 <element signature="e#3184#3378#0#PHP" expanded="false" />
+                <element signature="e#3396#4663#0#PHP" expanded="false" />
+                <element signature="e#4685#5185#0#PHP" expanded="false" />
                 <element signature="e#6418#7105#0#PHP" expanded="false" />
                 <element signature="e#7232#7616#0#PHP" expanded="false" />
                 <element signature="e#7740#7936#0#PHP" expanded="false" />
@@ -93,6 +95,16 @@
                 <marker date="1515138552143" expanded="true" signature="8732:8766" ph="..." />
                 <marker date="1515138552143" expanded="true" signature="12427:12461" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="69" column="27" lean-forward="false" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +183,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MenusController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MyAgentController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SendCardsController.php" />
@@ -196,6 +207,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php" />
         <option value="$PROJECT_DIR$/app/Common/CommClass.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
       </list>
     </option>
   </component>
@@ -438,12 +450,12 @@
       <workItem from="1514537681201" duration="617000" />
       <workItem from="1514858369101" duration="18727000" />
       <workItem from="1514941652893" duration="914000" />
-      <workItem from="1515122807385" duration="6191000" />
+      <workItem from="1515122807385" duration="6457000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82581000" />
+    <option name="totallyTimeSpent" value="82847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -698,13 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="64" column="64" lean-forward="false" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Message/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -888,14 +893,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+        <state relative-caret-position="377">
+          <caret line="187" column="35" lean-forward="false" selection-start-line="187" selection-start-column="29" selection-end-line="187" selection-end-column="35" />
           <folding>
             <element signature="e#29#50#0#PHP" expanded="true" />
             <element signature="e#277#839#0#PHP" expanded="false" />
             <element signature="e#865#2356#0#PHP" expanded="false" />
             <element signature="e#2383#2894#0#PHP" expanded="false" />
             <element signature="e#3184#3378#0#PHP" expanded="false" />
+            <element signature="e#3396#4663#0#PHP" expanded="false" />
+            <element signature="e#4685#5185#0#PHP" expanded="false" />
             <element signature="e#6418#7105#0#PHP" expanded="false" />
             <element signature="e#7232#7616#0#PHP" expanded="false" />
             <element signature="e#7740#7936#0#PHP" expanded="false" />
@@ -911,6 +918,14 @@
             <marker date="1515138552143" expanded="true" signature="8732:8766" ph="..." />
             <marker date="1515138552143" expanded="true" signature="12427:12461" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="69" column="27" lean-forward="false" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
