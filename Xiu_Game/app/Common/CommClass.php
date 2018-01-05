@@ -123,7 +123,7 @@ use Xxgame\ServerUserBase;
             //创建一个socket套接流
             $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
             //连接服务端的套接流，这一步就是使客户端与服务器端的套接流建立联系
-            if (socket_set_nonblock($socket)){
+            //if (socket_set_nonblock($socket)){
                 if(socket_connect($socket,$ip,$port) == false){
                     return "ERROR:".socket_strerror(socket_last_error());
                 }else{
@@ -135,9 +135,9 @@ use Xxgame\ServerUserBase;
                         return "OK";
                     }
                 }
-            }else{
-                return "ERROR:false";
-            }
+//            }else{
+//                return "ERROR:false";
+//            }
 
             socket_close($socket);//工作完毕，关闭套接流
         }catch (\Exception $e){
