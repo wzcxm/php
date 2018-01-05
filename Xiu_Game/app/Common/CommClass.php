@@ -4,6 +4,7 @@ namespace App\Common;
 use App\Models\Users;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Xxgame\ServerUserBase;
 
 /**
  * Created by PhpStorm.
@@ -117,59 +118,80 @@ use Illuminate\Support\Facades\DB;
             //端口
             $port = 10000;
             //地址
-            $ip = "login.wangqianhong.com";
+            $ip = "gw.wangqianhong.com";
+            //$ip = "login.wangqianhong.com";
             //创建一个socket套接流
             $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
             //连接服务端的套接流，这一步就是使客户端与服务器端的套接流建立联系
-            if(socket_connect($socket,$ip,$port) == false){
-                return "ERROR:".socket_strerror(socket_last_error());
-            }else{
-                //向服务端写入字符串信息
-                $reslut = socket_write($socket,$message,$msg_len);
-                if($reslut === false){
+            if (socket_set_nonblock($socket)){
+                if(socket_connect($socket,$ip,$port) == false){
                     return "ERROR:".socket_strerror(socket_last_error());
-                }else if($reslut==$msg_len){
-                    return "OK";
+                }else{
+                    //向服务端写入字符串信息
+                    $reslut = socket_write($socket,$message,$msg_len);
+                    if($reslut === false){
+                        return "ERROR:".socket_strerror(socket_last_error());
+                    }else if($reslut==$msg_len){
+                        return "OK";
+                    }
                 }
+            }else{
+                return "ERROR:false";
             }
+
             socket_close($socket);//工作完毕，关闭套接流
         }catch (\Exception $e){
             return "ERROR:".$e->getMessage();
         }
     }
 
-
-    //更新玩家数据
-     public static function setPlayer()
+    //提交到游戏服务器
+     public static function subServer($user_msg,$uid)
      {
          $Server_Command_User_Base = 219;    //ServerUserBase
          $Server_Type_PHP = 2;  //php
-         $message = pack('S2L3',219,2,1,0,0)."";
-         var_dump($message);
+         $message = pack('S2L3',$Server_Type_PHP,$Server_Command_User_Base,strlen($user_msg),$uid,0);
+         $message .=$user_msg;
          CommClass::message_xor($message);
-         CommClass::connServer($message);
+         $ret_msg = CommClass::connServer($message);
+         if($ret_msg=='OK'){
+             return true;
+         }else{
+             return false;
+         }
      }
+
 
      /// <summary>
      /// 更新游戏的房卡数量
      /// </summary>
      /// <param name="uid">玩家ID</param>
+     /// <param name="type">更新类型</param>
+     /// <param name="str">通知内容</param>
      /// <returns></returns>
-     public static function SetGameCard($uid){
-//        try{
-//            $user = Users::find($uid);
-//            if(empty($user)) return false;
-//            $url = "http://pdk.csppyx.com:5937/3001?".$uid."&".$user->gold;
-//            $response = CommClass::HttpGet($url);
-//            if($response==1) {
-//                return true;
-//            }else{return false;}
-//        }catch (\Exception $e){
-//            return false;
-//        }
+     public static function UpGameSer($uid,$type,$str=null){
+        try{
+            $ser_user = new ServerUserBase();
+            if($uid != 1){
+                $user = Users::find($uid);
+                if(empty($user)) return false;//玩家不存在，返回
+                if($type == 'card')//更新房卡
+                    $ser_user->setCardNum($user->roomcard);
+                if($type == 'coin')//更新金币
+                    $ser_user->setCoinNum($user->gold);
+                if($type == 'role')//更新角色
+                    $ser_user->setRoleId($user->rid);
+            }else{
+                if($type == 'msg' && !empty($str)) //更新大厅公告
+                    $ser_user->setMessage($str);
+                if($type == 'urgent' && !empty($str))//更新紧急通知
+                    $ser_user->setUrgent($str);
+            }
+            return CommClass::subServer($ser_user->encode(),$uid);
+        }catch (\Exception $e){
+            return false;
+        }
      }
-
-
      ///设置缓存
     public static function SetDataCache()
     {

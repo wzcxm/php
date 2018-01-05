@@ -17,29 +17,25 @@ class UserLoginController extends Controller
  * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
  */
     public  function Login(Request $request){
-        $user = Users::find($request['id']);
+        $user = \DB::table('v_user')->where([['uid',$request['id']],['pwd',$request['pwd']]])->first();
         if(empty($user)) {
-            return redirect()->back()->with('idmsg','用户ID错误！');
+            return redirect()->back()->with('idmsg','用户ID或者密码错误！');
         }
         else {
-            if(empty($request['pwd']) || $user->pwd != $request['pwd']){
-                return redirect()->back()->with('pwdmsg','密码错误！');
-            }
-            else{
-                if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
-                    Session::put('uid', $user->uid);
-                    Session::put('openid', $user->openid);
-                    Session::put('front_uid', $user->front_uid);
-                    Session::put('chief_uid', $user->chief_uid);
-                    Session::put('roleid', $user->rid);
-                    Session::put('headimg', $user->head_img_url);
-                    Session::put('roomcard', $user->roomcard);
-                    Session::put('rolename', $this->getRolename($user->rid));
-                    Session::put('backgold', $user->backgold);
-                    return redirect('/Home');
-                }else{
-                    return redirect('/Warning');
-                }
+            if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
+                Session::put('uid', $user->uid);
+                Session::put('openid', $user->openid);
+                Session::put('front_uid', $user->front_uid);
+                Session::put('chief_uid', $user->chief_uid);
+                Session::put('roleid', $user->rid);
+                Session::put('headimg', $user->head_img_url);
+                Session::put('roomcard', $user->roomcard);
+                Session::put('rolename', $user->rname);
+                Session::put('money', $user->money);
+                Session::put('gold', $user->gold);
+                return redirect('/Home');
+            }else{
+                return redirect('/Warning');
             }
         }
     }

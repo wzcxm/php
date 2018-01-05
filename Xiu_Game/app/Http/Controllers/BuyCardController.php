@@ -41,6 +41,9 @@ class BuyCardController extends Controller
                     //保存充卡信息
                     $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 1];
                     CommClass::InsertCard($arr);
+                    //更新游戏的房卡数量
+                    CommClass::UpGameSer($uid,'card');//玩家的卡
+                    CommClass::UpGameSer($user_id,'card');//我的卡
                 }
             }
             return response()->json(['msg' => $retMsg]);
@@ -70,4 +73,7 @@ class BuyCardController extends Controller
             return "";
         }
     }
+
+
+
 }
