@@ -67,7 +67,7 @@ class MessageController extends Controller
             $message->create_date = date("Y-m-d H:i:s");
             $message->save();
 
-            //保存成功，后发送游戏服务器
+            //保存成功后发送游戏服务器
             //大厅公告
             if($message->mtype==1)
                 CommClass::UpGameSer(1,'msg',$message->mcontent);

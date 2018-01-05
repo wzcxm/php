@@ -46,3 +46,7 @@ Route::get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
 Route::get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
 
 
+//短信接口
+Route::get('/sms/{uid}/{type}','GameSericeController@sendSms');
+
+
