@@ -116,7 +116,7 @@ use Xxgame\ServerUserBase;
             //字符串长度不能为0；
             if($msg_len<=0) return "ERROR:NULL";
             //端口
-            $port = 10000;
+            $port = 10001;
             //地址
             $ip = "gw.wangqianhong.com";
             //$ip = "login.wangqianhong.com";
