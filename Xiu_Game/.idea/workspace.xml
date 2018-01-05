@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Common/CommClass.php" line="305" />
+    <bookmark url="file://$PROJECT_DIR$/app/Common/CommClass.php" line="306" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/app/Common/CommClass.php" afterPath="$PROJECT_DIR$/app/Common/CommClass.php" />
-      <change beforePath="$PROJECT_DIR$/app/Common/message.pb.php" afterPath="$PROJECT_DIR$/app/Common/message.pb.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,8 +70,8 @@
       <file leaf-file-name="CommClass.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
+            <state relative-caret-position="253">
+              <caret line="177" column="67" lean-forward="false" selection-start-line="177" selection-start-column="67" selection-end-line="177" selection-end-column="67" />
               <folding>
                 <element signature="e#29#50#0#PHP" expanded="true" />
                 <element signature="e#277#839#0#PHP" expanded="false" />
@@ -82,21 +79,21 @@
                 <element signature="e#2383#2894#0#PHP" expanded="false" />
                 <element signature="e#3184#3378#0#PHP" expanded="false" />
                 <element signature="e#4677#5177#0#PHP" expanded="false" />
-                <element signature="e#6342#7029#0#PHP" expanded="false" />
-                <element signature="e#7156#7540#0#PHP" expanded="false" />
-                <element signature="e#7664#7860#0#PHP" expanded="false" />
-                <element signature="e#8028#8323#0#PHP" expanded="false" />
-                <element signature="e#8386#8638#0#PHP" expanded="false" />
-                <element signature="e#8817#12332#0#PHP" expanded="false" />
-                <element signature="e#12512#13931#0#PHP" expanded="false" />
-                <marker date="1515137523559" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
-                <marker date="1515137523559" expanded="true" signature="5197:5236" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="7046:7084" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="7558:7593" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="7878:7915" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="8342:8380" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="8656:8690" ph="..." />
-                <marker date="1515137523559" expanded="true" signature="12351:12385" ph="..." />
+                <element signature="e#6410#7097#0#PHP" expanded="false" />
+                <element signature="e#7224#7608#0#PHP" expanded="false" />
+                <element signature="e#7732#7928#0#PHP" expanded="false" />
+                <element signature="e#8096#8391#0#PHP" expanded="false" />
+                <element signature="e#8454#8706#0#PHP" expanded="false" />
+                <element signature="e#8885#12400#0#PHP" expanded="false" />
+                <element signature="e#12580#13999#0#PHP" expanded="false" />
+                <marker date="1515137646871" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
+                <marker date="1515137646871" expanded="true" signature="5197:5236" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="7114:7152" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="7626:7661" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="7946:7983" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="8410:8448" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="8724:8758" ph="..." />
+                <marker date="1515137646871" expanded="true" signature="12419:12453" ph="..." />
               </folding>
             </state>
           </provider>
@@ -305,7 +302,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1924" />
     <option name="height" value="1056" />
@@ -443,15 +440,15 @@
       <workItem from="1514537681201" duration="617000" />
       <workItem from="1514858369101" duration="18727000" />
       <workItem from="1514941652893" duration="914000" />
-      <workItem from="1515122807385" duration="5167000" />
+      <workItem from="1515122807385" duration="5294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81557000" />
+    <option name="totallyTimeSpent" value="81684000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26492536" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -893,8 +890,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
+        <state relative-caret-position="253">
+          <caret line="177" column="67" lean-forward="false" selection-start-line="177" selection-start-column="67" selection-end-line="177" selection-end-column="67" />
           <folding>
             <element signature="e#29#50#0#PHP" expanded="true" />
             <element signature="e#277#839#0#PHP" expanded="false" />
@@ -902,21 +899,21 @@
             <element signature="e#2383#2894#0#PHP" expanded="false" />
             <element signature="e#3184#3378#0#PHP" expanded="false" />
             <element signature="e#4677#5177#0#PHP" expanded="false" />
-            <element signature="e#6342#7029#0#PHP" expanded="false" />
-            <element signature="e#7156#7540#0#PHP" expanded="false" />
-            <element signature="e#7664#7860#0#PHP" expanded="false" />
-            <element signature="e#8028#8323#0#PHP" expanded="false" />
-            <element signature="e#8386#8638#0#PHP" expanded="false" />
-            <element signature="e#8817#12332#0#PHP" expanded="false" />
-            <element signature="e#12512#13931#0#PHP" expanded="false" />
-            <marker date="1515137523559" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
-            <marker date="1515137523559" expanded="true" signature="5197:5236" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="7046:7084" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="7558:7593" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="7878:7915" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="8342:8380" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="8656:8690" ph="..." />
-            <marker date="1515137523559" expanded="true" signature="12351:12385" ph="..." />
+            <element signature="e#6410#7097#0#PHP" expanded="false" />
+            <element signature="e#7224#7608#0#PHP" expanded="false" />
+            <element signature="e#7732#7928#0#PHP" expanded="false" />
+            <element signature="e#8096#8391#0#PHP" expanded="false" />
+            <element signature="e#8454#8706#0#PHP" expanded="false" />
+            <element signature="e#8885#12400#0#PHP" expanded="false" />
+            <element signature="e#12580#13999#0#PHP" expanded="false" />
+            <marker date="1515137646871" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
+            <marker date="1515137646871" expanded="true" signature="5197:5236" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="7114:7152" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="7626:7661" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="7946:7983" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="8410:8448" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="8724:8758" ph="..." />
+            <marker date="1515137646871" expanded="true" signature="12419:12453" ph="..." />
           </folding>
         </state>
       </provider>

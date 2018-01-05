@@ -175,6 +175,7 @@ use Xxgame\ServerUserBase;
             if($uid != 1){
                 $user = Users::find($uid);
                 if(empty($user)) return false;//玩家不存在，返回
+                if($user->online_state != 1) return false;//不在线就不发送
                 if($type == 'card')//更新房卡
                     $ser_user->setCardNum($user->roomcard);
                 if($type == 'coin')//更新金币
