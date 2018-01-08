@@ -572,10 +572,92 @@ class Playerinfo extends \Google\Protobuf\Internal\Message
 
 }
 
+class Business extends \Google\Protobuf\Internal\Message
+{
+    private $tea_num = 0;
+    private $hall_num_1 = 0;
+    private $hall_num_2 = 0;
+    private $hall_num_3 = 0;
+    private $date_day = '';
+
+    public function getTeaNum()
+    {
+        return $this->tea_num;
+    }
+
+    public function setTeaNum($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->tea_num = $var;
+    }
+
+    public function getHallNum1()
+    {
+        return $this->hall_num_1;
+    }
+
+    public function setHallNum1($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_num_1 = $var;
+    }
+
+    public function getHallNum2()
+    {
+        return $this->hall_num_2;
+    }
+
+    public function setHallNum2($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_num_2 = $var;
+    }
+
+    public function getHallNum3()
+    {
+        return $this->hall_num_3;
+    }
+
+    public function setHallNum3($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_num_3 = $var;
+    }
+
+    public function getDateDay()
+    {
+        return $this->date_day;
+    }
+
+    public function setDateDay($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->date_day = $var;
+    }
+
+}
+
+class BusinessList extends \Google\Protobuf\Internal\Message
+{
+    private $bus_list;
+
+    public function getBusList()
+    {
+        return $this->bus_list;
+    }
+
+    public function setBusList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\Business::class);
+        $this->bus_list = $var;
+    }
+
+}
+
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0a90070a1067616d657365726963652e70726f746f1206787867616d6522" .
+    "0aaf080a1067616d657365726963652e70726f746f1206787867616d6522" .
     "2c0a075465614c69737412210a087465615f6c69737418012003280b320f" .
     "2e787867616d652e546561496e666f22e2010a07546561496e666f12100a" .
     "087465615f6e616d65180120012809120b0a0375696418022001280d120e" .
@@ -605,6 +687,11 @@ $pool->internalAddGeneratedFile(hex2bin(
     "2001280912100a08726f6f6d6361726418032001280d120c0a04726f6c65" .
     "18042001280d120f0a076d617271756565180520012809120e0a06757267" .
     "656e74180620012809120d0a0573636f726518072001280d120b0a037569" .
-    "6418082001280d620670726f746f33"
+    "6418082001280d22690a08427573696e657373120f0a077465615f6e756d" .
+    "18012001280d12120a0a68616c6c5f6e756d5f3118022001280d12120a0a" .
+    "68616c6c5f6e756d5f3218032001280d12120a0a68616c6c5f6e756d5f33" .
+    "18042001280d12100a08646174655f64617918052001280922320a0c4275" .
+    "73696e6573734c69737412220a086275735f6c69737418012003280b3210" .
+    "2e787867616d652e427573696e657373620670726f746f33"
 ));
 

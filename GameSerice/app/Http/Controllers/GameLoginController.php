@@ -51,6 +51,7 @@ class GameLoginController extends Controller
         $server_login_info->setNickname($user->nickname);
         $server_login_info->setSex($user->sex);
         $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setBubble($user->gold);
         $server_login_info->setRid($user->rid);
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
@@ -87,6 +88,7 @@ class GameLoginController extends Controller
         $server_login_info->setNickname($user->nickname);
         $server_login_info->setSex($user->sex);
         $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setBubble($user->gold);
         $server_login_info->setRid($user->rid);
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
@@ -162,7 +164,7 @@ class GameLoginController extends Controller
 				else
 				{
                     $uid = $user->uid;
-                    $bubble = $user->bubble;
+                    $bubble = $user->gold;
                     $roomcard = $user->roomcard;
                     $ustate = $user->ustate;
                     $room_id = $user->room_id;
@@ -227,7 +229,7 @@ class GameLoginController extends Controller
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
         $roomcard = $user->roomcard;
-        $bubble = $user->bubble;
+        $bubble = $user->gold;
         $rid = $user->rid;
         $ustate = $user->ustate;
         $refresh_token = $user->refresh_token;

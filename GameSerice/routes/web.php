@@ -26,6 +26,9 @@ $router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlay
 //添加修改茶楼成员备注
 $router->get('/updateRemark/{teaid}/{uid}/{remark}/{sign}','GameSericeController@updateRemark');
 
+//获取茶楼经营情况
+$router->get('/getBusList/{teaid}/{sign}','GameSericeController@getBusList');
+
 //版本控制
 $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
