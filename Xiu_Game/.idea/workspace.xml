@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/config/conf.php" />
       <change beforePath="$PROJECT_DIR$/../GameSerice/config/conf.php" afterPath="$PROJECT_DIR$/../GameSerice/config/conf.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Common/CommClass.php" afterPath="$PROJECT_DIR$/app/Common/CommClass.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" afterPath="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Home/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Home/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -501,12 +494,12 @@
       <workItem from="1515373247527" duration="7714000" />
       <workItem from="1515406920758" duration="1139000" />
       <workItem from="1515467109084" duration="1198000" />
-      <workItem from="1515548695022" duration="1984000" />
+      <workItem from="1515548695022" duration="2755000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98200000" />
+    <option name="totallyTimeSpent" value="98971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />

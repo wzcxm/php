@@ -15,7 +15,7 @@ return [
 		'gw2' => [
                 'INDEX' => 2,
                 'DOMAIN' => 'gw.wangqianhong.com',
-                'PORT' => 10001,
+                'PORT' => 10700,
                 'STATUS' => 2,
                 ],
 
