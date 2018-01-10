@@ -108,15 +108,13 @@ use Xxgame\ServerUserBase;
      }
 
     //连接服务器
-    public static function connServer($message)
+    public static function connServer($message,$port)
     {
         try{
             //字符串长度
             $msg_len = strlen($message);
             //字符串长度不能为0；
             if($msg_len<=0) return "ERROR:NULL";
-            //端口
-            $port = 10001;
             //地址
             $ip = "gw.wangqianhong.com";
             //$ip = "login.wangqianhong.com";
@@ -153,7 +151,15 @@ use Xxgame\ServerUserBase;
          $message = pack('S2L3',$Server_Type_PHP,$Server_Command_User_Base,strlen($user_msg),$uid,0);
          $message .=$user_msg;
          CommClass::message_xor($message);
-         $ret_msg = CommClass::connServer($message);
+         $game_wg = config("conf.Game_WG");
+         if($uid==1){
+             foreach ($game_wg as $wg){
+                 $ret_msg = CommClass::connServer($message,$wg);
+             }
+         }else{
+             $port = $game_wg[$uid%2];
+             $ret_msg = CommClass::connServer($message,$port);
+         }
          if($ret_msg=='OK'){
              return true;
          }else{

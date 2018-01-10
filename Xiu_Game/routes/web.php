@@ -85,7 +85,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //充卡
     Route::get('/BuyCard','BuyCardController@index');
     Route::get('/BuyCard/Search/{uid}','BuyCardController@Search');
-    Route::post('/BuyCard/{uid}/{number}','BuyCardController@PayerBuy');
+    Route::post('/BuyCard/Gift','BuyCardController@PayerBuy');
     Route::get('/BuyCard/QueryBuy/{uid}/{number}','BuyCardController@querybuy');
 
 //    //购卡、售卡、返卡、奖励统计(查询)

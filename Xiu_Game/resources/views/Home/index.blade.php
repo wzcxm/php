@@ -2,28 +2,31 @@
 @section('style')
 @endsection
 @section('content')
-<div  class="weui-flex" style="background-color: #089db9;">
+<div  class="weui-flex" style="background-color: #ffa500ad;">
     @if(!empty($User))
-        <div class="weui-flex__item" style="text-align: center;padding-top: 5px;">
+        <div class="weui-flex__item" style="text-align: center;padding-top: 25px;">
             <img src="{{$User->head_img_url}}" style="border-radius:50px;" width="100">
         </div>
         <div class="weui-flex__item" >
-            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: bold;">
+            <div style="padding-top: 5px;font-size: 1rem;font-weight: bold;">
                 {{$User->nickname}}
             </div>
-            <div style="padding-top: 5px;font-size: 0.6rem;font-weight: 400;">
+            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
                 ID：{{$User->uid}}
             </div>
-            <div style="padding-top: 5px;font-size: 0.6rem;font-weight: 400;">
+            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
                 我的钻石：{{$User->roomcard}}
             </div>
-            <div style="padding-top: 5px;padding-bottom: 5px;font-size: 0.7rem;font-weight: 400;color:white;">
+            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
+                我的金币：{{$User->gold}}
+            </div>
+            <div style="padding-top: 5px;padding-bottom: 5px;font-size: 0.9rem;font-weight: 400;color:white;">
                 <span style="border-radius:3px;background-color: #f36666;">{{$User->rname}}</span>
             </div>
         </div>
     @endif
 </div>
-<div  class="weui-flex" style="background-color: #dee6e8;">
+<div  class="weui-flex" style="background-color: #f7f7fa;">
     @if($roleid==1)
         <div class="weui-flex__item" style="text-align: center;">
             <span style="font-size:  0.7rem;font-weight: bold;">下载人数：</span>
@@ -36,14 +39,14 @@
         </div>
     @else
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size:  0.7rem;font-weight: bold;">我的返利：</span>
+            <span style="font-size:  0.8rem;font-weight: bold;">我的积分：</span>
 
-            <span style="font-size:  0.65rem;font-weight: bold;color:red;">{{$total_num}}</span>
+            <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$total_num}}</span>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size: 0.7rem;font-weight: bold;">当月返利：</span>
+            <span style="font-size: 0.8rem;font-weight: bold;">当月积分：</span>
 
-            <span style="font-size:  0.65rem;font-weight: bold;color:red;">{{$month}}</span>
+            <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$month}}</span>
         </div>
     @endif
 

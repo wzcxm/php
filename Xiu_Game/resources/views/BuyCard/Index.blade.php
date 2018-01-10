@@ -3,60 +3,81 @@
 @endsection
 @section('easyui_content')
     <header style="text-align: center;padding-top: 10px;">
-        <h3>游戏充值</h3>
+        <h3>钻石赠送</h3>
     </header>
-    <div style="width: 100%;padding-top: 10px;">
-        <div style="margin-bottom:10px;">
-            <table width="100%" style="border-collapse:   separate;   border-spacing:   10px; " >
-                <tr >
-                    <td width="30%" align="right">我的余额：</td>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">我的钻石：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <span style="border-radius: 4px;background-color:#c35858;color:white;font-weight: 400;"><b id="card">{{$card}}</b></span>
+            </div>
+            <div class="weui-cell__hd">
+                <label class="weui-label">我的金币：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <span style="border-radius: 4px;background-color:#c35858;color:white;font-weight: 400;"><b id="gold">{{$gold}}</b></span>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">玩家ID：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" name="payer_id" id="payer_id" >
+
+            </div>
+            <div class="weui-cell__hd">
+                <div class="button_sp_area">
+                    <a class="weui-btn weui_btn_mini weui-btn_primary" href="javascript:"  id="btn_search" >查询</a>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <table width="100%" style="border-collapse:   separate;   border-spacing:   10px;">
+                <tr>
+                    <td width="20%" align="right">昵称：</td>
                     <td>
-                        <span style="border-radius: 4px;background-color:#c35858;color:white;font-weight: 400;"><b id="gold">{{$gold}}</b></span>
+                        <img  id="head_url" src="" style="border-radius:6px;" width="30" align="absmiddle" >
+                        <span id="player_nick"></span>
+                        <input type="hidden" id="uid">
                     </td>
+                </tr>
+                <tr>
+                    <td align="right">钻石：</td>
+                    <td><span id="u_card"></span></td>
+                </tr>
+                <tr>
+                    <td align="right">金币：</td>
+                    <td><span id="u_gold"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span style="color:red;">请仔细核对玩家信息后，再确认赠送!</span></td>
                 </tr>
             </table>
         </div>
-        <hr>
-        <div style="margin-bottom:10px">
-            <table width="100%" style="border-collapse:   separate;   border-spacing:   10px;">
-                <tr >
-                    <td width="30%" align="right">玩家ID：</td>
-                    <td>
-                        <input class="easyui-numberbox" id="payer_id" style="width: 120px;" >&nbsp;
-                        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="btn_search" style="width: 80px;">查询玩家</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">ID：</td>
-                    <td><img  id="head_url" src="" style="border-radius:6px;" width="30" align="absmiddle" ><span  id="uid" ></span></td>
-                </tr>
-                <tr>
-                    <td align="right">昵称：</td>
-                    <td><span id="player_nick"></span></td>
-                </tr>
-                <tr>
-                    <td align="right">余额：</td>
-                    <td><span id="roomcard"></span></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><span style="color:red;">请仔细核对玩家信息后，再确认充值!</span></td>
-                </tr>
-            </table>
-            <hr>
-            <table width="100%" style="border-collapse:   separate;   border-spacing:   10px;">
-                <tr>
-                    <td width="30%" align="right">充值数量：</td>
-                    <td><input class="easyui-numberbox"  id="card_number" style="width: 120px;"  ></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" id="btn_buy" style="width:120px">确认充值</a></td>
-                </tr>
-                <tr>
-                    <td></td><td ><span id="error" style="color:red;"></span></td>
-                </tr>
-            </table>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">赠送类型：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select"  id="sel_type">
+                    <option  selected="selected" value="1">钻石</option>
+                    <option  value="2">金币</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">赠送数量：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="number" name="card_number" id="card_number" >
+            </div>
+        </div>
+        <div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary"  id="btn_buy">确认赠送</button>
         </div>
     </div>
 @endsection
@@ -83,37 +104,41 @@
                         $.alert(data.msg);
                         $("#head_url").attr('src',"");
                         $("#player_nick").html("");
-                        $("#roomcard").html("");
-                        $("#uid").html("");
+                        $("#u_card").html("");
+                        $("#u_gold").html("");
+                        $("#uid").val("");
                     } else {
                         var player = data.user;
                         $("#head_url").attr('src',player['head_img_url']);
                         $("#player_nick").html(player['nickname']);
-                        $("#roomcard").html(player['roomcard']);
-                        $("#uid").html(player['uid']);
+                        $("#u_card").html(player['roomcard']);
+                        $("#u_gold").html(player['gold']);
+                        $("#uid").val(player['uid']);
                     }
                 });
             });
             $("#btn_buy").click(function () {
                 $('#btn_buy').prop('disabled',true);
-                var payer_id=$("#uid").html();
-                var card_number=$("#card_number").val();
-                if(!comm.is_null(payer_id)){
-                    $.alert("请点击查询玩家信息，并仔细核对玩家信息后充值！");
+                var R = new Object();
+                R.payer_id = $("#uid").val();
+                R.sel_type = $('#sel_type').val();
+                R.card_number = $('#card_number').val();
+                if(!comm.is_null(R.payer_id)){
+                    $.alert("请查询玩家信息，并仔细核对玩家信息后赠送！");
                     $('#btn_buy').prop('disabled',false);
                     return;
                 }
-                if(!comm.is_null(card_number)){
+                if(!comm.is_null(R.card_number)){
                     $.alert("请输入充值数量！");
                     $('#btn_buy').prop('disabled',false);
                     return;
                 }
-                $.post("/BuyCard/"+payer_id+"/"+card_number,function (data) {
-                    if(comm.is_null(data.msg)){
-                        $.alert(data.msg);
+                $.post("/BuyCard/Gift",{data:R},function (reslut) {
+                    if(comm.is_null(reslut.msg)){
+                        $.alert(reslut.msg);
                     }
                     else {
-                        $.alert('充值成功！',function () {
+                        $.alert('赠送成功！',function () {
                             window.location.reload();
                         });
                     }
