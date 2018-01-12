@@ -15,7 +15,9 @@
             <tr>
                 <td ><span> 上级ID：</span></td>
                 <td><input id="front" class="easyui-textbox" style="width: 120px;"></td>
-                <td colspan="3"></td>
+                <td><a href="#" id="btn_black" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-lock'">拉黑</a></td>
+                <td><div class="datagrid-btn-separator"></div></td>
+                <td><a href="#" id="btn_white" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-ok'">取消</a></td>
             </tr>
         </table>
     </div>
@@ -30,7 +32,7 @@
             });
             $("#tab_grid").datagrid({
                 title:'玩家列表',
-                singleSelect:true,
+                singleSelect:false,
                 border:false,
                 fit:true,
                 //               fitColumns:true,
@@ -42,7 +44,7 @@
                 idField:'uid',
                 toolbar:'#tb',
                 columns:[[
-
+                    {field:'ck',checkbox:true},
                     {field:'head_img_url',title:'头像',width:60,
                         formatter:function (value) {
                             if(comm.is_null(value)){
@@ -52,7 +54,15 @@
                             }
                         }},
                     {field:'uid',title:'ID',width:60},
-                    {field:'nickname',title:'昵称',width:120},
+                    {field:'nickname',title:'昵称',width:100},
+                    {field:'ustate',title:'状态',width:60,
+                        formatter:function (value) {
+                            if(value == 0){
+                                return '正常';
+                            } else{
+                                return '冻结';
+                            }
+                        }},
                     {field:'rid',title:'类型',width:60,
                         formatter:function (value) {
                             if(value==1){
@@ -64,20 +74,78 @@
                             }else{
                                 return '玩家';
                             }
-
                         }},
                     {field:'roomcard',title:'钻石',width:60},
+                    {field:'gold',title:'金币',width:60},
                     {field:'uphone',title:'电话',width:90},
                     {field:'front_uid',title:'上级ID',width:60},
-                    {field:'front_nick',title:'上级昵称',width:120},
+                    {field:'front_nick',title:'上级昵称',width:100},
                     {field:'front_hone',title:'上级电话',width:90},
-                    {field:'create_time',title:'加入日期',width:150}
+                    {field:'create_time',title:'加入日期',width:120}
                 ]]
             });
             $("#btn_search").click(function () {
                 $('#tab_grid').datagrid('load',{
                     uid: $('#uid').val(),
                     front_uid:$('#front').val()
+                });
+            });
+            //拉黑
+            $("#btn_black").click(function () {
+                var rows =  $("#tab_grid").datagrid('getChecked');
+                if(rows.length<=0){
+                    $.alert('请选择拉黑的玩家','提示');
+                    return;
+                }
+                var ids = "";
+                for(var i=0;i<rows.length;i++){
+                    if(ids==""){
+                        ids += rows[i]['uid'];
+                    }else{
+                        ids += ','+rows[i]['uid'];
+                    }
+                }
+                $.confirm("您确定要拉黑这些玩家吗？", function() {
+                    //点击确认后的回调函数
+                    $.post('/Players/lock',{data:ids},function (result) {
+                        if(result.msg==1){
+                            comm.Reload('tab_grid');
+                        }
+                        else{
+                            $.alert(result.msg);
+                        }
+                    });
+                }, function() {
+                    //点击取消后的回调函数
+                });
+            });
+            //取消拉黑
+            $("#btn_white").click(function () {
+                var rows =  $("#tab_grid").datagrid('getChecked');
+                if(rows.length<=0){
+                    $.alert('请选择要解封的玩家','提示');
+                    return;
+                }
+                var ids = "";
+                for(var i=0;i<rows.length;i++){
+                    if(ids==""){
+                        ids += rows[i]['uid'];
+                    }else{
+                        ids += ','+rows[i]['uid'];
+                    }
+                }
+                $.confirm("您确定要解封这些玩家吗？", function() {
+                    //点击确认后的回调函数
+                    $.post('/Players/unlock',{data:ids},function (result) {
+                        if(result.msg==1){
+                            comm.Reload('tab_grid');
+                        }
+                        else{
+                            $.alert(result.msg);
+                        }
+                    });
+                }, function() {
+                    //点击取消后的回调函数
                 });
             });
         })

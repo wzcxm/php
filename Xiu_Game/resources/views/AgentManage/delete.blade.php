@@ -50,6 +50,7 @@
                     {field:'uid',title:'ID',width:60},
                     {field:'nickname',title:'昵称',width:120},
                     {field:'roomcard',title:'钻石',width:60},
+                    {field:'gold',title:'金币',width:60},
                     {field:'uphone',title:'联系方式',width:100},
                     {field:'create_time',title:'加入日期',width:150}
                 ]]

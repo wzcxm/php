@@ -55,6 +55,7 @@ class GameLoginController extends Controller
         $server_login_info->setRid($user->rid);
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setToken($user->openid);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
         $server_login_info->setSign(encrypt(env('SIGN')));
         $server_login_info->setMarquee($this->getMsg(1));//跑马灯
@@ -92,6 +93,7 @@ class GameLoginController extends Controller
         $server_login_info->setRid($user->rid);
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setToken($user->openid);
         $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
         $server_login_info->setSign(encrypt(env('SIGN')));
         $server_login_info->setMarquee($this->getMsg(1));//跑马灯
@@ -188,6 +190,7 @@ class GameLoginController extends Controller
 				$server_login_info->setBubble($bubble);
 				$server_login_info->setRid($rid);
 				$server_login_info->setRoomId($room_id);
+                $server_login_info->setToken($openid);
 				$passwd = encrypt($passwd);
 				$server_login_info->setPasswd($passwd);
                 $server_login_info->setTeaId($tea_id);
@@ -235,6 +238,7 @@ class GameLoginController extends Controller
         $refresh_token = $user->refresh_token;
         $room_id = $user->room_id;
         $tea_id = $user->tea_id;
+        $openid = $user->openid;
 		if ($ustate != 0)
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
 
@@ -286,6 +290,7 @@ class GameLoginController extends Controller
 				$server_login_info->setPasswd($old_passwd);
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setTeaId($tea_id);
+                $server_login_info->setToken($openid);
                 $server_login_info->setHallId($this->each_hall($uid,$tea_id));
                 $server_login_info->setSign(encrypt(env('SIGN')));
                 $server_login_info->setMarquee($this->getMsg(1));//跑马灯

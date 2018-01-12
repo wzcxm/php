@@ -161,15 +161,15 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/BackCash/getlist','BackCashController@extlist');
 
     //黑名单
-    Route::get('/Blacklist',function (){
-        return view('Black.index');
-    });
-    Route::get('/Blacklist/add',function (){
-        return view('Black.create');
-    });
-    Route::post('/Blacklist/data','BlacklistController@getData');
-    Route::post('/Blacklist/save','BlacklistController@save');
-    Route::post('/Blacklist/del/{id}','BlacklistController@Unlock');
+//    Route::get('/Blacklist',function (){
+//        return view('Black.index');
+//    });
+//    Route::get('/Blacklist/add',function (){
+//        return view('Black.create');
+//    });
+//    Route::post('/Blacklist/data','BlacklistController@getData');
+//    Route::post('/Blacklist/save','BlacklistController@save');
+//    Route::post('/Blacklist/del/{id}','BlacklistController@Unlock');
 
     //删除代理
     Route::get('/AgentDel',function (){
@@ -189,6 +189,8 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
         return view('UserManage.index');
     });
     Route::post('/Players/data','UserManageController@getData');
+    Route::post('/Players/lock','UserManageController@Lock');
+    Route::post('/Players/unlock','UserManageController@Unlock');
 //    //微信订单查询
 //    Route::get('/OrderSearch','CashController@WeChatOrder');
 //    Route::get('/OrderSearch/select','CashController@WcoSarch');

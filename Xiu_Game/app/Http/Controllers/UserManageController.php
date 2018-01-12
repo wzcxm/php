@@ -134,4 +134,28 @@ class UserManageController extends Controller
         $player_arr = CommClass::PagingData($page,$rows,"v_user_list" ,$where,"create_time desc");
         return response()->json($player_arr);
     }
+
+    //拉黑玩家
+    public function Lock(Request $request){
+        try{
+            $ids = isset($request['data'])?$request['data']:"";
+            $id_list = explode(',',$ids);
+            DB::table('xx_user')->whereIn('uid',$id_list)->update(['ustate'=>-1]);
+            return response()->json(['msg'=>1]);
+        }catch (\Exception $e) {
+            return response()->json(['msg'=>$e->getMessage()]);
+        }
+    }
+    //解封
+    public function  Unlock(Request $request){
+        try{
+            $ids = isset($request['data'])?$request['data']:"";
+            $id_list = explode(',',$ids);
+            DB::table('xx_user')->whereIn('uid',$id_list)->update(['ustate'=>0]);
+            return response()->json(['msg'=>1]);
+        }catch (\Exception $e) {
+            return response()->json(['msg'=>$e->getMessage()]);
+        }
+    }
+
 }

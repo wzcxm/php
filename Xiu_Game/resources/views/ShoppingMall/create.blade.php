@@ -12,7 +12,7 @@
                 <input type="hidden" id="msgid" value="{{empty($Mall)?"":$Mall->sid}}">
                 <select class="weui-select"  id="type">
                     <option {{empty($Mall)?"selected":($Mall->type==0?'selected':'')}} value="0">游戏商城</option>
-                    <option {{empty($Mall)?"":($Mall->type==1?'selected':'')}} value="1">后台商城</option>
+                    <option {{empty($Mall)?"":($Mall->type==1?'selected':'')}} value="1">公众号商城</option>
                 </select>
             </div>
         </div>
@@ -22,8 +22,8 @@
             </div>
             <div class="weui-cell__bd">
                 <select class="weui-select"  id="sgive">
-                    <option {{empty($Mall)?"selected":($Mall->sgive==0?'selected':'')}} value="0">砖石</option>
-                    <option {{empty($Mall)?"":($Mall->sgive==1?'selected':'')}} value="1">房卡</option>
+                    <option {{empty($Mall)?"selected":($Mall->sgive==0?'selected':'')}} value="0">钻石</option>
+                    <option {{empty($Mall)?"":($Mall->sgive==1?'selected':'')}} value="1">金币</option>
                 </select>
             </div>
         </div>

@@ -63,15 +63,15 @@
                             if(value == 0){
                                 return "游戏商城";
                             }else if(value == 1){
-                                return "后台商城";
+                                return "公众号商城";
                             }else{return "其他";}
                         }},
                     {field:'sgive',title:'商品类型',width:80,
                         formatter:function (value) {
                             if(value == 0){
-                                return '砖石';
+                                return '钻石';
                             }else if(value == 1){
-                                return "房卡";
+                                return "金币";
                             }else{
                                 return "其他";
                             }
