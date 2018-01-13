@@ -219,7 +219,6 @@ class GameLoginController extends Controller
 				return $send_data;
 			}
 		}
-
 		error_end:
 		curl_close($curl);
 		return $this->error_message(ErrorCode::Error_WeiXin_Login);
@@ -348,11 +347,8 @@ class GameLoginController extends Controller
     //获取游戏公告信息
     private function getMsg($type){
         try{
-            $msg = DB::table("xx_sys_message")->get();
-            if(!empty($msg))
-                return collect($msg)->where('mtype',$type)->get('mcontent');
-            else
-                return "";
+            if(empty($type)) return "";
+            return DB::table("xx_sys_message")->where('mtype',$type)->value('mcontent');
         }catch (\Exception $e){
             return "";
         }

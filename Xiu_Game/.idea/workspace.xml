@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4351">
-              <caret line="147" column="36" lean-forward="false" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
+            <state relative-caret-position="640">
+              <caret line="298" column="81" lean-forward="false" selection-start-line="298" selection-start-column="76" selection-end-line="298" selection-end-column="81" />
               <folding>
                 <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
                 <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
@@ -104,10 +103,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyAgentController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyAgentController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyAgentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1846">
+            <state relative-caret-position="1639">
               <caret line="124" column="41" lean-forward="false" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
               <folding />
             </state>
@@ -118,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="572">
-              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+              <caret line="58" column="39" lean-forward="false" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
               <folding>
                 <element signature="e#2817#3347#0#PHP" expanded="false" />
               </folding>
@@ -313,7 +312,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1924" />
     <option name="height" value="1056" />
@@ -539,15 +538,15 @@
       <workItem from="1515634014937" duration="6877000" />
       <workItem from="1515719727220" duration="599000" />
       <workItem from="1515738093281" duration="2156000" />
-      <workItem from="1515809681482" duration="1618000" />
+      <workItem from="1515809681482" duration="1660000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110821000" />
+    <option name="totallyTimeSpent" value="110863000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20469083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1005,18 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4351">
-          <caret line="147" column="36" lean-forward="false" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
-          <folding>
-            <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
-            <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
-            <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyBubbleController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1192">
@@ -1050,7 +1037,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
-          <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+          <caret line="58" column="39" lean-forward="false" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
           <folding>
             <element signature="e#2817#3347#0#PHP" expanded="false" />
           </folding>
@@ -1062,7 +1049,7 @@
         <state relative-caret-position="290">
           <caret line="271" column="28" lean-forward="false" selection-start-line="271" selection-start-column="28" selection-end-line="271" selection-end-column="28" />
           <folding>
-            <element signature="e#29#50#0#PHP" expanded="true" />
+            <element signature="e#29#50#0#PHP" expanded="false" />
             <element signature="e#277#839#0#PHP" expanded="false" />
             <element signature="e#865#2356#0#PHP" expanded="false" />
             <element signature="e#2383#2894#0#PHP" expanded="false" />
@@ -1090,9 +1077,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyAgentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1846">
+        <state relative-caret-position="1639">
           <caret line="124" column="41" lean-forward="false" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="298" column="81" lean-forward="false" selection-start-line="298" selection-start-column="76" selection-end-line="298" selection-end-column="81" />
+          <folding>
+            <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
+            <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
+            <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
+          </folding>
         </state>
       </provider>
     </entry>
