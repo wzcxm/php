@@ -149,7 +149,7 @@ class GameLoginController extends Controller
 				$head_img_url = $user_data['headimgurl'];
 				$unionid = $user_data['unionid'];
 				$roomcard = 3;
-				$bubble = 0;
+				$gold = 0;
 				$rid = 5;
 				$ustate = 0;
 				$uid = 0;
@@ -160,8 +160,10 @@ class GameLoginController extends Controller
 				if (empty($user))
 				{
 					//插入数据
-					$uid = DB::insert('insert into xx_user (nickname, head_img_url, sex, roomcard, bubble, openid, unionid, refresh_token, pwd) values(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-					 	[$nickname, $head_img_url, $sex, $roomcard, $bubble, $openid, $unionid, $refresh_token, $passwd]);
+					$uid = DB::table('xx_user')->insertGetId([
+					    'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,'roomcard'=>$roomcard,'gold'=>$gold,
+                        'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
+                    ]);
 				}
 				else
 				{
@@ -174,8 +176,11 @@ class GameLoginController extends Controller
 					if ($ustate != 0)
 						goto error_end;
 					//更新数据
-					$affected = DB::update('update xx_user set nickname = ?, head_img_url = ?, sex = ?, openid = ?, refresh_token = ?, pwd = ? where unionid = ?',
-						[$nickname, $head_img_url, $sex, $openid, $refresh_token, $passwd, $unionid]);
+					$affected = DB::table('xx_user')->where('unionid',$unionid)
+                        ->update([
+                        'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,
+                        'openid'=>$openid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
+                        ]);
 					if ($affected != 1)
 						goto error_end;
 				}
