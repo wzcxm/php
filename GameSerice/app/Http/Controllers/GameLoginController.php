@@ -348,7 +348,9 @@ class GameLoginController extends Controller
     private function getMsg($type){
         try{
             if(empty($type)) return "";
-            return DB::table("xx_sys_message")->where('mtype',$type)->value('mcontent');
+            $msseage =  DB::table("xx_sys_message")->where('mtype',$type)->first();
+            if(empty($msseage)) return "";
+            return $msseage->mcontent;
         }catch (\Exception $e){
             return "";
         }
