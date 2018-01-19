@@ -55,4 +55,5 @@ $router->get('/sms/{uid}/{type}','GameSericeController@sendSms');
 //获取表情价格
 $router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');
 
-
+//更新分享标识
+$router->get('/lottery/{uid}/{sign}','GameSericeController@upLottery');
