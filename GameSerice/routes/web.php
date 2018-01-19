@@ -41,15 +41,18 @@ $router->get('/GetUrl',function (){
 });
 
 //获取回放数据
-Route::get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
+$router->get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
 //总战绩
-Route::get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
+$router->get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
 //单局战绩
-Route::get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
+$router->get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
 
 
 //短信接口
-Route::get('/sms/{uid}/{type}','GameSericeController@sendSms');
+$router->get('/sms/{uid}/{type}','GameSericeController@sendSms');
+
+//获取表情价格
+$router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');
 
 
