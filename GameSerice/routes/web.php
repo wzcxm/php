@@ -57,3 +57,6 @@ $router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');
 
 //更新分享标识
 $router->get('/lottery/{uid}/{sign}','GameSericeController@upLottery');
+
+//保持手机号
+$router->get('/uptel/{uid}/{tel}/{sign}','GameSericeController@upTel');

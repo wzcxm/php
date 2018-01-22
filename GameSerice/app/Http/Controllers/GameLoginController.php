@@ -26,6 +26,8 @@ class GameLoginController extends Controller
 					return $this->auto_login($uid, $value);
 				case 4:
 					return $this->account_login($uid);
+                case 5:
+                    return $this->tel_login($value);
 				default:
 					break;
 			}
@@ -36,6 +38,42 @@ class GameLoginController extends Controller
 			return $this->error_message(ErrorCode::Error_System);
 		}
 	}
+
+	///手机号登陆
+    /// $tel：手机号
+	private function tel_login($tel){
+        $user = DB::table('xx_user')->where("uphone",$tel)->first();
+        if (empty($user))
+            return $this->error_message(ErrorCode::Error_Not_Found_User);
+        $server_login_info = new ServerLoginInfo();
+        $server_login_info->setCode(1);
+        $server_login_info->setUid($user->uid);
+        $server_login_info->setNickname($user->nickname);
+        $server_login_info->setSex($user->sex);
+        $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setBubble($user->gold);
+        $server_login_info->setRid($user->rid);
+        $server_login_info->setRoomId($user->room_id);
+        $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setToken($user->openid);
+        $server_login_info->setHallId($this->each_hall($user->uid,$user->tea_id));
+        $server_login_info->setSign(encrypt(env('SIGN')));
+        $server_login_info->setMarquee($this->getMsg(1));//跑马灯
+        $server_login_info->setUrgent($this->getMsg(3));//紧急通知
+        $domain_info = config('conf.GAME_DOMAIN');
+        foreach ($domain_info as $value){
+            $server_domain_info = new ServerDomainInfo();
+            $server_domain_info->setIndex($value['INDEX']);
+            $server_domain_info->setDomain($value['DOMAIN']);
+            $server_domain_info->setPort($value['PORT']);
+            $server_domain_info->setStatus($value['STATUS']);
+            $server_login_info->getDomainInfo()[] = $server_domain_info;
+        }
+
+        $send_data = $server_login_info->encode();
+        CommonFunc::message_xor($send_data);
+        return $send_data;
+    }
 
 	//游客登录 ID(9401-9500)
 	private function youke_login()
