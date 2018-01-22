@@ -20,6 +20,9 @@ $router->get('/login/{uid}&{type}&{value}','GameLoginController@login');
 //获取玩家的茶楼列表
 $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 
+//获取茶楼排行榜
+$router->get('/getTeaOrderBy/{sign}','GameSericeController@GetTeaOrderByList');
+
 //获取茶楼玩家列表
 $router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlayerList');
 

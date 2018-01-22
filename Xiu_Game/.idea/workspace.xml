@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" />
+      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Common/gameserice.pb.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Common/gameserice.pb.php" />
       <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
       <change beforePath="$PROJECT_DIR$/../GameSerice/routes/web.php" afterPath="$PROJECT_DIR$/../GameSerice/routes/web.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/querybuy.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="626">
-              <caret line="91" column="18" lean-forward="true" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+              <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
               <folding>
                 <marker date="1498466638803" expanded="true" signature="9:24" ph="..." />
                 <marker date="1498466638803" expanded="true" signature="35:44" ph="..." />
@@ -528,12 +527,12 @@
       <workItem from="1516237902606" duration="2272000" />
       <workItem from="1516324447580" duration="1204000" />
       <workItem from="1516411852674" duration="2796000" />
-      <workItem from="1516583831162" duration="3546000" />
+      <workItem from="1516583831162" duration="4145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126160000" />
+    <option name="totallyTimeSpent" value="126759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
@@ -960,7 +959,7 @@
         <state relative-caret-position="-2668">
           <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding>
-            <element signature="e#78#103#0#PHP" expanded="true" />
+            <element signature="e#78#103#0#PHP" expanded="false" />
             <marker date="1514538449534" expanded="true" signature="4854:4933" ph="select * fro... v_player_record" />
             <marker date="1514538449534" expanded="true" signature="8117:8856" ph="select index... nxmj_record_table" />
             <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
@@ -1098,7 +1097,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/querybuy.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="626">
-          <caret line="91" column="18" lean-forward="true" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+          <caret line="91" column="18" lean-forward="false" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
           <folding>
             <marker date="1498466638803" expanded="true" signature="9:24" ph="..." />
             <marker date="1498466638803" expanded="true" signature="35:44" ph="..." />
