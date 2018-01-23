@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use CsppLogin\ErrorCode;
 use CsppLogin\ServerLoginInfo;
 use CsppLogin\ServerDomainInfo;
+use Illuminate\Support\Facades\Redis;
 
 class GameLoginController extends Controller
 {
@@ -56,7 +57,11 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
-        $server_login_info->setHallId($this->each_hall($user->uid,$user->tea_id));
+        $temp = $this->each_hall($user->uid,$user->tea_id);
+        if(!empty($temp)){
+            $server_login_info->setHallId($temp->hallid);
+            $server_login_info->setServerType($temp->type);
+        }
         $server_login_info->setSign(encrypt(env('SIGN')));
         $server_login_info->setMarquee($this->getMsg(1));//跑马灯
         $server_login_info->setUrgent($this->getMsg(3));//紧急通知
@@ -94,7 +99,11 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
-        $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
+        $temp = $this->each_hall($uid,$user->tea_id);
+        if(!empty($temp)){
+            $server_login_info->setHallId($temp->hallid);
+            $server_login_info->setServerType($temp->type);
+        }
         $server_login_info->setSign(encrypt(env('SIGN')));
         $server_login_info->setMarquee($this->getMsg(1));//跑马灯
         $server_login_info->setUrgent($this->getMsg(3));//紧急通知
@@ -132,7 +141,11 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
-        $server_login_info->setHallId($this->each_hall($uid,$user->tea_id));
+        $temp = $this->each_hall($uid,$user->tea_id);
+        if(!empty($temp)){
+            $server_login_info->setHallId($temp->hallid);
+            $server_login_info->setServerType($temp->type);
+        }
         $server_login_info->setSign(encrypt(env('SIGN')));
         $server_login_info->setMarquee($this->getMsg(1));//跑马灯
         $server_login_info->setUrgent($this->getMsg(3));//紧急通知
@@ -237,7 +250,12 @@ class GameLoginController extends Controller
 				$passwd = encrypt($passwd);
 				$server_login_info->setPasswd($passwd);
                 $server_login_info->setTeaId($tea_id);
-                $server_login_info->setHallId($this->each_hall($uid,$tea_id));
+                $temp = $this->each_hall($uid,$tea_id);
+                if(!empty($temp)){
+                    $server_login_info->setHallId($temp->hallid);
+                    $server_login_info->setServerType($temp->type);
+                }
+
                 $server_login_info->setSign(encrypt(env('SIGN')));
                 $server_login_info->setMarquee($this->getMsg(1));//跑马灯
                 $server_login_info->setUrgent($this->getMsg(3));//紧急通知
@@ -333,7 +351,11 @@ class GameLoginController extends Controller
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setToken($openid);
-                $server_login_info->setHallId($this->each_hall($uid,$tea_id));
+                $temp = $this->each_hall($uid,$tea_id);
+                if(!empty($temp)){
+                    $server_login_info->setHallId($temp->hallid);
+                    $server_login_info->setServerType($temp->type);
+                }
                 $server_login_info->setSign(encrypt(env('SIGN')));
                 $server_login_info->setMarquee($this->getMsg(1));//跑马灯
                 $server_login_info->setUrgent($this->getMsg(3));//紧急通知
@@ -369,17 +391,15 @@ class GameLoginController extends Controller
 		return $send_data;
 	}
 
-	//获取玩家当前所在的茶楼厅号
+	//获取玩家当前所在的茶楼厅号和类型
 	private function each_hall($uid,$teaid){
-	    if(empty($teaid))
-	        return 0;
-	    $player = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->first();
-	    if(empty($player) ){
-	        return 0;
-        }else{
-	        return $player->hall_id;
-        }
+	    if(empty($teaid) || empty($uid)) return [];
 
+	    $player = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->first();
+	    $teainfo = DB::table('xx_sys_tea')->where('tea_id',$teaid)->first();
+	    if(empty($player) || empty($teainfo)) return [];
+
+	    return ['hallid'=>$player->hall_id,'type'=>$teainfo['type'.$player->hall_id]];
     }
 
     //获取游戏公告信息
@@ -394,4 +414,7 @@ class GameLoginController extends Controller
         }
 
     }
+
+
+
 }
