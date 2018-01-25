@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Common\CommClass;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class GameSericeController extends Controller
 {
@@ -111,6 +112,33 @@ class GameSericeController extends Controller
         }catch (\Exception $e){
             return "";
         }
+    }
+
+    //分享
+    public function index($roomNo=0,$msg='')
+    {
+        try{
+            //var_dump('roomno:'.$roomNo);
+
+            $room =  Redis::get('room_'.$roomNo);
+            //var_dump('room:'.$room);
+            $uids = collect(explode('|', $room))->filter(function ($value,$key){ return $value>0; });
+            //var_dump('uids:'.$uids);
+            if(!empty($room))
+            {
+                //获取玩家的信息
+                $Users = DB::table('pp_user')->whereIn('uid', $uids)->get();
+                //var_dump($Users);
+                return view('Share.Index', ['Users' => $Users]);
+            }else {
+                return  view('Share.Undefined');
+            }
+        }catch (\Exception $e){
+            //var_dump('error:'.$e->getMessage());
+            //return  view('404');
+            return  view('Share.Undefined');
+        }
+
     }
 
 }
