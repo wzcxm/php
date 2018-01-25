@@ -218,59 +218,11 @@ Route::get('/PlayerBuy/list','CashController@buylist');
 
 
 ///////游戏api////////////////////////
-Route::get("/Invitation/{uid}/{code}","GameSericeController@Invitation");//添加邀请码
-Route::get("/GetMyPlayer/{uid}","GameSericeController@GetMyPlayer");//获取绑定我的玩家
 
-Route::get("/Consume/{uid}","GameSericeController@Consume");//消费记录
-Route::get("/Recharge/{uid}","GameSericeController@Recharge");//充值记录
-
-Route::get("/Win/{uid}","GameSericeController@win");//胜率
-
-Route::get("/give/{uid}","GameSericeController@give");//分享送钻
-
+//分享
 Route::get('/share/{roomNo?}/{msg?}','GameSericeController@index');
 //Route::get('/mw/{roomNo?}/{msg?}','ShareController@index');
 
-Route::get('/V/{v}/{t}/{res?}/{src?}',function ($v,$t,$res=null,$src=null){
-    $ret = "";
-
-        if($t==1) { //苹果版
-            if ($v === "3.0") {
-                $ret = "2";
-            } else {
-                if($v < 1.0){
-                    $ret = "1";
-                }else{
-                    $ret = "0";
-                }
-            }
-        }else if($t==2){
-            if($v==0.5) {
-                $ret = "2";
-            }else if($v < 1.0){
-                $ret = "1";
-            }else{
-                $ret = "0";
-            }
-        }else{ }
-        if($ret=="0"){
-            $ret .= "|1|1|1";
-        }
-    return $ret;
-});
-//总战绩
-Route::get('/record/{uid}','GameSericeController@GetRecord');
-//单局战绩
-Route::get('/bigrecord/{roomid}/{time}','GameSericeController@BigRecord');
-//玩家信息
-Route::get('/player/{uid}','GameSericeController@GetPlayer');
-//回放数据
-Route::get('/Playback/{rid}','GameSericeController@getPlayback');
-
-Route::get('/GetUrl',function (){
-    return ['android'=>'http://wyhq.oss-cn-beijing.aliyuncs.com/android/wyhq.apk',
-        'ios'=>'http://fir.im/4zn2',
-        'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
-        'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
-});
+//抽奖
+Route::get('/lottery/{uid}','GameSericeController@getLottery');
 /// end//////////////////////////////

@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/palyerinfo_php.pb.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/redis_data_php.pb.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/config/conf.php" afterPath="$PROJECT_DIR$/config/conf.php" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,64 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="buycards.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/buycards.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
-              <caret line="37" column="10" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="37" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-              <folding>
-                <marker date="1515401670715" expanded="true" signature="9:30" ph="..." />
-                <marker date="1515401670715" expanded="true" signature="41:55" ph="..." />
-                <marker date="1515401670715" expanded="true" signature="78:94" ph="..." />
-                <marker date="1515401670715" expanded="true" signature="542:547" ph="..." />
-                <marker date="1515401670715" expanded="true" signature="854:859" ph="..." />
-                <marker date="1515401670715" expanded="true" signature="3328:3343" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="palyerbuy.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/palyerbuy.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1506317843412" expanded="true" signature="142:156" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="575:607" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="647:705" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="729:762" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="795:851" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="884:917" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1082:1108" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1126:1133" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1292:1308" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1349:1368" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1409:1448" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1606:1629" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1641:1662" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1876:1892" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="1937:1956" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="2001:2040" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="2210:2233" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="2245:2266" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="2403:2421" ph="..." />
-                <marker date="1506317843412" expanded="true" signature="2522:2542" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="querybuy.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/querybuy.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -97,26 +44,66 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="-1236">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <element signature="e#444#1406#0#PHP" expanded="false" />
-                <element signature="e#492#1400#0#PHP" expanded="false" />
-                <element signature="e#1427#1790#0#PHP" expanded="false" />
-                <element signature="e#1807#2233#0#PHP" expanded="false" />
-                <element signature="e#2250#2432#0#PHP" expanded="false" />
-                <element signature="e#2449#3132#0#PHP" expanded="false" />
-                <element signature="e#3149#3783#0#PHP" expanded="false" />
-                <element signature="e#3800#4642#0#PHP" expanded="false" />
-                <element signature="e#4658#8006#0#PHP" expanded="false" />
-                <element signature="e#8022#10514#0#PHP" expanded="false" />
-                <element signature="e#10530#11590#0#PHP" expanded="false" />
-                <element signature="e#11596#11809#0#PHP" expanded="false" />
-                <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
+                <element signature="e#39#64#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Router.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="611" column="0" lean-forward="false" selection-start-line="611" selection-start-column="0" selection-end-line="611" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="618">
+              <caret line="75" column="68" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuyCardController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="49" column="55" lean-forward="false" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="55" />
+              <folding>
+                <element signature="e#2817#3347#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="226" column="60" lean-forward="false" selection-start-line="226" selection-start-column="50" selection-end-line="226" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conf.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/conf.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,19 +118,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommClass.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommClass.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="205" column="13" lean-forward="false" selection-start-line="205" selection-start-column="8" selection-end-line="205" selection-end-column="13" />
+            <state relative-caret-position="98">
+              <caret line="146" column="28" lean-forward="false" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="28" />
               <folding>
                 <element signature="e#277#839#0#PHP" expanded="false" />
                 <element signature="e#865#2356#0#PHP" expanded="false" />
                 <element signature="e#2383#2894#0#PHP" expanded="false" />
                 <element signature="e#3184#3378#0#PHP" expanded="false" />
                 <element signature="e#3396#4625#0#PHP" expanded="false" />
-                <element signature="e#4647#5409#0#PHP" expanded="false" />
-                <element signature="e#5625#6624#0#PHP" expanded="false" />
                 <element signature="e#7456#7840#0#PHP" expanded="false" />
                 <element signature="e#7964#8160#0#PHP" expanded="false" />
                 <element signature="e#8328#8623#0#PHP" expanded="false" />
@@ -167,33 +152,6 @@
             <state relative-caret-position="920">
               <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="47" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transfer.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/AgentManage/transfer.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1499241410648" expanded="true" signature="9:24" ph="..." />
-                <marker date="1499241410648" expanded="true" signature="35:44" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/Black/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1506570812566" expanded="true" signature="9:28" ph="..." />
-                <marker date="1506570812566" expanded="true" signature="39:48" ph="..." />
-                <marker date="1506570812566" expanded="true" signature="727:735" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -240,23 +198,23 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BackCashController.php" />
         <option value="$PROJECT_DIR$/resources/views/CashBuy/back.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
         <option value="$PROJECT_DIR$/bootstrap/autoload.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Home/index.blade.php" />
-        <option value="$PROJECT_DIR$/config/conf.php" />
         <option value="$PROJECT_DIR$/app/Common/CommClass.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
         <option value="$PROJECT_DIR$/resources/views/MyAgent/MyAgent.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/MyAgent/MyService.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/AgentManage/delete.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserManageController.php" />
         <option value="$PROJECT_DIR$/resources/views/UserManage/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/ShoppingMall/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/ShoppingMall/create.blade.php" />
+        <option value="$PROJECT_DIR$/config/conf.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
       </list>
     </option>
   </component>
@@ -361,7 +319,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1924" />
     <option name="height" value="1056" />
@@ -413,6 +371,11 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Xiu_Game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Xiu_Game" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Xiu_Game" type="b2602c69:ProjectViewProjectNode" />
@@ -549,15 +512,15 @@
       <workItem from="1516680138773" duration="665000" />
       <workItem from="1516757179857" duration="1916000" />
       <workItem from="1516843949430" duration="1044000" />
-      <workItem from="1516848548100" duration="2543000" />
+      <workItem from="1516848548100" duration="8505000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132927000" />
+    <option name="totallyTimeSpent" value="138889000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22707888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -611,7 +574,7 @@
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -695,14 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1426">
-          <caret line="64" column="69" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Google/Protobuf/Internal/Message.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11086">
@@ -728,20 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/conf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="611" column="0" lean-forward="false" selection-start-line="611" selection-start-column="0" selection-end-line="611" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -777,13 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3542">
-          <caret line="191" column="58" lean-forward="false" selection-start-line="191" selection-start-column="54" selection-end-line="191" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -833,16 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="58" column="39" lean-forward="false" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
-          <folding>
-            <element signature="e#2817#3347#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,28 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#444#1406#0#PHP" expanded="false" />
-            <element signature="e#492#1400#0#PHP" expanded="false" />
-            <element signature="e#1427#1790#0#PHP" expanded="false" />
-            <element signature="e#1807#2233#0#PHP" expanded="false" />
-            <element signature="e#2250#2432#0#PHP" expanded="false" />
-            <element signature="e#2449#3132#0#PHP" expanded="false" />
-            <element signature="e#3149#3783#0#PHP" expanded="false" />
-            <element signature="e#3800#4642#0#PHP" expanded="false" />
-            <element signature="e#4658#8006#0#PHP" expanded="false" />
-            <element signature="e#8022#10514#0#PHP" expanded="false" />
-            <element signature="e#10530#11590#0#PHP" expanded="false" />
-            <element signature="e#11596#11809#0#PHP" expanded="false" />
-            <marker date="1514538449534" expanded="true" signature="11989:12062" ph="select * fro... v_player_record" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/AgentManage/delete.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
@@ -1061,18 +963,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="49" column="55" lean-forward="false" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="55" />
+          <folding>
+            <element signature="e#2817#3347#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="226" column="60" lean-forward="false" selection-start-line="226" selection-start-column="50" selection-end-line="226" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="611" column="0" lean-forward="false" selection-start-line="611" selection-start-column="0" selection-end-line="611" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="75" column="68" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Common/CommClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="205" column="13" lean-forward="false" selection-start-line="205" selection-start-column="8" selection-end-line="205" selection-end-column="13" />
+        <state relative-caret-position="98">
+          <caret line="146" column="28" lean-forward="false" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="28" />
           <folding>
             <element signature="e#277#839#0#PHP" expanded="false" />
             <element signature="e#865#2356#0#PHP" expanded="false" />
             <element signature="e#2383#2894#0#PHP" expanded="false" />
             <element signature="e#3184#3378#0#PHP" expanded="false" />
             <element signature="e#3396#4625#0#PHP" expanded="false" />
-            <element signature="e#4647#5409#0#PHP" expanded="false" />
-            <element signature="e#5625#6624#0#PHP" expanded="false" />
             <element signature="e#7456#7840#0#PHP" expanded="false" />
             <element signature="e#7964#8160#0#PHP" expanded="false" />
             <element signature="e#8328#8623#0#PHP" expanded="false" />
@@ -1085,6 +1019,24 @@
             <marker date="1515577327058" expanded="true" signature="8642:8680" ph="..." />
             <marker date="1515577327058" expanded="true" signature="8956:8990" ph="..." />
             <marker date="1515577327058" expanded="true" signature="12651:12685" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/conf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1236">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#64#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
