@@ -53,7 +53,7 @@ $router->get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@
 
 
 //短信接口
-$router->get('/sms/{uid}/{type}','GameSericeController@sendSms');
+$router->get('/sms/{tel}','GameSericeController@sendCodeSms');
 
 //获取表情价格
 $router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');

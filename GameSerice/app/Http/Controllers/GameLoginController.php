@@ -28,7 +28,7 @@ class GameLoginController extends Controller
 				case 4:
 					return $this->account_login($uid);
                 case 5:
-                    return $this->tel_login($value);
+                    return $this->tel_login($uid,$value);
 				default:
 					break;
 			}
@@ -42,7 +42,13 @@ class GameLoginController extends Controller
 
 	///手机号登陆
     /// $tel：手机号
-	private function tel_login($tel){
+    /// $code：验证码
+	private function tel_login($tel,$code){
+	    //验证验证码
+        $oldcode = \Cache::get($tel);
+        if(empty($oldcode) || $oldcode!=$code)
+            return $this->error_message(ErrorCode::Error_Not_Found_Code);
+        //查找用户信息
         $user = DB::table('xx_user')->where("uphone",$tel)->first();
         if (empty($user))
             return $this->error_message(ErrorCode::Error_Not_Found_User);

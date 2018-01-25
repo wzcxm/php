@@ -324,155 +324,6 @@ class ServerDomainInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-class RedisTableInfo extends \Google\Protobuf\Internal\Message
-{
-    private $server_type = 0;
-    private $status = 0;
-    private $create_time = 0;
-    private $tea_id = 0;
-    private $current_number = 0;
-    private $max_number = 0;
-    private $uid;
-    private $score;
-    private $ready;
-    private $index;
-    private $nickname;
-    private $head_img_url;
-
-    public function getServerType()
-    {
-        return $this->server_type;
-    }
-
-    public function setServerType($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->server_type = $var;
-    }
-
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    public function setStatus($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->status = $var;
-    }
-
-    public function getCreateTime()
-    {
-        return $this->create_time;
-    }
-
-    public function setCreateTime($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->create_time = $var;
-    }
-
-    public function getTeaId()
-    {
-        return $this->tea_id;
-    }
-
-    public function setTeaId($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->tea_id = $var;
-    }
-
-    public function getCurrentNumber()
-    {
-        return $this->current_number;
-    }
-
-    public function setCurrentNumber($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->current_number = $var;
-    }
-
-    public function getMaxNumber()
-    {
-        return $this->max_number;
-    }
-
-    public function setMaxNumber($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->max_number = $var;
-    }
-
-    public function getUid()
-    {
-        return $this->uid;
-    }
-
-    public function setUid(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
-        $this->uid = $var;
-    }
-
-    public function getScore()
-    {
-        return $this->score;
-    }
-
-    public function setScore(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
-        $this->score = $var;
-    }
-
-    public function getReady()
-    {
-        return $this->ready;
-    }
-
-    public function setReady(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::BOOL);
-        $this->ready = $var;
-    }
-
-    public function getIndex()
-    {
-        return $this->index;
-    }
-
-    public function setIndex(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
-        $this->index = $var;
-    }
-
-    public function getNickname()
-    {
-        return $this->nickname;
-    }
-
-    public function setNickname(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::STRING);
-        $this->nickname = $var;
-    }
-
-    public function getHeadImgUrl()
-    {
-        return $this->head_img_url;
-    }
-
-    public function setHeadImgUrl(&$var)
-    {
-        GPBUtil::checkRepeatedField($var, GPBType::STRING);
-        $this->head_img_url = $var;
-    }
-
-}
-
 class ErrorCode
 {
     const NO_ERROR = 0;
@@ -481,12 +332,13 @@ class ErrorCode
     const Error_WeiXin_Login = 4;
     const Error_User_Info = 5;
     const Error_WeiXin_ReLogin = 6;
+    const Error_Not_Found_Code = 7;
 }
 
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0a83070a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
+    "0ab2050a0b6c6f67696e2e70726f746f1209437370704c6f67696e223c0a" .
     "0f436c69656e744c6f67696e496e666f120b0a0375696418012001280d12" .
     "0c0a047479706518022001280d120e0a0670617373776418032001280922" .
     "d7020a0f5365727665724c6f67696e496e666f120c0a04636f6465180120" .
@@ -503,19 +355,12 @@ $pool->internalAddGeneratedFile(hex2bin(
     "727665725f7479706518122001280d224f0a10536572766572446f6d6169" .
     "6e496e666f120d0a05696e64657818012001280d120e0a06646f6d61696e" .
     "180220012809120c0a04706f727418032001280d120e0a06737461747573" .
-    "18042001280d22e8010a0e52656469735461626c65496e666f12130a0b73" .
-    "65727665725f7479706518012001280d120e0a0673746174757318022001" .
-    "280d12130a0b6372656174655f74696d65180320012803120e0a06746561" .
-    "5f696418042001280d12160a0e63757272656e745f6e756d626572180520" .
-    "01280d12120a0a6d61785f6e756d62657218062001280d120b0a03756964" .
-    "18072003280d120d0a0573636f726518082003280d120d0a057265616479" .
-    "180920032808120d0a05696e646578180a2003280d12100a086e69636b6e" .
-    "616d65180b2003280912140a0c686561645f696d675f75726c180c200328" .
-    "092a8c010a094572726f72436f6465120c0a084e4f5f4552524f52100012" .
-    "100a0c4572726f725f53797374656d100212180a144572726f725f4e6f74" .
-    "5f466f756e645f55736572100312160a124572726f725f57656958696e5f" .
-    "4c6f67696e100412130a0f4572726f725f557365725f496e666f10051218" .
-    "0a144572726f725f57656958696e5f52654c6f67696e1006620670726f74" .
-    "6f33"
+    "18042001280d2aa6010a094572726f72436f6465120c0a084e4f5f455252" .
+    "4f52100012100a0c4572726f725f53797374656d100212180a144572726f" .
+    "725f4e6f745f466f756e645f55736572100312160a124572726f725f5765" .
+    "6958696e5f4c6f67696e100412130a0f4572726f725f557365725f496e66" .
+    "6f100512180a144572726f725f57656958696e5f52654c6f67696e100612" .
+    "180a144572726f725f4e6f745f466f756e645f436f64651007620670726f" .
+    "746f33"
 ));
 
