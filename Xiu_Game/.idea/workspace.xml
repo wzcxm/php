@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Common/login.pb.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Common/login.pb.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" />
       <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/composer.json" afterPath="$PROJECT_DIR$/../GameSerice/composer.json" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/composer.lock" afterPath="$PROJECT_DIR$/../GameSerice/composer.lock" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/routes/web.php" afterPath="$PROJECT_DIR$/../GameSerice/routes/web.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/Xiu_Game.iml" afterPath="$PROJECT_DIR$/.idea/Xiu_Game.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -156,7 +149,6 @@
                 <element signature="e#8328#8623#0#PHP" expanded="false" />
                 <element signature="e#9117#12632#0#PHP" expanded="false" />
                 <element signature="e#13055#14224#0#PHP" expanded="false" />
-                <marker date="1515577327058" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
                 <marker date="1515577327058" expanded="true" signature="5429:5468" ph="..." />
                 <marker date="1515577327058" expanded="true" signature="7346:7384" ph="..." />
                 <marker date="1515577327058" expanded="true" signature="7858:7893" ph="..." />
@@ -1086,7 +1078,6 @@
             <element signature="e#8328#8623#0#PHP" expanded="false" />
             <element signature="e#9117#12632#0#PHP" expanded="false" />
             <element signature="e#13055#14224#0#PHP" expanded="false" />
-            <marker date="1515577327058" expanded="true" signature="409:423" ph="select * fro... ${$table}" />
             <marker date="1515577327058" expanded="true" signature="5429:5468" ph="..." />
             <marker date="1515577327058" expanded="true" signature="7346:7384" ph="..." />
             <marker date="1515577327058" expanded="true" signature="7858:7893" ph="..." />
