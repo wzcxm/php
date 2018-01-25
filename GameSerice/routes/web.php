@@ -66,3 +66,6 @@ $router->get('/uptel/{uid}/{tel}/{sign}','GameSericeController@upTel');
 
 //获取红包金额
 $router->get('/getred/{uid}/{sign}','GameSericeController@getRedBag');
+
+//获取红包记录
+$router->get('/redlist/{uid}/{sign}','GameSericeController@getRedList');

@@ -96,15 +96,15 @@ class GameSericeController extends Controller
             }
             if($upstype == 'coin'){
                 DB::table('xx_user')->where('uid',$uid)->increment('gold', $num,['lottery' => 2]);
-                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type]);
+                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type,'type'=>1,'jptype'=>1]);
                 CommClass::UpGameSer($uid,'coin');//更新玩家金币
             }else if($upstype == 'card'){
                 DB::table('xx_user')->where('uid',$uid)->increment('roomcard', $num,['lottery' => 2]);
-                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type]);
+                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type,'type'=>1,'jptype'=>2]);
                 CommClass::UpGameSer($uid,'card');//更新玩家金币
             }else if($upstype == 'red'){
                 DB::table('xx_user')->where('uid',$uid)->increment('redbag', $num,['lottery' => 2]);
-                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type]);
+                DB::table('xx_sys_prize')->insert(['name'=>$name,'uid'=>$uid,'code'=>$type,'type'=>1,'jptype'=>3]);
                 $user = Users::find($uid);
                 $message = "恭喜玩家：【".$user->nickname."】,在每日分享抽奖中，抽中【".$name."】奖品！";
                 CommClass::UpGameSer(1,'urgent',$message);
