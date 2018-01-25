@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/routes/web.php" afterPath="$PROJECT_DIR$/../GameSerice/routes/web.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -118,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/config/conf.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
-              <caret line="16" column="51" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="16" selection-end-column="51" />
+              <caret line="16" column="51" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="16" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -1028,7 +1026,7 @@
     <entry file="file://$PROJECT_DIR$/config/conf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="16" column="51" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="16" selection-end-column="51" />
+          <caret line="16" column="51" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="16" selection-end-column="51" />
           <folding />
         </state>
       </provider>
