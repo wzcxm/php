@@ -52,7 +52,7 @@ $router->get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
 $router->get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
 
 
-//短信接口
+//短信验证码接口
 $router->get('/sms/{tel}','GameSericeController@sendCodeSms');
 
 //获取表情价格
@@ -62,7 +62,7 @@ $router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');
 $router->get('/lottery/{uid}/{sign}','GameSericeController@upLottery');
 
 //保持手机号
-$router->get('/uptel/{uid}/{tel}/{sign}','GameSericeController@upTel');
+$router->get('/uptel/{uid}/{tel}/{code}/{sign}','GameSericeController@upTel');
 
 //获取红包金额
 $router->get('/getred/{uid}/{sign}','GameSericeController@getRedBag');

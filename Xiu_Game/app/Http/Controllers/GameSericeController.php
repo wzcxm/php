@@ -115,11 +115,13 @@ class GameSericeController extends Controller
     }
 
     //分享
-    public function index($roomNo=0,$msg='')
+    public function share($roomNo=0,$msg='')
     {
         try{
             //var_dump('roomno:'.$roomNo);
-
+            if(empty($roomNo)){
+                return  view('Share.Undefined');
+            }
             $room =  Redis::get('room_'.$roomNo);
             //var_dump('room:'.$room);
             $uids = collect(explode('|', $room))->filter(function ($value,$key){ return $value>0; });
@@ -127,7 +129,7 @@ class GameSericeController extends Controller
             if(!empty($room))
             {
                 //获取玩家的信息
-                $Users = DB::table('pp_user')->whereIn('uid', $uids)->get();
+                $Users = DB::table('xx_user')->whereIn('uid', $uids)->get();
                 //var_dump($Users);
                 return view('Share.Index', ['Users' => $Users]);
             }else {

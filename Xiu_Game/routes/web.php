@@ -220,7 +220,7 @@ Route::get('/PlayerBuy/list','CashController@buylist');
 ///////游戏api////////////////////////
 
 //分享
-Route::get('/share/{roomNo?}/{msg?}','GameSericeController@index');
+Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
 //Route::get('/mw/{roomNo?}/{msg?}','ShareController@index');
 
 //抽奖
