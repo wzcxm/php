@@ -125,11 +125,11 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/MyInfo/Save','MyInfoController@save');
     //活动公告
     Route::get('/Notice','MyInfoController@notice');
-    //购买房卡
-    Route::get('/BuyBubble/buy/{sid}','BuyBubbleController@buycard');
-    Route::post('/BuyBubble/SetCard/{orderno}','BuyBubbleController@setCard');
-    Route::post('/BuyBubble/del','BuyBubbleController@delOrderNo');
-    Route::get('/BuyBubble/index','BuyBubbleController@index');
+//    //购买房卡
+//    Route::get('/BuyBubble/buy/{sid}','BuyBubbleController@buycard');
+//    Route::post('/BuyBubble/SetCard/{orderno}','BuyBubbleController@setCard');
+//    Route::post('/BuyBubble/del','BuyBubbleController@delOrderNo');
+//    Route::get('/BuyBubble/index','BuyBubbleController@index');
 //    Route::get('/BuyBubble/index','CashController@index');
 //    Route::get('/BuyBubble/buy/{number}','CashController@GetOrder');
 //    Route::post('/BuyBubble/SetCard/{orderno}','CashController@setCard');
@@ -177,12 +177,12 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     });
     Route::post('/AgentDel/data','AgentManageController@getAgent');
     Route::post('/AgentDel/delete','AgentManageController@delete');
-    //代理审核
-    Route::get('/Examine',function (){
-        return view('AgentManage.examine');
-    });
-    Route::post('/Examine/data','AgentManageController@getData');
-    Route::post('/Examine/adopt','AgentManageController@adopt');
+//    //代理审核
+//    Route::get('/Examine',function (){
+//        return view('AgentManage.examine');
+//    });
+//    Route::post('/Examine/data','AgentManageController@getData');
+//    Route::post('/Examine/adopt','AgentManageController@adopt');
 
     //玩家列表
     Route::get('/Players',function (){
@@ -198,23 +198,24 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
 
 //Route::get('/AddGroup/{gid}','GroupController@addGroup');//扫描二维码加群
 
-//代理申请
-Route::get('/Apply',function (){
-   return view('AgentManage.apply');
-});
-Route::post('/Apply/save','AgentManageController@save');
+////代理申请
+//Route::get('/Apply',function (){
+//   return view('AgentManage.apply');
+//});
+//Route::post('/Apply/save','AgentManageController@save');
 
 
-//获取参数值
-Route::get('/GetParam/{key}',function ($key){
-    return App\Common\CommClass::GetParameter($key);
-});
+////获取参数值
+//Route::get('/GetParam/{key}',function ($key){
+//    return App\Common\CommClass::GetParameter($key);
+//});
 
 //玩家购买
-Route::get('/PlayerBuy/buy/{sid}/{gameid}','CashController@buycard');
-Route::post('/PlayerBuy/SetCard/{orderno}','CashController@setCard');
+Route::get('/PlayerBuy/buy','CashController@buycard');
+Route::post('/PlayerBuy/delno','CashController@delNo');
 Route::get('/PlayerBuy/index','CashController@index');
-Route::get('/PlayerBuy/list','CashController@buylist');
+Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
+Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
 
 ///////游戏api////////////////////////

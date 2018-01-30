@@ -47,9 +47,9 @@ $router->get('/GetUrl',function (){
 $router->get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
 //总战绩
-$router->get('/record/{uid}/{g_type}/{sign}','GameSericeController@GetRecord');
+$router->get('/record/{uid}/{g_type}/{offset}/{sign}','GameSericeController@GetRecord');
 //单局战绩
-$router->get('/bigrecord/{roomid}/{time}/{g_type}/{sign}','GameSericeController@BigRecord');
+$router->get('/bigrecord/{roomid}/{time}/{g_type}/{offset}/{sign}','GameSericeController@BigRecord');
 
 
 //短信验证码接口
@@ -61,7 +61,7 @@ $router->get('/phiz/{uid}/{sign}','GameSericeController@getPhiz');
 //更新分享标识
 $router->get('/lottery/{uid}/{sign}','GameSericeController@upLottery');
 
-//保持手机号
+//保存手机号
 $router->get('/uptel/{uid}/{tel}/{code}/{sign}','GameSericeController@upTel');
 
 //获取红包金额
@@ -69,3 +69,6 @@ $router->get('/getred/{uid}/{sign}','GameSericeController@getRedBag');
 
 //获取红包记录
 $router->get('/redlist/{uid}/{sign}','GameSericeController@getRedList');
+
+//更换微信号
+$router->get('/setwx/{uid}/{code}/{sign}','GameSericeController@setWxinfo');

@@ -373,30 +373,47 @@ use Xxgame\ServerUserBase;
          $oneback =CommClass::GetParameter("upper_one");
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
+         //玩家
+         $playback = CommClass::GetParameter("invitation");
          $buy_user = Users::find($buy_id);
+         //上级不能为空，且上级必须是代理
          if(!empty($buy_user->front_uid)){
              $front = Users::find($buy_user->front_uid);
-             if(!empty($front)){
-                 $return_one = $cash*$oneback/100;
-                 DB::table("xx_wx_backgold")->insert(
-                     ['get_id'=>$buy_user->front_uid,
-                         'back_id'=>$buy_id,
-                         'backgold'=>$return_one,
-                         'gold'=>$cash,
-                         'ratio'=>$oneback,
-                         'level'=>1]);
-                 if(!empty($front->front_uid)){
-                     $front_front = Users::find($front->front_uid);
-                     if(!empty($front_front)){
-                         $return_two = $cash*$twoback/100;
-                         DB::table("xx_wx_backgold")->insert(
-                             ['get_id'=>$front->front_uid,
-                                 'back_id'=>$buy_id,
-                                 'backgold'=>$return_two,
-                                 'gold'=>$cash,
-                                 'ratio'=>$twoback,
-                                 'level'=>2]);
+             if(!empty($front) && $front->rid == 2){
+                //如果购买人是代理，走代理返利流程
+                 if($buy_user->rid == 2){
+                     //上级返利
+                     $return_one = $cash*$oneback/100;
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$buy_user->front_uid,
+                             'back_id'=>$buy_id,
+                             'backgold'=>$return_one,
+                             'gold'=>$cash,
+                             'ratio'=>$oneback,
+                             'level'=>1]);
+                     //上上级代理返利
+                     if(!empty($front->front_uid)){
+                         $front_front = Users::find($front->front_uid);
+                         if(!empty($front_front) && $front_front->rid == 2){
+                             $return_two = $cash*$twoback/100;
+                             DB::table("xx_wx_backgold")->insert(
+                                 ['get_id'=>$front->front_uid,
+                                     'back_id'=>$buy_id,
+                                     'backgold'=>$return_two,
+                                     'gold'=>$cash,
+                                     'ratio'=>$twoback,
+                                     'level'=>2]);
+                         }
                      }
+                 }else if($buy_user->rid == 5){//如果购买人数玩家，走玩家返利流程
+                     $return_play = $cash*$playback/100;
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$buy_user->front_uid,
+                             'back_id'=>$buy_id,
+                             'backgold'=>$return_play,
+                             'gold'=>$cash,
+                             'ratio'=>$playback,
+                             'level'=>3]);
                  }
              }
          }

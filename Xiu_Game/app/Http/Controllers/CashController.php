@@ -20,50 +20,85 @@ use App\Wechat\lib\WxPayOrderQuery;
 
 class CashController extends Controller
 {
-    ///////购买房卡///////////
+    ///////充值页面///////////
     public function  index(){
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if (strpos($user_agent, 'MicroMessenger') === false) {
-
-        } else {
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            Session::put('popenid', $openid);
+//        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+//        if (strpos($user_agent, 'MicroMessenger') === false) {
+//            return "请在微信客户端打开链接";
+//        } else {
+            //$tools = new JsApiPay();
+            //$openid = $tools->GetOpenid();
+            $unionid = 'oWnVY0v4Q_yKlpx2jvQJaOhLtJY0';//$tools->data['unionid'];
+            $player = Users::where('unionid', $unionid)->first();
+            //如果公众号的openid不同，修改wxopenid
+//            if($player->wxopenid == $openid){
+//                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
+//            }
+            $mallList = ShoppingMall::where([['type',1],['sgive',0]])->get();
+            return view('BuyCard.palyerbuy',['mallList'=>$mallList,'player'=>$player]);
+   //     }
+    }
+    /*
+     * 购卡记录
+     */
+    public function buylist($uid)
+    {
+        try{
+            $list = DB::table('xx_wx_buycard')->where('userid',$uid)->orderBy('create_time','desc')->get();
+            return view('BuyCard.querybuy',['List'=>$list]);
+        }catch (\Exception $e){
+            return "";
         }
-        return redirect('/PlayerBuy/list');
     }
 
-    public function buylist(){
-        $List = ShoppingMall::where('type',0)->get();
-        return view('BuyCard.palyerbuy',['List'=>$List]);
+    //获取昵称
+    public function getnick($uid){
+        try{
+            $user =  Users::find($uid);
+            if(empty($user)) return "";
+            return $user->nickname;
+        }catch (\Exception $e){
+            return "";
+        }
     }
 
     /*
      * 获取订单内容
      */
-    public function buycard($sid,$gameid)
+    public function buycard(Request $request)
     {
         try {
+            $data = isset($request['data'])?$request['data']:"";
+            $gameid = isset($data['playerid'])?$data['playerid']:0;//玩家ID
+            $sid = isset($data['sid'])?$data['sid']:0;    //商品ID
+            $front = isset($data['front'])?$data['front']:0; //推荐人ID
             $player = Users::find($gameid);
             if(empty($player)){
-                return response()->json(['Error' => "玩家不存在，游戏ID错误！",'orderno'=>0]);
+                return response()->json(['Error' => "游戏ID错误！",'orderno'=>0]);
             }else{
+                //修改推荐人
+                if(!empty($front) && $front != $gameid && $player->front_uid != $front){
+                    $player->front_uid = $front;
+                    $player->save();
+                }
                 $product = ShoppingMall::find($sid);
                 //购卡数量
-                $toltal_number = $product->snumber+$product->sgive;
+                $toltal_number = $product->snumber;
+                if($player->flag == 0 && $sid == 11){//首冲300,送200钻
+                    $toltal_number += 200;
+                }
                 //总金额
                 $toltal_fee = $product->sprice*100;
                 //订单号
                 $orderno = WxPayConfig::MCHID . date("YmdHis");
                 //生成订单
-                $Parameters = $this->setPay($toltal_fee,$orderno);
+                $Parameters = $this->setPay($toltal_fee,$orderno,$player->wxopenid);
                 //保存订单号到数据库
                 DB::table('xx_wx_buycard')->insert([
                     'userid' => $gameid,
                     'cardnum' => $toltal_number,
                     'total' => $toltal_fee/100,
-                    'nonce' => $orderno,
-                    'btype'=>1
+                    'nonce' => $orderno
                 ]);
                 //返回订单json
                 return response()->json(['Param' => $Parameters,'orderno'=>$orderno]);
@@ -75,7 +110,7 @@ class CashController extends Controller
     /*
      * 生成订单
      */
-    private function setPay($total_fee,$orderno)
+    private function setPay($total_fee,$orderno,$openid)
     {
         //$logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
         //$log = Log::Init($logHandler, 15);
@@ -93,7 +128,7 @@ class CashController extends Controller
             $input->SetGoods_tag("WXG");
             $input->SetNotify_url("http://".$_SERVER['HTTP_HOST']."/api/player/notify");
             $input->SetTrade_type("JSAPI");
-            $input->SetOpenid(session('popenid'));
+            $input->SetOpenid($openid);
             $order = WxPayApi::unifiedOrder($input);
             $jsApiParameters = $tools->GetJsApiParameters($order);
             return $jsApiParameters;
@@ -102,6 +137,7 @@ class CashController extends Controller
         }
     }
 
+    //回调方法
     public function notify(){
         try{
             $notifyback = new WxPayNotify();
@@ -112,41 +148,15 @@ class CashController extends Controller
     }
 
     /*
-     * 付款成功后，更新玩家房卡，并返现
+     * 支付失败，删除订单
      */
-    public function setCard($orderno){
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
+    public function delNo(Request $request){
+
         try {
-            $log->Info('wjgm:'.$orderno);
-            //防止微信延迟到账，延迟10秒再查订单
-            //sleep(10);
-            $input = new WxPayOrderQuery();
-            $input->SetOut_trade_no($orderno);
-            $result = WxPayApi::orderQuery($input);
-            if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
-                if($result["trade_state"] == "SUCCESS") {
-                    $buycard = BuyCard::where('nonce', $orderno)->first();
-                    if($buycard->status == 0) {
-                        //保存充卡信息
-                        $arr = ['cbuyid' => $buycard->userid, 'csellid' => 999, 'cnumber' => $buycard->cardnum, 'ctype' => 1];
-                        CommClass::InsertCard($arr);
-                        //更新订单状态
-                        $buycard->status = 1;
-                        $buycard->save();
-                        return response()->json(['msg' => 1]);
-                    }else{
-                        return response()->json(['msg' => 1]);
-                        //return response()->json(['msg' => 'The order has been completed']);
-                    }
-                }else{
-                    $log->Error($result["trade_state"]);
-                    return response()->json([ 'Error' => $result["trade_state"]]);}
-            }else{
-                $log->Error($result["err_code_des"]);
-                return response()->json([ 'Error' => $result["err_code_des"]]);}
+            $no = isset($request['no'])?$request['no']:0;
+            DB::table('xx_wx_buycard')->where('nonce',$no)->delete();
+            return response()->json(['Error' => ""]);
         }catch (\Exception $e) {
-            $log->Error($e->getMessage());
             return response()->json(['Error' => $e->getMessage()]);
         }
     }

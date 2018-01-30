@@ -52,7 +52,7 @@ class BuyCardController extends Controller
                     }
                 }else if($sel_type == 2) {
                     if ($user->gold - $number < 0) {
-                        $retMsg = "您的金币不足！";
+                        $retMsg = "您的金豆不足！";
                     }else{
                         //保存充卡信息
                         $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 2];

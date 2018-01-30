@@ -2,6 +2,7 @@
 namespace App\Wechat\lib;
 use App\Common\CommClass;
 use App\Models\BuyCard;
+use App\Models\Users;
 
 /**
  * 
@@ -34,11 +35,21 @@ class WxPayNotify extends WxPayNotifyReply
                     //保存充卡信息
                     $arr = ['cbuyid' => $buycard->userid, 'csellid' => 999, 'cnumber' => $buycard->cardnum, 'ctype' => 1];
                     CommClass::InsertCard($arr);
-                    //返利益
-                    CommClass::BackCash($buycard->userid, $buycard->total);
                     //更新订单状态
                     $buycard->status = 1;
                     $buycard->save();
+                    //如果购买人是玩家，升级为代理
+                    $play = Users::find($buycard->userid);
+                    if($play->rid == 5)//如果是玩家，改为代理
+                        $play->rid = 2;
+                    if($play->flag == 0)//修改首冲标识
+                        $play->flag = 1;
+                    $play->save();
+
+                    //更新游戏的钻石数量
+                    CommClass::UpGameSer($buycard->userid,'card');//玩家的钻石
+                    //代理返利
+                    CommClass::BackCash($buycard->userid, $buycard->total);
                 }
             }
 			$this->SetReturn_code("SUCCESS");

@@ -219,7 +219,7 @@ class GameLoginController extends Controller
 					//插入数据
 					$uid = DB::table('xx_user')->insertGetId([
 					    'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,'roomcard'=>$roomcard,'gold'=>$gold,
-                        'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
+                        'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd,'firstlogin'=>1
                     ]);
 				}
 				else
@@ -236,7 +236,7 @@ class GameLoginController extends Controller
 					$affected = DB::table('xx_user')->where('unionid',$unionid)
                         ->update([
                         'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,
-                        'openid'=>$openid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
+                        'openid'=>$openid,'refresh_token'=>$refresh_token,'pwd'=>$passwd,'firstlogin'=>1
                         ]);
 					if ($affected != 1)
 						goto error_end;
@@ -261,7 +261,6 @@ class GameLoginController extends Controller
                     $server_login_info->setHallId($temp['hallid']);
                     $server_login_info->setServerType($temp['type']);
                 }
-
                 $server_login_info->setSign(encrypt(env('SIGN')));
                 $server_login_info->setMarquee($this->getMsg(1));//跑马灯
                 $server_login_info->setUrgent($this->getMsg(3));//紧急通知
