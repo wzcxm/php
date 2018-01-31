@@ -46,14 +46,14 @@ class CommonFunc
             $params = array ();
             // *** 需用户填写部分 ***
             // fixme 必填: 请参阅 https://ak-console.aliyun.com/ 取得您的AK信息
-            $accessKeyId = "LTAIdFUXxbXWwab4";
-            $accessKeySecret = "F4TcWZLDzUnS2zIufVCBtR1vZSwski";
+            $accessKeyId = "LTAIDIQbWahR7Tic";
+            $accessKeySecret = "vAFaoKBtzQ37E1sP1EFB1deUVWnwBV";
 
             // fixme 必填: 短信接收号码
             $params["PhoneNumbers"] = $tel;
 
             // fixme 必填: 短信签名，应严格按"签名名称"填写，请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/sign
-            $params["SignName"] = "短信签名";
+            $params["SignName"] = "休休科技";
             // fixme 必填: 短信模板Code，应严格按"模板CODE"填写, 请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/template
             $params["TemplateCode"] = $template;
             // fixme 可选: 设置模板参数, 假如模板中存在变量需要替换则为必填项
