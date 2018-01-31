@@ -14,7 +14,7 @@
 <div style="text-align:center;">
     <p>您还不是代理，不能登录代理系统!</p>
     <p>如果您想成为代理，请联系客服!</p>
-    <p>客服微信号：wyhqmj001</p>
+    <p>客服微信号：</p>
 </div>
 </body>
 </html>

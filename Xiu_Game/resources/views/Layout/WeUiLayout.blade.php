@@ -48,11 +48,11 @@
             </div>
             <p class="weui-tabbar__label">我</p>
         </a>
-        <a href="javascript:$.alert('更多内容，敬请期待！');"  class="weui-tabbar__item">
+        <a href="/PlayerBuy/index"  class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
-                <i class="fa fa-bars"></i>
+                <i class="fa fa-shopping-basket"></i>
             </div>
-            <p class="weui-tabbar__label">更多</p>
+            <p class="weui-tabbar__label">充值</p>
         </a>
     </div>
 </div>

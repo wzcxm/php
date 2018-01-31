@@ -5,6 +5,10 @@ use App\Common\CommClass;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use App\Wechat\lib\WxPayRedPack;
+use App\Wechat\lib\WxPayConfig;
+use App\Wechat\lib\WxPayApi;
+
 
 class GameSericeController extends Controller
 {
@@ -141,6 +145,41 @@ class GameSericeController extends Controller
             return  view('Share.Undefined');
         }
 
+    }
+
+    //发红包
+    public function RedPack($uid,$total){
+        try{
+            if(empty($uid) || empty($total))
+                return ["state"=>0,"Error"=>"uid or total error "];
+            $player = Users::find($uid);
+            $orderno = WxPayConfig::MCHID . date("YmdHis");
+            $openid = $player->wxopenid;
+            //发送红包
+            $input = new WxPayRedPack();
+            $input->SetMch_Billno($orderno);
+            $input->SetSend_name("休休科技有限公司");
+            $input->SetRe_openid($openid);
+            $input->SetTotal_amount($total*100);
+            $input->SetTotal_num(1);
+            $input->SetWishing("休休游戏推广红包！");
+            $input->SetAct_name("游戏推广活动");
+            $input->SetRemark("休休游戏推广红包 ");
+            $input->SetScene_id('PRODUCT_1');
+            $result = WxPayApi::redPack($input);
+            $result = $input->FromXml($result);
+            if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
+                //发送成功，扣除用户红包金额
+                DB::table('xx_user')->where('uid',$uid)->decrement('redbag', $total);
+                //将发送红包记录保存
+                DB::table('xx_sys_extract')->insert(['playerid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
+                return ["state"=>1,"Error"=>""];
+            }else{
+                return ["state"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];
+            }
+        }catch (\Exception $e){
+            return ["state"=>0,"Error"=>$e->getMessage()];
+        }
     }
 
 }

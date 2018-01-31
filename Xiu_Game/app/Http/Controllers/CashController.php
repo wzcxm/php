@@ -24,7 +24,7 @@ class CashController extends Controller
     public function  index(){
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if (strpos($user_agent, 'MicroMessenger') === false) {
-            return "请在微信客户端打开链接";
+            return "<h1>请在微信客户端打开链接</h1>";
         } else {
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
@@ -154,7 +154,9 @@ class CashController extends Controller
 
         try {
             $no = isset($request['no'])?$request['no']:0;
-            DB::table('xx_wx_buycard')->where('nonce',$no)->delete();
+            if (!empty($no)) {
+                BuyCard::where('nonce', $no)->delete();
+            }
             return response()->json(['Error' => ""]);
         }catch (\Exception $e) {
             return response()->json(['Error' => $e->getMessage()]);

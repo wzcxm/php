@@ -17,7 +17,7 @@
                 <td><input id="front" class="easyui-textbox" style="width: 120px;"></td>
                 <td><a href="#" id="btn_black" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-lock'">拉黑</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
-                <td><a href="#" id="btn_white" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-ok'">取消</a></td>
+                <td><a href="#" id="btn_white" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-ok'">拉白</a></td>
             </tr>
         </table>
     </div>

@@ -23,7 +23,7 @@ class HomeController extends Controller
         $total_num = $user->money;
         //当月积分
         $start = date('Y-m-01');
-        $end =  date('Y-m-t', strtotime($start)) . " 23:59:59";
+        $end =  date('Y-m-t 23:59:59', strtotime($start));
         $month =BackGold::where('get_id',session('uid'))->whereBetween('create_time', [$start, $end])->sum('backgold');
         //菜单
         $mymenus= $this->GetMyMenus(session('roleid'));

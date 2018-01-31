@@ -25,6 +25,7 @@ class BuyCardController extends Controller
             }
     }
 
+    //拨卡
     public function  PayerBuy(Request $request){
         try{
             $data = isset($request['data'])?$request['data']:"";
@@ -71,27 +72,12 @@ class BuyCardController extends Controller
 
     }
 
-    public function querybuy($uid,$number){
-        $palyer = Users::find($uid);
-        return view('BuyCard.querybuy',['palyer'=>$palyer,'roomcard'=>$number]);
+    public function GiveRec(Request $request){
+        $page = isset($request['page']) ? intval($request['page']) : 1;
+        $rows = isset($request['rows']) ? intval($request['rows']) : 10;
+        $where = " csellid = ".session('uid');
+        $orderby = ' ctradedate desc ';
+        $order_arr = CommClass::PagingData($page,$rows,"view_trade",$where,$orderby);
+        return response()->json($order_arr);
     }
-
-    public function autocompleter(){
-        try{
-            $sql = 'select DISTINCT cbuyid from xx_sys_cardstrade where csellid='.session('uid').' limit 10';
-            $uid_list =  DB::select($sql);
-            $arry_id = [];
-            if(sizeof($uid_list)>0){
-                foreach ($uid_list as $item){
-                    array_push($arry_id,['value'=>$item->cbuyid,'label'=>$item->cbuyid]);
-                }
-            }
-            return $arry_id;
-        }catch (\Exception $e){
-            return "";
-        }
-    }
-
-
-
 }

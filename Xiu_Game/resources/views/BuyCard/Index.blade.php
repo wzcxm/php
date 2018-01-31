@@ -76,8 +76,9 @@
                 <input class="weui-input" type="number" name="card_number" id="card_number" >
             </div>
         </div>
-        <div class="weui-btn-area">
+        <div class="weui-btn-area" style="text-align: center;">
             <button class="weui-btn weui-btn_primary"  id="btn_buy">确认赠送</button>
+            <a href="javascript:window.location.href = '/BuyCard/list'">赠送记录</a>
         </div>
     </div>
 @endsection

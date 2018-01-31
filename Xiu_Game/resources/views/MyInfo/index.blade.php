@@ -38,10 +38,18 @@
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd">
+                <label class="weui-label">我的金豆：</label>
+            </div>
+            <div class="weui-cell__bd">
+                {{$user->gold}}
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
                 <label class="weui-label">我的积分：</label>
             </div>
             <div class="weui-cell__bd">
-                {{$user->backgold}}
+                {{$user->money}}
             </div>
         </div>
         <div class="weui-cell">

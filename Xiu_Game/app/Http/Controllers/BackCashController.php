@@ -61,42 +61,6 @@ class BackCashController extends Controller
         return response()->json($order_arr);
     }
 
-    public function NextPage(Request $request, $offset){
-        try{
-            $start = $request['start_date'];
-            $end = $request['end_date'];
-            if (empty($start) && empty($end)) {
-                $start = date('Y-m-01');
-                $end =  date('Y-m-t', strtotime($start)) . " 23:59:59";
-            } else {
-                if (empty($start)) {
-                    $start = date('Y-m-01', strtotime($end));
-                }
-                if (empty($end)) {
-                    $end = date('Y-m-t', strtotime($start)) . " 23:59:59";
-                }else{
-                    $end = $end.' 23:59:59';
-                }
-            }
-            $arr = [];
-            if(empty($request['userid'])){
-                Array_push($arr,["get_id","=",session('uid')]);
-            }else{
-                if(session('roleid')==1){
-                    Array_push($arr,["get_id","=",$request['userid']]);
-                }
-            }
-            $List = BackGold::where($arr)
-                ->whereBetween('create_time', [$start, $end])
-                ->offset($offset)
-                ->limit(10)
-                ->get();
-            $gold = collect($List)->sum("backgold");
-            return response()->json(["backgold"=>$gold,"List"=>$List]);
-        }catch (\Exception $e){
-            return response()->json(["Error"=>$e->getMessage()]);
-        }
-    }
     //提现
     public function extract(){
         $user = Users::find(session('uid'));
@@ -107,6 +71,8 @@ class BackCashController extends Controller
         }
 //        return view('CashBuy.extract',['backgold'=>$user->backgold]);
     }
+
+    //设置提现密码
     public function savepwd(Request $request){
         try{
             $pwd = isset($request['pwd'])?$request['pwd']:"";
@@ -143,30 +109,35 @@ class BackCashController extends Controller
 
     public function take(){
         $user = Users::find(session('uid'));
-        return view('CashBuy.extract',['backgold'=>$user->backgold]);
+        return view('CashBuy.extract',['backgold'=>$user->money]);
     }
     //提现
     public function ext($gold){
         try{
             $model = Users::find(session('uid'));
-            if($gold > $model->backgold){
+            if($gold > $model->money){
                 return response()->json(["status"=>0,"Error"=>"提现金额不能大于可提现金额！"]);
             }
-            //生成订单号，并保存到数据库
-            $openid = session('openid');
+            //生成订单号
+            $openid = $model->wxopenid;
             $amount = $gold*100;
             $orderno = WxPayConfig::MCHID . date("YmdHis");
-            $extract = new Extract();
-            $extract->playerid = session('uid');
-            $extract->gold = $gold;
-            $extract->orderno = $orderno;
-            $extract->status = 0;
-            $extract->save();
             //发起提现，并返回提现结果
             $result = $this->GetExtract($openid,$orderno,$amount);
-            return response()->json($result);
+            //如果提现成功，减去积分
+            $ret_msg = ["Error"=>""];
+            if($result['status']==1){
+                //支付成功，扣除用户的积分
+                DB::table('xx_user')->where('uid',session('uid'))->decrement('money', $gold);
+                //将提现记录保存
+                DB::table('xx_sys_extract')->insert(['playerid'=>session('uid'),'gold'=>$gold,'orderno'=>$orderno]);
+            }else{
+                //返回错误信息
+                $ret_msg = ["Error"=>$result['Error']];
+            }
+            return response()->json($ret_msg);
         }catch (\Exception $e){
-            return response()->json(["status"=>0,"Error"=>$e->getMessage()]);
+            return response()->json(["Error"=>$e->getMessage()]);
         }
     }
 
@@ -182,8 +153,6 @@ class BackCashController extends Controller
             $result = WxPayApi::Extract($input);
             $result = $input->FromXml($result);
             if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
-                //更新提现数据状态
-                DB::table("xx_sys_extract")->where('orderno',$orderno)->update(["status"=>1]);
                 return ["status"=>1,"Error"=>""];
             }else{
                 //如果返回的的是系统忙，则用原来的定单号再提交一次

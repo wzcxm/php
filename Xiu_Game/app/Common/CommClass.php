@@ -206,18 +206,6 @@ use Xxgame\ServerUserBase;
         Cache::rememberForever('RM',function (){
             return DB::table('role_menu')->get();
         });
-        //角色
-        Cache::rememberForever('ROLE',function (){
-            return DB::table('xx_sys_role')->get();
-        });
-        //菜单表
-        Cache::rememberForever('MENU',function (){
-            return DB::table('xx_sys_menu')->get();
-        });
-        //权限配置表
-        Cache::rememberForever('JUR',function (){
-            return DB::table('xx_sys_power')->get();
-        });
         //参数设置
         Cache::rememberForever('PARAMETER',function (){
             return CommClass::GetXml();
@@ -271,8 +259,7 @@ use Xxgame\ServerUserBase;
      /// </summary>
     public static function  InsertCard($array){
          try {
-             $table = 'xx_sys_cardstrade';
-             DB::table($table)->insert($array);
+             DB::table('xx_sys_cardstrade')->insert($array);
              return true;
          }catch (\Exception $e){
              return false;

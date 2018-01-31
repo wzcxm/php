@@ -11,12 +11,10 @@
 |
 */
 
-//Route::get('/',function (){
-//    return view('welcome');
-//});
-
 Route::get('/','UserLoginController@index');
-//Route::get('/index','UserLoginController@index');
+Route::get('/admin',function(){
+    return view('UserLogin.Login');
+});
 
 Route::post('/Login','UserLoginController@Login');
 Route::get('/Warning',function (){
@@ -81,58 +79,23 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     });
     Route::post('/MyPlayer/data','MyAgentController@getPlayer');
 
-
     //充卡
     Route::get('/BuyCard','BuyCardController@index');
     Route::get('/BuyCard/Search/{uid}','BuyCardController@Search');
     Route::post('/BuyCard/Gift','BuyCardController@PayerBuy');
-    Route::get('/BuyCard/QueryBuy/{uid}/{number}','BuyCardController@querybuy');
-
-//    //购卡、售卡、返卡、奖励统计(查询)
-//    Route::get('/BuyQuery','CardQueryController@buy');//购卡
-//    Route::get('/SellQuery','CardQueryController@sell');//售卡
-//    Route::get('/BackQuery','CardQueryController@back');//返卡
-//    Route::get('/RewardQuery','CardQueryController@reward');//奖励
-    //Route::get('/CardQuery/Search','CardQueryController@Search');//查询
-
-//    //上下分
-//    Route::get('/UpAndDown','UpAndDownController@index');//列表
-//    Route::get('/UpAndDown/Search/{uid}','UpAndDownController@search');//查询
-//    Route::get('/UpAndDown/Up/{uid}','UpAndDownController@up');//上分
-//    Route::get('/UpAndDown/Down/{uid}','UpAndDownController@down');//下分
-//    Route::post('/UpAndDown/Save','UpAndDownController@save');//保存分数
-//    //战绩统计
-//    Route::get('/White','WhiteController@indexlist');
-//    Route::get('/White/Set','WhiteController@index');//分数设置
-//    Route::get('/White/Record',function (){   //战绩统计
-//        return view('White.record');
-//    });
-//    Route::get('/White/RecordSearch','WhiteController@recordSearch');
-//    Route::get('/White/Tops',function (){
-//        return view('White.tops');
-//    });//战绩排行
-//    Route::get('/White/Tops/Search/{type}/{orderby}','WhiteController@topsSearch');
-//    Route::get('/White/SetEdit/{uid}','WhiteController@setwhite');
-//    Route::get('/White/Search/{uid}','WhiteController@search');//查询
-//    Route::get('/White/Set/Add',function (){
-//        return view('White.add');
-//    });//分数设置
-//    Route::post('/White/SetSave','WhiteController@save');//保存新增分数
-//    Route::post('/White/SetEdit','WhiteController@edit');//保存修改分数
+    Route::get('/BuyCard/list',function (){
+        return view('BuyCard.giverec');
+    });
+    Route::post('/BuyCard/giverec','BuyCardController@GiveRec');
 
     //我的信息
     Route::get('/MyInfo','MyInfoController@index');
     Route::post('/MyInfo/Save','MyInfoController@save');
     //活动公告
-    Route::get('/Notice','MyInfoController@notice');
-//    //购买房卡
-//    Route::get('/BuyBubble/buy/{sid}','BuyBubbleController@buycard');
-//    Route::post('/BuyBubble/SetCard/{orderno}','BuyBubbleController@setCard');
-//    Route::post('/BuyBubble/del','BuyBubbleController@delOrderNo');
-//    Route::get('/BuyBubble/index','BuyBubbleController@index');
-//    Route::get('/BuyBubble/index','CashController@index');
-//    Route::get('/BuyBubble/buy/{number}','CashController@GetOrder');
-//    Route::post('/BuyBubble/SetCard/{orderno}','CashController@setCard');
+    //Route::get('/Notice','MyInfoController@notice');
+
+    //我的推广码
+    Route::get('/MyQrCode','MyInfoController@index');
 
     //订单查询
     Route::get('/BuySearch',"CashController@search");
@@ -160,29 +123,12 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     });
     Route::post('/BackCash/getlist','BackCashController@extlist');
 
-    //黑名单
-//    Route::get('/Blacklist',function (){
-//        return view('Black.index');
-//    });
-//    Route::get('/Blacklist/add',function (){
-//        return view('Black.create');
-//    });
-//    Route::post('/Blacklist/data','BlacklistController@getData');
-//    Route::post('/Blacklist/save','BlacklistController@save');
-//    Route::post('/Blacklist/del/{id}','BlacklistController@Unlock');
-
     //删除代理
     Route::get('/AgentDel',function (){
         return view('AgentManage.delete');
     });
     Route::post('/AgentDel/data','AgentManageController@getAgent');
     Route::post('/AgentDel/delete','AgentManageController@delete');
-//    //代理审核
-//    Route::get('/Examine',function (){
-//        return view('AgentManage.examine');
-//    });
-//    Route::post('/Examine/data','AgentManageController@getData');
-//    Route::post('/Examine/adopt','AgentManageController@adopt');
 
     //玩家列表
     Route::get('/Players',function (){
@@ -196,21 +142,8 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
 //    Route::get('/OrderSearch/select','CashController@WcoSarch');
 });
 
-//Route::get('/AddGroup/{gid}','GroupController@addGroup');//扫描二维码加群
 
-////代理申请
-//Route::get('/Apply',function (){
-//   return view('AgentManage.apply');
-//});
-//Route::post('/Apply/save','AgentManageController@save');
-
-
-////获取参数值
-//Route::get('/GetParam/{key}',function ($key){
-//    return App\Common\CommClass::GetParameter($key);
-//});
-
-//玩家购买
+//玩家购买钻石
 Route::get('/PlayerBuy/buy','CashController@buycard');
 Route::post('/PlayerBuy/delno','CashController@delNo');
 Route::get('/PlayerBuy/index','CashController@index');
@@ -226,4 +159,7 @@ Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
 
 //抽奖
 Route::get('/lottery/{uid}','GameSericeController@getLottery');
+
+//发红包
+Route::get('/redpack/{uid}/{total}','GameSericeController@RedPack');
 /// end//////////////////////////////

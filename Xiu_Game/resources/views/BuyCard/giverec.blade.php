@@ -13,7 +13,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'提现记录',
+                title:'赠送记录',
                 singleSelect:true,
                 border:false,
                 fit:true,
@@ -22,7 +22,7 @@
                 pagination:true,
                 rownumbers:true,
                 showFooter: true,
-                url:'/BackCash/getlist',
+                url:'/BuyCard/giverec',
                 idField:'id',
                 toolbar:[{
                     iconCls: 'icon-reload',
@@ -34,24 +34,33 @@
                     iconCls: 'icon-back',
                     text:'返回',
                     handler: function(){
-                        window.location.href='/Extract/index';
+                        window.location.href='/BuyCard';
                     }
                 }],
                 columns:[[
-                    {field:'id',title:'ID',width:60,hidden:true},
-                    {field:'playerid',title:'玩家ID',width:80},
-                    {field:'gold',title:'金额',width:80},
-                    {field:'status',title:'类型',width:60,
+                    {field:'cid',title:'ID',hidden:true},
+                    {field:'buy_head',title:'头像',width:40,
                         formatter:function (value) {
-                            if(value == 0){
-                                return '提现';
-                            }else if(value == 1){
-                                return "红包";
+                            if(comm.is_null(value)){
+                                return "<img src='"+value+"' style='border-radius:6px;' width='30'  align='absmiddle' >";
+                            }else{
+                                return "<img src='{{asset('/img/ui-default.jpg')}}' style='border-radius:6px;' width='30' align='absmiddle' >";
+                            }
+                        }},
+                    {field:'cbuyid',title:'玩家ID',width:50},
+                    {field:'buy_nick',title:'昵称',width:70},
+                    {field:'cnumber',title:'数量',width:50},
+                    {field:'ctype',title:'类型',width:40,
+                        formatter:function (value) {
+                            if(value == 1){
+                                return '钻石';
+                            }else if(value == 2){
+                                return "金豆";
                             }else{
                                 return "";
                             }
-                    }},
-                    {field:'ctradedate',title:'申请日期',width:150}
+                        }},
+                    {field:'ctradedate',title:'赠送日期',width:130}
                 ]]
             });
         })

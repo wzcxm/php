@@ -17,10 +17,10 @@ class AgentManageController extends Controller
             if(empty($user)){
                 return response()->json(['error'=>'ID错误，该代理不存在！']);
             }else{
-                    $user->rid = 0;
+                    $user->rid = 5;
                     $user->save();
                     DB::table('xx_user')->where('front_uid',$uid)->update(['front_uid'=>0]);
-                    //CommClass::UpdateRole($uid,5);
+                    CommClass::UpGameSer($uid,'role');
                     return response()->json(['error'=>'']);
             }
         }catch (\Exception $e){
@@ -28,6 +28,8 @@ class AgentManageController extends Controller
         }
 
     }
+
+    ///代理转移  ---暂时不用
     public function transfer($target,$source){
         try{
             $target_user = Users::find($target);
@@ -89,46 +91,7 @@ EOT;
         $update_sql .= ')';
         DB::select($update_sql);
     }
-
-    //代理申请
-    public function save(Request $request){
-        try{
-            $uid = isset($request['uid'])?$request['uid']:"";
-            $tel = isset($request['tel'])?$request['tel']:"";
-            if(empty($uid))
-                return response()->json(['error'=>'请输入游戏ID！']);
-            if(empty($tel))
-                return response()->json(['error'=>'请输入联系方式！']);
-            $user = Users::find($uid);
-            if(empty($user))
-                return response()->json(['error'=>'您输入的游戏ID错误，请重新输入！']);
-            DB::table('pp_agentsys_apply')->insert(['game_uid'=>$uid,'tel'=>$tel]);
-            return response()->json(['error'=>'']);
-        }catch (\Exception $e){
-            return response()->json(['error'=>$e->getMessage()]);
-        }
-    }
-
-    //审核列表
-    public function getData(Request $request){
-        $page = isset($request['page']) ? intval($request['page']) : 1;
-        $rows = isset($request['rows']) ? intval($request['rows']) : 10;
-        $menu_arr = CommClass::PagingData($page,$rows,"pp_agentsys_apply",""," create_date desc ");
-        return response()->json($menu_arr);
-    }
-    //审核通过
-    public function adopt(Request $request){
-        try{
-            $id = isset($request['id'])?$request['id']:"";
-            $game_uid = isset($request['game_uid'])?$request['game_uid']:"";
-            $tel = isset($request['tel'])?$request['tel']:"";
-            DB::table('pp_agentsys_apply')->where('id',$id)->update(['state'=>1]);
-            DB::table('xx_user')->where('uid',$game_uid)->update(['rid'=>2,'uphone'=>$tel]);
-            return response()->json(['error'=>'']);
-        }catch (\Exception $e){
-            return response()->json(['error'=>$e->getMessage()]);
-        }
-    }
+    ///代理转移--end
 
 
     //代理列表
