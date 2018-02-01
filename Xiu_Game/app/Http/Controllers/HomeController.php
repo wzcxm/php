@@ -18,7 +18,7 @@ class HomeController extends Controller
         //注册用户
         $count_person=CommClass::GetPerosn();
         //当日登录
-        $today_person = 200;
+        $today_person = CommClass::GetOnlinePerosn();
         //我的积分
         $total_num = $user->money;
         //当月积分
