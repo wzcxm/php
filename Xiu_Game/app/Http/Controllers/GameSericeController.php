@@ -21,7 +21,7 @@ class GameSericeController extends Controller
             if(empty($uid)) return ""; //uid错误
             $user = Users::find($uid);
             if(empty($user)) return ""; //玩家不存在
-            if($user->lottery != 1) return ""; //玩家未分享或以抽奖
+            //if($user->lottery != 1) return ""; //玩家未分享或以抽奖
             if($user->online_state != 1) return ""; //玩家不在线
             //开始抽奖
             $data = collect(config("conf.Prize"));
