@@ -17,9 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //微信支付回调地址
-Route::post('/notify','BuyBubbleController@notify');
-//发红包接口
-Route::any('/redpack','BuyBubbleController@GetRedPack');
+//Route::post('/notify','BuyBubbleController@notify');
+
 
 //玩家购买回调
 Route::post('/player/notify','CashController@notify');
