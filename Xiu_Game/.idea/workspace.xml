@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/.env" afterPath="$PROJECT_DIR$/../GameSerice/.env" />
+      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
       <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/Common/CommClass.php" afterPath="$PROJECT_DIR$/app/Common/CommClass.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,22 +25,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Message.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Message.php">
+      <file leaf-file-name="CashController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Role.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Role.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="482">
+              <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+              <folding>
+                <element signature="e#1391#1679#0#PHP" expanded="false" />
+                <element signature="e#1696#1926#0#PHP" expanded="false" />
+                <element signature="e#4905#5114#0#PHP" expanded="false" />
+                <element signature="e#5152#5537#0#PHP" expanded="false" />
+                <marker date="1517478065431" expanded="true" signature="7189:7222" ph="select * fro... view_buycard" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,15 +125,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="180" column="62" lean-forward="true" selection-start-line="180" selection-start-column="62" selection-end-line="180" selection-end-column="62" />
+            <state relative-caret-position="1150">
+              <caret line="181" column="9" lean-forward="false" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
               <folding>
                 <element signature="e#337#1180#0#PHP" expanded="false" />
                 <element signature="e#1186#4088#0#PHP" expanded="false" />
                 <element signature="e#4103#5041#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuyCardController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding>
+                <element signature="e#693#2651#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -189,7 +198,6 @@
         <option value="$PROJECT_DIR$/resources/views/UserManage/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BackCashController.php" />
         <option value="$PROJECT_DIR$/resources/views/Layout/WeUiLayout.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
         <option value="$PROJECT_DIR$/resources/views/BuyCard/palyerbuy.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
@@ -206,6 +214,7 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
       </list>
     </option>
   </component>
@@ -456,12 +465,12 @@
       <workItem from="1517191616837" duration="18459000" />
       <workItem from="1517274738801" duration="16943000" />
       <workItem from="1517361519996" duration="14983000" />
-      <workItem from="1517462064761" duration="5370000" />
+      <workItem from="1517462064761" duration="7680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200793000" />
+    <option name="totallyTimeSpent" value="203103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -698,32 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="128" column="85" lean-forward="false" selection-start-line="128" selection-start-column="79" selection-end-line="128" selection-end-column="85" />
-          <folding>
-            <element signature="e#587#1359#0#PHP" expanded="false" />
-            <element signature="e#1391#1679#0#PHP" expanded="false" />
-            <element signature="e#1696#1926#0#PHP" expanded="false" />
-            <element signature="e#1961#3745#0#PHP" expanded="false" />
-            <element signature="e#4905#5114#0#PHP" expanded="false" />
-            <element signature="e#5152#5537#0#PHP" expanded="false" />
-            <marker date="1517389215322" expanded="true" signature="7189:7222" ph="select * fro... view_buycard" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding>
-            <element signature="e#693#2651#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
@@ -929,14 +912,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding>
+            <element signature="e#693#2651#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="180" column="62" lean-forward="true" selection-start-line="180" selection-start-column="62" selection-end-line="180" selection-end-column="62" />
+        <state relative-caret-position="1150">
+          <caret line="181" column="9" lean-forward="false" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
           <folding>
             <element signature="e#337#1180#0#PHP" expanded="false" />
             <element signature="e#1186#4088#0#PHP" expanded="false" />
             <element signature="e#4103#5041#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="e#1391#1679#0#PHP" expanded="false" />
+            <element signature="e#1696#1926#0#PHP" expanded="false" />
+            <element signature="e#4905#5114#0#PHP" expanded="false" />
+            <element signature="e#5152#5537#0#PHP" expanded="false" />
+            <marker date="1517478065431" expanded="true" signature="7189:7222" ph="select * fro... view_buycard" />
           </folding>
         </state>
       </provider>

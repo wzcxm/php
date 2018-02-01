@@ -31,7 +31,7 @@ class CashController extends Controller
             $unionid = $tools->data['unionid'];
             $player = Users::where('unionid', $unionid)->first();
             //如果公众号的openid不同，修改wxopenid
-            if($player->wxopenid == $openid){
+            if($player->wxopenid != $openid){
                 DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
             }
             $mallList = ShoppingMall::where([['type',1],['sgive',0]])->get();
