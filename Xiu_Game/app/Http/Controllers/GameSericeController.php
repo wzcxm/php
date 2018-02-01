@@ -148,13 +148,13 @@ class GameSericeController extends Controller
     }
 
     //发红包
-    public function RedPack($uid,$total){
+    public function RedPack($uid){
         try{
-            if(empty($uid) || empty($total))
-                return 0;//["state"=>0,"Error"=>"uid or total error "];
+            if(empty($uid)) return 0;//["state"=>0,"Error"=>"uid or total error "];
             $player = Users::find($uid);
             $orderno = WxPayConfig::MCHID . date("YmdHis");
             $openid = $player->wxopenid;
+            $total = $player->redbag;
             //发送红包
             $input = new WxPayRedPack();
             $input->SetMch_Billno($orderno);
@@ -170,7 +170,7 @@ class GameSericeController extends Controller
             $result = $input->FromXml($result);
             if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
                 //发送成功，扣除用户红包金额
-                DB::table('xx_user')->where('uid',$uid)->decrement('redbag', $total);
+                DB::table('xx_user')->where('uid',$uid)->update(['redbag'=>0]);
                 //将发送红包记录保存
                 DB::table('xx_sys_extract')->insert(['playerid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
                 return 1;

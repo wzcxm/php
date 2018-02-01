@@ -161,5 +161,5 @@ Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
 Route::get('/lottery/{uid}','GameSericeController@getLottery');
 
 //发红包
-Route::get('/redpack/{uid}/{total}','GameSericeController@RedPack');
+Route::get('/redpack/{uid}','GameSericeController@RedPack');
 /// end//////////////////////////////
