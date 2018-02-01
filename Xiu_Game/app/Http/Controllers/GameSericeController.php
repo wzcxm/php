@@ -151,7 +151,7 @@ class GameSericeController extends Controller
     public function RedPack($uid,$total){
         try{
             if(empty($uid) || empty($total))
-                return ["state"=>0,"Error"=>"uid or total error "];
+                return 0;//["state"=>0,"Error"=>"uid or total error "];
             $player = Users::find($uid);
             $orderno = WxPayConfig::MCHID . date("YmdHis");
             $openid = $player->wxopenid;
@@ -173,12 +173,12 @@ class GameSericeController extends Controller
                 DB::table('xx_user')->where('uid',$uid)->decrement('redbag', $total);
                 //将发送红包记录保存
                 DB::table('xx_sys_extract')->insert(['playerid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
-                return ["state"=>1,"Error"=>""];
+                return 1;
             }else{
-                return ["state"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];
+                return 0;//["state"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];
             }
         }catch (\Exception $e){
-            return ["state"=>0,"Error"=>$e->getMessage()];
+            return 0;//["state"=>0,"Error"=>$e->getMessage()];
         }
     }
 
