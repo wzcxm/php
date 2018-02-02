@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'APP_ID' => 'wx07c858d21f46428a',
-	'APP_SECRET' => '4d0fb8ba72854a2fa59a865364765c27',
+	'APP_ID' => 'wx8236e25cf16a7c2e',
+	'APP_SECRET' => 'cd3eeb089d60f5ed428488ac0d6282d9',
 
 	'GAME_DOMAIN' => [
 		'gw1' => [
