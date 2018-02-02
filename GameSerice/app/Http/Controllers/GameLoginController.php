@@ -64,24 +64,11 @@ class GameLoginController extends Controller
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
         $server_login_info->setSign(encrypt(env('SIGN')));
-        //所在的茶楼大厅号
-        $hallid = DB::table('xx_sys_teas')->where([['uid',$user->uid],['tea_id',$user->tea_id]])->value('hall_id');
-        $server_login_info->setHallId(empty($hallid)?0:$hallid);
-        //所在茶楼大厅的游戏类型
-        $type_id = 'type'.$hallid;
-        $game_type = DB::table('xx_sys_tea')->where('tea_id',$user->tea_id)->value($type_id);
-        $server_login_info->setServerType(empty($game_type)?0:$game_type);
-        //获取系统信息
-        $message =  DB::table("xx_sys_message")->get();
-        if(!empty($msseage)){
-            $message = collect($message);
-            //跑马灯
-            $marquee = $message->where('mtype',1)->get('mcontent');
-            //紧急通知
-            $urgent = $message->where('mtype',3)->get('mcontent');
-            $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
-            $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
-        }
+        $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
+        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
         $domain_info = config('conf.GAME_DOMAIN');
         foreach ($domain_info as $value){
             $server_domain_info = new ServerDomainInfo();
@@ -117,24 +104,12 @@ class GameLoginController extends Controller
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
         $server_login_info->setSign(encrypt(env('SIGN')));
-        //所在的茶楼大厅号
-        $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$user->tea_id]])->value('hall_id');
-        $server_login_info->setHallId(empty($hallid)?0:$hallid);
-        //所在茶楼大厅的游戏类型
-        $type_id = 'type'.$hallid;
-        $game_type = DB::table('xx_sys_tea')->where('tea_id',$user->tea_id)->value($type_id);
-        $server_login_info->setServerType(empty($game_type)?0:$game_type);
-        //获取系统信息
-        $message =  DB::table("xx_sys_message")->get();
-        if(!empty($msseage)){
-            $message = collect($message);
-            //跑马灯
-            $marquee = $message->where('mtype',1)->get('mcontent');
-            //紧急通知
-            $urgent = $message->where('mtype',3)->get('mcontent');
-            $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
-            $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
-        }
+
+        $sysMssage = $this->GetMessage($uid,$user->tea_id);
+        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -170,24 +145,12 @@ class GameLoginController extends Controller
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
         $server_login_info->setSign(encrypt(env('SIGN')));
-        //所在的茶楼大厅号
-        $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$user->tea_id]])->value('hall_id');
-        $server_login_info->setHallId(empty($hallid)?0:$hallid);
-        //所在茶楼大厅的游戏类型
-        $type_id = 'type'.$hallid;
-        $game_type = DB::table('xx_sys_tea')->where('tea_id',$user->tea_id)->value($type_id);
-        $server_login_info->setServerType(empty($game_type)?0:$game_type);
-        //获取系统信息
-        $message =  DB::table("xx_sys_message")->get();
-        if(!empty($msseage)){
-            $message = collect($message);
-            //跑马灯
-            $marquee = $message->where('mtype',1)->get('mcontent');
-            //紧急通知
-            $urgent = $message->where('mtype',3)->get('mcontent');
-            $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
-            $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
-        }
+
+        $sysMssage = $this->GetMessage($uid,$user->tea_id);
+        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
 		$domain_info = config('conf.GAME_DOMAIN');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
@@ -287,24 +250,11 @@ class GameLoginController extends Controller
 				$server_login_info->setPasswd(encrypt($passwd));
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setSign(encrypt(env('SIGN')));
-                //所在的茶楼大厅号
-                $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$tea_id]])->value('hall_id');
-                $server_login_info->setHallId(empty($hallid)?0:$hallid);
-                //所在茶楼大厅的游戏类型
-                $type_id = 'type'.$hallid;
-                $game_type = DB::table('xx_sys_tea')->where('tea_id',$tea_id)->value($type_id);
-                $server_login_info->setServerType(empty($game_type)?0:$game_type);
-                //获取系统信息
-                $message =  DB::table("xx_sys_message")->get();
-                if(!empty($msseage)){
-                    $message = collect($message);
-                    //跑马灯
-                    $marquee = $message->where('mtype',1)->get('mcontent');
-                    //紧急通知
-                    $urgent = $message->where('mtype',3)->get('mcontent');
-                    $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
-                    $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
-                }
+                $sysMssage = $this->GetMessage($uid,$tea_id);
+                $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+                $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+                $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+                $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
@@ -397,24 +347,11 @@ class GameLoginController extends Controller
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setToken($openid);
-                //所在的茶楼大厅号
-                $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$tea_id]])->value('hall_id');
-                $server_login_info->setHallId(empty($hallid)?0:$hallid);
-                //所在茶楼大厅的游戏类型
-                $type_id = 'type'.$hallid;
-                $game_type = DB::table('xx_sys_tea')->where('tea_id',$tea_id)->value($type_id);
-                $server_login_info->setServerType(empty($game_type)?0:$game_type);
-                //获取系统信息
-                $message =  DB::table("xx_sys_message")->get();
-                if(!empty($msseage)){
-                    $message = collect($message);
-                    //跑马灯
-                    $marquee = $message->where('mtype',1)->get('mcontent');
-                    //紧急通知
-                    $urgent = $message->where('mtype',3)->get('mcontent');
-                    $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
-                    $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
-                }
+                $sysMssage = $this->GetMessage($uid,$tea_id);
+                $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+                $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+                $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+                $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
                 $server_login_info->setSign(encrypt(env('SIGN')));
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
@@ -447,6 +384,32 @@ class GameLoginController extends Controller
 		CommonFunc::message_xor($send_data);
 		return $send_data;
 	}
+
+    //获取玩家的茶楼大厅、游戏类型、公告、紧急通知
+    private function GetMessage($uid,$teaid){
+        //所在的茶楼大厅号
+        $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->value('hall_id');
+        $hallid = empty($hallid)?0:$hallid;
+        //所在茶楼大厅的游戏类型
+        if($hallid==0){
+            $game_type = 0;
+        }else{
+            $type_id = 'type'.$hallid;
+            $game_type = DB::table('xx_sys_tea')->where('tea_id',$teaid)->value($type_id);
+        }
+        //获取系统信息
+        $message =  DB::table("xx_sys_message")->get();
+        if(empty($message)){
+            $marquee = "";
+            $urgent = "";
+        }else{
+            //跑马灯
+            $marquee = collect($message)->where('mtype',1)->first()->mcontent;//get('mcontent');
+            //紧急通知
+            $urgent = collect($message)->where('mtype',3)->first()->mcontent;//->get('mcontent');
+        }
+        return ['hallid'=>$hallid,'game_type'=>$game_type,'marquee'=>$marquee,'urgent'=>$urgent];
+    }
 
 
 
