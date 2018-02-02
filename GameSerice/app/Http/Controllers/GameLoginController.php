@@ -206,10 +206,9 @@ class GameLoginController extends Controller
 				$head_img_url = $user_data['headimgurl'];
 				$unionid = $user_data['unionid'];
 				$roomcard = 3;
-				$gold = 0;
+				$gold = 1000;
 				$rid = 5;
 				$ustate = 0;
-				$uid = 0;
 				$room_id = 0;
 				$passwd = CommonFunc::random_string(11);
                 $tea_id = 0;
@@ -219,13 +218,13 @@ class GameLoginController extends Controller
 					//插入数据
 					$uid = DB::table('xx_user')->insertGetId([
 					    'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,'roomcard'=>$roomcard,'gold'=>$gold,
-                        'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd,'firstlogin'=>1
+                        'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
                     ]);
 				}
 				else
 				{
                     $uid = $user->uid;
-                    $bubble = $user->gold;
+                    $gold = $user->gold;
                     $roomcard = $user->roomcard;
                     $ustate = $user->ustate;
                     $room_id = $user->room_id;
@@ -236,12 +235,11 @@ class GameLoginController extends Controller
 					$affected = DB::table('xx_user')->where('unionid',$unionid)
                         ->update([
                         'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,
-                        'openid'=>$openid,'refresh_token'=>$refresh_token,'pwd'=>$passwd,'firstlogin'=>1
+                        'openid'=>$openid,'refresh_token'=>$refresh_token,'pwd'=>$passwd
                         ]);
 					if ($affected != 1)
 						goto error_end;
 				}
-
 				$server_login_info = new ServerLoginInfo();
 				$server_login_info->setCode(1);
 				$server_login_info->setUid($uid);
@@ -249,21 +247,32 @@ class GameLoginController extends Controller
 				$server_login_info->setSex($sex);
 				$server_login_info->setHeadImgUrl($head_img_url);
 				$server_login_info->setRoomcard($roomcard);
-				$server_login_info->setBubble($bubble);
+				$server_login_info->setBubble($gold);
 				$server_login_info->setRid($rid);
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setToken($openid);
-				$passwd = encrypt($passwd);
-				$server_login_info->setPasswd($passwd);
+				$server_login_info->setPasswd(encrypt($passwd));
                 $server_login_info->setTeaId($tea_id);
-                $temp = $this->each_hall($uid,$tea_id);
-                if(!empty($temp)){
-                    $server_login_info->setHallId($temp['hallid']);
-                    $server_login_info->setServerType($temp['type']);
-                }
+                //所在的茶楼大厅号
+                $hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$tea_id]])->value('hall_id');
+                $server_login_info->setHallId(empty($hallid)?0:$hallid);
+                //所在茶楼大厅的游戏类型
+                $type_id = 'type'.$hallid;
+                $game_type = DB::table('xx_sys_tea')->where('tea_id',$tea_id)->value($type_id);
+                $server_login_info->setServerType(empty($game_type)?0:$game_type);
+
                 $server_login_info->setSign(encrypt(env('SIGN')));
-                $server_login_info->setMarquee($this->getMsg(1));//跑马灯
-                $server_login_info->setUrgent($this->getMsg(3));//紧急通知
+                //获取系统信息
+                $message =  DB::table("xx_sys_message")->get();
+                if(!empty($msseage)){
+                    $message = collect($message);
+                    //跑马灯
+                    $marquee = $message->where('mtype',1)->get('mcontent');
+                    //紧急通知
+                    $urgent = $message->where('mtype',3)->get('mcontent');
+                    $server_login_info->setMarquee(empty($marquee)?"":$marquee);//跑马灯
+                    $server_login_info->setUrgent(empty($urgent)?"":$urgent);//紧急通知
+                }
 				$domain_info = config('conf.GAME_DOMAIN');
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
@@ -396,28 +405,6 @@ class GameLoginController extends Controller
 		return $send_data;
 	}
 
-	//获取玩家当前所在的茶楼厅号和类型
-	private function each_hall($uid,$teaid){
-	    if(empty($teaid) || empty($uid)) return [];
-	    $player = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->first();
-	    $teainfo = DB::table('xx_sys_tea')->where('tea_id',$teaid)->first();
-	    if(empty($player) || empty($teainfo)) return [];
-        $type_id = 'type'.$player->hall_id;
-	    return ['hallid'=>$player->hall_id,'type'=>$teainfo->$type_id];
-    }
-
-    //获取游戏公告信息
-    private function getMsg($type){
-        try{
-            if(empty($type)) return "";
-            $msseage =  DB::table("xx_sys_message")->where('mtype',$type)->first();
-            if(empty($msseage)) return "";
-            return $msseage->mcontent;
-        }catch (\Exception $e){
-            return "";
-        }
-
-    }
 
 
 
