@@ -49,7 +49,7 @@ $router->get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback'
 //总战绩
 $router->get('/record/{uid}/{offset}/{sign}','GameSericeController@GetRecord');
 //单局战绩
-$router->get('/bigrecord/{roomid}/{time}/{g_type}/{offset}/{sign}','GameSericeController@BigRecord');
+$router->get('/single/{roomid}/{time}/{g_type}/{offset}/{sign}','GameSericeController@BigRecord');
 
 
 //短信验证码接口
