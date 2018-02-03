@@ -47,7 +47,7 @@ $router->get('/GetUrl',function (){
 $router->get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
 //总战绩
-$router->get('/record/{uid}/{g_type}/{offset}/{sign}','GameSericeController@GetRecord');
+$router->get('/record/{uid}/{offset}/{sign}','GameSericeController@GetRecord');
 //单局战绩
 $router->get('/bigrecord/{roomid}/{time}/{g_type}/{offset}/{sign}','GameSericeController@BigRecord');
 
@@ -72,3 +72,9 @@ $router->get('/redlist/{uid}/{sign}','GameSericeController@getRedList');
 
 //更换微信号
 $router->get('/setwx/{uid}/{code}/{sign}','GameSericeController@setWxinfo');
+
+//茶楼总战绩
+$router->get('/tearec/{teaid}/{offset}/{sign}','GameSericeController@getTeaRec');
+
+//茶楼我的战绩
+$router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getMyTeaRec');
