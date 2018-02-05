@@ -74,13 +74,170 @@ class ServerUserBase extends \Google\Protobuf\Internal\Message
 
 }
 
+class RedisTableInfo extends \Google\Protobuf\Internal\Message
+{
+    private $server_type = 0;
+    private $status = 0;
+    private $create_time = 0;
+    private $tea_id = 0;
+    private $current_number = 0;
+    private $max_number = 0;
+    private $uid;
+    private $score;
+    private $ready;
+    private $index;
+    private $nickname;
+    private $head_img_url;
+
+    public function getServerType()
+    {
+        return $this->server_type;
+    }
+
+    public function setServerType($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->server_type = $var;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->status = $var;
+    }
+
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->create_time = $var;
+    }
+
+    public function getTeaId()
+    {
+        return $this->tea_id;
+    }
+
+    public function setTeaId($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->tea_id = $var;
+    }
+
+    public function getCurrentNumber()
+    {
+        return $this->current_number;
+    }
+
+    public function setCurrentNumber($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->current_number = $var;
+    }
+
+    public function getMaxNumber()
+    {
+        return $this->max_number;
+    }
+
+    public function setMaxNumber($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->max_number = $var;
+    }
+
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    public function setUid(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
+        $this->uid = $var;
+    }
+
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    public function setScore(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
+        $this->score = $var;
+    }
+
+    public function getReady()
+    {
+        return $this->ready;
+    }
+
+    public function setReady(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
+        $this->ready = $var;
+    }
+
+    public function getIndex()
+    {
+        return $this->index;
+    }
+
+    public function setIndex(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::UINT32);
+        $this->index = $var;
+    }
+
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::STRING);
+        $this->nickname = $var;
+    }
+
+    public function getHeadImgUrl()
+    {
+        return $this->head_img_url;
+    }
+
+    public function setHeadImgUrl(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::STRING);
+        $this->head_img_url = $var;
+    }
+
+}
+
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0a87010a0d6d6573736167652e70726f746f1206787867616d6522660a0e" .
+    "0af2020a0d6d6573736167652e70726f746f1206787867616d6522660a0e" .
     "536572766572557365724261736512100a08636172645f6e756d18012001" .
     "280d12100a08636f696e5f6e756d18022001280d120f0a07726f6c655f69" .
     "6418032001280d120f0a076d657373616765180420012809120e0a067572" .
-    "67656e74180520012809620670726f746f33"
+    "67656e7418052001280922e8010a0e52656469735461626c65496e666f12" .
+    "130a0b7365727665725f7479706518012001280d120e0a06737461747573" .
+    "18022001280d12130a0b6372656174655f74696d65180320012803120e0a" .
+    "067465615f696418042001280d12160a0e63757272656e745f6e756d6265" .
+    "7218052001280d12120a0a6d61785f6e756d62657218062001280d120b0a" .
+    "0375696418072003280d120d0a0573636f726518082003280d120d0a0572" .
+    "6561647918092003280d120d0a05696e646578180a2003280d12100a086e" .
+    "69636b6e616d65180b2003280912140a0c686561645f696d675f75726c18" .
+    "0c20032809620670726f746f33"
 ));
 

@@ -14,7 +14,7 @@
                 <span style="border-radius: 4px;background-color:#c35858;color:white;font-weight: 400;"><b id="card">{{$card}}</b></span>
             </div>
             <div class="weui-cell__hd">
-                <label class="weui-label">我的金币：</label>
+                <label class="weui-label">我的金豆：</label>
             </div>
             <div class="weui-cell__bd">
                 <span style="border-radius: 4px;background-color:#c35858;color:white;font-weight: 400;"><b id="gold">{{$gold}}</b></span>
@@ -49,7 +49,7 @@
                     <td><span id="u_card"></span></td>
                 </tr>
                 <tr>
-                    <td align="right">金币：</td>
+                    <td align="right">金豆：</td>
                     <td><span id="u_gold"></span></td>
                 </tr>
                 <tr>
@@ -64,7 +64,7 @@
             <div class="weui-cell__bd">
                 <select class="weui-select"  id="sel_type">
                     <option  selected="selected" value="1">钻石</option>
-                    <option  value="2">金币</option>
+                    <option  value="2">金豆</option>
                 </select>
             </div>
         </div>

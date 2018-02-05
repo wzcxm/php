@@ -25,7 +25,7 @@ class UserLoginController extends Controller
         else {
             if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
                 Session::put('uid', $user->uid);
-                Session::put('openid', $user->openid);
+                Session::put('openid', $user->wxopenid);
                 Session::put('front_uid', $user->front_uid);
                 Session::put('roleid', $user->rid);
                 Session::put('headimg', $user->head_img_url);

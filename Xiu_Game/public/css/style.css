@@ -1,36 +1,42 @@
-html,body{height:100%;} 
-.bg {
+body, html {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+.share_bg {
            width:100%;
            height:100%;
            display:-webkit-flex; 
            -webkit-flex-direction:column;
-           background:url(../img/bj.jpg);
+           background:url(/img/share/share_bg.png);
             background-size:100% 100%;
-       }
-       .title {
-           width:100%;
-           font-size:20px;
-           color:yellow;
-       }
-       .title-div {
-            width:100%;
-           font-size:16px;
-           color:#58dbfb;
-           background-color:#022a4c;
-       }
-       .div-flat {
-            width:33.3%;
-            float:left;
-       }
-       .download-flat {
-            width:50%;
-            float:left;
-       }
-       .height-div {
-           
-           height:10px;
-          
-       }
+}
+.download_bg {
+    width:100%;
+    height:100%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/download/download_bg.jpg);
+    background-size:100% 100%;
+}
+.qrcode_bg {
+    width:100%;
+    height:100%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/qrcode/qrcode_bg.jpg);
+    background-size:100% 100%;
+}
+.desk_bg{
+        width:68%;
+        height:58%;
+        margin: 2% 0 0 15%;
+        display:-webkit-flex;
+        -webkit-flex-direction:column;
+        background:url(/img/share/nsb_desk.png) no-repeat center center;
+        background-size:100% 100%;
+        color:white;
+}
+
 span {
         display: inline-block;
         min-width: 10px;
@@ -39,14 +45,6 @@ span {
         white-space: nowrap;
         vertical-align: baseline;
         text-align:center;
-        width:70px;
-}
-p {
-    font-size:14px;
-    font-size:1.4rem;
-    color:yellow;
-}
-.div-img {
-    border:3px solid #B8860B;
+        width:160px;
 }
 

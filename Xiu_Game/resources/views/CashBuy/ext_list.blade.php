@@ -39,18 +39,18 @@
                 }],
                 columns:[[
                     {field:'id',title:'ID',width:60,hidden:true},
-                    {field:'playerid',title:'玩家ID',width:80},
-                    {field:'gold',title:'金额',width:80},
-                    {field:'status',title:'类型',width:60,
-                        formatter:function (value) {
-                            if(value == 0){
-                                return '提现';
-                            }else if(value == 1){
-                                return "红包";
-                            }else{
-                                return "";
-                            }
-                    }},
+                    {field:'playerid',title:'申请ID',width:100},
+                    {field:'gold',title:'申请金额',width:100},
+                    // {field:'status',title:'类型',width:60,
+                    //     formatter:function (value) {
+                    //         if(value == 0){
+                    //             return '提现';
+                    //         }else if(value == 1){
+                    //             return "红包";
+                    //         }else{
+                    //             return "";
+                    //         }
+                    // }},
                     {field:'ctradedate',title:'申请日期',width:150}
                 ]]
             });

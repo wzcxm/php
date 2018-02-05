@@ -94,7 +94,7 @@ use Xxgame\ServerUserBase;
     //获取在线人数
     public static function GetOnlinePerosn(){
         try{
-            return 1;
+            return 200;
         }catch (\Exception $e) {
             return 0;
         }
@@ -116,7 +116,7 @@ use Xxgame\ServerUserBase;
             //字符串长度不能为0；
             if($msg_len<=0) return "ERROR:NULL";
             //地址
-            $ip = "gw.wangqianhong.com";
+            $ip = "172.18.141.83";
             //$ip = "login.wangqianhong.com";
             //创建一个socket套接流
             $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
@@ -361,10 +361,10 @@ use Xxgame\ServerUserBase;
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
          //玩家
-         $playback = CommClass::GetParameter("invitation");
+         //$playback = CommClass::GetParameter("invitation");
          $buy_user = Users::find($buy_id);
          //上级不能为空，且上级必须是代理
-         if(!empty($buy_user->front_uid)){
+         if(!empty($buy_user) && !empty($buy_user->front_uid)){
              $front = Users::find($buy_user->front_uid);
              if(!empty($front) && $front->rid == 2){
                 //如果购买人是代理，走代理返利流程
@@ -392,16 +392,17 @@ use Xxgame\ServerUserBase;
                                      'level'=>2]);
                          }
                      }
-                 }else if($buy_user->rid == 5){//如果购买人数玩家，走玩家返利流程
-                     $return_play = $cash*$playback/100;
-                     DB::table("xx_wx_backgold")->insert(
-                         ['get_id'=>$buy_user->front_uid,
-                             'back_id'=>$buy_id,
-                             'backgold'=>$return_play,
-                             'gold'=>$cash,
-                             'ratio'=>$playback,
-                             'level'=>3]);
                  }
+//                 else if($buy_user->rid == 5){//如果购买人数玩家，走玩家返利流程
+//                     $return_play = $cash*$playback/100;
+//                     DB::table("xx_wx_backgold")->insert(
+//                         ['get_id'=>$buy_user->front_uid,
+//                             'back_id'=>$buy_id,
+//                             'backgold'=>$return_play,
+//                             'gold'=>$cash,
+//                             'ratio'=>$playback,
+//                             'level'=>3]);
+//                 }
              }
          }
      }

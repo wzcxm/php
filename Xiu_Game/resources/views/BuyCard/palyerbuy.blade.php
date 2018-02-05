@@ -48,8 +48,8 @@
     </style>
 </head>
 <body>
-<div style="height: 22%;background:url(/img/bj.jpg);background-size:100% 100%;"></div>
-<div style="height: 60%;">
+<div style="height: 27%;background:url(/img/diamond/buy_bg.png);background-size:100% 100%;"></div>
+<div style="height: 58%;">
     <div style="height: 20%;">
         <div style="height: 5px;"></div>
         <table width="100%">
@@ -65,6 +65,7 @@
             <td><span id="nick" style="color:red;">{{empty($player)?"":$player->nickname}}</span></td>
         </tr>
     </table>
+        <div style="color: red;font-size: 0.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;注：请仔细核对ID，慎重充值，充值提成以玩家ID为准，冲错自理！</div>
     </div>
     <div style="height: 45%; ">
         <div style="margin: 0 20px 0 20px;" id="mall_list">
@@ -90,8 +91,8 @@
     </div>
     <div style="height: 35%; ">
         <hr>
-        <div style="color: red;font-size: 0.7rem;">&nbsp;&nbsp;&nbsp;&nbsp;注：请仔细核对ID，慎重充值，充值提成以玩家ID为准，冲错自理！</div>
-        <div style="font-size: 0.6rem;">&nbsp;&nbsp;&nbsp;&nbsp;如果您要冲5000元以上，请联系客户：刘先生 18153816881</div>
+
+        <div style="font-size: 0.6rem;">&nbsp;&nbsp;&nbsp;&nbsp;充值5000元以上，请联系客服：刘先生 18153816881</div>
         <table width="100%" style="margin-top: 5px;">
             <tr>
                 <td align="right" width="35%">推荐代理ID：</td>
@@ -104,8 +105,8 @@
         <input type="hidden" id="sid">
     </div>
 </div>
-<div style="height:18%;background-color: #79bae7;">
-    <div style="height: 5px;"></div>
+<div style="height:15%;background-color: #79bae7;">
+    <div style="height: 1px;"></div>
     <div class="weui-btn-area" style="text-align: center;">
         <button class="weui-btn weui-btn_primary"  id="btn_buy">确认充值</button>
         <a  href="javascript:window.location.href = '/PlayerBuy/list/'+$('#plyerid').val()">充值记录</a>

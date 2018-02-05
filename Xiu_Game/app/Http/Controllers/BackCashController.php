@@ -17,7 +17,7 @@ class BackCashController extends Controller
     //返现查询
     public function index(){
         try{
-            return view('CashBuy.back',["role"=>session('roleid')]);
+            return view('CashBuy.back');
         }catch (\Exception $e){
             return response()->json(["Error"=>$e->getMessage()]);
         }
@@ -28,13 +28,9 @@ class BackCashController extends Controller
         $uid = isset($request['uid']) ? $request['uid']:"";
         $start_date = isset($request['start_date']) ? $request['start_date']:"";
         $end_date = isset($request['end_date']) ? $request['end_date']:"";
-        $where = ' 1 = 1 ';
-        if(session('roleid')==1){
-            if(!empty($uid)){
-                $where .= ' and get_id ='.$uid;
-            }
-        }else{
-            $where .= ' and get_id ='.session('uid');
+        $where = ' and get_id ='.session('uid');
+        if(!empty($uid)){
+            $where .= ' and back_id ='.$uid;
         }
         if (!empty($start_date) || !empty($end_date)) {
             $where .= " and create_time between '";
@@ -172,7 +168,7 @@ class BackCashController extends Controller
     public function extlist(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
-        $where = " playerid = ".session('uid');
+        $where = " status = 0 and playerid = ".session('uid');
         $orderby = ' create_time desc ';
         $order_arr = CommClass::PagingData($page,$rows,"xx_sys_extract",$where,$orderby);
         //增加合计行

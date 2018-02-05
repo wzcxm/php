@@ -137,11 +137,13 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/Players/data','UserManageController@getData');
     Route::post('/Players/lock','UserManageController@Lock');
     Route::post('/Players/unlock','UserManageController@Unlock');
-//    //微信订单查询
-//    Route::get('/OrderSearch','CashController@WeChatOrder');
-//    Route::get('/OrderSearch/select','CashController@WcoSarch');
 });
+/// end//////////////////////////////
 
+///////游戏api////////////////////////
+
+//我的推广码
+Route::get('/MyQrCode','MyInfoController@getQrCode');
 
 //玩家购买钻石
 Route::get('/PlayerBuy/buy','CashController@buycard');
@@ -150,16 +152,16 @@ Route::get('/PlayerBuy/index','CashController@index');
 Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
 Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
-
-///////游戏api////////////////////////
-
 //分享
 Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
-//Route::get('/mw/{roomNo?}/{msg?}','ShareController@index');
 
 //抽奖
 Route::get('/lottery/{uid}','GameSericeController@getLottery');
 
 //发红包
 Route::get('/redpack/{uid}','GameSericeController@RedPack');
+
+//游戏下载页面
+Route::get('/download/{uid?}','GameSericeController@Download');
+
 /// end//////////////////////////////

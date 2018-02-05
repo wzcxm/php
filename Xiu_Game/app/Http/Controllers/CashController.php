@@ -22,21 +22,22 @@ class CashController extends Controller
 {
     ///////充值页面///////////
     public function  index(){
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if (strpos($user_agent, 'MicroMessenger') === false) {
-            return "<h1>请在微信客户端打开链接</h1>";
-        } else {
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            $unionid = $tools->data['unionid'];
+//        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+//        if (strpos($user_agent, 'MicroMessenger') === false) {
+//            return "<h1>请在微信客户端打开链接</h1>";
+//        } else {
+//            $tools = new JsApiPay();
+//            $openid = $tools->GetOpenid();
+//            Session::put('wx_openid', $openid);
+            $unionid = 'asdfasdf';//$tools->data['unionid'];
             $player = Users::where('unionid', $unionid)->first();
-            //如果公众号的openid不同，修改wxopenid
-            if($player->wxopenid != $openid){
-                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
-            }
+//            //如果公众号的openid不同，修改wxopenid
+//            if($player->wxopenid != $openid){
+//                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
+//            }
             $mallList = ShoppingMall::where([['type',1],['sgive',0]])->get();
             return view('BuyCard.palyerbuy',['mallList'=>$mallList,'player'=>$player]);
-        }
+ //       }
     }
     /*
      * 购卡记录
@@ -76,10 +77,13 @@ class CashController extends Controller
             if(empty($player)){
                 return response()->json(['Error' => "游戏ID错误！",'orderno'=>0]);
             }else{
-                //修改推荐人
+                //修改推荐人,
                 if(!empty($front) && $front != $gameid && $player->front_uid != $front){
-                    $player->front_uid = $front;
-                    $player->save();
+                    $f_user = Users::find($front);
+                    if($f_user->rid = 2){
+                        $player->front_uid = $front;
+                        $player->save();
+                    }
                 }
                 $product = ShoppingMall::find($sid);
                 //购卡数量
@@ -92,7 +96,7 @@ class CashController extends Controller
                 //订单号
                 $orderno = WxPayConfig::MCHID . date("YmdHis");
                 //生成订单
-                $Parameters = $this->setPay($toltal_fee,$orderno,$player->wxopenid);
+                $Parameters = $this->setPay($toltal_fee,$orderno);
                 //保存订单号到数据库
                 DB::table('xx_wx_buycard')->insert([
                     'userid' => $gameid,
@@ -110,7 +114,7 @@ class CashController extends Controller
     /*
      * 生成订单
      */
-    private function setPay($total_fee,$orderno,$openid)
+    private function setPay($total_fee,$orderno)
     {
         //$logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
         //$log = Log::Init($logHandler, 15);
@@ -128,7 +132,7 @@ class CashController extends Controller
             $input->SetGoods_tag("WXG");
             $input->SetNotify_url("http://".$_SERVER['HTTP_HOST']."/api/player/notify");
             $input->SetTrade_type("JSAPI");
-            $input->SetOpenid($openid);
+            $input->SetOpenid(session('wx_openid'));
             $order = WxPayApi::unifiedOrder($input);
             $jsApiParameters = $tools->GetJsApiParameters($order);
             return $jsApiParameters;

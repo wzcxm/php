@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use App\Common\CommClass;
 use App\Models\Users;
+use App\Wechat\example\JsApiPay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use App\Wechat\lib\WxPayRedPack;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayApi;
+use Xxgame\RedisTableInfo;
 
 
 class GameSericeController extends Controller
@@ -118,31 +120,53 @@ class GameSericeController extends Controller
         }
     }
 
-    //分享
+    //游戏分享
     public function share($roomNo=0,$msg='')
     {
         try{
-            //var_dump('roomno:'.$roomNo);
-            if(empty($roomNo)){
-                return  view('Share.Undefined');
-            }
-            $room =  Redis::get('room_'.$roomNo);
-            //var_dump('room:'.$room);
-            $uids = collect(explode('|', $room))->filter(function ($value,$key){ return $value>0; });
-            //var_dump('uids:'.$uids);
+            $ret_arr = [];
+            $room =  Redis::get('table_'.$roomNo);
             if(!empty($room))
             {
-                //获取玩家的信息
-                $Users = DB::table('xx_user')->whereIn('uid', $uids)->get();
-                //var_dump($Users);
-                return view('Share.Index', ['Users' => $Users]);
+
+                $RedisTableInfo = new RedisTableInfo();
+                $RedisTableInfo->decode($room);
+                //牌馆ID
+                $ret_arr['teaid'] = $RedisTableInfo->getTeaId();
+                //游戏类型
+                $ret_arr['gametype'] = $RedisTableInfo->getServerType();
+                //局数
+                $ret_arr['number'] = $RedisTableInfo->getMaxNumber();
+                //玩法
+                $ret_arr['play'] = $msg ;
+                //桌号
+                $desk = substr($roomNo,strlen($ret_arr['teaid']));
+                $ret_arr['desk'] =$desk;
+                //厅号
+                if($desk > 8 && $desk < 17){
+                    $hallid = 2;
+                }else if($desk > 16){
+                    $hallid = 3;
+                }else{
+                    $hallid = 1;
+                }
+                $ret_arr['hallid'] = $hallid ;
+                //玩家arr
+                $uid_arr = $RedisTableInfo->getUid();
+                $nick_arr = $RedisTableInfo->getNickname();
+                $head_arr = $RedisTableInfo->getHeadImgUrl();
+                $ready_arr = $RedisTableInfo->getReady();
+                $user_arr = [];
+                for($i = 0;$i <count($uid_arr) ;$i++){
+                    array_push($user_arr,['head'=>$head_arr[$i],'nick'=>$nick_arr[$i],'ready'=>$ready_arr[$i]]);
+                }
+
+                return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr]);
             }else {
-                return  view('Share.Undefined');
+                return  view('Share.Index');
             }
         }catch (\Exception $e){
-            //var_dump('error:'.$e->getMessage());
-            //return  view('404');
-            return  view('Share.Undefined');
+            return view('Share.Index');
         }
 
     }
@@ -182,4 +206,23 @@ class GameSericeController extends Controller
         }
     }
 
+    //下载页面
+    public function  Download($uid = null){
+        try{
+            //推荐人，不为空，保存记录
+            if(!empty($uid)){
+                $tools = new JsApiPay();
+                $openid = $tools->GetOpenid();
+                $unionid = $tools->data['unionid'];
+                //下载人没有记录的保存记录
+                $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+                if(empty($temp_user)){
+                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                }
+            }
+            return view('MyInfo.download');
+        }catch (\Exception $e){
+            return view('MyInfo.download');
+        }
+    }
 }
