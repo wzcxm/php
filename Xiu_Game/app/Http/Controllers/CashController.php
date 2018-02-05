@@ -22,22 +22,22 @@ class CashController extends Controller
 {
     ///////充值页面///////////
     public function  index(){
-//        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-//        if (strpos($user_agent, 'MicroMessenger') === false) {
-//            return "<h1>请在微信客户端打开链接</h1>";
-//        } else {
-//            $tools = new JsApiPay();
-//            $openid = $tools->GetOpenid();
-//            Session::put('wx_openid', $openid);
-            $unionid = 'asdfasdf';//$tools->data['unionid'];
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if (strpos($user_agent, 'MicroMessenger') === false) {
+            return "<h1>请在微信客户端打开链接</h1>";
+        } else {
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            Session::put('wx_openid', $openid);
+            $unionid = $tools->data['unionid'];
             $player = Users::where('unionid', $unionid)->first();
-//            //如果公众号的openid不同，修改wxopenid
-//            if($player->wxopenid != $openid){
-//                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
-//            }
+            //如果公众号的openid不同，修改wxopenid
+            if($player->wxopenid != $openid){
+                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
+            }
             $mallList = ShoppingMall::where([['type',1],['sgive',0]])->get();
             return view('BuyCard.palyerbuy',['mallList'=>$mallList,'player'=>$player]);
- //       }
+        }
     }
     /*
      * 购卡记录
@@ -88,8 +88,8 @@ class CashController extends Controller
                 $product = ShoppingMall::find($sid);
                 //购卡数量
                 $toltal_number = $product->snumber;
-                if($player->flag == 0 && $sid == 11){//首冲300,送200钻
-                    $toltal_number += 200;
+                if($player->flag == 0 && $sid == 11){//首冲300,送100钻
+                    $toltal_number += 100;
                 }
                 //总金额
                 $toltal_fee = $product->sprice*100;
