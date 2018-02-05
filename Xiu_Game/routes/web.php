@@ -94,8 +94,11 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //活动公告
     //Route::get('/Notice','MyInfoController@notice');
 
-    //我的推广码
-    Route::get('/MyQrCode','MyInfoController@index');
+    //返利统计
+    Route::get('/BackReport',function (){
+        return view('MyInfo.backreport');
+    });
+    Route::post('/BackReport/data','BackCashController@getData');
 
     //订单查询
     Route::get('/BuySearch',"CashController@search");

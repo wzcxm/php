@@ -30,27 +30,8 @@ class WxPayNotify extends WxPayNotifyReply
 		} else {
 			//该分支在成功回调到NotifyCallBack方法，处理完成之后流程
             if(!empty($result['result_code']) && $result['return_code']==='SUCCESS') {
-                $buycard = BuyCard::where('nonce', $result['out_trade_no'])->first();
-                if ($buycard->status == 0) {
-                    //保存充卡信息
-                    $arr = ['cbuyid' => $buycard->userid, 'csellid' => 999, 'cnumber' => $buycard->cardnum, 'ctype' => 1];
-                    CommClass::InsertCard($arr);
-                    //更新订单状态
-                    $buycard->status = 1;
-                    $buycard->save();
-                    //如果购买人是玩家，升级为代理
-                    $play = Users::find($buycard->userid);
-                    if($play->rid == 5)//如果是玩家，改为代理
-                        $play->rid = 2;
-                    if($play->flag == 0)//修改首冲标识
-                        $play->flag = 1;
-                    $play->save();
-
-                    //更新游戏的钻石数量
-                    CommClass::UpGameSer($buycard->userid,'card');//玩家的钻石
-                    //代理返利
-                    CommClass::BackCash($buycard->userid, $buycard->total);
-                }
+                //更新玩家房卡
+                CommClass::SetPlayerCard($result['result_code']);
             }
 			$this->SetReturn_code("SUCCESS");
 			$this->SetReturn_msg("OK");

@@ -77,20 +77,10 @@ class CashController extends Controller
             if(empty($player)){
                 return response()->json(['Error' => "游戏ID错误！",'orderno'=>0]);
             }else{
-                //修改推荐人,
-                if(!empty($front) && $front != $gameid && $player->front_uid != $front){
-                    $f_user = Users::find($front);
-                    if($f_user->rid = 2){
-                        $player->front_uid = $front;
-                        $player->save();
-                    }
-                }
+
                 $product = ShoppingMall::find($sid);
                 //购卡数量
                 $toltal_number = $product->snumber;
-                if($player->flag == 0 && $sid == 11){//首冲300,送100钻
-                    $toltal_number += 100;
-                }
                 //总金额
                 $toltal_fee = $product->sprice*100;
                 //订单号
@@ -102,7 +92,9 @@ class CashController extends Controller
                     'userid' => $gameid,
                     'cardnum' => $toltal_number,
                     'total' => $toltal_fee/100,
-                    'nonce' => $orderno
+                    'nonce' => $orderno,
+                    'front' => $front,
+                    'isfirst'=>$product->isfirst
                 ]);
                 //返回订单json
                 return response()->json(['Param' => $Parameters,'orderno'=>$orderno]);

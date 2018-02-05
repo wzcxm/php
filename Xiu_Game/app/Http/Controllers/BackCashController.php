@@ -17,7 +17,7 @@ class BackCashController extends Controller
     //返现查询
     public function index(){
         try{
-            return view('CashBuy.back');
+            return view('CashBuy.back',["role"=>session('roleid')]);
         }catch (\Exception $e){
             return response()->json(["Error"=>$e->getMessage()]);
         }
