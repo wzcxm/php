@@ -5,34 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/views/MyInfo/system.blade.php" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameLoginController.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Common/CommClass.php" afterPath="$PROJECT_DIR$/app/Common/CommClass.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MyInfoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MyInfoController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShoppingMallController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShoppingMallController.php" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change beforePath="$PROJECT_DIR$/public/img/diamond/buy_bg.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/img/diamond/dmd1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/img/diamond/dmd2.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/img/diamond/dmd3.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/img/diamond/dmd4.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/resources/views/AgentManage/delete.blade.php" afterPath="$PROJECT_DIR$/resources/views/AgentManage/delete.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/BuyCard/palyerbuy.blade.php" afterPath="$PROJECT_DIR$/resources/views/BuyCard/palyerbuy.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/BuyCard/querybuy.blade.php" afterPath="$PROJECT_DIR$/resources/views/BuyCard/querybuy.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/CashBuy/buysearch.blade.php" afterPath="$PROJECT_DIR$/resources/views/CashBuy/buysearch.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Home/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Home/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Layout/WeUiLayout.blade.php" afterPath="$PROJECT_DIR$/resources/views/Layout/WeUiLayout.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/MyAgent/MyAgent.blade.php" afterPath="$PROJECT_DIR$/resources/views/MyAgent/MyAgent.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/MyAgent/MyService.blade.php" afterPath="$PROJECT_DIR$/resources/views/MyAgent/MyService.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Share/Index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Share/Index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ShoppingMall/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/ShoppingMall/create.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ShoppingMall/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/ShoppingMall/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/UserManage/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/UserManage/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -97,11 +70,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="BackCashController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BackCashController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="124" column="37" lean-forward="true" selection-start-line="124" selection-start-column="37" selection-end-line="124" selection-end-column="37" />
+              <folding>
+                <element signature="e#582#2148#0#PHP" expanded="false" />
+                <element signature="e#2163#2484#0#PHP" expanded="false" />
+                <element signature="e#2503#3042#0#PHP" expanded="false" />
+                <element signature="e#3056#3675#0#PHP" expanded="false" />
+                <element signature="e#3681#3822#0#PHP" expanded="false" />
+                <marker date="1517822659356" expanded="true" signature="1803:1837" ph="select * fro... view_backcash" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="download.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/download.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
-              <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -114,49 +104,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1794">
-              <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
+            <state relative-caret-position="253">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="e#397#1240#0#PHP" expanded="false" />
                 <element signature="e#1246#4148#0#PHP" expanded="false" />
+                <element signature="e#4165#6328#0#PHP" expanded="false" />
                 <element signature="e#6344#7827#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delete.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/AgentManage/delete.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="52" column="43" lean-forward="false" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
-              <folding>
-                <marker date="1517907298042" expanded="true" signature="9:30" ph="..." />
-                <marker date="1517907298042" expanded="true" signature="41:55" ph="..." />
-                <marker date="1517907298042" expanded="true" signature="78:94" ph="..." />
-                <marker date="1517907298042" expanded="true" signature="937:952" ph="..." />
-                <marker date="1517907298042" expanded="true" signature="1936:1954" ph="..." />
-                <marker date="1517907298042" expanded="true" signature="2077:2105" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/UserManage/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="78" column="43" lean-forward="false" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
-              <folding>
-                <marker date="1517907314080" expanded="true" signature="9:30" ph="..." />
-                <marker date="1517907314080" expanded="true" signature="41:55" ph="..." />
-                <marker date="1517907314080" expanded="true" signature="78:94" ph="..." />
-                <marker date="1517907314080" expanded="true" signature="1265:1280" ph="..." />
-                <marker date="1517907314080" expanded="true" signature="2264:2282" ph="..." />
-                <marker date="1517907314080" expanded="true" signature="2405:2433" ph="..." />
+                <element signature="e#7844#8456#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -176,15 +134,33 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CashController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="38" column="87" lean-forward="true" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
+              <folding>
+                <element signature="e#2065#3576#0#PHP" expanded="false" />
+                <element signature="e#3608#4724#0#PHP" expanded="false" />
+                <element signature="e#4741#4950#0#PHP" expanded="false" />
+                <element signature="e#4988#5373#0#PHP" expanded="false" />
+                <element signature="e#7241#8700#0#PHP" expanded="false" />
+                <element signature="e#8768#9304#0#PHP" expanded="false" />
+                <element signature="e#9310#10686#0#PHP" expanded="false" />
+                <marker date="1517914696934" expanded="true" signature="6867:6900" ph="select * fro... view_buycard" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MyInfoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyInfoController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="667">
-              <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+              <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
               <folding>
                 <element signature="e#40#65#0#PHP" expanded="true" />
                 <element signature="e#862#2545#0#PHP" expanded="false" />
-                <marker date="1517908113121" expanded="true" signature="2200:2234" ph="select * fro... view_backcash" />
               </folding>
             </state>
           </provider>
@@ -194,7 +170,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="115">
-              <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="53" />
+              <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -271,7 +247,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BuyCardController.php" />
         <option value="$PROJECT_DIR$/app/Common/CommClass.php" />
         <option value="$PROJECT_DIR$/resources/views/Layout/WeUiLayout.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
         <option value="$PROJECT_DIR$/resources/views/CashBuy/buysearch.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ShoppingMallController.php" />
         <option value="$PROJECT_DIR$/resources/views/ShoppingMall/index.blade.php" />
@@ -286,6 +261,7 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/Share/Index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
       </list>
     </option>
   </component>
@@ -590,12 +566,12 @@
       <workItem from="1517534876297" duration="10315000" />
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
-      <workItem from="1517879269953" duration="16392000" />
+      <workItem from="1517879269953" duration="16704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265775000" />
+    <option name="totallyTimeSpent" value="266087000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -878,23 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BackCashController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding>
-            <element signature="e#2163#2484#0#PHP" expanded="false" />
-            <element signature="e#2503#3042#0#PHP" expanded="false" />
-            <element signature="e#3056#3675#0#PHP" expanded="false" />
-            <element signature="e#3681#3822#0#PHP" expanded="false" />
-            <element signature="e#3836#4953#0#PHP" expanded="false" />
-            <element signature="e#4974#5982#0#PHP" expanded="false" />
-            <element signature="e#6000#6683#0#PHP" expanded="false" />
-            <marker date="1517822659356" expanded="true" signature="1803:1837" ph="select * fro... view_backcash" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
@@ -1035,23 +994,6 @@
             <marker date="1517903505203" expanded="true" signature="3403:3438" ph="..." />
             <marker date="1517903505203" expanded="true" signature="3467:3505" ph="..." />
             <marker date="1517903505203" expanded="true" signature="3534:3556" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
-          <folding>
-            <element signature="e#2084#3595#0#PHP" expanded="false" />
-            <element signature="e#3627#4743#0#PHP" expanded="false" />
-            <element signature="e#4760#4969#0#PHP" expanded="false" />
-            <element signature="e#5007#5392#0#PHP" expanded="false" />
-            <element signature="e#7260#8719#0#PHP" expanded="false" />
-            <element signature="e#8787#9323#0#PHP" expanded="false" />
-            <element signature="e#9329#10705#0#PHP" expanded="false" />
-            <marker date="1517906434163" expanded="true" signature="6886:6919" ph="select * fro... view_buycard" />
           </folding>
         </state>
       </provider>
@@ -1244,7 +1186,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
-          <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="53" />
+          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1310,11 +1252,10 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MyInfoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
-          <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+          <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding>
             <element signature="e#40#65#0#PHP" expanded="true" />
             <element signature="e#862#2545#0#PHP" expanded="false" />
-            <marker date="1517908113121" expanded="true" signature="2200:2234" ph="select * fro... view_backcash" />
           </folding>
         </state>
       </provider>
@@ -1322,7 +1263,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/download.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+          <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1334,14 +1275,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="38" column="87" lean-forward="true" selection-start-line="38" selection-start-column="87" selection-end-line="38" selection-end-column="87" />
+          <folding>
+            <element signature="e#2065#3576#0#PHP" expanded="false" />
+            <element signature="e#3608#4724#0#PHP" expanded="false" />
+            <element signature="e#4741#4950#0#PHP" expanded="false" />
+            <element signature="e#4988#5373#0#PHP" expanded="false" />
+            <element signature="e#7241#8700#0#PHP" expanded="false" />
+            <element signature="e#8768#9304#0#PHP" expanded="false" />
+            <element signature="e#9310#10686#0#PHP" expanded="false" />
+            <marker date="1517914696934" expanded="true" signature="6867:6900" ph="select * fro... view_buycard" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1794">
-          <caret line="217" column="38" lean-forward="false" selection-start-line="217" selection-start-column="38" selection-end-line="217" selection-end-column="38" />
+        <state relative-caret-position="253">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="e#397#1240#0#PHP" expanded="false" />
             <element signature="e#1246#4148#0#PHP" expanded="false" />
+            <element signature="e#4165#6328#0#PHP" expanded="false" />
             <element signature="e#6344#7827#0#PHP" expanded="false" />
+            <element signature="e#7844#8456#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BackCashController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="124" column="37" lean-forward="true" selection-start-line="124" selection-start-column="37" selection-end-line="124" selection-end-column="37" />
+          <folding>
+            <element signature="e#582#2148#0#PHP" expanded="false" />
+            <element signature="e#2163#2484#0#PHP" expanded="false" />
+            <element signature="e#2503#3042#0#PHP" expanded="false" />
+            <element signature="e#3056#3675#0#PHP" expanded="false" />
+            <element signature="e#3681#3822#0#PHP" expanded="false" />
+            <marker date="1517822659356" expanded="true" signature="1803:1837" ph="select * fro... view_backcash" />
           </folding>
         </state>
       </provider>
