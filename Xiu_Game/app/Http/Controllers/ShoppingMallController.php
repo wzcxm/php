@@ -66,8 +66,9 @@ class ShoppingMallController extends Controller
             $shopping->snumber = isset($data['snumber'])?$data['snumber']:0;
             $shopping->sgive = isset($data['sgive'])?$data['sgive']:0;
             $shopping->sremarks = isset($data['sremarks'])?$data['sremarks']:"";
-            $shopping->type = isset($data['type'])?$data['type']:0;$data[''];
-            $shopping->save();
+            $shopping->type = isset($data['type'])?$data['type']:0;
+            $shopping->img = isset($data['img'])?$data['img']:0;
+            $shopping->isfirst = isset($data['isfirst'])?$data['isfirst']:0;
             return response()->json(['msg'=>1]);
         }
         catch (\Exception $e){

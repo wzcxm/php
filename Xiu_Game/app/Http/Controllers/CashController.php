@@ -22,22 +22,22 @@ class CashController extends Controller
 {
     ///////充值页面///////////
     public function  index(){
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if (strpos($user_agent, 'MicroMessenger') === false) {
-            return "<h1>请在微信客户端打开链接</h1>";
-        } else {
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            Session::put('wx_openid', $openid);
-            $unionid = $tools->data['unionid'];
+//        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+//        if (strpos($user_agent, 'MicroMessenger') === false) {
+//            return "<h1>请在微信客户端打开链接</h1>";
+//        } else {
+//            $tools = new JsApiPay();
+//            $openid = $tools->GetOpenid();
+//            Session::put('wx_openid', $openid);
+            $unionid = 'o0xnJw7NVU-WtMPt6y9WW6PzwIlo';//$tools->data['unionid'];
             $player = Users::where('unionid', $unionid)->first();
             //如果公众号的openid不同，修改wxopenid
-            if($player->wxopenid != $openid){
-                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
-            }
+//            if($player->wxopenid != $openid){
+//                DB::table('xx_user')->where('unionid', $unionid)->update(['wxopenid'=>$openid]);
+//            }
             $mallList = ShoppingMall::where([['type',1],['sgive',0]])->get();
             return view('BuyCard.palyerbuy',['mallList'=>$mallList,'player'=>$player]);
-        }
+    //    }
     }
     /*
      * 购卡记录
@@ -45,7 +45,10 @@ class CashController extends Controller
     public function buylist($uid)
     {
         try{
-            $list = DB::table('xx_wx_buycard')->where('userid',$uid)->orderBy('create_time','desc')->get();
+            $list = DB::table('xx_wx_buycard')
+                ->where([['userid',$uid],['status',1]])
+                ->orderBy('create_time','desc')
+                ->get();
             return view('BuyCard.querybuy',['List'=>$list]);
         }catch (\Exception $e){
             return "";
@@ -55,9 +58,7 @@ class CashController extends Controller
     //获取昵称
     public function getnick($uid){
         try{
-            $user =  Users::find($uid);
-            if(empty($user)) return "";
-            return $user->nickname;
+            return response()->json(['user' => Users::find($uid)]);
         }catch (\Exception $e){
             return "";
         }
@@ -167,7 +168,7 @@ class CashController extends Controller
      */
     public function search(){
         try{
-            return view('CashBuy.buysearch',["role"=>session('roleid')]);
+            return view('CashBuy.buysearch');
         }catch (\Exception $e){
             return response()->json(["Error"=>$e->getMessage()]);
         }
@@ -179,13 +180,9 @@ class CashController extends Controller
         $uid = isset($request['uid']) ? $request['uid']:"";
         $start_date = isset($request['start_date']) ? $request['start_date']:"";
         $end_date = isset($request['end_date']) ? $request['end_date']:"";
-        $where = ' status = 1 ';
-        if(session('roleid')==1){
-            if(!empty($uid)){
-                $where .= ' and userid ='.$uid;
-            }
-        }else{
-            $where .= ' and userid ='.session('uid');
+        $where = ' 1 = 1 ';
+        if(!empty($uid)){
+            $where .= ' and userid ='.$uid;
         }
         if (!empty($start_date) || !empty($end_date)) {
             $where .= " and create_time between '";

@@ -416,46 +416,40 @@ use Xxgame\ServerUserBase;
      /// <returns></returns>
      public static function SetPlayerCard($order_no){
         try{
-            $buycard = DB::table('v_buycard_list')->where([['nonce', $order_no],['status',0]])->first();
-            if (!empty($buycard)) {
-                $user_arr = array();
-                //修改推荐人,
-                $frontid = $buycard->front_uid;
-                if($buycard->front != $buycard->userid && $buycard->front_uid != $buycard->front && $buycard->frid == 2){
-                    $frontid = $buycard->front;
-                    $user_arr['front_uid'] = $frontid;
-                }
-                //如果是玩家，改为代理
-                if($buycard->rid == 5){
-                    $user_arr['rid'] = 2;
-                }
-                //修改首冲标识
-                if($buycard->flag == 0){
-                    $user_arr['flag'] = 1;
-                }
-                //更新玩家信息
-                if(count($user_arr) > 0){
-                    DB::table('xx_user')->where('uid',$buycard->userid)->update($user_arr);
-                }
-                //保存购买人充值钻石记录
-                $arr = ['cbuyid' => $buycard->userid, 'csellid' => 999, 'cnumber' => $buycard->cardnum, 'ctype' => 1];
-                //购买首冲套餐，多送100钻石
-                if($buycard->isfirst == 1 && $buycard->flag == 0){
-                    $arr = ['cbuyid' => $buycard->userid, 'csellid' => 999, 'cnumber' => $buycard->cardnum+100, 'ctype' => 1];
-                    //如果绑定了上级代理，上级代理多送100钻石
-                    if(!empty($frontid)){
-                        array_push($arr,['cbuyid' => $frontid, 'csellid' => 999, 'cnumber' => 100, 'ctype' => 1]);
+            $wx_order = DB::table('v_buycard_list')->where([['nonce', $order_no],['status',0]])->first();
+            if (!empty($wx_order)) {
+                //首冲
+                if($wx_order->flag == 0){
+                    //首冲套餐
+                    if($wx_order->isfirst == 1){
+                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum + 100]) ;
+                    }else{
+                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
+                    }
+                    //绑定代理
+                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
+                        DB::table('xx_user')->where('uid',$wx_order->userid)
+                            ->update(['rid'=>2,'flag'=>1,'front_uid'=>$wx_order->front]);
+                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                        CommClass::InsertCard(['cbuyid' => $wx_order->front, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                    }
+
+                }else{
+                    CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
+                    //绑定代理
+                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
+                        DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
+                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                        CommClass::InsertCard(['cbuyid' => $wx_order->front, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                     }
                 }
-                CommClass::InsertCard($arr);
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
-
                 //更新游戏的钻石数量
-                CommClass::UpGameSer($buycard->userid,'card');//玩家的钻石
-                CommClass::UpGameSer($frontid,'card');//玩家上级的钻石
+                CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
+                CommClass::UpGameSer($wx_order->front,'card');//上级的钻石
                 //代理返利
-                CommClass::BackCash($buycard->userid, $buycard->total);
+                CommClass::BackCash($wx_order->userid, $wx_order->total);
             }
         }catch (\Exception $e){
 

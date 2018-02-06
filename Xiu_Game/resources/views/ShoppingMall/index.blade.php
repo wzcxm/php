@@ -79,6 +79,17 @@
                     {field:'scommodity',title:'商品名称',width:80},
                     {field:'sprice',title:'价格',width:60},
                     {field:'snumber',title:'数量',width:60},
+                    {field:'img',title:'图片',width:60},
+                    {field:'isfirst',title:'首冲活动',width:60,
+                        formatter:function (value) {
+                            if(value == 0){
+                                return '否';
+                            }else if(value == 1){
+                                return "是";
+                            }else{
+                                return "";
+                            }
+                        }},
                     {field:'sremarks',title:'商品描述',width:200}
                 ]]
             });

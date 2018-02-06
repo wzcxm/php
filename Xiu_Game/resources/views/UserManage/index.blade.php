@@ -76,7 +76,7 @@
                             }
                         }},
                     {field:'roomcard',title:'钻石',width:60},
-                    {field:'gold',title:'金币',width:60},
+                    {field:'gold',title:'金豆',width:60},
                     {field:'uphone',title:'电话',width:90},
                     {field:'front_uid',title:'上级ID',width:60},
                     {field:'front_nick',title:'上级昵称',width:100},

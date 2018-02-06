@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休游戏--分享</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180203">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 <div class="share_bg">
@@ -110,7 +110,7 @@
         </div>
     </div>
     <div style="height: 20%;" align="center">
-        <a href="/download">
+        <a href="http://fir.im/6svl">
             <img class="img-rounded " width="180" src="/img/share/download.png" />
         </a>
     </div>

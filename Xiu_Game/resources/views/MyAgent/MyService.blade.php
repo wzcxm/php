@@ -47,7 +47,7 @@
                     {field:'uid',title:'ID',width:50},
                     {field:'nickname',title:'昵称',width:70},
                     {field:'roomcard',title:'钻石',width:60},
-                    {field:'gold',title:'金币',width:60},
+                    {field:'gold',title:'金豆',width:60},
                     {field:'create_time',title:'加入日期',width:120}
                 ]]
             });

@@ -45,7 +45,7 @@ class BuyCardController extends Controller
                         $retMsg = "您的钻石不足！";
                     }else{
                         //保存充卡信息
-                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 1];
+                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number,'buytype'=>2];
                          CommClass::InsertCard($arr);
                         //更新游戏的房卡数量
                         CommClass::UpGameSer($uid,'card');//玩家的卡
@@ -56,7 +56,7 @@ class BuyCardController extends Controller
                         $retMsg = "您的金豆不足！";
                     }else{
                         //保存充卡信息
-                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 2];
+                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 2,'buytype'=>2];
                         CommClass::InsertCard($arr);
                         //更新游戏的金币数量
                         CommClass::UpGameSer($uid,'coin');//玩家的卡

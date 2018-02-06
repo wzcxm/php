@@ -124,11 +124,19 @@ class GameSericeController extends Controller
     public function share($roomNo=0,$msg='')
     {
         try{
-            $ret_arr = [];
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            $unionid = $tools->data['unionid'];
+            //下载人没有记录的保存记录
+            $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+            if(empty($temp_user)){
+                DB::table('xx_user_temp')->insert(['wxopenid'=>$openid,'unionid'=>$unionid]);
+            }
+
             $room =  Redis::get('table_'.$roomNo);
             if(!empty($room))
             {
-
+                $ret_arr = [];
                 $RedisTableInfo = new RedisTableInfo();
                 $RedisTableInfo->decode($room);
                 //牌馆ID
@@ -207,18 +215,16 @@ class GameSericeController extends Controller
     }
 
     //下载页面
-    public function  Download($uid = null){
+    public function  Download($uid = 0){
         try{
             //推荐人，不为空，保存记录
-            if(!empty($uid)){
-                $tools = new JsApiPay();
-                $openid = $tools->GetOpenid();
-                $unionid = $tools->data['unionid'];
-                //下载人没有记录的保存记录
-                $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                if(empty($temp_user)){
-                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                }
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            $unionid = $tools->data['unionid'];
+            //下载人没有记录的保存记录
+            $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+            if(empty($temp_user)){
+                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
             }
             return view('MyInfo.download');
         }catch (\Exception $e){

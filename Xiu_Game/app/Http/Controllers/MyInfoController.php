@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\CommClass;
 use App\Models\Message;
 use App\Models\Users;
 use Illuminate\Http\Request;
@@ -68,6 +69,29 @@ class MyInfoController extends Controller
         $footer =[['g_head'=>'合计','gold'=>$total_gold,'backgold'=>$total]];
         $order_arr['footer'] = $footer;
         return response()->json($order_arr);
+    }
+
+
+    //系统详情
+    public function getSysInfo(){
+        $system = array();
+        //上月消耗钻石
+        $system['front_zs'] = 100;
+        //当月消耗钻石
+        $system['now_zs'] = 100;
+        //上月消耗金豆
+        $system['front_jd'] = 200;
+        //当月消耗金豆
+        $system['now_jd'] = 300;
+        //总消耗钻石
+        $system['total_zs'] = 300;
+        //总消耗金豆
+        $system['total_jd'] = 300;
+        //注册玩家
+        $system['count_person'] = CommClass::GetPerosn();;
+        //在线人数
+        $system['online_person'] = CommClass::GetOnlinePerosn();
+        return view('MyInfo.system',['sys'=>$system]);
     }
 
 }

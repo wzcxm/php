@@ -18,7 +18,7 @@
                 我的钻石：{{$User->roomcard}}
             </div>
             <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
-                我的金币：{{$User->gold}}
+                我的金豆：{{$User->gold}}
             </div>
             <div style="padding-top: 5px;padding-bottom: 5px;font-size: 0.9rem;font-weight: 400;color:white;">
                 <span style="border-radius:3px;background-color: #f36666;">{{$User->rname}}</span>

@@ -53,6 +53,25 @@
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd">
+                <label class="weui-label">图片：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text"  id="img" value="{{empty($Mall)?"":$Mall->img}}">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">首冲活动：</label>
+            </div>
+            <div class="weui-cell__bd">
+                <select class="weui-select"  id="isfirst">
+                    <option {{empty($Mall)?"selected":($Mall->isfirst==0?'selected':'')}} value="0">否</option>
+                    <option {{empty($Mall)?"":($Mall->isfirst==1?'selected':'')}} value="1">是</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
                 <label class="weui-label">商品描述：</label>
             </div>
             <div class="weui-cell__bd">
@@ -78,10 +97,12 @@
                 R.sid = $('#sid').val();
                 R.type = $('#type').val();
                 R.sgive = $('#sgive').val();
+                R.isfirst = $('#isfirst').val();
                 R.scommodity = $('#scommodity').val();
                 R.sprice = $('#sprice').val();
                 R.snumber = $('#snumber').val();
                 R.sremarks = $('#sremarks').val();
+                R.img = $('#img').val();
                 $.post('/ShoppingMall/save',{data:R},function(data){
                     if(data.msg==1){
                         location.href="/ShoppingMall";

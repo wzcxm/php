@@ -416,28 +416,30 @@ class GameLoginController extends Controller
     //设置推荐人的人数和红包
     private function setRedPack($unionid){
 	    try{
-	        $temp_user = DB::table('xx_user_temp')->where([['unionid',$unionid],['stauts',0]])->first();
-	        if(!empty($temp_user) && !empty($temp_user->front)){
-                $front = DB::table('xx_user')->where('uid',$temp_user->front)->first();
-                if(!empty($front)){
-                    $sharenum = $front->sharenum + 1;
-                    $redbag = $front->redbag + 2;
-                    if($sharenum == 20){ //如果推荐满20人，额外送18.8元
-                        $redbag += 18.8;
-                    }else if ($sharenum == 50){//如果推荐满50人，额外送38.8元
-                        $redbag += 38.8;
-                    }else if ($sharenum == 80){//如果推荐满80人，额外送58.8元
-                        $redbag += 58.8;
+	        $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+	        if(!empty($temp_user)){
+	            if(!empty($temp_user->front)){
+                    $front = DB::table('xx_user')->where('uid',$temp_user->front)->first();
+                    if(!empty($front)){
+                        $sharenum = $front->sharenum + 1;
+                        $redbag = $front->redbag + 2;
+                        if($sharenum == 20){ //如果推荐满20人，额外送18.8元
+                            $redbag += 18.8;
+                        }else if ($sharenum == 50){//如果推荐满50人，额外送38.8元
+                            $redbag += 38.8;
+                        }else if ($sharenum == 80){//如果推荐满80人，额外送58.8元
+                            $redbag += 58.8;
+                        }
+                        //更新推荐人的推荐人数和红包金额
+                        DB::table('xx_user')
+                            ->where('uid',$temp_user->front)
+                            ->update(['sharenum'=>$sharenum,'redbag'=>$redbag]);
                     }
-                    //更新推荐人的推荐人数和红包金额
-                    DB::table('xx_user')
-                        ->where('uid',$temp_user->front)
-                        ->update(['sharenum'=>$sharenum,'redbag'=>$redbag]);
-                    //修改临时表状态
-                    DB::table('xx_user_temp')
-                        ->where('unionid',$unionid)
-                        ->update(['stauts'=>1]);
                 }
+                //保存我的微信openid
+                DB::table('xx_user')
+                    ->where('unionid',$unionid)
+                    ->update(['wxopenid'=>$temp_user->wxopenid]);
             }
         }catch (\Exception $e){
 

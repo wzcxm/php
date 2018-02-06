@@ -36,7 +36,60 @@ body, html {
         background-size:100% 100%;
         color:white;
 }
-
+.buy_bg{
+    width:100%;
+    height:100%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/diamond/query_bg.png);
+    background-size:100% 100%;
+}
+.buy_input{
+    border: 0px;
+    outline:none;
+    cursor: pointer;
+    width: 120px;
+    font-size: 1.3em;
+    margin-left: 32%;
+    color: #bf4502;
+    margin-top: 2px;
+    background-color: transparent;
+}
+.front_input{
+    border: 0px;
+    outline:none;
+    cursor: pointer;
+    width: 120px;
+    font-size: 1.3em;
+    margin-left: 45%;
+    color: #bf4502;
+    margin-top: 2px;
+    border-radius: 6px;
+}
+.front_input_red{
+    border: 0px;
+    outline:none;
+    cursor: pointer;
+    width: 120px;
+    font-size: 1.3em;
+    margin-left: 45%;
+    color: #bf4502;
+    margin-top: 2px;
+    background-color: transparent;
+}
+.buy_nick{
+    margin-left: 32%;
+    color: #bf4502;
+    font-size: 1.3em;
+    margin-top: 2px;
+}
+.img_border{
+    border-radius: 6px;
+}
+.img_border_select{
+    border-radius: 6px;
+    border: 3px solid #ffd800;
+}
 span {
         display: inline-block;
         min-width: 10px;

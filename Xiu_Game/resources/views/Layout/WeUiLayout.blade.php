@@ -50,7 +50,7 @@
         </a>
         <a href="/PlayerBuy/index"  class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
-                <i class="fa fa-shopping-basket"></i>
+                <i class="fa fa-shopping-cart"></i>
             </div>
             <p class="weui-tabbar__label">充值</p>
         </a>

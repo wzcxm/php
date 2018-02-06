@@ -140,6 +140,9 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/Players/data','UserManageController@getData');
     Route::post('/Players/lock','UserManageController@Lock');
     Route::post('/Players/unlock','UserManageController@Unlock');
+
+    //游戏详情
+    Route::get('/System','MyInfoController@getSysInfo');
 });
 /// end//////////////////////////////
 
@@ -165,6 +168,6 @@ Route::get('/lottery/{uid}','GameSericeController@getLottery');
 Route::get('/redpack/{uid}','GameSericeController@RedPack');
 
 //游戏下载页面
-Route::get('/download/{uid?}','GameSericeController@Download');
+Route::get(' ','GameSericeController@Download');
 
 /// end//////////////////////////////

@@ -9,12 +9,10 @@
                 <td><span> 购买日期：</span></td>
                 <td><input id="start_date" class= "easyui-datebox" style="width: 100px;">--<input id="end_date" class= "easyui-datebox" style="width: 100px;"></td>
             </tr>
-            @if(!empty($role) && $role==1)
-                <tr>
-                    <td><span> 玩家ID：</span></td>
-                    <td><input id="uid" class="easyui-textbox" style="width: 120px;"></td>
-                </tr>
-            @endif
+            <tr>
+                <td><span> 玩家ID：</span></td>
+                <td><input id="uid" class="easyui-textbox" style="width: 120px;"></td>
+            </tr>
         </table>
         <table>
             <tr>
@@ -47,7 +45,7 @@
                 idField:'id',
                 toolbar:'#tb',
                 columns:[[
-                    {field:'head_img_url',title:'头像',width:60,
+                    {field:'head_img_url',title:'头像',width:40,
                         formatter:function (value) {
                             if(comm.is_null(value)){
                                 if(value == "合计"){
@@ -59,11 +57,11 @@
                                 return "<img src='{{asset('/img/ui-default.jpg')}}' style='border-radius:6px;' width='30' align='absmiddle' >";
                             }
                         }},
-                    {field:'uid',title:'ID',width:60},
+                    {field:'userid',title:'UID',width:60},
                     {field:'nickname',title:'昵称',width:70},
-                    {field:'cardnum',title:'数量',width:50},
-                    {field:'total',title:'价格',width:50},
-                    {field:'create_time',title:'购买日期',width:150}
+                    {field:'cardnum',title:'数量',width:40},
+                    {field:'total',title:'金额',width:40},
+                    {field:'create_time',title:'购买日期',width:140}
                 ]]
             });
             $("#btn_search").click(function () {

@@ -11,105 +11,64 @@
     <!-- 添加到主屏幕后全屏显示 -->
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>游戏充值</title>
+    <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <style>
-        body, html {
-            height: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .ipt{
-            height: 1.3rem;
-            border-radius:6px;
-            border: 1px solid #DBDBDB;
-            outline:none;
-        }
-        .mall{
-            width: 70px;
-            background-color: #a7cfea;
-            border-radius:6px;
-            border: 1px solid #DBDBDB;
-            margin: 5px 5px 5px 5px ;
-            color: #FAFAD2;
-            font-size: 0.65rem;
-            float: left;
-        }
-        .mall_n{
-            background-color: #79bae7;
-            border-radius:6px;
-            margin: 3px 3px 3px 3px ;
-        }
-        .mall_n_cl{
-            background-color: #5b8fb3;
-            border-radius:6px;
-            margin: 3px 3px 3px 3px ;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018020616">
 </head>
 <body>
-<div style="height: 27%;background:url(/img/diamond/buy_bg.png);background-size:100% 100%;"></div>
-<div style="height: 58%;">
-    <div style="height: 20%;">
-        <div style="height: 5px;"></div>
-        <table width="100%">
-        <tr>
-            <td align="right" width="30%">玩家ID：</td>
-            <td>
-                <input id="plyerid" class="ipt" style="color:green;" value="{{empty($player)?"":$player->uid}}">
-                <button class="ipt" style="background-color: coral;color: white;" id="getnick"> 显示昵称 </button>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">玩家昵称：</td>
-            <td><span id="nick" style="color:red;">{{empty($player)?"":$player->nickname}}</span></td>
-        </tr>
-    </table>
-        <div style="color: red;font-size: 0.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;注：请仔细核对ID，慎重充值，充值提成以玩家ID为准，冲错自理！</div>
-    </div>
-    <div style="height: 45%; ">
-        <div style="margin: 0 20px 0 20px;" id="mall_list">
+<div class="buy_bg">
+    <div style="height: 35%;"></div>
+    <div style="height: 55%;">
+        <div style="height: 20%;">
+            <div style="height: 36px;">
+                <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
+                <a href="#" id="getnick" style="margin-left: 20px;">
+                    <img class="img_border " width="100" src="/img/diamond/nick.png" />
+                </a>
+            </div>
+            <div style="height: 36px;">
+                <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
+            </div>
+        </div>
+        <div style="height: 35%;text-align: center;" id="mall">
             @if(!empty($mallList))
                 @foreach($mallList as $item)
-                    <div class="mall">
-                        <div class="mall_n" name="sp_mall" id="{{$item->sid}}">
-                            <div >{{$item->scommodity}}</div>
-                            <div style="width: 65px;height: 65px;background:url(/img/diamond/{{$item->img}});background-size:100% 100%;"></div>
-                            @if(strpos($item->sremarks,"，")!== false)
-                                <div style="text-align: center;">{{explode("，",$item->sremarks)[0]}}</div>
-                                <div style="text-align: center;color:red;font-size: 0.4rem;">{{explode("，",$item->sremarks)[1]}}</div>
-                            @else
-                                <div style="text-align: center;">{{$item->sremarks}}</div>
-                                <div style="text-align: center;color:red;font-size: 0.4rem;"><br><br></div>
-                            @endif
-
-                        </div>
-                    </div>
+                    @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
+                        <img class="img_border " width="88" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
+                    @else
+                        <img class="img_border " width="88" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
+                    @endif
                 @endforeach
             @endif
         </div>
-    </div>
-    <div style="height: 35%; ">
-        <hr>
+        <div style="height: 23%;text-align: center;" id="first">
+            @if(!empty($player) && $player->flag == 0)
+                <img class="img_border " width="370" src="/img/diamond/first.png" />
+            @endif
+        </div>
+        <div style="height: 22%;">
+            @if(!empty($player))
+                @if(!empty($player->front_uid))
+                    <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
+                @else
+                    <input id="front" type="number" class="front_input" value="{{$player->front_uid}}">
+                @endif
+            @endif
 
-        <div style="font-size: 0.6rem;">&nbsp;&nbsp;&nbsp;&nbsp;充值5000元以上，请联系客服：刘先生 18153816881</div>
-        <table width="100%" style="margin-top: 5px;">
-            <tr>
-                <td align="right" width="35%">推荐代理ID：</td>
-                <td><input id="front" type="number" class="ipt" value="{{empty($player)?"":$player->front_uid}}"></td>
-            </tr>
-            <tr>
-                <td></td><td><span style="font-size: 0.6rem;">注：填写普通玩家ID无效！</span></td>
-            </tr>
-        </table>
+        </div>
         <input type="hidden" id="sid">
     </div>
-</div>
-<div style="height:15%;background-color: #79bae7;">
-    <div style="height: 1px;"></div>
-    <div class="weui-btn-area" style="text-align: center;">
-        <button class="weui-btn weui-btn_primary"  id="btn_buy">确认充值</button>
-        <a  href="javascript:window.location.href = '/PlayerBuy/list/'+$('#plyerid').val()">充值记录</a>
+    <div style="height:10%;">
+        <div style="margin-left: 30%;">
+            <a href="#" id="btn_buy" >
+                <img class="img_border " width="150" src="/img/diamond/query.png" />
+            </a>
+            <a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >
+                <img class="img_border " width="90" src="/img/diamond/buylist.png" />
+            </a>
+        </div>
     </div>
 </div>
 <script src="{{asset('js/weui/js/jquery-2.1.4.js')}}"></script>
@@ -123,12 +82,6 @@
             }
         });
 
-        $("div[name='sp_mall']").on('click',function () {
-            $("div[name='sp_mall']").removeClass().addClass("mall_n");
-            $(this).removeClass().addClass("mall_n_cl");
-            $("#sid").val(this.id);
-        });
-
         //获取昵称
         $("#getnick").click(function () {
             var uid = $("#plyerid").val();
@@ -137,10 +90,18 @@
                 return;
             }
             $.get("/PlayerBuy/getnick/"+uid,function (reslut) {
-                if(!comm.is_null(reslut)){
+                if(!comm.is_null(reslut.user)){
                     $.alert('玩家ID错误，找不到该玩家昵称!');
                 }else{
-                    $("#nick").html(reslut);
+                    $("#nick").html(reslut.user['nickname']);
+                    $("#11").remove();
+                    $("#first").empty()
+                    if(reslut.user['flag'] == 0){
+                        $("#mall").prepend("<img class=\"img_border \" width=\"88\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#first").append("<img class=\"img_border \" width=\"370\" src=\"/img/diamond/first.png\" />");
+                    }else{
+                        $("#mall").prepend("<img class=\"img_border \" width=\"88\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                    }
                 }
             });
         });
@@ -174,14 +135,13 @@
             });
         });
     });
-    function  changeId(obj) {
-        var id = $(obj).attr('value');
-        var number = $(obj).attr('number');
-        var amount = $(obj).attr('amount');
-        $("#buyId").val(id);
-        $("#sumnumber").html(number);
-        $("#sumamount").html(amount);
+
+    function img_click(img) {
+        $("#mall img").removeClass().addClass("img_border");
+        $(img).removeClass().addClass("img_border_select");
+        $("#sid").val(img.id);
     }
+
     function jsApiCall(Parame,orderno)
     {
         var param = $.parseJSON(Parame);
