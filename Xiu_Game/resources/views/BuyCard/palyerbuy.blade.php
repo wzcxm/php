@@ -21,7 +21,7 @@
 <div class="buy_bg">
     <div style="height: 35%;"></div>
     <div style="height: 55%;">
-        <div style="height: 20%;">
+        <div style="height: 19%;">
             <div>
                 <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
                 <a href="#" id="getnick" style="margin-left: 20px;">
@@ -32,7 +32,7 @@
                 <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
             </div>
         </div>
-        <div style="height: 35%;text-align: center;" id="mall">
+        <div style="height: 37%;text-align: center;" id="mall">
             @if(!empty($mallList))
                 @foreach($mallList as $item)
                     @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
@@ -43,7 +43,7 @@
                 @endforeach
             @endif
         </div>
-        <div style="height: 23%;text-align: center;" id="first">
+        <div style="height: 22%;text-align: center;" id="first">
             @if(!empty($player) && $player->flag == 0)
                 <img class="img_border " width="350" src="/img/diamond/first.png" />
             @endif
