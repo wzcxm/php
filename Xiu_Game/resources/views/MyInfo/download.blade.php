@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--游戏下载</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
 </head>
 <body>
 <div class="download_bg">

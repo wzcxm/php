@@ -36,16 +36,16 @@
             @if(!empty($mallList))
                 @foreach($mallList as $item)
                     @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        <img class="img_border " width="88" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
+                        <img class="img_border " width="80" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
                     @else
-                        <img class="img_border " width="88" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
+                        <img class="img_border " width="80" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
                     @endif
                 @endforeach
             @endif
         </div>
         <div style="height: 23%;text-align: center;" id="first">
             @if(!empty($player) && $player->flag == 0)
-                <img class="img_border " width="370" src="/img/diamond/first.png" />
+                <img class="img_border " width="350" src="/img/diamond/first.png" />
             @endif
         </div>
         <div style="height: 22%;">
