@@ -174,7 +174,7 @@ class JsApiPay
 		$urlObj["appid"] = WxPayConfig::APPID;
 		$urlObj["redirect_uri"] = "$redirectUrl";
 		$urlObj["response_type"] = "code";
-		$urlObj["scope"] = "snsapi_base"; //snsapi_userinfo
+		$urlObj["scope"] = "snsapi_userinfo"; //snsapi_base
 		$urlObj["state"] = "STATE"."#wechat_redirect";
 		$bizString = $this->ToUrlParams($urlObj);
 		return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;

@@ -28,7 +28,6 @@ class CashController extends Controller
         } else {
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
-            var_dump($tools->data);
             Session::put('wx_openid', $openid);
             $unionid = $tools->data['unionid']; //'o0xnJw7NVU-WtMPt6y9WW6PzwIlo';//
             $player = Users::where('unionid', $unionid)->first();
