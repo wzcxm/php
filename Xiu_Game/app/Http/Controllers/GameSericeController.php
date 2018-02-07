@@ -127,12 +127,13 @@ class GameSericeController extends Controller
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
             $unionid = $tools->data['unionid'];
-            //下载人没有记录的保存记录
-            $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-            if(empty($temp_user)){
-                DB::table('xx_user_temp')->insert(['wxopenid'=>$openid,'unionid'=>$unionid]);
+            if(!empty($unionid)) {
+                //下载人没有记录的保存记录
+                $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
+                if (empty($temp_user)) {
+                    DB::table('xx_user_temp')->insert(['wxopenid' => $openid, 'unionid' => $unionid]);
+                }
             }
-
             $room =  Redis::get('table_'.$roomNo);
             if(!empty($room))
             {
@@ -221,10 +222,12 @@ class GameSericeController extends Controller
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
             $unionid = $tools->data['unionid'];
-            //下载人没有记录的保存记录
-            $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-            if(empty($temp_user)){
-                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+            if(!empty($unionid)){
+                //下载人没有记录的保存记录
+                $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+                if(empty($temp_user)){
+                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                }
             }
             return view('MyInfo.download');
         }catch (\Exception $e){
