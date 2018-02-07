@@ -37,17 +37,24 @@
       <file leaf-file-name="qrcode.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="15" column="87" lean-forward="false" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+            <state relative-caret-position="603">
+              <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="118" />
               <folding>
-                <marker date="1518000735725" expanded="true" signature="562:576" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="661:688" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="744:767" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="930:985" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="931:985" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="1244:1275" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="1306:1332" ph="..." />
-                <marker date="1518000735725" expanded="true" signature="1526:1610" ph="..." />
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1518002121551" expanded="true" signature="562:576" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="661:688" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="744:767" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="941:996" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="942:996" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="1254:1285" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="1316:1342" ph="..." />
+                <marker date="1518002121551" expanded="true" signature="1536:1620" ph="..." />
               </folding>
             </state>
           </provider>
@@ -615,12 +622,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="11843000" />
+      <workItem from="1517970785996" duration="13231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279078000" />
+    <option name="totallyTimeSpent" value="280466000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -637,7 +644,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39869988" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869988" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1341,17 +1348,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="15" column="87" lean-forward="false" selection-start-line="15" selection-start-column="87" selection-end-line="15" selection-end-column="87" />
+        <state relative-caret-position="603">
+          <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="118" />
           <folding>
-            <marker date="1518000735725" expanded="true" signature="562:576" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="661:688" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="744:767" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="930:985" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="931:985" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="1244:1275" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="1306:1332" ph="..." />
-            <marker date="1518000735725" expanded="true" signature="1526:1610" ph="..." />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1518002121551" expanded="true" signature="562:576" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="661:688" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="744:767" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="941:996" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="942:996" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="1254:1285" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="1316:1342" ph="..." />
+            <marker date="1518002121551" expanded="true" signature="1536:1620" ph="..." />
           </folding>
         </state>
       </provider>
