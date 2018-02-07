@@ -22,13 +22,13 @@
     <div style="height: 35%;"></div>
     <div style="height: 55%;">
         <div style="height: 20%;">
-            <div style="height: 36px;">
+            <div>
                 <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
                 <a href="#" id="getnick" style="margin-left: 20px;">
                     <img class="img_border " width="90" src="/img/diamond/nick.png" />
                 </a>
             </div>
-            <div style="height: 36px;">
+            <div>
                 <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
             </div>
         </div>
