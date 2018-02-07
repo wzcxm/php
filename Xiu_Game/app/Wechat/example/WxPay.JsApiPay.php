@@ -226,6 +226,7 @@ class JsApiPay
         $bizString = $this->ToUrlParams($urlObj);
         $url = "https://api.weixin.qq.com/cgi-bin/token?".$bizString;
         $data = $this->HttpGet($url);
+        var_dump($data);
         if (!array_key_exists("errcode", $data)){
             return $data["access_token"];
         }

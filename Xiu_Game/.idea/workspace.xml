@@ -152,8 +152,8 @@
       <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="213" column="24" lean-forward="false" selection-start-line="213" selection-start-column="24" selection-end-line="213" selection-end-column="24" />
+            <state relative-caret-position="334">
+              <caret line="228" column="24" lean-forward="false" selection-start-line="228" selection-start-column="24" selection-end-line="228" selection-end-column="24" />
               <folding>
                 <element signature="e#2611#2690#0#PHP" expanded="false" />
                 <element signature="e#2692#2896#0#PHP" expanded="false" />
@@ -161,8 +161,7 @@
                 <element signature="e#2979#3688#0#PHP" expanded="false" />
                 <element signature="e#3804#4191#0#PHP" expanded="false" />
                 <element signature="e#4301#4636#0#PHP" expanded="false" />
-                <element signature="e#5388#5841#0#PHP" expanded="false" />
-                <element signature="e#5861#6677#0#PHP" expanded="false" />
+                <element signature="e#5886#6702#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -564,12 +563,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="6663000" />
+      <workItem from="1517970785996" duration="6725000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273898000" />
+    <option name="totallyTimeSpent" value="273960000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1094,8 +1093,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="213" column="24" lean-forward="false" selection-start-line="213" selection-start-column="24" selection-end-line="213" selection-end-column="24" />
+        <state relative-caret-position="334">
+          <caret line="228" column="24" lean-forward="false" selection-start-line="228" selection-start-column="24" selection-end-line="228" selection-end-column="24" />
           <folding>
             <element signature="e#2611#2690#0#PHP" expanded="false" />
             <element signature="e#2692#2896#0#PHP" expanded="false" />
@@ -1103,8 +1102,7 @@
             <element signature="e#2979#3688#0#PHP" expanded="false" />
             <element signature="e#3804#4191#0#PHP" expanded="false" />
             <element signature="e#4301#4636#0#PHP" expanded="false" />
-            <element signature="e#5388#5841#0#PHP" expanded="false" />
-            <element signature="e#5861#6677#0#PHP" expanded="false" />
+            <element signature="e#5886#6702#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
