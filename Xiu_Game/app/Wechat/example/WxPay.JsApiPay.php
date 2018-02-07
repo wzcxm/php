@@ -118,6 +118,9 @@ class JsApiPay
 		$data = json_decode($res,true);
 		$this->data = $data;
 		$openid = $data['openid'];
+		$access_token = $data['access_token'];
+		//获取unionid
+		$this->GetUnionidFromMp($access_token,$openid);
 		return $openid;
 	}
 	
@@ -208,4 +211,41 @@ class JsApiPay
 		$bizString = $this->ToUrlParams($urlObj);
 		return "https://api.weixin.qq.com/sns/oauth2/access_token?".$bizString;
 	}
+
+	//生成获取用户信息的url
+	private function __CreateOauthUrlForUnionID($access_token,$openid)
+    {
+        $urlObj["access_token"] = $access_token;
+        $urlObj["openid"] = $openid;
+        $urlObj["lang"] = "zh_CN";
+        $bizString = $this->ToUrlParams($urlObj);
+        return "https://api.weixin.qq.com/cgi-bin/user/info?".$bizString;
+    }
+
+    ///获取用户信息
+    private function  GetUnionidFromMp($access_token,$openid){
+        $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
+        //初始化curl
+        $ch = curl_init();
+        //设置超时
+        //curl_setopt($ch, CURLOPT_TIMEOUT, $this->curl_timeout);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        if(WxPayConfig::CURL_PROXY_HOST != "0.0.0.0"
+            && WxPayConfig::CURL_PROXY_PORT != 0){
+            curl_setopt($ch,CURLOPT_PROXY, WxPayConfig::CURL_PROXY_HOST);
+            curl_setopt($ch,CURLOPT_PROXYPORT, WxPayConfig::CURL_PROXY_PORT);
+        }
+        //运行curl，结果以jason形式返回
+        $res = curl_exec($ch);
+        curl_close($ch);
+        //取出unionid
+        $data = json_decode($res,true);
+        if($data['subscribe'] == 1){
+            $this->data['unionid'] = $data['unionid'];
+        }
+    }
 }

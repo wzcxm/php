@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
+      <change beforePath="$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php" afterPath="$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -132,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CashController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CashController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="318">
+              <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="44" />
               <folding>
                 <element signature="e#2101#3612#0#PHP" expanded="false" />
                 <element signature="e#3644#4760#0#PHP" expanded="false" />
@@ -155,7 +155,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="624">
-              <caret line="58" column="68" lean-forward="true" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
+              <caret line="58" column="68" lean-forward="false" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
               <folding>
                 <element signature="e#412#1434#0#PHP" expanded="false" />
               </folding>
@@ -163,12 +163,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="44" column="20" lean-forward="false" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="-332">
+              <caret line="221" column="73" lean-forward="true" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+              <folding>
+                <element signature="e#3243#3322#0#PHP" expanded="false" />
+                <element signature="e#3324#3528#0#PHP" expanded="false" />
+                <element signature="e#3532#3609#0#PHP" expanded="false" />
+                <element signature="e#3611#4320#0#PHP" expanded="false" />
+                <element signature="e#4436#4823#0#PHP" expanded="false" />
+                <element signature="e#4933#5268#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,7 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/database.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/resources/views/UserLogin/Login.blade.php" />
         <option value="$PROJECT_DIR$/public/Param/Parameter.json" />
@@ -251,6 +257,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CashController.php" />
+        <option value="$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php" />
       </list>
     </option>
   </component>
@@ -556,12 +563,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="2037000" />
+      <workItem from="1517970785996" duration="5529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269272000" />
+    <option name="totallyTimeSpent" value="272764000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1057,18 +1064,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="44" column="20" lean-forward="false" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserLoginController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
-          <caret line="58" column="68" lean-forward="true" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
+          <caret line="58" column="68" lean-forward="false" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
           <folding>
             <element signature="e#412#1434#0#PHP" expanded="false" />
           </folding>
@@ -1077,8 +1076,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="318">
+          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="44" />
           <folding>
             <element signature="e#2101#3612#0#PHP" expanded="false" />
             <element signature="e#3644#4760#0#PHP" expanded="false" />
@@ -1088,6 +1087,21 @@
             <element signature="e#8804#9340#0#PHP" expanded="false" />
             <element signature="e#9346#10722#0#PHP" expanded="false" />
             <marker date="1517990699754" expanded="true" signature="6903:6936" ph="select * fro... view_buycard" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-332">
+          <caret line="221" column="73" lean-forward="true" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+          <folding>
+            <element signature="e#3243#3322#0#PHP" expanded="false" />
+            <element signature="e#3324#3528#0#PHP" expanded="false" />
+            <element signature="e#3532#3609#0#PHP" expanded="false" />
+            <element signature="e#3611#4320#0#PHP" expanded="false" />
+            <element signature="e#4436#4823#0#PHP" expanded="false" />
+            <element signature="e#4933#5268#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
