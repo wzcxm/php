@@ -99,12 +99,14 @@ class JsApiPay
 		$url = $this->__CreateOauthUrlForOpenid($code);
 		//取出openid
 		$data = $this->HttpGet($url);
-		$this->data = $data;
-		$openid = $data['openid'];
-		$access_token = $data['access_token'];
-		//获取unionid
-		$this->GetUnionidFromMp($access_token,$openid);
-		return $openid;
+        if (!array_key_exists("errcode", $data)) {
+            $this->data = $data;
+            $openid = $data['openid'];
+            $access_token = $data['access_token'];
+            //获取unionid
+            $this->GetUnionidFromMp($access_token, $openid);
+            return $openid;
+        }
 	}
 	
 	/**
@@ -172,7 +174,7 @@ class JsApiPay
 		$urlObj["appid"] = WxPayConfig::APPID;
 		$urlObj["redirect_uri"] = "$redirectUrl";
 		$urlObj["response_type"] = "code";
-		$urlObj["scope"] = "snsapi_base";
+		$urlObj["scope"] = "snsapi_userinfo";
 		$urlObj["state"] = "STATE"."#wechat_redirect";
 		$bizString = $this->ToUrlParams($urlObj);
 		return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;
@@ -202,17 +204,16 @@ class JsApiPay
         $urlObj["openid"] = $openid;
         $urlObj["lang"] = "zh_CN";
         $bizString = $this->ToUrlParams($urlObj);
-        return "https://api.weixin.qq.com/cgi-bin/user/info?".$bizString;
+        return "https://api.weixin.qq.com/sns/userinfo?".$bizString;
     }
 
     ///获取用户信息
-    private function  GetUnionidFromMp($openid){
-        $access_token = $this->GetAccessToken();
-        $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
+    private function  GetUnionidFromMp($access_token,$openid){
+	    $temp = $this->GetAccessToken();
+        $url = $this->__CreateOauthUrlForUnionID($temp,$openid);
         //取出unionid
         $data = $this->HttpGet($url);
-        var_dump($data);
-        if($data['subscribe'] == 1){
+        if (!array_key_exists("errcode", $data)){
             $this->data['unionid'] = $data['unionid'];
         }
     }
@@ -226,7 +227,6 @@ class JsApiPay
         $bizString = $this->ToUrlParams($urlObj);
         $url = "https://api.weixin.qq.com/cgi-bin/token?".$bizString;
         $data = $this->HttpGet($url);
-        var_dump($data);
         if (!array_key_exists("errcode", $data)){
             return $data["access_token"];
         }
