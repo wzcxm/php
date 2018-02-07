@@ -219,7 +219,7 @@ class JsApiPay
 
     //获取公众号的全局AccessToken
     private function GetAccessToken(){
-        $urlObj["grant_type"] = client_credential;
+        $urlObj["grant_type"] = "client_credential";
         $urlObj["appid"] = WxPayConfig::APPID;;
         $urlObj["secret"] = WxPayConfig::APPSECRET;
         $bizString = $this->ToUrlParams($urlObj);
