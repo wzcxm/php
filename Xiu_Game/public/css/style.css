@@ -63,7 +63,7 @@ body, html {
     font-size: 1em;
     margin-left: 45%;
     color: #bf4502;
-    margin-top: 2px;
+
     border-radius: 6px;
 }
 .front_input_red{
@@ -74,7 +74,6 @@ body, html {
     font-size: 1em;
     margin-left: 45%;
     color: #bf4502;
-    margin-top: 2px;
     background-color: transparent;
 }
 .buy_nick{
