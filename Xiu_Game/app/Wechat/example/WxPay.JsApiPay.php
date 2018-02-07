@@ -211,6 +211,7 @@ class JsApiPay
         $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
         //取出unionid
         $data = $this->HttpGet($url);
+        var_dump($data);
         if($data['subscribe'] == 1){
             $this->data['unionid'] = $data['unionid'];
         }

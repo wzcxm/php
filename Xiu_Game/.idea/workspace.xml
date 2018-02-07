@@ -118,20 +118,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="system.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/system.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="51" column="17" lean-forward="false" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-              <folding>
-                <marker date="1517908555865" expanded="true" signature="9:28" ph="..." />
-                <marker date="1517908555865" expanded="true" signature="39:48" ph="..." />
-                <marker date="1517908555865" expanded="true" signature="1642:1650" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CashController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CashController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -166,8 +152,8 @@
       <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="225" column="69" lean-forward="true" selection-start-line="225" selection-start-column="69" selection-end-line="225" selection-end-column="69" />
+            <state relative-caret-position="295">
+              <caret line="213" column="24" lean-forward="false" selection-start-line="213" selection-start-column="24" selection-end-line="213" selection-end-column="24" />
               <folding>
                 <element signature="e#2611#2690#0#PHP" expanded="false" />
                 <element signature="e#2692#2896#0#PHP" expanded="false" />
@@ -175,7 +161,8 @@
                 <element signature="e#2979#3688#0#PHP" expanded="false" />
                 <element signature="e#3804#4191#0#PHP" expanded="false" />
                 <element signature="e#4301#4636#0#PHP" expanded="false" />
-                <element signature="e#5836#6652#0#PHP" expanded="false" />
+                <element signature="e#5388#5841#0#PHP" expanded="false" />
+                <element signature="e#5861#6677#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -420,6 +407,19 @@
             <path>
               <item name="Xiu_Game" type="b2602c69:ProjectViewProjectNode" />
               <item name="Xiu_Game" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Wechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Xiu_Game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Xiu_Game" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Wechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="lib" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Xiu_Game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Xiu_Game" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -564,12 +564,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="6555000" />
+      <workItem from="1517970785996" duration="6663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273790000" />
+    <option name="totallyTimeSpent" value="273898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -630,14 +630,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AuthenUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="47" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1092,10 +1084,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Wechat/lib/WxPay.Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-276">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="225" column="69" lean-forward="true" selection-start-line="225" selection-start-column="69" selection-end-line="225" selection-end-column="69" />
+        <state relative-caret-position="295">
+          <caret line="213" column="24" lean-forward="false" selection-start-line="213" selection-start-column="24" selection-end-line="213" selection-end-column="24" />
           <folding>
             <element signature="e#2611#2690#0#PHP" expanded="false" />
             <element signature="e#2692#2896#0#PHP" expanded="false" />
@@ -1103,7 +1103,8 @@
             <element signature="e#2979#3688#0#PHP" expanded="false" />
             <element signature="e#3804#4191#0#PHP" expanded="false" />
             <element signature="e#4301#4636#0#PHP" expanded="false" />
-            <element signature="e#5836#6652#0#PHP" expanded="false" />
+            <element signature="e#5388#5841#0#PHP" expanded="false" />
+            <element signature="e#5861#6677#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
