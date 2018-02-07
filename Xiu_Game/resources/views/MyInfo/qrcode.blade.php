@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="qrcode_bg">
-    <div style="height: 12%">
+    <div style="height: 15%">
         <div style="float: left;margin: 5px 0 0 5px;width: 17%;">
             <img src="{{empty($user)?"/img/ui-default.jpg":$user->head_img_url}}"
                  style="border-radius:10px;
@@ -29,9 +29,13 @@
             <div>ID:{{empty($user)?"":$user->uid}}</div>
         </div>
     </div>
-    <div style="height: 45%"></div>
-    <div style="height: 43%;text-align: center;">
-        <img style="border-radius:10px;"  src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->encoding('UTF-8')->generate($url)) !!} ">
+    <div style="height: 40%"></div>
+    <div style="height: 45%;text-align: center;">
+        <div style="width: 50%;margin-left: 25%">
+            <img style="border-radius:10px;"
+                 width="100%"
+                 src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->encoding('UTF-8')->generate($url)) !!} ">
+        </div>
     </div>
 </div>
 </body>

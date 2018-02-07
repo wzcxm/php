@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php" afterPath="$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,24 +38,26 @@
       <file leaf-file-name="qrcode.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="118" />
+            <state relative-caret-position="506">
+              <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1518002121551" expanded="true" signature="562:576" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="661:688" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="744:767" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="941:996" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="942:996" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="1254:1285" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="1316:1342" ph="..." />
-                <marker date="1518002121551" expanded="true" signature="1536:1620" ph="..." />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#src#0;n#img#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1518003001751" expanded="true" signature="562:576" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="661:688" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="744:767" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="941:996" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="942:996" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="1254:1285" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="1316:1342" ph="..." />
+                <marker date="1518003001751" expanded="true" signature="1636:1720" ph="..." />
               </folding>
             </state>
           </provider>
@@ -622,12 +625,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="13231000" />
+      <workItem from="1517970785996" duration="14129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280466000" />
+    <option name="totallyTimeSpent" value="281364000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1348,24 +1351,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/MyInfo/qrcode.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="117" selection-end-line="33" selection-end-column="118" />
+        <state relative-caret-position="506">
+          <caret line="33" column="46" lean-forward="false" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1518002121551" expanded="true" signature="562:576" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="661:688" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="744:767" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="941:996" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="942:996" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="1254:1285" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="1316:1342" ph="..." />
-            <marker date="1518002121551" expanded="true" signature="1536:1620" ph="..." />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1518003001751" expanded="true" signature="562:576" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="661:688" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="744:767" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="941:996" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="942:996" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="1254:1285" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="1316:1342" ph="..." />
+            <marker date="1518003001751" expanded="true" signature="1636:1720" ph="..." />
           </folding>
         </state>
       </provider>
