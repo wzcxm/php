@@ -24,8 +24,8 @@
         <div style="height: 20%;">
             <div>
                 <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
-                <a href="#" id="getnick" style="margin-left: 20px;">
-                    <img class="img_border " width="90" src="/img/diamond/nick.png" />
+                <a href="#" id="getnick" style="margin-left: 15px;">
+                    <img class="img_border " width="85" src="/img/diamond/nick.png" />
                 </a>
             </div>
             <div>
