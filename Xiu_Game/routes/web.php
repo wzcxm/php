@@ -168,6 +168,6 @@ Route::get('/lottery/{uid}','GameSericeController@getLottery');
 Route::get('/redpack/{uid}','GameSericeController@RedPack');
 
 //游戏下载页面
-Route::get('/download','GameSericeController@Download');
+Route::get('/download/{uid?}','GameSericeController@Download');
 
 /// end//////////////////////////////
