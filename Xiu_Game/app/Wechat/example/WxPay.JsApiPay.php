@@ -174,7 +174,7 @@ class JsApiPay
 		$urlObj["appid"] = WxPayConfig::APPID;
 		$urlObj["redirect_uri"] = "$redirectUrl";
 		$urlObj["response_type"] = "code";
-		$urlObj["scope"] = "snsapi_userinfo";
+		$urlObj["scope"] = "snsapi_base"; //snsapi_userinfo
 		$urlObj["state"] = "STATE"."#wechat_redirect";
 		$bizString = $this->ToUrlParams($urlObj);
 		return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;
@@ -209,8 +209,7 @@ class JsApiPay
 
     ///获取用户信息
     private function  GetUnionidFromMp($access_token,$openid){
-	    $temp = $this->GetAccessToken();
-        $url = $this->__CreateOauthUrlForUnionID($temp,$openid);
+        $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
         //取出unionid
         $data = $this->HttpGet($url);
         if (!array_key_exists("errcode", $data)){
