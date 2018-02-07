@@ -166,15 +166,17 @@
       <file leaf-file-name="WxPay.JsApiPay.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-332">
-              <caret line="221" column="73" lean-forward="true" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+            <state relative-caret-position="127">
+              <caret line="209" column="48" lean-forward="true" selection-start-line="209" selection-start-column="48" selection-end-line="209" selection-end-column="48" />
               <folding>
-                <element signature="e#3243#3322#0#PHP" expanded="false" />
-                <element signature="e#3324#3528#0#PHP" expanded="false" />
-                <element signature="e#3532#3609#0#PHP" expanded="false" />
-                <element signature="e#3611#4320#0#PHP" expanded="false" />
-                <element signature="e#4436#4823#0#PHP" expanded="false" />
-                <element signature="e#4933#5268#0#PHP" expanded="false" />
+                <element signature="e#2611#2690#0#PHP" expanded="false" />
+                <element signature="e#2692#2896#0#PHP" expanded="false" />
+                <element signature="e#2900#2977#0#PHP" expanded="false" />
+                <element signature="e#2979#3688#0#PHP" expanded="false" />
+                <element signature="e#3804#4191#0#PHP" expanded="false" />
+                <element signature="e#4301#4636#0#PHP" expanded="false" />
+                <element signature="e#5363#5814#0#PHP" expanded="false" />
+                <element signature="e#5834#6650#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -563,12 +565,12 @@
       <workItem from="1517619064770" duration="10435000" />
       <workItem from="1517793014796" duration="25530000" />
       <workItem from="1517879269953" duration="17852000" />
-      <workItem from="1517970785996" duration="5529000" />
+      <workItem from="1517970785996" duration="6475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272764000" />
+    <option name="totallyTimeSpent" value="273710000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1093,15 +1095,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Wechat/example/WxPay.JsApiPay.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-332">
-          <caret line="221" column="73" lean-forward="true" selection-start-line="221" selection-start-column="73" selection-end-line="221" selection-end-column="73" />
+        <state relative-caret-position="127">
+          <caret line="209" column="48" lean-forward="true" selection-start-line="209" selection-start-column="48" selection-end-line="209" selection-end-column="48" />
           <folding>
-            <element signature="e#3243#3322#0#PHP" expanded="false" />
-            <element signature="e#3324#3528#0#PHP" expanded="false" />
-            <element signature="e#3532#3609#0#PHP" expanded="false" />
-            <element signature="e#3611#4320#0#PHP" expanded="false" />
-            <element signature="e#4436#4823#0#PHP" expanded="false" />
-            <element signature="e#4933#5268#0#PHP" expanded="false" />
+            <element signature="e#2611#2690#0#PHP" expanded="false" />
+            <element signature="e#2692#2896#0#PHP" expanded="false" />
+            <element signature="e#2900#2977#0#PHP" expanded="false" />
+            <element signature="e#2979#3688#0#PHP" expanded="false" />
+            <element signature="e#3804#4191#0#PHP" expanded="false" />
+            <element signature="e#4301#4636#0#PHP" expanded="false" />
+            <element signature="e#5363#5814#0#PHP" expanded="false" />
+            <element signature="e#5834#6650#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

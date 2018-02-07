@@ -97,25 +97,8 @@ class JsApiPay
 	public function GetOpenidFromMp($code)
 	{
 		$url = $this->__CreateOauthUrlForOpenid($code);
-		//初始化curl
-		$ch = curl_init();
-		//设置超时
-		//curl_setopt($ch, CURLOPT_TIMEOUT, $this->curl_timeout);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		if(WxPayConfig::CURL_PROXY_HOST != "0.0.0.0" 
-			&& WxPayConfig::CURL_PROXY_PORT != 0){
-			curl_setopt($ch,CURLOPT_PROXY, WxPayConfig::CURL_PROXY_HOST);
-			curl_setopt($ch,CURLOPT_PROXYPORT, WxPayConfig::CURL_PROXY_PORT);
-		}
-		//运行curl，结果以jason形式返回
-		$res = curl_exec($ch);
-		curl_close($ch);
 		//取出openid
-		$data = json_decode($res,true);
+		$data = $this->HttpGet($url);
 		$this->data = $data;
 		$openid = $data['openid'];
 		$access_token = $data['access_token'];
@@ -223,8 +206,32 @@ class JsApiPay
     }
 
     ///获取用户信息
-    private function  GetUnionidFromMp($access_token,$openid){
+    private function  GetUnionidFromMp($openid){
+        $access_token = $this->GetAccessToken();
         $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
+        //取出unionid
+        $data = $this->HttpGet($url);
+        if($data['subscribe'] == 1){
+            $this->data['unionid'] = $data['unionid'];
+        }
+    }
+
+
+    //获取公众号的全局AccessToken
+    private function GetAccessToken(){
+        $urlObj["grant_type"] = client_credential;
+        $urlObj["appid"] = WxPayConfig::APPID;;
+        $urlObj["secret"] = WxPayConfig::APPSECRET;
+        $bizString = $this->ToUrlParams($urlObj);
+        $url = "https://api.weixin.qq.com/cgi-bin/token?".$bizString;
+        $data = $this->HttpGet($url);
+        if (!array_key_exists("errcode", $data)){
+            return $data["access_token"];
+        }
+    }
+
+    //发送Get请求
+    private function HttpGet($url){
         //初始化curl
         $ch = curl_init();
         //设置超时
@@ -242,10 +249,6 @@ class JsApiPay
         //运行curl，结果以jason形式返回
         $res = curl_exec($ch);
         curl_close($ch);
-        //取出unionid
-        $data = json_decode($res,true);
-        if($data['subscribe'] == 1){
-            $this->data['unionid'] = $data['unionid'];
-        }
+        return json_decode($res,true);
     }
 }
