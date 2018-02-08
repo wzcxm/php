@@ -47,7 +47,7 @@
         var element = document.querySelector('.qrcode_bg');
         //创建一个新的canvas
         var width = element.offsetWidth; //获取dom 宽度
-        var height = element.offsetHeight; //获取dom 高度
+        var height = element.offsetHeight+20; //获取dom 高度
         var canvas = document.createElement("canvas"); //创建一个canvas节点
         var scale = 2; //定义任意放大倍数 支持小数
         canvas.width = width * scale; //定义canvas 宽度 * 缩放
