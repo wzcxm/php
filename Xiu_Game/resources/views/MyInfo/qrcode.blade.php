@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180208">
 </head>
 <body>
-<img width="100%" height="100%" id="img" style="display: none;">
+<img width="100%" height="120%" id="img" style="display: none;">
 <div class="qrcode_bg" >
     <div style="height: 15%">
         <div style="float: left;margin: 5px 0 0 5px;width: 17%;">
@@ -47,7 +47,7 @@
         var element = document.querySelector('.qrcode_bg');
         //创建一个新的canvas
         var width = element.offsetWidth; //获取dom 宽度
-        var height = element.offsetHeight+20; //获取dom 高度
+        var height = element.offsetHeight; //获取dom 高度
         var canvas = document.createElement("canvas"); //创建一个canvas节点
         var scale = 2; //定义任意放大倍数 支持小数
         canvas.width = width * scale; //定义canvas 宽度 * 缩放
