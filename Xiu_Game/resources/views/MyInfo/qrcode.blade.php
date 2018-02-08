@@ -16,12 +16,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
 </head>
 <body>
-<div class="qrcode_bg">
+<img width="100%" height="100%" id="img" style="display: none;">
+<div class="qrcode_bg" >
     <div style="height: 15%">
         <div style="float: left;margin: 5px 0 0 5px;width: 17%;">
-            <img src="{{empty($user)?"/img/ui-default.jpg":$user->head_img_url}}"
-                 style="border-radius:10px;
-                 border: 3px solid white;"
+            <img id="head" src="data:image/png;base64,{{empty($head)?'/img/ui-default.jpg':$head}}"
+                 style="border-radius:10px;border: 3px solid white;"
                  width="100%">
         </div>
         <div style="float: left;margin: 15px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
@@ -38,5 +38,41 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('/js/html2canvas.min.js') }}"></script>
+<script type="text/javascript">
+
+        //要显示图片的img标签
+        var image = document.querySelector('#img');
+        //要保存的元素
+        var element = document.querySelector('.qrcode_bg');
+        //创建一个新的canvas
+        var width = element.offsetWidth; //获取dom 宽度
+        var height = element.offsetHeight; //获取dom 高度
+        var canvas = document.createElement("canvas"); //创建一个canvas节点
+        var scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.getContext("2d").scale(scale,scale); //获取context,设置scale
+        var opts = {
+            scale:scale, // 添加的scale 参数
+            canvas:canvas, //自定义 canvas
+            logging: true, //日志开关
+            width:width, //dom 原始宽度
+            height:height //dom 原始高度
+        };
+
+        //生成图片
+        html2canvas(element,opts).then(function(canvas) {
+            image.src = canvas.toDataURL();
+        });
+
+        //删除div
+        window.onload=function (ev) {
+            document.body.removeChild(element);
+            image.style.display='block';
+        };
+
+
+</script>
 </body>
 </html>

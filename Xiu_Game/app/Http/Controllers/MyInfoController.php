@@ -24,12 +24,37 @@ class MyInfoController extends Controller
     public function getQrCode(){
         try{
             $user = Users::find(session('uid'));
+            $user_head = $this->getWxHeadForBase64($user->head_img_url);
             $url = 'http://'.$_SERVER['HTTP_HOST'].'/download/'.session('uid');
-            return view('MyInfo.qrcode',['user'=>$user,'url'=>$url]);
+            return view('MyInfo.qrcode',['user'=>$user,'url'=>$url,'head'=>$user_head]);
         }catch (\Exception $e){
             return "Error:".$e->getMessage();
         }
     }
+
+    //获取微信头像base64
+    private function getWxHeadForBase64($url) {
+        // 设置运行时间为无限制
+        set_time_limit ( 0 );
+        $url = trim ( $url );
+
+
+        $curl = curl_init ();
+        // 设置你需要抓取的URL
+        curl_setopt ( $curl, CURLOPT_URL, $url );
+        // 设置header
+        curl_setopt ( $curl, CURLOPT_HEADER, 0 );
+        // 设置cURL 参数，要求结果保存到字符串中还是输出到屏幕上。
+        curl_setopt ( $curl, CURLOPT_RETURNTRANSFER, 1 );
+        // 运行cURL，请求网页
+        $file = curl_exec ( $curl );
+        // 关闭URL请求
+        curl_close ( $curl );
+        // 将文件写入获得的数据
+        $base64 = chunk_split(base64_encode($file));
+        return $base64;
+    }
+
 
     //返利统计
     public function getData(Request $request){
