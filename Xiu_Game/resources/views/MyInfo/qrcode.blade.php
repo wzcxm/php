@@ -16,20 +16,20 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180208">
 </head>
 <body>
-<img width="110%" height="110%" id="img" style="display: none;">
+<img width="110%" height="120%" id="img" style="display: none;">
 <div class="qrcode_bg" >
-    <div style="height: 20%">
-        <div style="float: left;margin: 8px 0 0 5px;width: 17%;">
+    <div style="height: 15%">
+        <div style="float: left;margin: 5px 0 0 5px;width: 17%;">
             <img id="head" src="data:image/png;base64,{{empty($head)?'/img/ui-default.jpg':$head}}"
                  style="border-radius:10px;border: 3px solid white;"
                  width="100%">
         </div>
-        <div style="float: left;margin: 18px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
+        <div style="float: left;margin: 15px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
             <div>{{empty($user)?"":$user->nickname}}</div>
             <div>ID:{{empty($user)?"":$user->uid}}</div>
         </div>
     </div>
-    <div style="height: 35%"></div>
+    <div style="height: 38%"></div>
     <div style="text-align: center;">
         <div style="width: 55%;margin-left: 22%">
             <img style="border-radius:10px;"
