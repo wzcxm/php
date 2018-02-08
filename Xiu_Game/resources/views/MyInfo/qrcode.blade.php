@@ -16,25 +16,25 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180208">
 </head>
 <body>
-<img width="100%" height="120%" id="img" style="display: none;">
+<img width="110%" height="120%" id="img" style="display: none;">
 <div class="qrcode_bg" >
     <div style="height: 15%">
-        <div style="float: left;margin: 5px 0 0 5px;width: 17%;">
+        <div style="float: left;margin: 10px 0 0 5px;width: 17%;">
             <img id="head" src="data:image/png;base64,{{empty($head)?'/img/ui-default.jpg':$head}}"
                  style="border-radius:10px;border: 3px solid white;"
                  width="100%">
         </div>
-        <div style="float: left;margin: 15px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
+        <div style="float: left;margin: 20px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
             <div>{{empty($user)?"":$user->nickname}}</div>
             <div>ID:{{empty($user)?"":$user->uid}}</div>
         </div>
     </div>
-    <div style="height: 40%"></div>
-    <div style="height: 45%;text-align: center;">
-        <div style="width: 50%;margin-left: 25%">
+    <div style="height: 50%"></div>
+    <div style="height: 55%;text-align: center;">
+        <div style="width: 60%;margin-left: 20%">
             <img style="border-radius:10px;"
                  width="100%"
-                 src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->encoding('UTF-8')->generate($url)) !!} ">
+                 src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(250)->encoding('UTF-8')->generate($url)) !!} ">
         </div>
     </div>
 </div>
@@ -61,16 +61,16 @@
             height:height //dom 原始高度
         };
 
-        //生成图片
-        html2canvas(element,opts).then(function(canvas) {
-            image.src = canvas.toDataURL();
-        });
-
-        //删除div
-        window.onload=function (ev) {
-            document.body.removeChild(element);
-            image.style.display='block';
-        };
+        // //生成图片
+        // html2canvas(element,opts).then(function(canvas) {
+        //     image.src = canvas.toDataURL();
+        // });
+        //
+        // //删除div
+        // window.onload=function (ev) {
+        //     document.body.removeChild(element);
+        //     image.style.display='block';
+        // };
 
 
 </script>
