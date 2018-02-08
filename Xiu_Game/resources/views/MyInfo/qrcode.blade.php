@@ -30,7 +30,7 @@
         </div>
     </div>
     <div style="text-align: center;">
-        <div style="width: 55%;margin-left: 22%">
+        <div style="width: 60%;margin-left: 20%">
             <img style="border-radius:10px;"
                  width="100%"
                  src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(250)->encoding('UTF-8')->generate($url)) !!} ">
