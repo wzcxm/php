@@ -60,16 +60,16 @@
             height:height //dom 原始高度
         };
 
-        //生成图片
-        html2canvas(element,opts).then(function(canvas) {
-            image.src = canvas.toDataURL();
-        });
-
-        //删除div
-        window.onload=function (ev) {
-            document.body.removeChild(element);
-            image.style.display='block';
-        };
+        // //生成图片
+        // html2canvas(element,opts).then(function(canvas) {
+        //     image.src = canvas.toDataURL();
+        // });
+        //
+        // //删除div
+        // window.onload=function (ev) {
+        //     document.body.removeChild(element);
+        //     image.style.display='block';
+        // };
 
 
 </script>
