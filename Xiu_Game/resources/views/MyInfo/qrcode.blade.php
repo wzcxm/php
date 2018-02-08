@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--推广码</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180208">
 </head>
 <body>
 <img width="100%" height="100%" id="img" style="display: none;">
