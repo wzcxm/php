@@ -134,8 +134,7 @@ class GameSericeController extends Controller
                     DB::table('xx_user_temp')->insert(['wxopenid' => $openid, 'unionid' => $unionid]);
                 }
             }
-            $room =  Redis::get('table_78235006');//.$roomNo);
-            var_dump($room);
+            $room =  Redis::get('table_'.$roomNo);
             if(!empty($room))
             {
                 $ret_arr = [];
