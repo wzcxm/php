@@ -17,8 +17,10 @@
                 </select>
             </div>
         </div>
-        <div class="weui-cells__title">信息内容：</div>
         <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">信息内容：</label>
+            </div>
             <div class="weui-cell__bd">
                 <input type="text" class="weui-input" placeholder="请输入信息内容" id="mcontent" value="{{empty($msg)?"":$msg->mcontent}}">
             </div>

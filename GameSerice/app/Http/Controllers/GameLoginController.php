@@ -201,8 +201,8 @@ class GameLoginController extends Controller
 				$sex = $user_data['sex'];
 				$head_img_url = $user_data['headimgurl'];
 				$unionid = $user_data['unionid'];
-				$roomcard = 3;
-				$gold = 1000;
+				$roomcard = 5;
+				$gold = 3000;
 				$rid = 5;
 				$ustate = 0;
 				$room_id = 0;
