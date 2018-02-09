@@ -194,6 +194,7 @@ use Xxgame\ServerUserBase;
                 if($type == 'urgent' && !empty($str))//更新紧急通知
                     $ser_user->setUrgent($str);
             }
+            $ser_user->setType($type);
             return CommClass::subServer($ser_user->encode(),$uid);
         }catch (\Exception $e){
             return false;
