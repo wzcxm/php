@@ -63,6 +63,7 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
+        $server_login_info->setSharestatus($user->lottery);
         $server_login_info->setSign(encrypt(env('SIGN')));
         $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
         $server_login_info->setHallId($sysMssage['hallid']);//大厅号
@@ -103,6 +104,7 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
+        $server_login_info->setSharestatus($user->lottery);
         $server_login_info->setSign(encrypt(env('SIGN')));
 
         $sysMssage = $this->GetMessage($uid,$user->tea_id);
@@ -144,6 +146,7 @@ class GameLoginController extends Controller
         $server_login_info->setRoomId($user->room_id);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
+        $server_login_info->setSharestatus($user->lottery);
         $server_login_info->setSign(encrypt(env('SIGN')));
 
         $sysMssage = $this->GetMessage($uid,$user->tea_id);
@@ -206,6 +209,7 @@ class GameLoginController extends Controller
 				$rid = 5;
 				$ustate = 0;
 				$room_id = 0;
+				$sharestatus = 0;
 				$passwd = CommonFunc::random_string(11);
                 $tea_id = 0;
 				$user = DB::table('xx_user')->where("unionid",$unionid)->first();
@@ -227,6 +231,7 @@ class GameLoginController extends Controller
                     $ustate = $user->ustate;
                     $room_id = $user->room_id;
                     $tea_id = $user->tea_id;
+                    $sharestatus = $user->lottery;
 					if ($ustate != 0)
 						goto error_end;
 					//更新数据
@@ -251,6 +256,7 @@ class GameLoginController extends Controller
                 $server_login_info->setToken($openid);
 				$server_login_info->setPasswd(encrypt($passwd));
                 $server_login_info->setTeaId($tea_id);
+                $server_login_info->setSharestatus($sharestatus);
                 $server_login_info->setSign(encrypt(env('SIGN')));
                 $sysMssage = $this->GetMessage($uid,$tea_id);
                 $server_login_info->setHallId($sysMssage['hallid']);//大厅号
@@ -297,6 +303,7 @@ class GameLoginController extends Controller
         $room_id = $user->room_id;
         $tea_id = $user->tea_id;
         $openid = $user->openid;
+        $sharestatus = $user->lottery;
 		if ($ustate != 0)
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
 
@@ -349,6 +356,7 @@ class GameLoginController extends Controller
 				$server_login_info->setRoomId($room_id);
                 $server_login_info->setTeaId($tea_id);
                 $server_login_info->setToken($openid);
+                $server_login_info->setSharestatus($sharestatus);
                 $sysMssage = $this->GetMessage($uid,$tea_id);
                 $server_login_info->setHallId($sysMssage['hallid']);//大厅号
                 $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型

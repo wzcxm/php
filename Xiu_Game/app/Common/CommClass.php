@@ -431,8 +431,12 @@ use Xxgame\ServerUserBase;
                     if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
                         DB::table('xx_user')->where('uid',$wx_order->userid)
                             ->update(['rid'=>2,'flag'=>1,'front_uid'=>$wx_order->front]);
+                        //更新玩家角色
+                        CommClass::UpGameSer($wx_order->userid,'role');
+                        //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-                        CommClass::InsertCard(['cbuyid' => $wx_order->front, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                        //上级送100返利
+                        DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
                     }
 
                 }else{
@@ -440,15 +444,16 @@ use Xxgame\ServerUserBase;
                     //绑定代理
                     if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
+                        //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-                        CommClass::InsertCard(['cbuyid' => $wx_order->front, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                        //上级送100返利
+                        DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
                     }
                 }
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
                 //更新游戏的钻石数量
                 CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
-                CommClass::UpGameSer($wx_order->front,'card');//上级的钻石
                 //代理返利
                 CommClass::BackCash($wx_order->userid, $wx_order->total);
             }
