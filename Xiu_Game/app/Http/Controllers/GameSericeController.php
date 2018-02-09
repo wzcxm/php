@@ -39,7 +39,7 @@ class GameSericeController extends Controller
                 }
             }
         }catch (\Exception $e){
-            return "";
+            return $e->getMessage();
         }
     }
 
@@ -135,6 +135,7 @@ class GameSericeController extends Controller
                 }
             }
             $room =  Redis::get('table_'.$roomNo);
+            var_dump($room);
             if(!empty($room))
             {
                 $ret_arr = [];
