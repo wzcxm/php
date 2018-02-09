@@ -78,3 +78,6 @@ $router->get('/tearec/{teaid}/{offset}/{sign}','GameSericeController@getTeaRec')
 
 //茶楼我的战绩
 $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getMyTeaRec');
+
+//中奖记录
+$router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
