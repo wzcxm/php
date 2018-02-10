@@ -2,7 +2,7 @@
 @section('style')
 @endsection
 @section('content')
-<div  class="weui-flex" style="background-color: #ffa500ad;">
+<div  class="weui-flex" style="background-color:#ffa500;">
     @if(!empty($User))
         <div class="weui-flex__item" style="text-align: center;padding-top: 25px;">
             <img src="{{$User->head_img_url}}" style="border-radius:50px;" width="100">
