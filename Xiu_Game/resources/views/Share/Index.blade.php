@@ -28,10 +28,10 @@
     <div style="height: 100%;">
         <div class="desk_bg">
             <div style="height: 35%;">
-                <div style="width: 40%;float: left;font-size:0.8em;">
+                <div style="width: 40%;float: left;font-size:1em;">
                     <div style="margin-top: 5px;font-weight: bold;">
                         @if(!empty($item))
-                            牌馆ID：{{empty($item['teaid'])?"":$item['teaid']}}
+                            &nbsp;&nbsp;牌馆ID：{{empty($item['teaid'])?"":$item['teaid']}}
                         @endif
                     </div>
                     <div style="font-weight: bold;">&nbsp;&nbsp;
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                 </div>
-                <div style="width: 65%;float: left;font-size:0.6em;">
+                <div style="width: 60%;float: left;font-size:0.6em;">
                     <div style="margin:3px 0 0 20px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[0]))
