@@ -22,8 +22,7 @@
                 <label class="weui-label">信息内容：</label>
             </div>
             <div class="weui-cell__bd">
-                <textarea type="text"  placeholder="请输入信息内容" id="mcontent" rows="5">
-                    {{empty($msg)?"":$msg->mcontent}}
+                <textarea type="text" class="weui-textarea"  placeholder="请输入信息内容" id="mcontent" rows="5" >{{empty($msg)?"":$msg->mcontent}}
                 </textarea>
             </div>
         </div>
