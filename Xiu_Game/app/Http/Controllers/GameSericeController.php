@@ -53,7 +53,7 @@ class GameSericeController extends Controller
                     DB::table('xx_user')->where('uid',$uid)->increment('redbag', $item['value'],['lottery' => 2]);
                     DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1,'jptype'=>3]);
 
-                    $message = "恭喜玩家：【".Users::find($uid)->nickname."】,在每日分享抽奖中，抽中了：【".$item['name']."】！";
+                    $message = "<color='red'>恭喜玩家：【".Users::find($uid)->nickname."】,在每日分享抽奖中，抽中了：【".$item['name']."】！</color>";
                     CommClass::UpGameSer(1,'urgent',$message);
                 }
             }
