@@ -21,7 +21,7 @@
     <div style="height: 40%;">
     </div>
     <div style="height: 20%;" align="center">
-        <a href="http://fir.im/xxgame">
+        <a href="http://fir.im/ysrn">
             <img class="img-rounded " width="180" src="/img/download/download.png" />
         </a>
     </div>

@@ -111,7 +111,7 @@
     </div>
 </div>
 <div class="share_foor_bg" align="center">
-    <a href="http://fir.im/xxgame">
+    <a href="http://fir.im/ysrn">
         <img class="img-rounded " style="margin-top: 20%;" width="160" src="/img/share/download.png" />
     </a>
 </div>
