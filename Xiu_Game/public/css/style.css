@@ -2,20 +2,36 @@ body, html {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
 }
-.share_bg {
-           width:100%;
-           height:100%;
-           display:-webkit-flex; 
-           -webkit-flex-direction:column;
-           background:url(/img/share/share_bg.png);
-            background-size:100% 100%;
+.share_head_bg {
+   width:100%;
+    height: 45%;
+   display:-webkit-flex;
+   -webkit-flex-direction:column;
+   background:url(/img/share/head.png);
+    background-size:100% 100%;
+}
+.share_body_bg {
+    width:100%;
+    height: 25%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/share/body.png);
+    background-size:100% 100%;
+}
+.share_foor_bg {
+    width:100%;
+    height: 30%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/share/foor.png);
+    background-size:100% 100%;
 }
 .download_bg {
     width:100%;
     height:100%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
-    background:url(/img/download/download_bg.jpg);
+    background:url(/img/download/download_bg.png);
     background-size:100% 100%;
 }
 .qrcode_bg {
@@ -27,14 +43,14 @@ body, html {
     background-size:100% 100%;
 }
 .desk_bg{
-        width:68%;
-        height:58%;
-        margin: 2% 0 0 15%;
-        display:-webkit-flex;
-        -webkit-flex-direction:column;
-        background:url(/img/share/nsb_desk.png) no-repeat center center;
-        background-size:100% 100%;
-        color:white;
+    width:68%;
+    height:100%;
+    margin: 0 0 0 15%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/share/nsb_desk.png) no-repeat center center;
+    background-size:100% 100%;
+    color:white;
 }
 .buy_bg{
     width:100%;

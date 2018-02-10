@@ -16,104 +16,105 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
 </head>
 <body>
-<div class="share_bg">
-    <div style="height: 40%;"></div>
-    <div style="height: 40%;">
-        <div style="font-size: 2.5rem;color: green;text-align: center;font-weight: 800;">
-            <span>局数：{{empty($item['number'])?"":$item['number'].'局'}}</span>
-            <span>玩法：{{empty($item['play'])?"":$item['play']}}</span>
-        </div>
-        <div style="height: 100%;">
-            <div class="desk_bg">
-                <div style="height: 35%">
-                    <div style="width: 35%;float: left;">
-                        <div style="margin-top: 3px;font-weight: bold;text-align: right;">
-                            @if(!empty($item))
-                                {{empty($item['teaid'])?"":$item['teaid']}}
-                            @endif
-                        </div>
-                        <div style="font-weight: bold;">&nbsp;&nbsp;
-                            @if(!empty($item))
-                                {{empty($item['hallid'])?"":$item['hallid']}}号厅 第{{empty($item['desk'])?"":$item['desk']}}桌
-                            @endif
+<div class="share_head_bg">
+    <div style="height: 90%;"></div>
+    <div style="font-size: 2.5rem;color: green;text-align: center;font-weight: 800;margin-bottom: 10px;">
+        <span>局数：{{empty($item['number'])?"":$item['number'].'局'}}</span>
+        <span>玩法：{{empty($item['play'])?"":$item['play']}}</span>
+    </div>
+</div>
+<div class="share_body_bg">
 
-                        </div>
+    <div style="height: 100%;">
+        <div class="desk_bg">
+            <div style="height: 35%">
+                <div style="width: 35%;float: left;">
+                    <div style="margin-top: 3px;font-weight: bold;text-align: right;">
+                        @if(!empty($item))
+                            {{empty($item['teaid'])?"":$item['teaid']}}
+                        @endif
                     </div>
-                    <div style="width: 65%;float: left;">
-                        <div style="margin:3px 0 0 20px;">
-                            @if(!empty($user) && count($user)>0)
-                                @if(!empty($user[0]))
-                                    <div style="float:left;width:40px;height:40px;background:url({{empty($user[0]['head'])?"":$user[0]['head']}});background-size:100% 100%;border-radius:10px;">
-                                        @if(!empty($user[0]['ready']) && $user[0]['ready']==1)
-                                            <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
-                                        @endif
-                                    </div>
-                                    <div style="float:left;margin-top: 10px;font-size: 0.6rem;">&nbsp;
-                                        {{empty($user[0]['nick'])?"":$user[0]['nick']}}
-                                    </div>
-                                @endif
-                            @endif
-                        </div>
+                    <div style="font-weight: bold;">&nbsp;&nbsp;
+                        @if(!empty($item))
+                            {{empty($item['hallid'])?"":$item['hallid']}}号厅 第{{empty($item['desk'])?"":$item['desk']}}桌
+                        @endif
+
                     </div>
                 </div>
-                <div style="height: 35%">
-                    <div style="width: 70%;float: left;">
-                        <div style="margin-left: 5px;">
-                            @if(!empty($user) && count($user)>0)
-                                @if(!empty($user[1]))
-                                    <div style="float:left;width:40px;height:40px;background:url({{empty($user[1]['head'])?"":$user[1]['head']}});background-size:100% 100%;border-radius:10px;">
-                                        @if(!empty($user[1]['ready']) && $user[1]['ready']==1)
-                                            <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
-                                        @endif
-                                    </div>
-                                    <div style="float:left;margin-top: 10px;font-size: 0.6rem;">&nbsp;
-                                        {{empty($user[1]['nick'])?"":$user[1]['nick']}}
-                                    </div>
-                                @endif
-                            @endif
-                        </div>
-                    </div>
-                    <div style="width: 30%;float: left;">
-                        <div style="margin-left: 5px;">
-                            @if(!empty($user) && count($user)>0)
-                                @if(!empty($user[2]))
-                                    <div style="float:left;width:40px;height:40px;background:url({{empty($user[2]['head'])?"":$user[2]['head']}});background-size:100% 100%;border-radius:10px;">
-                                        @if(!empty($user[2]['ready']) && $user[2]['ready']==1)
-                                            <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
-                                        @endif
-                                    </div>
-                                    <div style="float:left;margin-top: 10px;font-size: 0.6rem;">&nbsp;
-                                        {{empty($user[2]['nick'])?"":$user[2]['nick']}}
-                                    </div>
-                                @endif
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div style="height: 30%">
-                    <div style="margin:3px 0 0 30px;">
+                <div style="width: 65%;float: left;">
+                    <div style="margin:3px 0 0 20px;">
                         @if(!empty($user) && count($user)>0)
-                            @if(!empty($user[3]))
-                                <div style="float:left;width:40px;height:40px;background:url({{empty($user[3]['head'])?"":$user[3]['head']}});background-size:100% 100%;border-radius:10px;">
-                                    @if(!empty($user[3]['ready']) && $user[3]['ready']==1)
+                            @if(!empty($user[0]))
+                                <div style="float:left;width:40px;height:40px;background:url({{empty($user[0]['head'])?"":$user[0]['head']}});background-size:100% 100%;border-radius:10px;">
+                                    @if(!empty($user[0]['ready']) && $user[0]['ready']==1)
                                         <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
                                     @endif
                                 </div>
-                                <div style="float:left;margin-top: 10px;font-size: 0.6rem;">&nbsp;
-                                    {{empty($user[3]['nick'])?"":$user[3]['nick']}}
+                                <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                                    {{empty($user[0]['nick'])?"":$user[0]['nick']}}
                                 </div>
                             @endif
                         @endif
                     </div>
                 </div>
             </div>
+            <div style="height: 35%">
+                <div style="width: 70%;float: left;">
+                    <div style="margin-left: 5px;">
+                        @if(!empty($user) && count($user)>0)
+                            @if(!empty($user[1]))
+                                <div style="float:left;width:40px;height:40px;background:url({{empty($user[1]['head'])?"":$user[1]['head']}});background-size:100% 100%;border-radius:10px;">
+                                    @if(!empty($user[1]['ready']) && $user[1]['ready']==1)
+                                        <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
+                                    @endif
+                                </div>
+                                <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                                    {{empty($user[1]['nick'])?"":$user[1]['nick']}}
+                                </div>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+                <div style="width: 30%;float: left;">
+                    <div style="margin-left: 5px;">
+                        @if(!empty($user) && count($user)>0)
+                            @if(!empty($user[2]))
+                                <div style="float:left;width:40px;height:40px;background:url({{empty($user[2]['head'])?"":$user[2]['head']}});background-size:100% 100%;border-radius:10px;">
+                                    @if(!empty($user[2]['ready']) && $user[2]['ready']==1)
+                                        <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
+                                    @endif
+                                </div>
+                                <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                                    {{empty($user[2]['nick'])?"":$user[2]['nick']}}
+                                </div>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div style="height: 30%">
+                <div style="margin:3px 0 0 30px;">
+                    @if(!empty($user) && count($user)>0)
+                        @if(!empty($user[3]))
+                            <div style="float:left;width:40px;height:40px;background:url({{empty($user[3]['head'])?"":$user[3]['head']}});background-size:100% 100%;border-radius:10px;">
+                                @if(!empty($user[3]['ready']) && $user[3]['ready']==1)
+                                    <img src="/img/share/ok.png" style="border-radius:10px;" width="40">
+                                @endif
+                            </div>
+                            <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                                {{empty($user[3]['nick'])?"":$user[3]['nick']}}
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
-    <div style="height: 20%;" align="center">
-        <a href="http://fir.im/6svl">
-            <img class="img-rounded " width="180" src="/img/share/download.png" />
-        </a>
-    </div>
+</div>
+<div class="share_foor_bg" align="center">
+    <a href="http://fir.im/6svl">
+        <img class="img-rounded " style="margin-top: 20%;" width="180" src="/img/share/download.png" />
+    </a>
 </div>
 </body>
 </html>
