@@ -28,15 +28,15 @@
     <div style="height: 100%;">
         <div class="desk_bg">
             <div style="height: 35%;">
-                <div style="width: 35%;float: left;font-size:0.8em;">
+                <div style="width: 50%;float: left;font-size:0.8em;">
                     <div style="margin-top: 5px;font-weight: bold;text-align: right;">
                         @if(!empty($item))
-                            {{empty($item['teaid'])?"":$item['teaid']}}
+                            牌馆ID：{{empty($item['teaid'])?"":$item['teaid']}}
                         @endif
                     </div>
                     <div style="font-weight: bold;">&nbsp;&nbsp;
                         @if(!empty($item))
-                            {{empty($item['hallid'])?"":$item['hallid']}}号厅 第{{empty($item['desk'])?"":$item['desk']}}桌
+                            {{empty($item['hallid'])?"":$item['hallid']}}号厅&nbsp;第{{empty($item['desk'])?"":$item['desk']}}桌
                         @endif
 
                     </div>
