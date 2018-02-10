@@ -109,7 +109,7 @@ class GameSericeController extends Controller
                 for($i = 0;$i <count($uid_arr) ;$i++){
                     array_push($user_arr,['head'=>$head_arr[$i],'nick'=>$nick_arr[$i],'ready'=>$ready_arr[$i]]);
                 }
-
+                var_dump($user_arr);
                 return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr]);
             }else {
                 return  view('Share.Index');
