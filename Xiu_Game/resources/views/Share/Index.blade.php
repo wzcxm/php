@@ -45,7 +45,7 @@
                     <div style="margin:3px 0 0 20px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[0]))
-                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[0]['head'])?"":$user[0]['head']}});background-size:100% 100%;border-radius:10px;">
+                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[0]['head'])?"/img/share/def_head.jpg":$user[0]['head']}});background-size:100% 100%;border-radius:10px;">
                                     @if(!empty($user[0]['ready']) && $user[0]['ready']==1)
                                         <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                     @endif
@@ -63,7 +63,7 @@
                     <div style="margin-left: 5px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[1]))
-                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[1]['head'])?"":$user[1]['head']}});background-size:100% 100%;border-radius:10px;">
+                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[1]['head'])?"/img/share/def_head.jpg":$user[1]['head']}});background-size:100% 100%;border-radius:10px;">
                                     @if(!empty($user[1]['ready']) && $user[1]['ready']==1)
                                         <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                     @endif
@@ -79,7 +79,7 @@
                     <div style="margin-left: 5px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[2]))
-                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[2]['head'])?"":$user[2]['head']}});background-size:100% 100%;border-radius:10px;">
+                                <div style="float:left;width:35px;height:35px;background:url({{empty($user[2]['head'])?"/img/share/def_head.jpg":$user[2]['head']}});background-size:100% 100%;border-radius:10px;">
                                     @if(!empty($user[2]['ready']) && $user[2]['ready']==1)
                                         <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                     @endif
@@ -96,7 +96,7 @@
                 <div style="margin:3px 0 0 30px;">
                     @if(!empty($user) && count($user)>0)
                         @if(!empty($user[3]))
-                            <div style="float:left;width:35px;height:35px;background:url({{empty($user[3]['head'])?"":$user[3]['head']}});background-size:100% 100%;border-radius:10px;">
+                            <div style="float:left;width:35px;height:35px;background:url({{empty($user[3]['head'])?"/img/share/def_head.jpg":$user[3]['head']}});background-size:100% 100%;border-radius:10px;">
                                 @if(!empty($user[3]['ready']) && $user[3]['ready']==1)
                                     <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                 @endif
