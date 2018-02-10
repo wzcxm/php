@@ -29,7 +29,7 @@
         <div class="desk_bg">
             <div style="height: 35%;font-size:0.6em;">
                 <div style="width: 35%;float: left;">
-                    <div style="margin-top: 3px;font-weight: bold;text-align: right;">
+                    <div style="margin-top: 5px;font-weight: bold;text-align: right;">
                         @if(!empty($item))
                             {{empty($item['teaid'])?"":$item['teaid']}}
                         @endif
