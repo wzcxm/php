@@ -27,8 +27,8 @@
 
     <div style="height: 100%;">
         <div class="desk_bg">
-            <div style="height: 35%;font-size:0.6em;">
-                <div style="width: 35%;float: left;">
+            <div style="height: 35%;">
+                <div style="width: 35%;float: left;font-size:0.8em;">
                     <div style="margin-top: 5px;font-weight: bold;text-align: right;">
                         @if(!empty($item))
                             {{empty($item['teaid'])?"":$item['teaid']}}
@@ -41,7 +41,7 @@
 
                     </div>
                 </div>
-                <div style="width: 65%;float: left;">
+                <div style="width: 65%;float: left;font-size:0.6em;">
                     <div style="margin:3px 0 0 20px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[0]))
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div style="height: 35%">
+            <div style="height: 35%;font-size: 0.6em;">
                 <div style="width: 65%;float: left;">
                     <div style="margin-left: 5px;">
                         @if(!empty($user) && count($user)>0)
@@ -68,7 +68,7 @@
                                         <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                     @endif
                                 </div>
-                                <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                                <div style="float:left;margin-top: 10px;">&nbsp;
                                     {{empty($user[1]['nick'])?"":$user[1]['nick']}}
                                 </div>
                             @endif
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div style="height: 30%">
+            <div style="height: 30%;font-size: 0.6em;">
                 <div style="margin:3px 0 0 30px;">
                     @if(!empty($user) && count($user)>0)
                         @if(!empty($user[3]))
@@ -101,7 +101,7 @@
                                     <img src="/img/share/ok.png" style="border-radius:10px;" width="35">
                                 @endif
                             </div>
-                            <div style="float:left;margin-top: 10px;font-size: 0.6em;">&nbsp;
+                            <div style="float:left;margin-top: 10px;">&nbsp;
                                 {{empty($user[3]['nick'])?"":$user[3]['nick']}}
                             </div>
                         @endif
@@ -112,7 +112,7 @@
     </div>
 </div>
 <div class="share_foor_bg" align="center">
-    <a href="http://fir.im/6svl">
+    <a href="http://fir.im/xxgame">
         <img class="img-rounded " style="margin-top: 20%;" width="160" src="/img/share/download.png" />
     </a>
 </div>
