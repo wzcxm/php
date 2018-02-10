@@ -101,15 +101,19 @@ class MyInfoController extends Controller
     public function getSysInfo(){
         $system = array();
         //上月消耗钻石
-        $system['front_zs'] = 100;
+        $system['front_zs'] = \DB::table('xx_player_record')
+            ->whereBetween('create_time',[date('Y-m-01', strtotime('-1 month')),date('Y-m-t 23:59:59', strtotime('-1 month'))])
+            ->sum('roomcard');
         //当月消耗钻石
-        $system['now_zs'] = 100;
+        $system['now_zs'] = \DB::table('xx_player_record')
+            ->whereBetween('create_time',[date('Y-m-01'),date('Y-m-t 23:59:59')])
+            ->sum('roomcard');
         //上月消耗金豆
         $system['front_jd'] = 200;
         //当月消耗金豆
         $system['now_jd'] = 300;
         //总消耗钻石
-        $system['total_zs'] = 300;
+        $system['total_zs'] = \DB::table('xx_player_record')->sum('roomcard');
         //总消耗金豆
         $system['total_jd'] = 300;
         //注册玩家

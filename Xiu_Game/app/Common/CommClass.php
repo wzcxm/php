@@ -94,7 +94,7 @@ use Xxgame\ServerUserBase;
     //获取在线人数
     public static function GetOnlinePerosn(){
         try{
-            return 200;
+            return DB::table("xx_user")->where('online_state',1)->count();
         }catch (\Exception $e) {
             return 0;
         }
