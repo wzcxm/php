@@ -28,7 +28,7 @@
     <div style="height: 100%;">
         <div class="desk_bg">
             <div style="height: 35%;">
-                <div style="width: 50%;float: left;font-size:0.8em;">
+                <div style="width: 45%;float: left;font-size:0.8em;">
                     <div style="margin-top: 5px;font-weight: bold;">
                         @if(!empty($item))
                             &nbsp;&nbsp;牌馆ID：{{empty($item['teaid'])?"":$item['teaid']}}
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                 </div>
-                <div style="width: 50%;float: left;font-size:0.6em;">
+                <div style="width: 55%;float: left;font-size:0.6em;">
                     <div style="margin:3px 0 0 20px;">
                         @if(!empty($user) && count($user)>0)
                             @if(!empty($user[0]))
