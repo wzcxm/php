@@ -97,10 +97,10 @@
                     $("#11").remove();
                     $("#first").empty()
                     if(reslut.user['flag'] == 0){
-                        $("#mall").prepend("<img class=\"img_border \" width=\"88\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
-                        $("#first").append("<img class=\"img_border \" width=\"370\" src=\"/img/diamond/first.png\" />");
+                        $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/first.png\" />");
                     }else{
-                        $("#mall").prepend("<img class=\"img_border \" width=\"88\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
                     }
                 }
             });
