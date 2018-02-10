@@ -17,6 +17,12 @@
             </div>
         </div>
         <div class="weui-cell">
+            <div class="weui-cell__hd" style="width: 40%;">总消耗钻石：</div>
+            <div class="weui-cell__bd">
+                {{empty($sys['total_zs'])?0:$sys['total_zs']}}
+            </div>
+        </div>
+        <div class="weui-cell">
             <div class="weui-cell__hd" style="width: 40%;">上月消耗金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['front_jd'])?0:$sys['front_jd']}}
@@ -26,12 +32,6 @@
             <div class="weui-cell__hd" style="width: 40%;">当月消耗金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['now_jd'])?0:$sys['now_jd']}}
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd" style="width: 40%;">总消耗钻石：</div>
-            <div class="weui-cell__bd">
-                {{empty($sys['total_zs'])?0:$sys['total_zs']}}
             </div>
         </div>
         <div class="weui-cell">
