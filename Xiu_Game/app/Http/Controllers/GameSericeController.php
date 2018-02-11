@@ -190,6 +190,9 @@ class GameSericeController extends Controller
             $user->roomcard -= $maill->sprice;
             $user->gold += $maill->snumber;
             $user->save();
+            //保存购买记录
+            DB::table('xx_sys_buybeans')->insert(['uid'=>$uid,'card'=>$maill->sprice,'gold'=>$maill->snumber]);
+            //更新游戏端数据
             CommClass::UpGameSer($uid,'card');
             CommClass::UpGameSer($uid,'coin');
             return 1;
