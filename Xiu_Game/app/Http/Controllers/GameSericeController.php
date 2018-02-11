@@ -90,6 +90,11 @@ class GameSericeController extends Controller
                 $ret_arr['gametype'] = $RedisTableInfo->getServerType();
                 //局数
                 $ret_arr['number'] = $RedisTableInfo->getMaxNumber();
+                if($ret_arr['number']>8){
+                    $ret_arr['number'] .= '分';
+                }else{
+                    $ret_arr['number'] .= '局';
+                }
                 //玩法
                 $ret_arr['play'] = $msg ;
                 //桌号

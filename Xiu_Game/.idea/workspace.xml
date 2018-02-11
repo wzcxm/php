@@ -7,7 +7,7 @@
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/.env" afterPath="$PROJECT_DIR$/../GameSerice/.env" />
       <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Share/Index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Share/Index.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,23 +22,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameSericeController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="91" column="69" lean-forward="true" selection-start-line="91" selection-start-column="69" selection-end-line="91" selection-end-column="69" />
+            <state relative-caret-position="598">
+              <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
               <folding>
                 <element signature="e#426#1277#0#PHP" expanded="false" />
                 <element signature="e#1283#2293#0#PHP" expanded="false" />
-                <element signature="e#4564#6047#0#PHP" expanded="false" />
-                <element signature="e#6064#6744#0#PHP" expanded="false" />
-                <element signature="e#6800#7487#0#PHP" expanded="false" />
+                <element signature="e#4741#6224#0#PHP" expanded="false" />
+                <element signature="e#6241#6921#0#PHP" expanded="false" />
+                <element signature="e#6977#7664#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Index.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Share/Index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="341">
@@ -239,8 +239,8 @@
         <option value="$PROJECT_DIR$/resources/views/Message/create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/MyInfo/download.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
         <option value="$PROJECT_DIR$/resources/views/Share/Index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php" />
       </list>
     </option>
   </component>
@@ -564,12 +564,12 @@
       <workItem from="1518070983415" duration="17287000" />
       <workItem from="1518145666464" duration="6860000" />
       <workItem from="1518228529389" duration="19457000" />
-      <workItem from="1518340903419" duration="2982000" />
+      <workItem from="1518340903419" duration="3090000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329918000" />
+    <option name="totallyTimeSpent" value="330026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1054,20 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="91" column="69" lean-forward="true" selection-start-line="91" selection-start-column="69" selection-end-line="91" selection-end-column="69" />
-          <folding>
-            <element signature="e#426#1277#0#PHP" expanded="false" />
-            <element signature="e#1283#2293#0#PHP" expanded="false" />
-            <element signature="e#4564#6047#0#PHP" expanded="false" />
-            <element signature="e#6064#6744#0#PHP" expanded="false" />
-            <element signature="e#6800#7487#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Share/Index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -1099,6 +1085,20 @@
             <marker date="1518348651491" expanded="true" signature="5309:5325" ph="..." />
             <marker date="1518348651491" expanded="true" signature="5572:5621" ph="..." />
             <marker date="1518348651491" expanded="true" signature="5913:5956" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GameSericeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
+          <folding>
+            <element signature="e#426#1277#0#PHP" expanded="false" />
+            <element signature="e#1283#2293#0#PHP" expanded="false" />
+            <element signature="e#4741#6224#0#PHP" expanded="false" />
+            <element signature="e#6241#6921#0#PHP" expanded="false" />
+            <element signature="e#6977#7664#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
