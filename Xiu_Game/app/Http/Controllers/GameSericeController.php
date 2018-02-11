@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Common\CommClass;
+use App\Models\ShoppingMall;
 use App\Models\Users;
 use App\Wechat\example\JsApiPay;
 use Illuminate\Support\Facades\DB;
@@ -172,6 +173,28 @@ class GameSericeController extends Controller
             return view('MyInfo.download');
         }catch (\Exception $e){
             return view('MyInfo.download');
+        }
+    }
+
+
+
+    ///购买金豆
+    /// $uid:玩家ID
+    /// $bid:商品id
+    public function buyBeans($uid,$bid){
+        try{
+            if(empty($uid) || empty($bid)) return 0;
+            $maill = ShoppingMall::find($bid);
+            if(empty($maill)) return 0;
+            $user = Users::find($uid);
+            $user->roomcard -= $maill->sprice;
+            $user->gold += $maill->snumber;
+            $user->save();
+            CommClass::UpGameSer($uid,'card');
+            CommClass::UpGameSer($uid,'coin');
+            return 1;
+        }catch (\Exception $e){
+            return 0;
         }
     }
 }

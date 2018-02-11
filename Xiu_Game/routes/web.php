@@ -170,4 +170,7 @@ Route::get('/redpack/{uid}','GameSericeController@RedPack');
 //游戏下载页面
 Route::get('/download/{uid?}','GameSericeController@Download');
 
+//购买金豆
+Route::get('/buybeans/{uid}/{bid}','GameSericeController@buyBeans');
+
 /// end//////////////////////////////
