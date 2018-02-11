@@ -57,6 +57,8 @@ class GameSericeController extends Controller
                     $message = "<color='red'>恭喜玩家：【".Users::find($uid)->nickname."】,在每日分享抽奖中，抽中了：【".$item['name']."】！</color>";
                     CommClass::UpGameSer(1,'msg',$message);
                 }
+            }else{
+                DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
             }
         }catch (\Exception $e){
         }
