@@ -49,14 +49,11 @@
             @endif
         </div>
         <div style="height: 20%;">
-            @if(!empty($player))
-                @if(!empty($player->front_uid))
-                    <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
-                @else
-                    <input id="front" type="number" class="front_input" value="{{$player->front_uid}}">
-                @endif
+            @if(!empty($player) && !empty($player->front_uid))
+                <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
+            @else
+                <input id="front" type="number" class="front_input" >
             @endif
-
         </div>
         <input type="hidden" id="sid">
     </div>
@@ -101,6 +98,11 @@
                         $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/first.png\" />");
                     }else{
                         $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                    }
+                    if(!comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
+                        $("#front").val(reslut.user['front_uid']).attr("readonly","readonly");
+                    }else {
+                        $("#front").removeAttr("readonly");
                     }
                 }
             });
