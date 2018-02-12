@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/.env" afterPath="$PROJECT_DIR$/../GameSerice/.env" />
+      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
       <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
-      <change beforePath="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" afterPath="$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="483">
-              <caret line="66" column="54" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="54" />
+              <caret line="66" column="54" lean-forward="false" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="54" />
               <folding>
                 <marker date="1518419508142" expanded="true" signature="9:30" ph="..." />
                 <marker date="1518419508142" expanded="true" signature="41:55" ph="..." />
@@ -213,7 +213,7 @@
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="732">
-              <caret line="175" column="37" lean-forward="true" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
+              <caret line="175" column="37" lean-forward="false" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -609,12 +609,12 @@
       <workItem from="1518228529389" duration="19457000" />
       <workItem from="1518340903419" duration="3683000" />
       <workItem from="1518350833504" duration="119000" />
-      <workItem from="1518400386363" duration="5400000" />
+      <workItem from="1518400386363" duration="5993000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336138000" />
+    <option name="totallyTimeSpent" value="336731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1094,7 +1094,7 @@
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="732">
-          <caret line="175" column="37" lean-forward="true" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
+          <caret line="175" column="37" lean-forward="false" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1150,7 +1150,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/BuyCard/Index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
-          <caret line="66" column="54" lean-forward="true" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="54" />
+          <caret line="66" column="54" lean-forward="false" selection-start-line="66" selection-start-column="19" selection-end-line="66" selection-end-column="54" />
           <folding>
             <marker date="1518419508142" expanded="true" signature="9:30" ph="..." />
             <marker date="1518419508142" expanded="true" signature="41:55" ph="..." />
