@@ -64,7 +64,7 @@
             <div class="weui-cell__bd">
                 <select class="weui-select"  id="sel_type">
                     <option  selected="selected" value="1">钻石</option>
-                    <option  value="2">金豆</option>
+                    {{--<option  value="2">金豆</option>--}}
                 </select>
             </div>
         </div>
