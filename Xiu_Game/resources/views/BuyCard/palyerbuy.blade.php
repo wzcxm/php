@@ -100,7 +100,7 @@
                         $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
                     }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
-                        $("#front").val(reslut.user['front_uid']).attr("readonly","readonly");
+                        $("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
                     }else {
                         $("#front").removeAttr("readonly");
                     }
