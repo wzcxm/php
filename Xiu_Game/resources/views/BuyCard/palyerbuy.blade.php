@@ -102,7 +102,7 @@
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
                         $("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
                     }else {
-                        $("#front").removeAttr("readonly");
+                        $("#front").val("").removeAttr("readonly").removeClass().addClass("front_input");
                     }
                 }
             });
