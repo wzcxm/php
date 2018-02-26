@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cfbb8631-5dc3-4a7b-9669-622bd63b91b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../GameSerice/.env" afterPath="$PROJECT_DIR$/../GameSerice/.env" />
-      <change beforePath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" afterPath="$PROJECT_DIR$/../GameSerice/app/Http/Controllers/GameSericeController.php" />
       <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
