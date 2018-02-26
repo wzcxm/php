@@ -154,6 +154,8 @@ class GameSericeController extends Controller
                 DB::table('xx_user')->where('uid',$uid)->update(['redbag'=>0]);
                 //将发送红包记录保存
                 DB::table('xx_sys_extract')->insert(['playerid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
+                //修改用户的红包记录
+                DB::table('xx_sys_prize')->where([['uid',$uid],['jptype',3]])->update(['isreceive'=>1]);
                 return 1;
             }else{
                 return 0;//["state"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];

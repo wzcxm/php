@@ -3,6 +3,7 @@
 namespace App\Common;
 
 use Aliyun\DySDKLite\SignatureHelper;
+use Illuminate\Support\Facades\DB;
 
 class CommonFunc
 {
@@ -82,4 +83,7 @@ class CommonFunc
 	        return $e->getMessage();
         }
     }
+
+
+
 }
