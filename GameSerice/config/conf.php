@@ -7,14 +7,14 @@ return [
 	'GAME_DOMAIN' => [
 		'gw1' => [
 				'INDEX' => 1,
-				'DOMAIN' => 'login.wangqianhong.com',
+				'DOMAIN' => 'gw.wangqianhong.com',
 				'PORT' => 10000,
 				'STATUS' => 2,
 		],
 
 		'gw2' => [
                 'INDEX' => 2,
-                'DOMAIN' => 'login.wangqianhong.com',
+                'DOMAIN' => 'gw.wangqianhong.com',
                 'PORT' => 10700,
                 'STATUS' => 2,
                 ],
