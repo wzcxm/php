@@ -37,7 +37,7 @@ $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
 //下载地址
 $router->get('/GetUrl',function (){
-    return ['android'=>'https://pro-app-tc.fir.im/ba9c11575be595b275fb5435028c133e966de69b.apk?sign=1a3d7f9dff2c17278878753c28b0cd43&t=5aa894bf',
+    return ['android'=>'http://wyhq.oss-cn-beijing.aliyuncs.com/android/wyhq.apk',
         'ios'=>'http://fir.im/4zn2',
         'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
