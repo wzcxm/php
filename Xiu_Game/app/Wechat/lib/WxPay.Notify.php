@@ -28,6 +28,8 @@ class WxPayNotify extends WxPayNotifyReply
 		//当返回false的时候，表示notify中调用NotifyCallBack回调失败获取签名校验失败，此时直接回复失败
 		$result = WxpayApi::notify(array($this, 'NotifyCallBack'), $msg);
         $log->INFO(json_encode($result));
+        $log->INFO($result["return_code"]);
+        $log->INFO($result["return_msg"]);
 		if($result == false){
 
 			$this->SetReturn_code("FAIL");
@@ -36,7 +38,7 @@ class WxPayNotify extends WxPayNotifyReply
 			return;
 		} else {
 			//该分支在成功回调到NotifyCallBack方法，处理完成之后流程
-            $log->INFO($result['result_code']);
+            
             if(!empty($result['result_code']) && $result['return_code']==='SUCCESS') {
                 //更新玩家房卡
                 CommClass::SetPlayerCard($result['result_code']);
