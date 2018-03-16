@@ -76,9 +76,12 @@ class WxPayNotify extends WxPayNotifyReply
 	 */
 	final public function NotifyCallBack($data)
 	{
+        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
+        $log = Log::Init($logHandler, 15);
+        $log->INFO(666);
 		$msg = "OK";
 		$result = $this->NotifyProcess($data, $msg);
-		
+        $log->INFO(json_encode($result));
 		if($result == true){
 			$this->SetReturn_code("SUCCESS");
 			$this->SetReturn_msg("OK");
