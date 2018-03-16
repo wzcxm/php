@@ -3,8 +3,6 @@ namespace App\Wechat\lib;
 use App\Common\CommClass;
 use App\Models\BuyCard;
 use App\Models\Users;
-use App\Wechat\example\log;
-use App\Wechat\example\CLogFileHandler;
 
 /**
  * 
@@ -21,17 +19,9 @@ class WxPayNotify extends WxPayNotifyReply
 	 */
 	final public function Handle($needSign = true)
 	{
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
-        $log->INFO(222);
 		$msg = "OK";
 		//当返回false的时候，表示notify中调用NotifyCallBack回调失败获取签名校验失败，此时直接回复失败
 		$result = WxpayApi::notify(array($this, 'NotifyCallBack'), $msg);
-        $log->INFO($msg);
-		$log->INFO(json_encode($result));
-        $log->INFO($result);
-        $log->INFO($result["return_code"]);
-        $log->INFO($result["return_msg"]);
 		if($result == false){
 
 			$this->SetReturn_code("FAIL");
@@ -39,13 +29,6 @@ class WxPayNotify extends WxPayNotifyReply
 			$this->ReplyNotify(false);
 			return;
 		} else {
-			//该分支在成功回调到NotifyCallBack方法，处理完成之后流程
-            $log->INFO(3333);
-            $log->INFO($result['out_trade_no']);
-            if(!empty($result['result_code']) && $result['return_code']==='SUCCESS') {
-                //更新玩家房卡
-                CommClass::SetPlayerCard($result['out_trade_no']);
-            }
 			$this->SetReturn_code("SUCCESS");
 			$this->SetReturn_msg("OK");
 		}
@@ -76,12 +59,9 @@ class WxPayNotify extends WxPayNotifyReply
 	 */
 	final public function NotifyCallBack($data)
 	{
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
-        $log->INFO(666);
 		$msg = "OK";
 		$result = $this->NotifyProcess($data, $msg);
-        $log->INFO(json_encode($result));
+
 		if($result == true){
 			$this->SetReturn_code("SUCCESS");
 			$this->SetReturn_msg("OK");

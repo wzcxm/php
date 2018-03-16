@@ -3,6 +3,7 @@ namespace App\Wechat\lib;
 use App\Wechat\lib\WxPayException;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayDataBase;
+use App\Common\CommClass;
 use App\Wechat\example\log;
 use App\Wechat\example\CLogFileHandler;
 
@@ -511,6 +512,13 @@ class WxPayApi
             $log->INFO(55555);
 			$result = WxPayResults::Init($xml);
             $log->INFO(json_encode($result));
+            //该分支在成功回调到NotifyCallBack方法，处理完成之后流程
+            if($result['return_code']==='SUCCESS' && $result['result_code'] === 'SUCCESS') {
+                $log->INFO($result['out_trade_no']);
+                //更新玩家房卡
+                CommClass::SetPlayerCard($result['out_trade_no']);
+
+            }
 		} catch (WxPayException $e){
 			$msg = $e->errorMessage();
 			return false;
