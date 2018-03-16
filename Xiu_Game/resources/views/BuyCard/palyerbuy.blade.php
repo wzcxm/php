@@ -153,7 +153,7 @@
             function(res){
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
                     $.alert('支付成功！',function () {
-                        window.location.reload();
+                        //window.location.reload();
                     });
                 }else{
                     $.post("/PlayerBuy/delno",{no:orderno}, function (data) {

@@ -102,9 +102,9 @@ use Xxgame\ServerUserBase;
      //异或加密
      public static function message_xor(&$strInput)
      {
-         $key = 109;
+         $key = [27, 11, 180, 342, 13, 43, 119, 7];
          for ($i = 0; $i < strlen($strInput); $i++)
-             $strInput[$i] = chr(ord($strInput[$i]) ^ $key);
+             $strInput[$i] = chr(ord($strInput[$i]) ^ $key[$i%8]);
      }
 
     //连接服务器
@@ -437,6 +437,11 @@ use Xxgame\ServerUserBase;
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
                         DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                    }else{
+                        DB::table('xx_user')->where('uid',$wx_order->userid)
+                            ->update(['rid'=>2,'flag'=>1]);
+                        //更新玩家角色
+                        CommClass::UpGameSer($wx_order->userid,'role');
                     }
 
                 }else{

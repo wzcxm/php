@@ -19,6 +19,7 @@ class UserLoginController extends Controller
  */
     public  function Login(Request $request){
         $user = \DB::table('v_user')->where([['uid',$request['id']],['pwd',$request['pwd']]])->first();
+//        CommClass::SetPlayerCard('149810509220180316165353');
         if(empty($user)) {
             return redirect()->back()->with('idmsg','用户ID或者密码错误！');
         }
