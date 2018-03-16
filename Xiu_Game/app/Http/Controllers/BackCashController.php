@@ -126,7 +126,7 @@ class BackCashController extends Controller
                 //支付成功，扣除用户的积分
                 DB::table('xx_user')->where('uid',session('uid'))->decrement('money', $gold);
                 //将提现记录保存
-                DB::table('xx_sys_extract')->insert(['playerid'=>session('uid'),'gold'=>$gold,'orderno'=>$orderno]);
+                DB::table('xx_sys_extract')->insert(['uid'=>session('uid'),'gold'=>$gold,'orderno'=>$orderno]);
             }else{
                 //返回错误信息
                 $ret_msg = ["Error"=>$result['Error']];
