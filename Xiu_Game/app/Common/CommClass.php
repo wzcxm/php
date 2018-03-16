@@ -102,9 +102,10 @@ use Xxgame\ServerUserBase;
      //异或加密
      public static function message_xor(&$strInput)
      {
-         $key = [27, 11, 180, 342, 13, 43, 119, 7];
+         $key = 109;//[27, 11, 180, 342, 13, 43, 119, 7];
          for ($i = 0; $i < strlen($strInput); $i++)
-             $strInput[$i] = chr(ord($strInput[$i]) ^ $key[$i%8]);
+             $strInput[$i] = chr(ord($strInput[$i]) ^ $key);
+             //$strInput[$i] = chr(ord($strInput[$i]) ^ $key[$i%8]);
      }
 
     //连接服务器
