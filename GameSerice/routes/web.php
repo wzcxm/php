@@ -81,3 +81,11 @@ $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@get
 
 //中奖记录
 $router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
+
+$router->get('/isformal/{version}',function ($version){
+    if($version == 2.1){
+        return 1;
+    }else{
+        return 0;
+    }
+});
