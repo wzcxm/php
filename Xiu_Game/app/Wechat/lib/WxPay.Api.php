@@ -3,6 +3,8 @@ namespace App\Wechat\lib;
 use App\Wechat\lib\WxPayException;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayDataBase;
+use App\Wechat\example\log;
+use App\Wechat\example\CLogFileHandler;
 
 /**
  * 
@@ -504,7 +506,11 @@ class WxPayApi
 		$xml = file_get_contents("php://input");//$GLOBALS['HTTP_RAW_POST_DATA'];
 		//如果返回成功则验证签名
 		try {
+            $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
+            $log = Log::Init($logHandler, 15);
+
 			$result = WxPayResults::Init($xml);
+            $log->INFO(json_encode($result));
 		} catch (WxPayException $e){
 			$msg = $e->errorMessage();
 			return false;
