@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //玩家购买回调
-Route::post('/player/notify','CashController@notify');
+Route::any('/player/notify','CashController@notify');
