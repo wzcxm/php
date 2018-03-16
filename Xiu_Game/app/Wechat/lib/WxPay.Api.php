@@ -508,7 +508,7 @@ class WxPayApi
 		try {
             $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
             $log = Log::Init($logHandler, 15);
-
+            $log->INFO(55555);
 			$result = WxPayResults::Init($xml);
             $log->INFO(json_encode($result));
 		} catch (WxPayException $e){
