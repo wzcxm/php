@@ -40,7 +40,8 @@ class WxPayNotify extends WxPayNotifyReply
 			return;
 		} else {
 			//该分支在成功回调到NotifyCallBack方法，处理完成之后流程
-
+            $log->INFO(3333);
+            
             if(!empty($result['result_code']) && $result['return_code']==='SUCCESS') {
                 //更新玩家房卡
                 CommClass::SetPlayerCard($result['result_code']);
