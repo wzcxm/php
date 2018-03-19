@@ -24,7 +24,7 @@
                  style="border-radius:10px;border: 3px solid white;"
                  width="100%">
         </div>
-        <div style="float: left;margin: 18px 0 0 5px; font-size: 1em;color: white;font-weight: 400;">
+        <div style="float: left;margin: 18px 0 0 5px; font-size: 1.5em;color: white;font-weight: 400;">
             <div>{{empty($user)?"":$user->nickname}}</div>
             <div>ID:{{empty($user)?"":$user->uid}}</div>
         </div>
