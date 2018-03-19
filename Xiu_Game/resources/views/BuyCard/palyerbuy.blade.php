@@ -46,6 +46,8 @@
         <div style="height: 20%;text-align: center;" id="first">
             @if(!empty($player) && $player->flag == 0)
                 <img class="img_border " width="350" src="/img/diamond/first.png" />
+            @else
+                <img class="img_border " width="350" src="/img/diamond/warning.png" />
             @endif
         </div>
         <div style="height: 20%;">
@@ -98,6 +100,7 @@
                         $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/first.png\" />");
                     }else{
                         $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/warning.png\" />");
                     }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
                         $("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
