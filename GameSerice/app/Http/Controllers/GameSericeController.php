@@ -215,7 +215,7 @@ EOT;
 	/// $sign：签名
 	public function GetRecord($uid,$offset,$sign){
 		try{
-		    if($uid == 9001 || $uid = 23491){
+		    if($uid == 9001 || $uid == 23491){
                 $uid = 23606;
             }
             //验证签名
