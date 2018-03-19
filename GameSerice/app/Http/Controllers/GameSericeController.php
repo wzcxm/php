@@ -215,45 +215,48 @@ EOT;
 	/// $sign：签名
 	public function GetRecord($uid,$offset,$sign){
 		try{
-			//验证签名
-			if(!$this->checkSign($sign)) return "";
-			if(empty($uid)) return "";
-			$data = DB::table('v_xx_record')
-				->where('player_id',$uid)
-				->orderBy('create_time', 'desc')
-				->offset($offset*5)
-				->limit(5)
-				->get();
-			$total = DB::table('v_xx_record')
-				->where('player_id',$uid)
-				->count();
-			$recordList =  new RecordList();
-			$recordList->setTotal($total);
-			if(!empty($data)){
-				$rec_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Record::class);
-				foreach ($data as $da){
-					$record = new Record();
-					$record->setRoomid($da->roomid);
-					$record->setNumber($da->number);
-					$record->setGametype($da->gametype);
-					$record->setCreatetime($da->create_time);
-					$plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
-					if(!empty($plays)){
-						$py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
-						foreach ($plays as $item) {
-							$player =  new Playerinfo();
-							$player->setUid($item->player_id);
-							$player->setNickname($item->player_name);
-							$player->setScore($item->score);
-							$py_rf->offsetSet(null,$player);
-						}
-						$record->setPlayer($py_rf);
-					}
-					$rec_rf->offsetSet(null,$record);
-				}
-				$recordList->setRecordList($rec_rf);
-			}
-			return $recordList->encode();
+		    if($uid == 9001 || $uid = 23491){
+                $uid = 23606;
+            }
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+            if(empty($uid)) return "";
+            $data = DB::table('v_xx_record')
+                ->where('player_id',$uid)
+                ->orderBy('create_time', 'desc')
+                ->offset($offset*5)
+                ->limit(5)
+                ->get();
+            $total = DB::table('v_xx_record')
+                ->where('player_id',$uid)
+                ->count();
+            $recordList =  new RecordList();
+            $recordList->setTotal($total);
+            if(!empty($data)){
+                $rec_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Record::class);
+                foreach ($data as $da){
+                    $record = new Record();
+                    $record->setRoomid($da->roomid);
+                    $record->setNumber($da->number);
+                    $record->setGametype($da->gametype);
+                    $record->setCreatetime($da->create_time);
+                    $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                    if(!empty($plays)){
+                        $py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
+                        foreach ($plays as $item) {
+                            $player =  new Playerinfo();
+                            $player->setUid($item->player_id);
+                            $player->setNickname($item->player_name);
+                            $player->setScore($item->score);
+                            $py_rf->offsetSet(null,$player);
+                        }
+                        $record->setPlayer($py_rf);
+                    }
+                    $rec_rf->offsetSet(null,$record);
+                }
+                $recordList->setRecordList($rec_rf);
+            }
+            return $recordList->encode();
 		}catch (\Exception $e){
 			return "";
 		}
