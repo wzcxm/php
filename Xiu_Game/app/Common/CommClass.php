@@ -454,14 +454,17 @@ use Xxgame\ServerUserBase;
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
                         DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                    }else{
+                        //代理返利
+                        if(!empty($wx_order->front_uid))
+                            CommClass::BackCash($wx_order->userid, $wx_order->total);
                     }
                 }
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
                 //更新游戏的钻石数量
                 CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
-                //代理返利
-                CommClass::BackCash($wx_order->userid, $wx_order->total);
+
             }
         }catch (\Exception $e){
 
