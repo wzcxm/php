@@ -37,7 +37,7 @@ $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
 //下载地址
 $router->get('/GetUrl',function (){
-    return ['android'=>'https://pro-app-tc.fir.im/55ad19b179b374052dea4d83005d62ca11c49e1c.apk?sign=8b33da59c1d6fcb7925ab828131e9649&t=5aa9d16a',
+    return ['android'=>'http://fir.im/ysrn',
         'ios'=>'https://pro-app-tc.fir.im/55ad19b179b374052dea4d83005d62ca11c49e1c.apk?sign=8b33da59c1d6fcb7925ab828131e9649&t=5aa9d16a',
         'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
@@ -83,8 +83,8 @@ $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@get
 $router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
 
 $router->get('/isformal/{version}',function ($version){
-    if($version == 2.1){
-        return 1;
+    if($version == 2.3){
+        return 0;
     }else{
         return 0;
     }
