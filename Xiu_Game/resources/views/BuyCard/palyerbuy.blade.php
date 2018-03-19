@@ -47,7 +47,7 @@
             @if(!empty($player) && $player->flag == 0)
                 <img class="img_border " width="350" src="/img/diamond/first.png" />
             @else
-                <img class="img_border " width="350" src="/img/diamond/warning.png" />
+                <img class="img_border " width="300" src="/img/diamond/warning.png" />
             @endif
         </div>
         <div style="height: 20%;">
