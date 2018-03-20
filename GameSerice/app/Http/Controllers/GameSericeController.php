@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Common\CommonFunc;
-use App\User;
 use Carbon\Carbon;
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Illuminate\Support\Facades\DB;
 use Xxgame\Business;
 use Xxgame\BusinessList;
@@ -37,7 +34,6 @@ EOT;
 			$tea_data = DB::select($sql);
 			if(empty($tea_data)) return "";
 			$tesList = new TeaList();
-			$tea_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\TeaInfo::class);
 			foreach ($tea_data as $tea){
 				$teainfo = new TeaInfo();
 				$teainfo->setTeaId($tea->tea_id);
@@ -56,9 +52,8 @@ EOT;
 				$teainfo->setHall3($tea->hall3);
 				$teainfo->setNickname($tea->nickname);
 				$teainfo->setHead($tea->head_img_url);
-				$tea_rf->offsetSet(null, $teainfo);
+                $tesList->getTeaList()[] = $teainfo;
 			}
-			$tesList->setTeaList($tea_rf);
 			return $tesList->encode();
 		}catch (\Exception $e){
 			return "";
@@ -74,7 +69,6 @@ EOT;
 			$tea_data = DB::table('v_tea')->where('ody','>',0)->orderBy('ody','asc')->get();
 			if(empty($tea_data)) return "";
 			$tesList = new TeaList();
-			$tea_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\TeaInfo::class);
 			foreach ($tea_data as $tea){
 				$teainfo = new TeaInfo();
 				$teainfo->setTeaId($tea->tea_id);
@@ -84,9 +78,8 @@ EOT;
 				$teainfo->setTeaName($tea->tea_name);
 				$teainfo->setNickname($tea->nickname);
 				$teainfo->setHead($tea->head_img_url);
-				$tea_rf->offsetSet(null, $teainfo);
+                $tesList->getTeaList()[] = $teainfo;
 			}
-			$tesList->setTeaList($tea_rf);
 			return $tesList->encode();
 		}catch (\Exception $e){
 			return "";
@@ -108,23 +101,21 @@ EOT;
 			$player_data =  DB::select($sql);
 			if(empty($player_data)) return "";
 			$teaPlayerList =  new TeaPlayerList();
-			$player_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\TeaPlayer::class);
 			foreach ($player_data as $player){
 				$teaplayer = new TeaPlayer();
-				$teaplayer->setTeaId($player->tea_id);
-				$teaplayer->setNickname($player->nickname);
-				$teaplayer->setUid($player->uid);
-				$teaplayer->setState($player->state);
-				$teaplayer->setManager($player->manager);
-				$teaplayer->setHallId($player->hall_id);
-				$teaplayer->setWinnum($player->winnum);
-				$teaplayer->setRemarks($player->remarks);
-				$teaplayer->setNumbers($player->numbers);
-				$teaplayer->setDate($player->create_time);
-				$teaplayer->setOnline($player->online_state);
-				$player_rf->offsetSet(null,$teaplayer);
+                $teaplayer->setTeaId($player->tea_id);
+                $teaplayer->setNickname($player->nickname);
+                $teaplayer->setUid($player->uid);
+                $teaplayer->setState($player->state);
+                $teaplayer->setManager($player->manager);
+                $teaplayer->setHallId($player->hall_id);
+                $teaplayer->setWinnum($player->winnum);
+                $teaplayer->setRemarks($player->remarks);
+                $teaplayer->setNumbers($player->numbers);
+                $teaplayer->setDate($player->create_time);
+                $teaplayer->setOnline($player->online_state);
+                $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
-			$teaPlayerList->setPlayerList($player_rf);
 			return $teaPlayerList->encode();
 		}catch (\Exception $e){
 			return "";
@@ -170,8 +161,8 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 2.3) {
-				$ret = "0";
+			if ($version == 2.6) {
+				$ret = "2";
 			} else {
 				if($version < 2.3){
 					$ret = "1";
@@ -233,7 +224,6 @@ EOT;
             $recordList =  new RecordList();
             $recordList->setTotal($total);
             if(!empty($data)){
-                $rec_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Record::class);
                 foreach ($data as $da){
                     $record = new Record();
                     $record->setRoomid($da->roomid);
@@ -242,19 +232,17 @@ EOT;
                     $record->setCreatetime($da->create_time);
                     $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
                     if(!empty($plays)){
-                        $py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
                         foreach ($plays as $item) {
                             $player =  new Playerinfo();
                             $player->setUid($item->player_id);
                             $player->setNickname($item->player_name);
                             $player->setScore($item->score);
-                            $py_rf->offsetSet(null,$player);
+                            $record->getPlayer()[] = $player;
+
                         }
-                        $record->setPlayer($py_rf);
                     }
-                    $rec_rf->offsetSet(null,$record);
+                    $recordList->getRecordList()[] = $record;
                 }
-                $recordList->setRecordList($rec_rf);
             }
             return $recordList->encode();
 		}catch (\Exception $e){
@@ -286,13 +274,11 @@ EOT;
 			$singleList = new SingleList();
 			$singleList->setTotal($total);
 			if(!empty($data)){
-				$sing_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Single::class);
 				foreach ($data as $da){
 					$single = new Single();
 					$single->setRecordId($da->record_id);
 					$single->setCreatetime($da->end_time);
 					$single->setIndex($da->indexs);
-					$py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
 					for($i=1;$i<5;$i++){
 						$player =  new Playerinfo();
 						$uid = 'uid'.$i;
@@ -301,12 +287,10 @@ EOT;
 						$player->setUid($da->$uid);
 						$player->setNickname($da->$nick);
 						$player->setScore($da->$score);
-						$py_rf->offsetSet(null,$player);
+                        $single->getPlayer()[] = $player;
 					}
-					$single->setPlayer($py_rf);
-					$sing_rf->offsetSet(null,$single);
+                    $singleList->getSingleList()[] = $single;
 				}
-				$singleList->setSingleList($sing_rf);
 			}
 			return $singleList->encode();
 		}catch (\Exception $e){
@@ -333,7 +317,6 @@ EOT;
 				->where('tea_id',$teaid)
 				->count();
 			$recordList =  new RecordList();
-			$rec_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Record::class);
 			$recordList->setTotal($total);
 			if(!empty($data)){
 				foreach ($data as $da){
@@ -344,19 +327,16 @@ EOT;
 					$record->setCreatetime($da->create_time);
 					$plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
 					if(!empty($plays)){
-						$py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
 						foreach ($plays as $item) {
 							$player =  new Playerinfo();
 							$player->setUid($item->player_id);
 							$player->setNickname($item->player_name);
 							$player->setScore($item->score);
-							$py_rf->offsetSet(null,$player);
+                            $record->getPlayer()[] = $player;
 						}
-						$record->setPlayer($py_rf);
 					}
-					$rec_rf->offsetSet(null,$record);
+                    $recordList->getRecordList()[] = $record;
 				}
-				$recordList->setRecordList($rec_rf);
 			}
 			return $recordList->encode();
 		}catch (\Exception $e){
@@ -384,7 +364,6 @@ EOT;
 				->where([['player_id',$uid],['tea_id',$teaid]])
 				->count();
 			$recordList =  new RecordList();
-			$rec_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Record::class);
 			$recordList->setTotal($total);
 			if(!empty($data)){
 				foreach ($data as $da){
@@ -395,19 +374,16 @@ EOT;
 					$record->setCreatetime($da->create_time);
 					$plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
 					if(!empty($plays)){
-						$py_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Playerinfo::class);
 						foreach ($plays as $item) {
 							$player =  new Playerinfo();
 							$player->setUid($item->player_id);
 							$player->setNickname($item->player_name);
 							$player->setScore($item->score);
-							$py_rf->offsetSet(null,$player);
+                            $record->getPlayer()[] = $player;
 						}
-						$record->setPlayer($py_rf);
 					}
-					$rec_rf->offsetSet(null,$record);
+                    $recordList->getRecordList()[] = $record;
 				}
-				$recordList->setRecordList($rec_rf);
 			}
 			return $recordList->encode();
 		}catch (\Exception $e){
@@ -456,7 +432,6 @@ EOT;
 			$rec = DB::select($sql);
 			if(empty($rec)) return "";
 			$bus_list =  new BusinessList();
-			$bus_rf = new RepeatedField(GPBType::MESSAGE, \Xxgame\Business::class);
 			foreach ($rec as $item){
 				$bus = new Business();
 				$bus->setTeaNum($item->tea_num);
@@ -464,9 +439,8 @@ EOT;
 				$bus->setHallNum2($item->hall_num_2);
 				$bus->setHallNum3($item->hall_num_3);
 				$bus->setDateDay($item->date_day);
-				$bus_rf->offsetSet(null,$bus);
+                $bus_list->getBusList()[] = $bus;
 			}
-			$bus_list->setBusList($bus_rf);
 			return $bus_list->encode();
 		}catch (\Exception $e){
 			return "";
