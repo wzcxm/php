@@ -429,23 +429,25 @@ use Xxgame\ServerUserBase;
                     }else{
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     }
-                    //绑定代理
+                    $up_arr = ['flag' => 1];
+                    if($wx_order->rid == 5){
+                        $up_arr["rid"] = 2 ;
+                    }
                     if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
-                        DB::table('xx_user')->where('uid',$wx_order->userid)
-                            ->update(['rid'=>2,'flag'=>1,'front_uid'=>$wx_order->front]);
-                        //更新玩家角色
-                        CommClass::UpGameSer($wx_order->userid,'role');
+                        $up_arr["front_uid"] = $wx_order->front ;
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
                         DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
-                    }else{
-                        DB::table('xx_user')->where('uid',$wx_order->userid)
-                            ->update(['rid'=>2,'flag'=>1]);
-                        //更新玩家角色
-                        CommClass::UpGameSer($wx_order->userid,'role');
                     }
-
+                    //更新我的角色
+                    DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
+                    //更新玩家角色
+                    CommClass::UpGameSer($wx_order->userid,'role');
+                    //总代首冲也返利
+                    if($wx_order->rid == 3){
+                        CommClass::BackCash($wx_order->userid, $wx_order->total);
+                    }
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
@@ -457,8 +459,7 @@ use Xxgame\ServerUserBase;
                         DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
                     }else{
                         //代理返利
-                        if(!empty($wx_order->front_uid))
-                            CommClass::BackCash($wx_order->userid, $wx_order->total);
+                        CommClass::BackCash($wx_order->userid, $wx_order->total);
                     }
                 }
                 //更新订单状态

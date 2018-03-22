@@ -59,7 +59,7 @@
                         }},
                     {field:'back_id',title:'ID',width:50},
                     {field:'b_nick',title:'昵称',width:80},
-                    {field:'level',title:'返利来源',width:50,
+                    {field:'level',title:'返利来源',width:60,
                         formatter:function (value) {
                             if(value==1){
                                 return "下级";
