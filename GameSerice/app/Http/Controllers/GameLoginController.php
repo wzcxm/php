@@ -15,8 +15,8 @@ class GameLoginController extends Controller
 	public function login($uid, $type, $value)
 	{
 		try {
-			if ($uid < 9000 || $uid >= 10000)
-				return $this->error_message(ErrorCode::Error_WeiXin_Login);
+//			if ($uid < 9000 || $uid >= 10000)
+//				return $this->error_message(ErrorCode::Error_WeiXin_Login);
 			switch ($type)
 			{
 				case 1:
