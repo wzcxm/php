@@ -39,12 +39,12 @@
         </div>
     @else
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size:  0.8rem;font-weight: bold;">我的积分：</span>
+            <span style="font-size:  0.8rem;font-weight: bold;">我的返利：</span>
 
             <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$total_num}}</span>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size: 0.8rem;font-weight: bold;">当月积分：</span>
+            <span style="font-size: 0.8rem;font-weight: bold;">当月返利：</span>
 
             <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$month}}</span>
         </div>

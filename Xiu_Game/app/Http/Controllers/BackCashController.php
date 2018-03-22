@@ -28,7 +28,7 @@ class BackCashController extends Controller
         $uid = isset($request['uid']) ? $request['uid']:"";
         $start_date = isset($request['start_date']) ? $request['start_date']:"";
         $end_date = isset($request['end_date']) ? $request['end_date']:"";
-        $where = ' and get_id ='.session('uid');
+        $where = ' get_id ='.session('uid');
         if(!empty($uid)){
             $where .= ' and back_id ='.$uid;
         }
