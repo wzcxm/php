@@ -165,7 +165,7 @@ EOT;
 				$ret = "2";
 			} else {
 				if($version < 2.5){
-					$ret = "1";
+					$ret = "0";
 				}else{
 					$ret = "0";
 				}
