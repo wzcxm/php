@@ -161,17 +161,17 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 2.6) {
+			if ($version == 2.9) {
 				$ret = "2";
 			} else {
-				if($version < 2.3){
+				if($version < 2.5){
 					$ret = "1";
 				}else{
 					$ret = "0";
 				}
 			}
 		}else if($type==2){
-			if($version < 2.3){
+			if($version < 2.5){
 				$ret = "1";
 			}else{
 				$ret = "0";
