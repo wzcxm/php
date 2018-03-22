@@ -15,8 +15,8 @@ class GameLoginController extends Controller
 	public function login($uid, $type, $value)
 	{
 		try {
-			//if ($uid < 9000 || $uid >= 10000)
-			//	return $this->error_message(ErrorCode::Error_WeiXin_Login);
+			if ($uid < 9000 || $uid >= 10000)
+				return $this->error_message(ErrorCode::Error_WeiXin_Login);
 			switch ($type)
 			{
 				case 1:
@@ -52,36 +52,7 @@ class GameLoginController extends Controller
         $user = DB::table('xx_user')->where("uphone",$tel)->first();
         if (empty($user))
             return $this->error_message(ErrorCode::Error_Not_Found_User);
-        $server_login_info = new ServerLoginInfo();
-        $server_login_info->setCode(1);
-        $server_login_info->setUid($user->uid);
-        $server_login_info->setNickname($user->nickname);
-        $server_login_info->setSex($user->sex);
-        $server_login_info->setRoomcard($user->roomcard);
-        $server_login_info->setBubble($user->gold);
-        $server_login_info->setRid($user->rid);
-        $server_login_info->setRoomId($user->room_id);
-        $server_login_info->setTeaId($user->tea_id);
-        $server_login_info->setToken($user->openid);
-        $server_login_info->setSharestatus($user->lottery);
-        $server_login_info->setSign(encrypt(env('SIGN')));
-        $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
-        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
-        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
-        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
-        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-        $domain_info = config('conf.GAME_DOMAIN');
-        foreach ($domain_info as $value){
-            $server_domain_info = new ServerDomainInfo();
-            $server_domain_info->setIndex($value['INDEX']);
-            $server_domain_info->setDomain($value['DOMAIN']);
-            $server_domain_info->setPort($value['PORT']);
-            $server_domain_info->setStatus($value['STATUS']);
-            $server_login_info->getDomainInfo()[] = $server_domain_info;
-        }
-
-        $send_data = $server_login_info->encode();
-        CommonFunc::message_xor($send_data);
+        $send_data = $this->getServerLoginInfo($user);
         return $send_data;
     }
 
@@ -93,36 +64,7 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
-		$server_login_info = new ServerLoginInfo();
-		$server_login_info->setCode(1);
-		$server_login_info->setUid($uid);
-        $server_login_info->setNickname($user->nickname);
-        $server_login_info->setSex($user->sex);
-        $server_login_info->setRoomcard($user->roomcard);
-        $server_login_info->setBubble($user->gold);
-        $server_login_info->setRid($user->rid);
-        $server_login_info->setRoomId($user->room_id);
-        $server_login_info->setTeaId($user->tea_id);
-        $server_login_info->setToken($user->openid);
-        $server_login_info->setSharestatus($user->lottery);
-        $server_login_info->setSign(encrypt(env('SIGN')));
-
-        $sysMssage = $this->GetMessage($uid,$user->tea_id);
-        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
-        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
-        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
-        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-		$domain_info = config('conf.GAME_DOMAIN');
-		foreach ($domain_info as $value){
-			$server_domain_info = new ServerDomainInfo();
-			$server_domain_info->setIndex($value['INDEX']);
-			$server_domain_info->setDomain($value['DOMAIN']);
-			$server_domain_info->setPort($value['PORT']);
-			$server_domain_info->setStatus($value['STATUS']);
-			$server_login_info->getDomainInfo()[] = $server_domain_info;
-		}
-		$send_data = $server_login_info->encode();
-		CommonFunc::message_xor($send_data);
+        $send_data = $this->getServerLoginInfo($user);
 		return $send_data;
 	}
 	
@@ -135,37 +77,7 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
-		$server_login_info = new ServerLoginInfo();
-		$server_login_info->setCode(1);
-		$server_login_info->setUid($uid);
-        $server_login_info->setNickname($user->nickname);
-        $server_login_info->setSex($user->sex);
-        $server_login_info->setRoomcard($user->roomcard);
-        $server_login_info->setBubble($user->gold);
-        $server_login_info->setRid($user->rid);
-        $server_login_info->setRoomId($user->room_id);
-        $server_login_info->setTeaId($user->tea_id);
-        $server_login_info->setToken($user->openid);
-        $server_login_info->setSharestatus($user->lottery);
-        $server_login_info->setSign(encrypt(env('SIGN')));
-
-        $sysMssage = $this->GetMessage($uid,$user->tea_id);
-        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
-        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
-        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
-        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-		$domain_info = config('conf.GAME_DOMAIN');
-		foreach ($domain_info as $value){
-			$server_domain_info = new ServerDomainInfo();
-			$server_domain_info->setIndex($value['INDEX']);
-			$server_domain_info->setDomain($value['DOMAIN']);
-			$server_domain_info->setPort($value['PORT']);
-			$server_domain_info->setStatus($value['STATUS']);
-			$server_login_info->getDomainInfo()[] = $server_domain_info;
-		}
-
-		$send_data = $server_login_info->encode();
-		CommonFunc::message_xor($send_data);
+        $send_data = $this->getServerLoginInfo($user);
 		return $send_data;
 	}
 
@@ -204,14 +116,9 @@ class GameLoginController extends Controller
 				$sex = $user_data['sex'];
 				$head_img_url = $user_data['headimgurl'];
 				$unionid = $user_data['unionid'];
-				$roomcard = 1000;
-				$gold = 100000;
-				$rid = 5;
-				$ustate = 0;
-				$room_id = 0;
-				$sharestatus = 0;
+				$roomcard = 5;
+				$gold = 3000;
 				$passwd = CommonFunc::random_string(11);
-                $tea_id = 0;
 				$user = DB::table('xx_user')->where("unionid",$unionid)->first();
 				if (empty($user))
 				{
@@ -226,12 +133,7 @@ class GameLoginController extends Controller
                     }
 				} else {
                     $uid = $user->uid;
-                    $gold = $user->gold;
-                    $roomcard = $user->roomcard;
                     $ustate = $user->ustate;
-                    $room_id = $user->room_id;
-                    $tea_id = $user->tea_id;
-                    $sharestatus = $user->lottery;
 					if ($ustate != 0)
 						goto error_end;
 					//更新数据
@@ -243,38 +145,9 @@ class GameLoginController extends Controller
 					if ($affected != 1)
 						goto error_end;
 				}
-				$server_login_info = new ServerLoginInfo();
-				$server_login_info->setCode(1);
-				$server_login_info->setUid($uid);
-				$server_login_info->setNickname($nickname);
-				$server_login_info->setSex($sex);
-				$server_login_info->setHeadImgUrl($head_img_url);
-				$server_login_info->setRoomcard($roomcard);
-				$server_login_info->setBubble($gold);
-				$server_login_info->setRid($rid);
-				$server_login_info->setRoomId($room_id);
-                $server_login_info->setToken($openid);
-				$server_login_info->setPasswd(encrypt($passwd));
-                $server_login_info->setTeaId($tea_id);
-                $server_login_info->setSharestatus($sharestatus);
-                $server_login_info->setSign(encrypt(env('SIGN')));
-                $sysMssage = $this->GetMessage($uid,$tea_id);
-                $server_login_info->setHallId($sysMssage['hallid']);//大厅号
-                $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
-                $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
-                $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-				$domain_info = config('conf.GAME_DOMAIN');
-				foreach ($domain_info as $value){
-					$server_domain_info = new ServerDomainInfo();
-					$server_domain_info->setIndex($value['INDEX']);
-					$server_domain_info->setDomain($value['DOMAIN']);
-					$server_domain_info->setPort($value['PORT']);
-					$server_domain_info->setStatus($value['STATUS']);
-					$server_login_info->getDomainInfo()[] = $server_domain_info;
-				}
-
-				$send_data = $server_login_info->encode();
-				CommonFunc::message_xor($send_data);
+                //生成protobuf
+                $new_user = DB::table('xx_user')->where("uid",$uid)->first();
+                $send_data = $this->getServerLoginInfo($new_user);
 				curl_close($curl);
 				return $send_data;
 			}
@@ -295,15 +168,8 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where([["uid",$uid],['pwd',$passwd]])->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
-        $roomcard = $user->roomcard;
-        $bubble = $user->gold;
-        $rid = $user->rid;
         $ustate = $user->ustate;
         $refresh_token = $user->refresh_token;
-        $room_id = $user->room_id;
-        $tea_id = $user->tea_id;
-        $openid = $user->openid;
-        $sharestatus = $user->lottery;
 		if ($ustate != 0)
 			return $this->error_message(ErrorCode::Error_WeiXin_Login);
 
@@ -342,39 +208,11 @@ class GameLoginController extends Controller
 				//更新数据
 				$affected = DB::update('update xx_user set nickname = ?, head_img_url = ?, sex = ?, refresh_token = ? where uid = ?',
 					[$nickname, $head_img_url, $sex, $refresh_token, $uid]);
-
-				$server_login_info = new ServerLoginInfo();
-				$server_login_info->setCode(1);
-				$server_login_info->setUid($uid);
-				$server_login_info->setNickname($nickname);
-				$server_login_info->setSex($sex);
-				$server_login_info->setHeadImgUrl($head_img_url);
-				$server_login_info->setRoomcard($roomcard);
-				$server_login_info->setBubble($bubble);
-				$server_login_info->setRid($rid);
-				$server_login_info->setPasswd($old_passwd);
-				$server_login_info->setRoomId($room_id);
-                $server_login_info->setTeaId($tea_id);
-                $server_login_info->setToken($openid);
-                $server_login_info->setSharestatus($sharestatus);
-                $sysMssage = $this->GetMessage($uid,$tea_id);
-                $server_login_info->setHallId($sysMssage['hallid']);//大厅号
-                $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
-                $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
-                $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-                $server_login_info->setSign(encrypt(env('SIGN')));
-				$domain_info = config('conf.GAME_DOMAIN');
-				foreach ($domain_info as $value){
-					$server_domain_info = new ServerDomainInfo();
-					$server_domain_info->setIndex($value['INDEX']);
-					$server_domain_info->setDomain($value['DOMAIN']);
-					$server_domain_info->setPort($value['PORT']);
-					$server_domain_info->setStatus($value['STATUS']);
-					$server_login_info->getDomainInfo()[] = $server_domain_info;
-				}
-
-				$send_data = $server_login_info->encode();
-				CommonFunc::message_xor($send_data);
+                if ($affected != 1)
+                    goto error_end;
+                //生成protobuf
+				$new_user = DB::table('xx_user')->where("uid",$uid)->first();
+                $send_data = $this->getServerLoginInfo($new_user);
 				curl_close($curl);
 				return $send_data;
 			}
@@ -394,6 +232,42 @@ class GameLoginController extends Controller
 		CommonFunc::message_xor($send_data);
 		return $send_data;
 	}
+
+	//生成登录返回protobuf数据
+    private function getServerLoginInfo($user){
+        $server_login_info = new ServerLoginInfo();
+        $server_login_info->setCode(1);
+        $server_login_info->setUid($user->uid);
+        $server_login_info->setNickname($user->nickname);
+        $server_login_info->setSex($user->sex);
+        $server_login_info->setRoomcard($user->roomcard);
+        $server_login_info->setBubble($user->gold);
+        $server_login_info->setRid($user->rid);
+        $server_login_info->setRoomId($user->room_id);
+        //$server_login_info->setPhone($user->uphone);
+        $server_login_info->setTeaId($user->tea_id);
+        $server_login_info->setToken($user->openid);
+        $server_login_info->setSharestatus($user->lottery);
+        $server_login_info->setSign(encrypt(env('SIGN')));
+        $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
+        $server_login_info->setHallId($sysMssage['hallid']);//大厅号
+        $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+        $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
+        $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
+        $domain_info = config('conf.GAME_DOMAIN');
+        foreach ($domain_info as $value){
+            $server_domain_info = new ServerDomainInfo();
+            $server_domain_info->setIndex($value['INDEX']);
+            $server_domain_info->setDomain($value['DOMAIN']);
+            $server_domain_info->setPort($value['PORT']);
+            $server_domain_info->setStatus($value['STATUS']);
+            $server_login_info->getDomainInfo()[] = $server_domain_info;
+        }
+        $send_data = $server_login_info->encode();
+        CommonFunc::message_xor($send_data);
+        return $send_data;
+    }
+
 
     //获取玩家的茶楼大厅、游戏类型、公告、紧急通知
     private function GetMessage($uid,$teaid){
