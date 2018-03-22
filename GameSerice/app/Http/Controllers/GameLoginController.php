@@ -238,6 +238,7 @@ class GameLoginController extends Controller
         $server_login_info = new ServerLoginInfo();
         $server_login_info->setCode(1);
         $server_login_info->setUid($user->uid);
+        $server_login_info->setHeadImgUrl($user->head_img_url);
         $server_login_info->setNickname($user->nickname);
         $server_login_info->setSex($user->sex);
         $server_login_info->setRoomcard($user->roomcard);
