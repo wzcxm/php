@@ -137,9 +137,6 @@ class CashController extends Controller
     //回调方法
     public function notify(){
         try{
-            $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-            $log = Log::Init($logHandler, 15);
-            $log->INFO(111111);
             $notifyback = new WxPayNotify();
             $notifyback->Handle(false);
         }catch (\Exception $e) {

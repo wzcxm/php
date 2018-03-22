@@ -24,7 +24,7 @@ class UserLoginController extends Controller
             return redirect()->back()->with('idmsg','用户ID或者密码错误！');
         }
         else {
-            if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
+            if (!empty($user->rid) && $user->rid < 5  && $user->freeze != 1 && $user->ustate == 0) {
                 Session::put('uid', $user->uid);
                 Session::put('openid', $user->wxopenid);
                 Session::put('front_uid', $user->front_uid);
@@ -54,7 +54,7 @@ class UserLoginController extends Controller
                 $unionid = $tools->data['unionid'];
                 $user = DB::table('v_user')->where('unionid', $unionid)->first();
                 if (!empty($user)) {
-                    if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
+                    if (!empty($user->rid) && $user->rid < 5  && $user->freeze != 1 && $user->ustate == 0) {
                         Session::put('uid', $user->uid);
                         Session::put('openid', $openid);
                         Session::put('front_uid', $user->front_uid);

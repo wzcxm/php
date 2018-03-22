@@ -99,7 +99,7 @@ EOT;
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
         $uid = isset($request['uid']) ? intval($request['uid']) : 0;
-        $where = ' rid = 2 ';
+        $where = ' rid < 5 ';
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
         }

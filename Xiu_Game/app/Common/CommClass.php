@@ -379,7 +379,7 @@ use Xxgame\ServerUserBase;
              //上级不能为空，且上级必须是代理
              if(!empty($buy_user) && !empty($buy_user->front_uid)){
                  $front = Users::find($buy_user->front_uid);
-                 if(!empty($front) && $front->rid == 2){
+                 if(!empty($front) && $front->rid < 5){
                      //如果购买人是代理，走代理返利流程
                      if($buy_user->rid == 2){
                          //上级返利
@@ -394,7 +394,7 @@ use Xxgame\ServerUserBase;
                          //上上级代理返利
                          if(!empty($front->front_uid)){
                              $front_front = Users::find($front->front_uid);
-                             if(!empty($front_front) && $front_front->rid == 2){
+                             if(!empty($front_front) && $front_front->rid < 5){
                                  $return_two = $cash*$twoback/100;
                                  DB::table("xx_wx_backgold")->insert(
                                      ['get_id'=>$front->front_uid,
@@ -433,7 +433,7 @@ use Xxgame\ServerUserBase;
                     if($wx_order->rid == 5){
                         $up_arr["rid"] = 2 ;
                     }
-                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
+                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid < 5){
                         $up_arr["front_uid"] = $wx_order->front ;
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
@@ -451,7 +451,7 @@ use Xxgame\ServerUserBase;
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
-                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid == 2){
+                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid < 5){
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
