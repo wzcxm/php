@@ -83,7 +83,7 @@ $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@get
 $router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
 
 $router->get('/isformal/{version}',function ($version){
-    if($version == 2.9){
+    if($version == 2.10){
         return 1;
     }else{
         return 0;

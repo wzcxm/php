@@ -248,6 +248,7 @@ class GameLoginController extends Controller
         //$server_login_info->setPhone($user->uphone);
         $server_login_info->setTeaId($user->tea_id);
         $server_login_info->setToken($user->openid);
+        $server_login_info->setPasswd(encrypt($user->pwd));
         $server_login_info->setSharestatus($user->lottery);
         $server_login_info->setSign(encrypt(env('SIGN')));
         $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
