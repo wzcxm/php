@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redis;
 class GameLoginController extends Controller
 {
 
-	public function login($uid, $type, $value,$gw_type)
+	public function login($uid, $type,$gw_type, $value)
 	{
 		try {
 //			if ($uid < 9000 || $uid >= 10000)
@@ -26,9 +26,9 @@ class GameLoginController extends Controller
 				case 3:
 					return $this->auto_login($uid, $value,$gw_type);
 				case 4:
-					return $this->account_login($uid);
+					return $this->account_login($uid,$gw_type);
 				case 5:
-					return $this->tel_login($uid,$value);
+					return $this->tel_login($uid,$value,$gw_type);
 				default:
 					break;
 			}
@@ -43,7 +43,7 @@ class GameLoginController extends Controller
 	///手机号登陆
 	/// $tel：手机号
 	/// $code：验证码
-	private function tel_login($tel,$code){
+	private function tel_login($tel,$code,$gw_type){
 		//验证验证码
 		$oldcode = \Cache::get($tel);
 		if(empty($oldcode) || $oldcode!=$code)
@@ -52,6 +52,7 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where("uphone",$tel)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
+        DB::table('xx_user')->where("uphone",$tel)->update(['gw_type'=>$gw_type]);
 		$server_login_info = new ServerLoginInfo();
 		$server_login_info->setCode(1);
 		$server_login_info->setUid($user->uid);
@@ -95,6 +96,7 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
+        DB::table('xx_user')->where("uid",$uid)->update(['gw_type'=>1]);
 		$server_login_info = new ServerLoginInfo();
 		$server_login_info->setCode(1);
 		$server_login_info->setUid($uid);
@@ -129,7 +131,7 @@ class GameLoginController extends Controller
 	}
 	
 	//账号登录 ID(9000-9400)
-	private function account_login($uid)
+	private function account_login($uid,$gw_type)
 	{
 		if ($uid < 9000 || $uid > 9400)
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
@@ -137,6 +139,7 @@ class GameLoginController extends Controller
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
 			return $this->error_message(ErrorCode::Error_Not_Found_User);
+        DB::table('xx_user')->where("uid",$uid)->update(['gw_type'=>$gw_type]);
 		$server_login_info = new ServerLoginInfo();
 		$server_login_info->setCode(1);
 		$server_login_info->setUid($uid);
@@ -344,7 +347,7 @@ class GameLoginController extends Controller
 
 				//更新数据
 				$affected = DB::update('update xx_user set nickname = ?, head_img_url = ?, sex = ?, refresh_token = ?,gw_type = ? where uid = ?',
-					[$nickname, $head_img_url, $sex, $refresh_token, $uid,$gw_type]);
+					[$nickname, $head_img_url, $sex, $refresh_token,$gw_type, $uid]);
 
 				$server_login_info = new ServerLoginInfo();
 				$server_login_info->setCode(1);

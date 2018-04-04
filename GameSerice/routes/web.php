@@ -15,7 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 //登录
-$router->get('/login/{uid}&{type}&{value}&{gw_type}','GameLoginController@login');
+$router->get('/login/{uid}&{type}&{gw_type}&{value}','GameLoginController@login');
 
 //获取玩家的茶楼列表
 $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
