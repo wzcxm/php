@@ -61,7 +61,7 @@ class GameLoginController extends Controller
 		$server_login_info->setSex($user->sex);
 		$server_login_info->setRoomcard($user->roomcard);
 		$server_login_info->setBubble($user->gold);
-        $server_login_info->setPhone($user->uphone);
+        //$server_login_info->setPhone($user->uphone);
 		$server_login_info->setRid($user->rid);
         $server_login_info->setPasswd(encrypt($user->pwd));
 		$server_login_info->setRoomId($user->room_id);
@@ -104,7 +104,7 @@ class GameLoginController extends Controller
 		$server_login_info->setSex($user->sex);
 		$server_login_info->setRoomcard($user->roomcard);
 		$server_login_info->setBubble($user->gold);
-        $server_login_info->setPhone($user->uphone);
+        //$server_login_info->setPhone($user->uphone);
 		$server_login_info->setRid($user->rid);
 		$server_login_info->setRoomId($user->room_id);
 		$server_login_info->setTeaId($user->tea_id);
@@ -147,7 +147,7 @@ class GameLoginController extends Controller
 		$server_login_info->setSex($user->sex);
 		$server_login_info->setRoomcard($user->roomcard);
 		$server_login_info->setBubble($user->gold);
-        $server_login_info->setPhone($user->uphone);
+        //$server_login_info->setPhone($user->uphone);
 		$server_login_info->setRid($user->rid);
 		$server_login_info->setRoomId($user->room_id);
 		$server_login_info->setTeaId($user->tea_id);
@@ -257,7 +257,7 @@ class GameLoginController extends Controller
 				$server_login_info->setHeadImgUrl($head_img_url);
 				$server_login_info->setRoomcard($roomcard);
 				$server_login_info->setBubble($gold);
-                $server_login_info->setPhone($phone);
+                //$server_login_info->setPhone($phone);
 				$server_login_info->setRid($rid);
 				$server_login_info->setRoomId($room_id);
 				$server_login_info->setToken($openid);
@@ -357,7 +357,7 @@ class GameLoginController extends Controller
 				$server_login_info->setHeadImgUrl($head_img_url);
 				$server_login_info->setRoomcard($roomcard);
 				$server_login_info->setBubble($bubble);
-                $server_login_info->setPhone($phone);
+                //$server_login_info->setPhone($phone);
 				$server_login_info->setRid($rid);
 				$server_login_info->setPasswd($old_passwd);
 				$server_login_info->setRoomId($room_id);
