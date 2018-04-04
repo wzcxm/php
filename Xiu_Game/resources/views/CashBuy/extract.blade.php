@@ -47,22 +47,27 @@
                 }
             });
             $("#btn_extr").click(function () {
+                comm.btn_status('btn_extr','Disabled');
                 var gold = parseInt($("#gold").val());
                 var backgold = parseInt($("#backgold").html());
                 if(!comm.is_null(backgold) || backgold < 50){
                     $.alert("可提现返利小于50元，不能提现！");
+                    comm.btn_status('btn_extr','Enabled');
                     return;
                 }
                 if(!comm.is_null(gold)){
                     $.alert("请输入提现金额！");
+                    comm.btn_status('btn_extr','Enabled');
                     return;
                 }
                 if(gold > backgold){
                     $.alert("提现金额不能大于可提现返利！");
+                    comm.btn_status('btn_extr','Enabled');
                     return;
                 }
                 if(gold < 1){
                     $.alert("提现金额不能小于1元！");
+                    comm.btn_status('btn_extr','Enabled');
                     return;
                 }
                 $.post("/Extract/ext/"+gold,function (data) {
@@ -73,6 +78,7 @@
                             window.location.reload();
                         });
                     }
+                    comm.btn_status('btn_extr','Enabled');
                 });
             });
         });

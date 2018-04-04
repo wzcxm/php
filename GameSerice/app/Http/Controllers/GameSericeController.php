@@ -161,7 +161,7 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 2.10) {
+			if ($version == 2.11) {
 				$ret = "2";
 			} else {
 				if($version < 2.5){
@@ -171,7 +171,7 @@ EOT;
 				}
 			}
 		}else if($type==2){
-			if($version < 2.5){
+			if($version < 2.7){
 				$ret = "1";
 			}else{
 				$ret = "0";
@@ -226,6 +226,7 @@ EOT;
             if(!empty($data)){
                 foreach ($data as $da){
                     $record = new Record();
+                    $record->setGameno($da->id);
                     $record->setRoomid($da->roomid);
                     $record->setNumber($da->number);
                     $record->setGametype($da->gametype);
@@ -321,6 +322,7 @@ EOT;
 			if(!empty($data)){
 				foreach ($data as $da){
 					$record = new Record();
+                    $record->setGameno($da->id);
 					$record->setRoomid($da->roomid);
 					$record->setNumber($da->number);
 					$record->setGametype($da->gametype);
@@ -368,6 +370,7 @@ EOT;
 			if(!empty($data)){
 				foreach ($data as $da){
 					$record = new Record();
+                    $record->setGameno($da->id);
 					$record->setRoomid($da->roomid);
 					$record->setNumber($da->number);
 					$record->setGametype($da->gametype);

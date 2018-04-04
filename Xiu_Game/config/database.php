@@ -41,8 +41,8 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'hbyx-ceshifu1.mysql.rds.aliyuncs.com'),
-            'port' => env('DB_PORT', '3442'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '8770'),
             'database' => env('DB_DATABASE', 'xxyx'),
             'username' => env('DB_USERNAME', 'hbyx_game'),
             'password' => env('DB_PASSWORD', 'sV$a3yIy(M2Vo'),

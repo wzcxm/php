@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/','UserLoginController@index');
+Route::get('/',function(){
+    return view('UserLogin.WxLogin');
+});
+Route::get('/wxlogin','UserLoginController@index');
 Route::get('/admin',function(){
     return view('UserLogin.Login');
 });
@@ -140,6 +143,9 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/Players/data','UserManageController@getData');
     Route::post('/Players/lock','UserManageController@Lock');
     Route::post('/Players/unlock','UserManageController@Unlock');
+
+    Route::post('/Players/setRole','UserManageController@setRole');
+
 
     //游戏详情
     Route::get('/System','MyInfoController@getSysInfo');

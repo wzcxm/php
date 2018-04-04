@@ -11,6 +11,8 @@ use App\Wechat\lib\WxPayRedPack;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayApi;
 use Xxgame\RedisTableInfo;
+use App\Wechat\example\log;
+use App\Wechat\example\CLogFileHandler;
 
 
 class GameSericeController extends Controller
@@ -55,7 +57,7 @@ class GameSericeController extends Controller
                     DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1,'jptype'=>3]);
 
                     $message = "<color='red'>恭喜玩家：【".Users::find($uid)->nickname."】,在每日分享抽奖中，抽中了：【".$item['name']."】！</color>";
-                    CommClass::UpGameSer(1,'msg',$message);
+                    CommClass::UpGameSer(1,'msg',$message,3);
                 }
             }else{
                 DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
@@ -129,13 +131,45 @@ class GameSericeController extends Controller
     }
 
     //发红包
+
+    /**
+     * @param $uid
+     * @return int
+     */
     public function RedPack($uid){
         try{
-            if(empty($uid)) return 0;//["state"=>0,"Error"=>"uid or total error "];
-            $player = Users::find($uid);
+            if(empty($uid)) return "UID_ERROR";//["state"=>0,"Error"=>"uid or total error "];
+            //查询并扣除用户红包金额
+            $data = DB::select('CALL query_update('.$uid.')');
             $orderno = WxPayConfig::MCHID . date("YmdHis");
-            $openid = $player->wxopenid;
-            $total = $player->redbag;
+            $openid = $data[0]->wxopenid;
+            $total = $data[0]->redbag;
+            if($total < 1) {
+                return "AMOUNT_ERROR";
+            }
+            $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
+            $log = Log::Init($logHandler, 15);
+            $ret_msg = $this->sendRed($orderno,$openid,$total);
+            if( $ret_msg == "OK"){
+                //将发送红包记录保存
+                DB::table('xx_sys_extract')->insert(['uid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
+                //修改用户的红包记录
+                DB::table('xx_sys_prize')->where([['uid',$uid],['jptype',3]])->update(['isreceive'=>1]);
+                return 1;
+            }else{
+                $log->INFO($uid.':'.$ret_msg);
+                //发放失败，玩家红包加回来
+                DB::table('xx_user')->where('uid',$uid)->update(['redbag'=>$total]);
+                return $ret_msg;
+            }
+        }catch (\Exception $e){
+            return "OTHER_ERROR";
+        }
+    }
+
+
+    private  function sendRed($orderno,$openid,$total){
+        try{
             //发送红包
             $input = new WxPayRedPack();
             $input->SetMch_Billno($orderno);
@@ -150,19 +184,14 @@ class GameSericeController extends Controller
             $result = WxPayApi::redPack($input);
             $result = $input->FromXml($result);
             if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
-                //发送成功，扣除用户红包金额
-                DB::table('xx_user')->where('uid',$uid)->update(['redbag'=>0]);
-                //将发送红包记录保存
-                DB::table('xx_sys_extract')->insert(['uid'=>$uid,'gold'=>$total,'orderno'=>$orderno,'status'=>1]);
-                //修改用户的红包记录
-                DB::table('xx_sys_prize')->where([['uid',$uid],['jptype',3]])->update(['isreceive'=>1]);
-                return 1;
+                return "OK";
             }else{
-                return 0;//["state"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];
+                return $result["err_code"];
             }
         }catch (\Exception $e){
-            return 0;//["state"=>0,"Error"=>$e->getMessage()];
+            return $e->getMessage();
         }
+
     }
 
     //下载页面

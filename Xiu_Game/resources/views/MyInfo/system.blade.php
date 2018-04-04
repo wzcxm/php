@@ -23,19 +23,19 @@
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd" style="width: 40%;">上月消耗金豆：</div>
+            <div class="weui-cell__hd" style="width: 40%;">上月购买金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['front_jd'])?0:$sys['front_jd']}}
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd" style="width: 40%;">当月消耗金豆：</div>
+            <div class="weui-cell__hd" style="width: 40%;">当月购买金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['now_jd'])?0:$sys['now_jd']}}
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd" style="width: 40%;">总消耗金豆：</div>
+            <div class="weui-cell__hd" style="width: 40%;">总消购买金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['total_jd'])?0:$sys['total_jd']}}
             </div>

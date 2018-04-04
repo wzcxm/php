@@ -15,7 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 //登录
-$router->get('/login/{uid}&{type}&{value}','GameLoginController@login');
+$router->get('/login/{uid}&{type}&{value}&{gw_type}','GameLoginController@login');
 
 //获取玩家的茶楼列表
 $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
@@ -83,7 +83,9 @@ $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@get
 $router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
 
 $router->get('/isformal/{version}',function ($version){
-    if($version == 2.10){
+    if(empty($version))
+        return 0;
+    if($version == 2.11){
         return 1;
     }else{
         return 0;

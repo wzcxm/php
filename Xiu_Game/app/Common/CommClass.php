@@ -149,7 +149,7 @@ use Xxgame\ServerUserBase;
      {
          $Server_Command_User_Base = 219;    //ServerUserBase
          $Server_Type_PHP = 2;  //php
-         $message = pack('S2L3',$Server_Type_PHP,$Server_Command_User_Base,strlen($user_msg),$uid,0);
+         $message = pack('S4L2',$Server_Type_PHP,$Server_Command_User_Base,0,strlen($user_msg),$uid,0);
          $message .=$user_msg;
          CommClass::message_xor($message);
          $game_wg = config("conf.Game_WG");
@@ -176,7 +176,7 @@ use Xxgame\ServerUserBase;
      /// <param name="type">更新类型</param>
      /// <param name="str">通知内容</param>
      /// <returns></returns>
-     public static function UpGameSer($uid,$type,$str=null){
+     public static function UpGameSer($uid,$type,$str=null,$play_num = -1){
         try{
             $ser_user = new ServerUserBase();
             if($uid != 1){
@@ -196,6 +196,7 @@ use Xxgame\ServerUserBase;
                     $ser_user->setUrgent($str);
             }
             $ser_user->setType($type);
+            $ser_user->setPlayNum($play_num);
             return CommClass::subServer($ser_user->encode(),$uid);
         }catch (\Exception $e){
             return false;

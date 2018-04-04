@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Common\CommClass;
-use App\Models\GroupInfo;
-use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use App\Models\Users;
 use App\Wechat\example\JsApiPay;
 
 class UserLoginController extends Controller

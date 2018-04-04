@@ -110,28 +110,31 @@ class BackCashController extends Controller
     //提现
     public function ext($gold){
         try{
-            $model = Users::find(session('uid'));
-            if($gold > $model->money){
-                return response()->json(["status"=>0,"Error"=>"提现金额不能大于可提现金额！"]);
+            //先扣除积分，并返回openid
+            $data = DB::select('CALL query_update_cash('.session('uid').','.$gold .')');
+            if(empty($data) || count($data) <= 0){ //扣除失败，说明余额不足
+                return response()->json(["Error"=>"余额不足！"]);
             }
-            //生成订单号
-            $openid = $model->wxopenid;
-            $amount = $gold*100;
-            $orderno = WxPayConfig::MCHID . date("YmdHis");
-            //发起提现，并返回提现结果
-            $result = $this->GetExtract($openid,$orderno,$amount);
-            //如果提现成功，减去积分
-            $ret_msg = ["Error"=>""];
-            if($result['status']==1){
-                //支付成功，扣除用户的积分
-                DB::table('xx_user')->where('uid',session('uid'))->decrement('money', $gold);
-                //将提现记录保存
-                DB::table('xx_sys_extract')->insert(['uid'=>session('uid'),'gold'=>$gold,'orderno'=>$orderno]);
-            }else{
-                //返回错误信息
-                $ret_msg = ["Error"=>$result['Error']];
+            else{
+                //生成订单号
+                $openid = $data[0]->wxopenid;
+                $amount = $gold*100;
+                $orderno = WxPayConfig::MCHID . date("YmdHis");
+                //发起提现，并返回提现结果
+                $result = $this->GetExtract($openid,$orderno,$amount);
+                //如果提现成功，减去积分
+                $ret_msg = ["Error"=>""];
+                if($result == "OK"){
+                    //将提现记录保存
+                    DB::table('xx_sys_extract')->insert(['uid'=>session('uid'),'gold'=>$gold,'orderno'=>$orderno]);
+                }else{
+                    //支付失败，用户的积分加回
+                    DB::table('xx_user')->where('uid',session('uid'))->increment('money', $gold);
+                    //返回错误信息
+                    $ret_msg = ["Error"=>$result];
+                }
+                return response()->json($ret_msg);
             }
-            return response()->json($ret_msg);
         }catch (\Exception $e){
             return response()->json(["Error"=>$e->getMessage()]);
         }
@@ -149,17 +152,17 @@ class BackCashController extends Controller
             $result = WxPayApi::Extract($input);
             $result = $input->FromXml($result);
             if($result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS") {
-                return ["status"=>1,"Error"=>""];
+                return "OK";
             }else{
                 //如果返回的的是系统忙，则用原来的定单号再提交一次
                 if($result["err_code"] == "SYSTEMERROR"){
                     $this->GetExtract($openid,$orderno,$amount);
                 }else{
-                    return ["status"=>0,"Error"=>$result["err_code"]."|".$result["err_code_des"]];
+                    return $result["err_code"]."|".$result["err_code_des"];
                 }
             }
         }catch (\Exception $e){
-            return ["status"=>0,"Error"=>$e->getMessage()];
+            return $e->getMessage();
         }
     }
 

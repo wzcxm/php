@@ -7,17 +7,21 @@
         <table>
             <tr>
                 <td><span> ID：</span></td>
-                <td><input id="uid" class="easyui-textbox" style="width: 120px;"></td>
+                <td><input id="uid" class="easyui-textbox" style="width: 100px;"></td>
                 <td><a href="#" id="btn_search" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-search'">查询</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a href="javascript:window.location.reload();"  class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-reload'">刷新</a></td>
+                <td><div class="datagrid-btn-separator"></div></td>
+                <td><a href="#" id="btn_set_zd"  class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
             </tr>
             <tr>
                 <td ><span> 上级ID：</span></td>
-                <td><input id="front" class="easyui-textbox" style="width: 120px;"></td>
+                <td><input id="front" class="easyui-textbox" style="width: 100px;"></td>
                 <td><a href="#" id="btn_black" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-lock'">拉黑</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a href="#" id="btn_white" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-ok'">拉白</a></td>
+                <td><div class="datagrid-btn-separator"></div></td>
+                <td><a href="#" id="btn_set_dl" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为代理</a></td>
             </tr>
         </table>
     </div>
@@ -69,7 +73,10 @@
                                 return '公司';
                             }else if(value==2){
                                 return '代理';
-                            }else if(value==7){
+                            }else if(value==3){
+                                return '总代';
+                            }
+                            else if(value==7){
                                 return 'System';
                             }else{
                                 return '玩家';
@@ -148,6 +155,44 @@
                     //点击取消后的回调函数
                 });
             });
-        })
+
+            //设为总代
+            $("#btn_set_zd").click(function () {
+                setRole(3,"您确定要将该玩家设为总代吗？");
+            });
+            //设为代理
+            $("#btn_set_dl").click(function () {
+                setRole(2,"您确定要将该玩家设为代理吗？");
+            });
+        });
+
+        function setRole(type,msg) {
+            var rows =  $("#tab_grid").datagrid('getChecked');
+            if(rows.length<=0){
+                $.alert('请选择玩家','提示');
+                return;
+            }
+            var ids = "";
+            for(var i=0;i<rows.length;i++){
+                if(ids==""){
+                    ids += rows[i]['uid'];
+                }else{
+                    ids += ','+rows[i]['uid'];
+                }
+            }
+            $.confirm(msg, function() {
+                //点击确认后的回调函数
+                $.post('/Players/setRole',{rid:type,data:ids},function (result) {
+                    if(result.msg==1){
+                        comm.Reload('tab_grid');
+                    }
+                    else{
+                        $.alert(result.msg);
+                    }
+                });
+            }, function() {
+                //点击取消后的回调函数
+            });
+        }
     </script>
 @endsection

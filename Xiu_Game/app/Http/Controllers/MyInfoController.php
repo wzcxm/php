@@ -109,13 +109,17 @@ class MyInfoController extends Controller
             ->whereBetween('create_time',[date('Y-m-01'),date('Y-m-t 23:59:59')])
             ->sum('roomcard');
         //上月消耗金豆
-        $system['front_jd'] = 200;
+        $system['front_jd'] = \DB::table('xx_sys_buybeans')
+            ->whereBetween('create_date',[date('Y-m-01', strtotime('-1 month')),date('Y-m-t 23:59:59', strtotime('-1 month'))])
+            ->sum('gold');
         //当月消耗金豆
-        $system['now_jd'] = 300;
+        $system['now_jd'] = \DB::table('xx_sys_buybeans')
+            ->whereBetween('create_date',[date('Y-m-01'),date('Y-m-t 23:59:59')])
+            ->sum('gold');
         //总消耗钻石
         $system['total_zs'] = \DB::table('xx_player_record')->sum('roomcard');
         //总消耗金豆
-        $system['total_jd'] = 300;
+        $system['total_jd'] = \DB::table('xx_sys_buybeans')->sum('gold');
         //注册玩家
         $system['count_person'] = CommClass::GetPerosn();;
         //在线人数

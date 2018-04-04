@@ -49,4 +49,17 @@ class UserManageController extends Controller
         }
     }
 
+    //设置代理
+    public function setRole(Request $request){
+        try{
+            $ids = isset($request['data'])?$request['data']:"";
+            $rid = isset($request['rid'])?$request['rid']:5;
+            $id_list = explode(',',$ids);
+            DB::table('xx_user')->whereIn('uid',$id_list)->update(['rid'=>$rid]);
+            return response()->json(['msg'=>1]);
+        }catch (\Exception $e) {
+            return response()->json(['msg'=>$e->getMessage()]);
+        }
+    }
+
 }

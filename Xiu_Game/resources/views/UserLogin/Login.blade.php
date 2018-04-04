@@ -7,7 +7,7 @@
     <!-- 对视窗缩放等级进行限制，使其适应移动端屏幕大小 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 当把这个网页添加到主屏幕时的标题（仅限IOS） -->
-    <meta name="apple-mobile-web-app-title" content="长沙泡泡游戏管理系统">
+    <meta name="apple-mobile-web-app-title" content="休休游戏管理系统">
     <!-- 添加到主屏幕后全屏显示 -->
     <meta name="apple-touch-fullscreen" content="yes" />
     <title>休休游戏管理系统</title>
