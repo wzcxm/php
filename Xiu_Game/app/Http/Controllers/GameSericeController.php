@@ -5,6 +5,7 @@ use App\Common\CommClass;
 use App\Models\ShoppingMall;
 use App\Models\Users;
 use App\Wechat\example\JsApiPay;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use App\Wechat\lib\WxPayRedPack;
@@ -236,6 +237,28 @@ class GameSericeController extends Controller
             return 1;
         }catch (\Exception $e){
             return 0;
+        }
+    }
+
+
+    ///短信发送
+    /// $uid:玩家ID
+    /// $type:发送类型
+    public function sendCodeSms($tel){
+        try{
+            $code = rand(1000,9999 );
+            //存入缓存
+            $expiresAt = Carbon::now()->addMinutes(5);
+            \Cache::put($tel,$code,$expiresAt);
+            $param = array('code'=>$code);
+            $content = CommClass::send_sms($tel,'SMS_123797991',$param);
+            if($content->Code == "OK"){
+                return response()->json(['Error'=>""]);
+            }else{
+                return response()->json(['Error'=>"发送失败，请检查手机号是否正确！"]);
+            }
+        }catch (\Exception $e){
+             return response()->json(['Error'=>"发送失败，请重试！"]);
         }
     }
 }

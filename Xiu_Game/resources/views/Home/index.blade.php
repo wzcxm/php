@@ -5,7 +5,7 @@
 <div  class="weui-flex" style="background-color:#ffa500;">
     @if(!empty($User))
         <div class="weui-flex__item" style="text-align: center;padding-top: 25px;">
-            <img src="{{$User->head_img_url}}" style="border-radius:50px;" width="100">
+            <img src="{{$User->head_img_url}}" style="border-radius:80px;" width="150">
         </div>
         <div class="weui-flex__item" >
             <div style="padding-top: 5px;font-size: 1rem;font-weight: bold;">
@@ -19,6 +19,13 @@
             </div>
             <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
                 我的金豆：{{$User->gold}}
+            </div>
+            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
+                @if(!empty($User->uphone))
+                    我的手机：<a href="javascript:void(0)" id="bind_phone">{{$User->uphone}}</a>
+                @else
+                    我的手机：<a href="javascript:void(0)" id="bind_phone">绑定手机</a>
+                @endif
             </div>
             <div style="padding-top: 5px;padding-bottom: 5px;font-size: 0.9rem;font-weight: 400;color:white;">
                 <span style="border-radius:3px;background-color: #f36666;">{{$User->rname}}</span>
@@ -69,5 +76,35 @@
 </div>
 @endsection
 @section('script')
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $("#bind_phone").click(function () {
+                $.prompt({
+                    title: '绑定手机号',
+                    text: '<a style="color: red;font-size: 1em;">请慎重输入手机号，如果您已绑定手机号，将覆盖原手机号</a>',
+                    empty: true, // 是否允许为空
+                    onOK: function (input) {
+                        $.post('/Home/bindPhone',{tel:input},function (reslut) {
+                            if(comm.is_null(reslut.Error)){
+                                //$.alert(reslut.Error);
+                                $.toptip(reslut.Error,4000, 'error');
+                            }else{
+                                window.location.reload();
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                        //点击取消
+                    },
+                    autoClose: true
+                });
+            });
+        });
+    </script>
 @endsection
 

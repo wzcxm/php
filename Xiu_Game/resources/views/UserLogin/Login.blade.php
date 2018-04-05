@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('/css/LoginStyle.css')}}">
 </head>
 <body>
-<form id="slick-login" method="POST" action="/Login" >
+<form id="slick-login" method="POST" action="/Login">
     <input type="hidden"  name="_token" value="{{ csrf_token() }}">
     <div style="text-align: center;font-size: 26px;color:#fff;">
         <h2>休休游戏管理系统</h2>

@@ -18,7 +18,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 require __DIR__.'/../app/Common/CommClass.php';
 require __DIR__.'/../app/Common/message.pb.php';
-
+require __DIR__.'/../app/Common/SignatureHelper.php';
+require __DIR__.'/../app/Common/WeChatHelper.php';
 require __DIR__.'/../app/Wechat/lib/WxPay.Api.php';
 require __DIR__.'/../app/Wechat/lib/WxPay.Config.php';
 require __DIR__.'/../app/Wechat/lib/WxPay.Data.php';

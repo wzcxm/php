@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Common\CommClass;
+use App\Common\WeChatHelper;
 use App\Models\BackGold;
-use App\Models\CardStrade;
-use App\Models\Users;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -45,6 +45,36 @@ class HomeController extends Controller
              return DB::table('role_menu')->get();
          });
          return $Menus->where('roleid',$roleid);
+    }
+
+    public function  updatePhone(Request $request){
+        try{
+            $tel = isset($request['tel'])?$request['tel']:0;
+            if(!$this->is_mobile($tel)){
+                return response()->json(['Error'=>"请输入合法的手机号!"]);
+            }
+            DB::table('xx_user')->where('uid',session('uid'))->update(['uphone'=>$tel]);
+            return response()->json(['Error'=>""]);
+        }catch (\Exception $e){
+            return response()->json(['Error'=>"绑定失败！"]);
+        }
+    }
+
+    //验证手机号是否合法
+    private function is_mobile($phone) {
+        $search = '/^0?1[3|4|5|6|7|8][0-9]\d{8}$/';
+        if ( preg_match( $search, $phone ) ) {
+            return  true ;
+        } else {
+            return  false ;
+        }
+    }
+
+
+    public function updateWx(){
+        $wxHelper = new WeChatHelper();
+        $data = $wxHelper->GetUserInfo();
+        var_dump($data);
     }
 
 }

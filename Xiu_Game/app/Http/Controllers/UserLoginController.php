@@ -74,4 +74,45 @@ class UserLoginController extends Controller
         }
     }
 
+
+    public function phoneLogin(Request $request){
+        try{
+            $tel = isset($request["tel"])?$request["tel"]:"";
+            $code = isset($request["code"])?$request["code"]:"";
+            if(empty($tel)){
+                 return response()->json(['Error'=>'请输入手机号！']);
+            }
+            if(empty($code)){
+                return response()->json(['Error'=>'请输入验证码！']);
+            }
+            //验证验证码
+            $oldcode = \Cache::get($tel);
+            if(empty($oldcode) || $oldcode!=$code){
+                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
+            }
+            $user = \DB::table('v_user')->where('uphone',$tel)->first();
+            if(empty($user)) {
+                return response()->json(['Error'=>'该手机号码未绑定游戏ID！']);
+            }
+            else {
+                if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
+                    Session::put('uid', $user->uid);
+                    Session::put('openid', $user->wxopenid);
+                    Session::put('front_uid', $user->front_uid);
+                    Session::put('roleid', $user->rid);
+                    Session::put('headimg', $user->head_img_url);
+                    Session::put('roomcard', $user->roomcard);
+                    Session::put('rolename', $user->rname);
+                    Session::put('money', $user->money);
+                    Session::put('gold', $user->gold);
+                    return response()->json(['Error'=>'OK']);
+                }else{
+                    return response()->json(['Error'=>'NO_AGENT']);
+                }
+            }
+        }catch (\Exception $e){
+            return response()->json(['Error'=>'登录失败，请重试！']);
+        }
+    }
+
 }

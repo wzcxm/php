@@ -20,6 +20,8 @@ Route::get('/admin',function(){
 });
 
 Route::post('/Login','UserLoginController@Login');
+Route::post('/phoneLogin','UserLoginController@phoneLogin');
+
 Route::get('/Warning',function (){
     return view('UserLogin.Warning');
 });
@@ -27,6 +29,10 @@ Route::get('/Warning',function (){
 Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //首页
     Route::get('/Home','HomeController@index');
+    //绑定手机
+    Route::post('/Home/bindPhone','HomeController@updatePhone');
+    //更新微信
+    Route::get('//UpdateWx','HomeController@updateWx');
     //菜单
     Route::get('/Menus',function (){
         return view('Menus.Index');
@@ -178,5 +184,8 @@ Route::get('/download/{uid?}','GameSericeController@Download');
 
 //购买金豆
 Route::get('/buybeans/{uid}/{bid}','GameSericeController@buyBeans');
+
+//验证码发送
+Route::get('/sms/{tel}','GameSericeController@sendCodeSms');
 
 /// end//////////////////////////////
