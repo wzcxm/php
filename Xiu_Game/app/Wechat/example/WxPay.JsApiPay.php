@@ -33,6 +33,7 @@ class JsApiPay
 	 * @var array
 	 */
 	public $data = null;
+
 	
 	/**
 	 * 
@@ -58,6 +59,46 @@ class JsApiPay
 			return $openid;
 		}
 	}
+    private function GetCode()
+    {
+        //通过code获得openid
+        if (!isset($_GET['code'])){
+            //触发微信返回code码
+            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
+            $url = $this->__CreateOauthUrlForCode($baseUrl);
+            Header("Location: $url");
+            exit();
+        } else {
+            //获取code码，以获取openid
+            $code = $_GET['code'];
+            return $code;
+        }
+    }
+
+    public function GetUserInfo(){
+	    try{
+            $code = $this->GetCode();
+            $url = $this->__CreateOauthUrlForOpenid($code);
+            //取出openid
+            $data = $this->HttpGet($url);
+            if (!array_key_exists("errcode", $data)) {
+                $openid = $data['openid'];
+                $access_token = $data['access_token'];
+                $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
+                $reslut = $this->HttpGet($url);
+                if (!array_key_exists("errcode", $reslut)){
+                    return $reslut;
+                }
+                else{
+                    return null;
+                }
+            }else{
+                return null;
+            }
+        }catch (\Exception $e){
+	        return null;
+        }
+    }
 	
 	/**
 	 * 

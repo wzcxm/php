@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Common\CommClass;
-use App\Common\WeChatHelper;
 use App\Models\BackGold;
+use App\Wechat\example\JsApiPay;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -72,9 +72,18 @@ class HomeController extends Controller
 
 
     public function updateWx(){
-        $wxHelper = new WeChatHelper();
-        $data = $wxHelper->GetUserInfo();
-        var_dump($data);
+        $jsApiPay = new JsApiPay();
+        $data = $jsApiPay->GetUserInfo();
+        if(!empty($data)){
+            DB::table('xx_user')->where('uid',session('uid'))->update([
+                'nickname'=>$data['nickname'],
+                'head_img_url'=>$data['headimgurl'],
+                'sex'=>$data['sex'],
+                'unionid'=>$data['unionid'],
+                'wxopenid'=>$data['openid']
+            ]);
+            return redirect('/Home');
+        }
     }
 
 }

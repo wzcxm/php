@@ -188,4 +188,6 @@ Route::get('/buybeans/{uid}/{bid}','GameSericeController@buyBeans');
 //验证码发送
 Route::get('/sms/{tel}','GameSericeController@sendCodeSms');
 
+//Route::get('/testLottery','GameSericeController@testLottery');
+
 /// end//////////////////////////////
