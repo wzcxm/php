@@ -3,8 +3,8 @@ namespace App\Common;
 
 class WeChatHelper{
 
-    const APPID = 'wx8236e25cf16a7c2e';
-    const APPSECRET = 'cd3eeb089d60f5ed428488ac0d6282d9';
+    const APPID = 'wx052f88f97207e5b0';
+    const APPSECRET = '9785764b07bd0dfc4ca8fbb056df1404';
     const CURL_PROXY_HOST = "0.0.0.0";//"10.152.18.220";
     const CURL_PROXY_PORT = 0;//8080;
 
