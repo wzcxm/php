@@ -73,7 +73,11 @@ class GameLoginController extends Controller
 		$server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
 		$server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
 		$server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-		$domain_info = config('conf.GAME_DOMAIN');
+        if($gw_type == 1){
+            $domain_info = config('conf.GAME_DOMAIN_APP');
+        }else{
+            $domain_info = config('conf.GAME_DOMAIN_H5');
+        }
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
 			$server_domain_info->setIndex($value['INDEX']);
@@ -116,7 +120,7 @@ class GameLoginController extends Controller
 		$server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
 		$server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
 		$server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-		$domain_info = config('conf.GAME_DOMAIN');
+        $domain_info = config('conf.GAME_DOMAIN_APP');
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
 			$server_domain_info->setIndex($value['INDEX']);
@@ -159,7 +163,11 @@ class GameLoginController extends Controller
 		$server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
 		$server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
 		$server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-		$domain_info = config('conf.GAME_DOMAIN');
+        if($gw_type == 1){
+            $domain_info = config('conf.GAME_DOMAIN_APP');
+        }else{
+            $domain_info = config('conf.GAME_DOMAIN_H5');
+        }
 		foreach ($domain_info as $value){
 			$server_domain_info = new ServerDomainInfo();
 			$server_domain_info->setIndex($value['INDEX']);
@@ -269,7 +277,11 @@ class GameLoginController extends Controller
 				$server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
 				$server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
 				$server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-				$domain_info = config('conf.GAME_DOMAIN');
+                if($gw_type == 1){
+                    $domain_info = config('conf.GAME_DOMAIN_APP');
+                }else{
+                    $domain_info = config('conf.GAME_DOMAIN_H5');
+                }
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
 					$server_domain_info->setIndex($value['INDEX']);
@@ -369,7 +381,11 @@ class GameLoginController extends Controller
 				$server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
 				$server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
 				$server_login_info->setSign(encrypt(env('SIGN')));
-				$domain_info = config('conf.GAME_DOMAIN');
+				if($gw_type == 1){
+                    $domain_info = config('conf.GAME_DOMAIN_APP');
+                }else{
+                    $domain_info = config('conf.GAME_DOMAIN_H5');
+                }
 				foreach ($domain_info as $value){
 					$server_domain_info = new ServerDomainInfo();
 					$server_domain_info->setIndex($value['INDEX']);
