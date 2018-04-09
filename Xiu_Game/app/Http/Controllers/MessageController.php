@@ -73,7 +73,7 @@ class MessageController extends Controller
                 CommClass::UpGameSer(1,'msg',$message->mcontent);
             //紧急通知
             if($message->mtype==3)
-                CommClass::UpGameSer(1,'urgent',$message->mcontent);
+                CommClass::UpGameSer(1,'urgent',$message->mcontent,3);
 
             return response()->json(['msg'=>1]);
         }catch (\Exception $e){

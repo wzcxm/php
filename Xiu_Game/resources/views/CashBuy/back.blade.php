@@ -67,7 +67,10 @@
                                 return "下下级";
                             }else if(value==4){
                                 return "自购";
-                            }else{return "";}
+                            }else if(value==5){
+                                return "下级首冲";
+                            }
+                            else{return "";}
                         }},
                     {field:'gold',title:'消费金额',width:60},
                     {field:'backgold',title:'返利金额',width:60},

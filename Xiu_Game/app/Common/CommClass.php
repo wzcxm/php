@@ -197,7 +197,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                     $ser_user->setUrgent($str);
             }
             $ser_user->setType($type);
-            $ser_user->setPlayNum($play_num);
+            //$ser_user->setPlayNum($play_num);
             return CommClass::subServer($ser_user->encode(),$uid);
         }catch (\Exception $e){
             return false;
@@ -435,12 +435,22 @@ use Aliyun\DySDKLite\SignatureHelper;
                     if($wx_order->rid == 5){
                         $up_arr["rid"] = 2 ;
                     }
-                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid < 5){
+                    if(empty($wx_order->front_uid)
+                        && !empty($wx_order->front)
+                        && $wx_order->front != $wx_order->userid
+                        && $wx_order->frid < 5){
                         $up_arr["front_uid"] = $wx_order->front ;
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
-                        DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                        //DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                        DB::table("xx_wx_backgold")->insert(
+                            ['get_id'=>$wx_order->front,
+                                'back_id'=>$wx_order->userid,
+                                'backgold'=>100,
+                                'gold'=>$wx_order->total,
+                                'ratio'=>0,
+                                'level'=>5]);
                     }
                     //更新我的角色
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
@@ -453,12 +463,22 @@ use Aliyun\DySDKLite\SignatureHelper;
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
-                    if(empty($wx_order->front_uid) && !empty($wx_order->front) && $wx_order->frid < 5){
+                    if(empty($wx_order->front_uid)
+                        && !empty($wx_order->front)
+                        && $wx_order->front != $wx_order->userid
+                        && $wx_order->frid < 5){
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
-                        DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                        //DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
+                        DB::table("xx_wx_backgold")->insert(
+                            ['get_id'=>$wx_order->front,
+                                'back_id'=>$wx_order->userid,
+                                'backgold'=>100,
+                                'gold'=>$wx_order->total,
+                                'ratio'=>0,
+                                'level'=>5]);
                     }else{
                         //代理返利
                         CommClass::BackCash($wx_order->userid, $wx_order->total);
