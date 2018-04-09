@@ -91,3 +91,6 @@ $router->get('/isformal/{version}',function ($version){
         return 0;
     }
 });
+
+$router->get('/setredis','GameSericeController@setRedisList');
+

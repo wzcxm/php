@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Common\CommonFunc;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\DB;
 use Xxgame\Business;
 use Xxgame\BusinessList;
@@ -619,6 +620,20 @@ EOT;
 			return "";
 		}
 	}
+
+
+
+	public function setRedisList(){
+	    try{
+            Redis::set('site_name', 'Lumen的redis');
+            return Redis::get('site_name');
+        }catch (\Exception $e){
+            var_dump ($e->getMessage());
+        }
+
+        //var_dump($temp);
+    }
+
 
 
 }

@@ -37,5 +37,5 @@ return [
     'GameType'=>[
         300 =>'xx_nsb_record',
         400=>'xx_pdk_record'
-        ]
+        ],
 ];
