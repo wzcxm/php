@@ -13,12 +13,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--推广码</title>
     {{--<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">--}}
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180411">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 <div id="images" ></div>
 <div  class="qrcode_bg" >
-    <div style="height:55%">
+    <div style="height: 15%;">
         <div style="float: left;margin: 8px 0 0 5px;width: 18%;">
             <img id="head" src="data:image/png;base64,{{empty($head)?'/img/ui-default.jpg':$head}}"
                  style="border-radius:10px;border: 3px solid white;"
@@ -29,6 +29,7 @@
             <div>ID:{{empty($user)?"":$user->uid}}</div>
         </div>
     </div>
+    <div style="height: 40%;"></div>
     <div style="text-align: center;">
         <div style="width: 55%;margin-left: 22%">
             <img style="border-radius:10px;"
@@ -42,10 +43,10 @@
 <script src="{{ asset('js/canvas2image.js') }}"></script>
 <script type="text/javascript">
     $(function () {
-        convert2canvas();
+        //convert2canvas();
     });
     window.onload=function (ev) {
-        document.body.removeChild(document.querySelector('.qrcode_bg'));
+        //document.body.removeChild(document.querySelector('.qrcode_bg'));
     };
     function convert2canvas() {
         var shareContent = document.querySelector('.qrcode_bg');//需要截图的包裹的（原生的）DOM 对象
