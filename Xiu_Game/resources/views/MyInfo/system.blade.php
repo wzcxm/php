@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd" style="width: 40%;">总消购买金豆：</div>
+            <div class="weui-cell__hd" style="width: 40%;">总购买金豆：</div>
             <div class="weui-cell__bd">
                 {{empty($sys['total_jd'])?0:$sys['total_jd']}}
             </div>
