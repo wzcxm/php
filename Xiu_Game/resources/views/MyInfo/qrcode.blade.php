@@ -12,11 +12,14 @@
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--推广码</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180319">
+    {{--<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">--}}
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180410">
 </head>
 <body>
-<img width="100%" height="100%" id="img" style="display: none;">
+<div style="width: 100%;height: 100%;">
+    <img height="100%" width="100%" id="img" style="display: none;">
+</div>
+
 <div class="qrcode_bg" >
     <div style="height:55%">
         <div style="float: left;margin: 8px 0 0 5px;width: 18%;">

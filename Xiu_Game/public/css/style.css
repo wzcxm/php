@@ -1,6 +1,8 @@
 body, html {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
+    font-family: sans-serif;
+    margin: 0;
 }
 .share_head_bg {
    width:100%;
