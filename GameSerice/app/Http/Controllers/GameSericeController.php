@@ -625,8 +625,10 @@ EOT;
 
 	public function setRedisList(){
 	    try{
-            Redis::set('site_name', 'Lumen的redis');
-            return Redis::get('site_name');
+            Redis::rpush('xx_user_id_list', '1');
+            Redis::rpush('xx_user_id_list', '2');
+            var_dump(Redis::lpop('xx_user_id_list')) ;
+            var_dump(Redis::lpop('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
         }
