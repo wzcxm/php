@@ -125,8 +125,9 @@ class GameLoginController extends Controller
 				$user = DB::table('xx_user')->where("unionid",$unionid)->first();
 				if (empty($user))
 				{
+				    $user_uid = Redis::lpop('xx_user_id_list');
 					//插入数据
-					$uid = DB::table('xx_user')->insertGetId([
+					$uid = DB::table('xx_user')->insertGetId(['uid'=>$user_uid,
 						'nickname'=>$nickname,'head_img_url'=>$head_img_url,'sex'=>$sex,'roomcard'=>$roomcard,'gold'=>$gold,
 						'openid'=>$openid,'unionid'=>$unionid,'refresh_token'=>$refresh_token,'pwd'=>$passwd,'gw_type'=>$gw_type
 					]);
