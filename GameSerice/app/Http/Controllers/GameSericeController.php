@@ -629,13 +629,13 @@ EOT;
                 22222,33333,44444,55555,66666,77777,88888,99999,666666,888888,999999];
 	        $uid = DB::table("xx_user")->whereNotIn('uid',$arr)->max('uid');
             $str = [];
-//	        for ($i=$uid+1;$i<1000000;$i++){
-//	            if(!in_array($i,$arr)){
-//                   $str .= ' '.$i;
-//                }
-//            }
+	        for ($i=$uid+1;$i<1000000;$i++){
+	            if(!in_array($i,$arr)){
+                   array_push($str,$i);
+                }
+            }
             //var_dump($str);
-            Redis::rpush('xx_user_id_list', [123,456,789]);
+            Redis::rpush('xx_user_id_list', $str);
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
