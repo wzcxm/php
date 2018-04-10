@@ -37,7 +37,7 @@ body, html {
     background-size:100% 100%;
 }
 .qrcode_bg {
-    width:150%;
+    width:175%;
     height:175%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
