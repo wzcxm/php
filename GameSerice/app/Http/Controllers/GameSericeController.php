@@ -635,7 +635,7 @@ EOT;
 //                }
 //            }
             //var_dump($str);
-            Redis::rpush('xx_user_id_list', " 123 456 789");
+            Redis::rpush('xx_user_id_list', 123,456,789);
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
