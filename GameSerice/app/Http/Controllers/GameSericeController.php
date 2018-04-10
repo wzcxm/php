@@ -625,10 +625,12 @@ EOT;
 
 	public function setRedisList(){
 	    try{
-            Redis::rpush('xx_user_id_list', '1');
-            Redis::rpush('xx_user_id_list', '2');
+            Redis::rpush('xx_user_id_list', '100');
+            Redis::rpush('xx_user_id_list', '200');
             var_dump(Redis::lpop('xx_user_id_list')) ;
+            var_dump(Redis::llen('xx_user_id_list')) ;
             var_dump(Redis::lpop('xx_user_id_list')) ;
+            var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
         }
