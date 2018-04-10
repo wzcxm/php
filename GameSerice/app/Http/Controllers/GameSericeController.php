@@ -625,11 +625,13 @@ EOT;
 
 	public function setRedisList(){
 	    try{
-            Redis::rpush('xx_user_id_list', '100');
-            Redis::rpush('xx_user_id_list', '200');
-            var_dump(Redis::lpop('xx_user_id_list')) ;
-            var_dump(Redis::llen('xx_user_id_list')) ;
-            var_dump(Redis::lpop('xx_user_id_list')) ;
+	        $arr = [12345,23456,45678,56789,22222,33333,44444,55555,66666,77777,88888,99999,666666,888888,999999];
+	        $uid = DB::table("xx_user")->max('uid');
+	        for ($i=$uid+1;$i<1000000;$i++){
+	            if(!in_array($i,$arr)){
+                    Redis::rpush('xx_user_id_list', $i);
+                }
+            }
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
