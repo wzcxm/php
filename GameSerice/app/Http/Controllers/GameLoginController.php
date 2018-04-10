@@ -321,7 +321,12 @@ class GameLoginController extends Controller
             $server_login_info->setTeaId($user->tea_id);
             $server_login_info->setToken($user->openid);
             $server_login_info->setSign(encrypt(env('SIGN')));
-            $sysMssage = $this->GetMessage($user->uid,$user->tea_id);
+            if(empty($user->tea_id)){
+                $temp_teaid = $user->room_id/100;
+            }else{
+                $temp_teaid = $user->tea_id;
+            }
+            $sysMssage = $this->GetMessage($user->uid,$temp_teaid);
             $server_login_info->setHallId($sysMssage['hallid']);//大厅号
             $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
             $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
