@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180411">
 </head>
 <body>
-<div id="images" style="width: 100%;height: 100%;"></div>
+<div id="images" ></div>
 <div  class="qrcode_bg" >
     <div style="height:55%">
         <div style="float: left;margin: 8px 0 0 5px;width: 18%;">
