@@ -43,10 +43,10 @@
 <script src="{{ asset('js/canvas2image.js') }}"></script>
 <script type="text/javascript">
     $(function () {
-        //convert2canvas();
+        convert2canvas();
     });
     window.onload=function (ev) {
-        //document.body.removeChild(document.querySelector('.qrcode_bg'));
+        document.body.removeChild(document.querySelector('.qrcode_bg'));
     };
     function convert2canvas() {
         var shareContent = document.querySelector('.qrcode_bg');//需要截图的包裹的（原生的）DOM 对象
