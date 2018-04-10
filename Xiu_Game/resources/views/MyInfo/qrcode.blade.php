@@ -5,7 +5,7 @@
     <!-- 1、如果支持Google Chrome Frame：GCF，则使用GCF渲染；2、如果系统安装ie8或以上版本，则使用最高版本ie渲染；3、否则，这个设定可以忽略。 -->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <!-- 对视窗缩放等级进行限制，使其适应移动端屏幕大小 -->
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <!-- 当把这个网页添加到主屏幕时的标题（仅限IOS） -->
     <meta name="apple-mobile-web-app-title" content="推广码">
     <!-- 添加到主屏幕后全屏显示 -->
@@ -50,8 +50,8 @@
     };
     function convert2canvas() {
         var shareContent = document.querySelector('.qrcode_bg');//需要截图的包裹的（原生的）DOM 对象
-        var width = shareContent.offsetWidth; //获取dom 宽度
-        var height = shareContent.offsetHeight; //获取dom 高度
+        var width = shareContent.offsetWidth; //获取dom 宽度window.screen.width;
+        var height = shareContent.offsetHeight; //获取dom 高度window.screen.height;
         var canvas = document.createElement("canvas"); //创建一个canvas节点
         var scale = 2; //定义任意放大倍数 支持小数
         canvas.width = width * scale; //定义canvas 宽度 * 缩放
@@ -80,8 +80,8 @@
             document.getElementById('images').appendChild(img);
 
             $(img).css({
-                "width": "100%",
-                "height": "100%"
+                "width": window.screen.width+"px",
+                "height": window.screen.height+"px"
             });
 
         });
