@@ -13,14 +13,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--推广码</title>
     {{--<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">--}}
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180410">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180411">
 </head>
 <body>
-<div style="width: 100%;height: 100%;">
-    <img height="100%" width="100%" id="img" style="display: none;">
-</div>
-
-<div class="qrcode_bg" >
+<div id="images" style="width: 100%;height: 100%;"></div>
+<div  class="qrcode_bg" >
     <div style="height:55%">
         <div style="float: left;margin: 8px 0 0 5px;width: 18%;">
             <img id="head" src="data:image/png;base64,{{empty($head)?'/img/ui-default.jpg':$head}}"
@@ -40,40 +37,55 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('/js/html2canvas.min.js') }}"></script>
+<script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
+<script src="{{ asset('js/html2canvas.min.js') }}"></script>
+<script src="{{ asset('js/canvas2image.js') }}"></script>
 <script type="text/javascript">
-
-        //要显示图片的img标签
-        var image = document.querySelector('#img');
-        //要保存的元素
-        var element = document.querySelector('.qrcode_bg');
-        //创建一个新的canvas
-        var width = element.offsetWidth ; //获取dom 宽度
-        var height = element.offsetHeight; //获取dom 高度
+    $(function () {
+        convert2canvas();
+    });
+    window.onload=function (ev) {
+        document.body.removeChild(document.querySelector('.qrcode_bg'));
+    };
+    function convert2canvas() {
+        var shareContent = document.querySelector('.qrcode_bg');//需要截图的包裹的（原生的）DOM 对象
+        var width = shareContent.offsetWidth; //获取dom 宽度
+        var height = shareContent.offsetHeight; //获取dom 高度
         var canvas = document.createElement("canvas"); //创建一个canvas节点
         var scale = 2; //定义任意放大倍数 支持小数
         canvas.width = width * scale; //定义canvas 宽度 * 缩放
         canvas.height = height * scale; //定义canvas高度 *缩放
-        canvas.getContext("2d").scale(scale,scale); //获取context,设置scale
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
         var opts = {
-            scale:scale, // 添加的scale 参数
-            canvas:canvas, //自定义 canvas
-            logging: true, //日志开关
-            width:width, //dom 原始宽度
-            height:height //dom 原始高度
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
+            width: width, //dom 原始宽度
+            height: height
         };
 
-        //生成图片
-        html2canvas(element,opts).then(function(canvas) {
-            image.src = canvas.toDataURL();
+        html2canvas(shareContent, opts).then(function (canvas) {
+
+            var context = canvas.getContext('2d');
+            // 【重要】关闭抗锯齿
+            context.mozImageSmoothingEnabled = false;
+            context.webkitImageSmoothingEnabled = false;
+            context.msImageSmoothingEnabled = false;
+            context.imageSmoothingEnabled = false;
+
+            // 【重要】默认转化的格式为png,也可设置为其他格式
+            var img = Canvas2Image.convertToJPEG(canvas, canvas.width, canvas.height);
+
+            document.getElementById('images').innerHTML="";
+            document.getElementById('images').appendChild(img);
+
+            $(img).css({
+                "width": "100%",
+                "height": "100%"
+            });
+
         });
 
-        //删除div
-        window.onload=function (ev) {
-            document.body.removeChild(element);
-            image.style.display='block';
-        };
-
+    }
 
 </script>
 </body>
