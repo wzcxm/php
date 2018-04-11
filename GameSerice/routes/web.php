@@ -24,7 +24,7 @@ $router->get('/getTeaList/{uid}/{sign}','GameSericeController@GetTeaList');
 $router->get('/getTeaOrderBy/{sign}','GameSericeController@GetTeaOrderByList');
 
 //获取茶楼玩家列表
-$router->get('/getTeaPlayerList/{teaid}/{sign}','GameSericeController@GetTeaPlayerList');
+$router->get('/getTeaPlayerList/{teaid}/{uid}/{sign}','GameSericeController@GetTeaPlayerList');
 
 //添加修改茶楼成员备注
 $router->get('/updateRemark/{teaid}/{uid}/{remark}/{sign}','GameSericeController@updateRemark');

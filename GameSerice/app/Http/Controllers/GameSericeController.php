@@ -90,12 +90,16 @@ EOT;
 	///获取茶楼玩家列表
 	/// $teaid：茶楼ID
 	/// $key：KEY
-	public function GetTeaPlayerList($teaid,$sign){
+	public function GetTeaPlayerList($teaid,$uid,$sign){
 		try{
 			//验证签名
 			if(!$this->checkSign($sign)) return "";
 
 			if(empty($teaid)) return "";
+
+			$user_mode = DB::table("xx_sys_teas")->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
+			if(empty($user_mode) || count($user_mode) <= 0)
+                return "";
 			$sql = <<<EOT
 			select t.*,u.nickname,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.tea_id = $teaid
 EOT;
