@@ -274,7 +274,7 @@ class GameSericeController extends Controller
     public function getAppOrder($uid,$goodsid){
         $player = Users::find($uid);
         if(empty($player)){
-            $ret_json =  ['status'=>1,'message'=>'玩家ID错误！','res'=>""];
+            $ret_json =  ['status'=>1,'message'=>'玩家ID错误！','order_no'=>'','res'=>""];
         }else{
             $product = ShoppingMall::find($goodsid);
             //购卡数量
@@ -287,10 +287,10 @@ class GameSericeController extends Controller
             //生成订单
             $param = $this->generateAppOrder($total_fee,$orderno);
             if(empty($param)){
-                $ret_json = ['status'=>1,'message'=>'NUll','res'=>""];
+                $ret_json = ['status'=>1,'message'=>'下单失败！','order_no'=>'','res'=>""];
             }else{
                 if ($param['return_code'] == "SUCCESS" && $param['result_code'] == "SUCCESS") {
-                    $ret_json =['status'=>0,'message'=>'','res'=>$param];
+                    $ret_json =['status'=>0,'message'=>'','order_no'=>$orderno,'res'=>$param];
                     //保存订单号到数据库
                     $remp = DB::table('xx_wx_buycard')->insert([
                         'userid' => $uid,
@@ -300,7 +300,7 @@ class GameSericeController extends Controller
                         'btype' => 1
                     ]);
                 }else{
-                    $ret_json =['status'=>1,'message'=>$param["return_code"].':'.$param["return_msg"],'res'=>""];
+                    $ret_json =['status'=>1,'message'=>$param["return_code"].':'.$param["return_msg"],'res'=>"",'order_no'=>''];
                 }
             }
         }
