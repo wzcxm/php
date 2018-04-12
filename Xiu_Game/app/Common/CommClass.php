@@ -496,6 +496,20 @@ use Aliyun\DySDKLite\SignatureHelper;
      }
 
 
+     /*
+      * APP玩家购买，支付成功更新砖石
+      */
+    public static function SetAppPlayerCard($order_no){
+        $wx_order = DB::table('xx_wx_buycard')->where([['nonce', $order_no],['status',0]])->first();
+        if (!empty($wx_order)) {
+            CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
+
+            //更新订单状态
+            DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
+            //更新游戏的钻石数量
+            CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
+        }
+    }
 
      ///发送短信
      /// $tel:手机号

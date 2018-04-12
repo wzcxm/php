@@ -5,15 +5,18 @@ use App\Common\CommClass;
 use App\Models\ShoppingMall;
 use App\Models\Users;
 use App\Wechat\example\JsApiPay;
+use App\Wechat\lib\WxAppPayUnifiedOrder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use App\Wechat\lib\WxPayRedPack;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayApi;
+use Nwidart\DbExporter\DbExporter;
 use Xxgame\RedisTableInfo;
 use App\Wechat\example\log;
 use App\Wechat\example\CLogFileHandler;
+use App\Wechat\lib\WxPayNotify;
 
 
 class GameSericeController extends Controller
@@ -263,6 +266,88 @@ class GameSericeController extends Controller
     }
 
 
+    /*
+     * App支付统一下单
+     * $uid:玩家ID
+     * $goodsid:商品id
+     */
+    public function getAppOrder($uid,$goodsid){
+        $player = Users::find($uid);
+        if(empty($player)){
+            $ret_json =  ['status'=>1,'message'=>'玩家ID错误！','res'=>""];
+        }else{
+            $product = ShoppingMall::find($goodsid);
+            //购卡数量
+            $toltal_number = $product->snumber;
+            //总金额
+            $total_fee = $product->sprice*100;
+            //订单号
+            $orderno = WxPayConfig::MCHID . date("YmdHis");
+
+            //生成订单
+            $param = $this->generateAppOrder($total_fee,$orderno);
+            if(empty($param)){
+                $ret_json = ['status'=>1,'message'=>'NUll','res'=>""];
+            }else{
+                if ($param['return_code'] == "SUCCESS" && $param['result_code'] == "SUCCESS") {
+                    $ret_json =['status'=>0,'message'=>'','res'=>$param];
+                    //保存订单号到数据库
+                    $remp = DB::table('xx_wx_buycard')->insert([
+                        'userid' => $uid,
+                        'cardnum' => $toltal_number,
+                        'total' => $total_fee/100,
+                        'nonce' => $orderno,
+                        'btype' => 1
+                    ]);
+                }else{
+                    $ret_json =['status'=>1,'message'=>$param["return_code"].':'.$param["return_msg"],'res'=>""];
+                }
+            }
+        }
+        return $ret_json;
+    }
+
+    private function generateAppOrder($total_fee,$orderno){
+        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
+        $log = Log::Init($logHandler, 15);
+        try {
+            $input = new WxAppPayUnifiedOrder();
+            $input->SetBody("休休游戏-充值");
+            $input->SetAttach("休休科技");
+            $input->SetOut_trade_no($orderno);
+            $input->SetTotal_fee($total_fee);
+            $input->SetTime_start(date("YmdHis"));
+            $input->SetGoods_tag("WXG");
+            $input->SetNotify_url("http://".$_SERVER['HTTP_HOST']."/api/app/notify");
+            $input->SetTrade_type("APP");
+            $order = WxPayApi::AppUnifiedOrder($input);
+            return $order;
+        }catch (\Exception $e){
+            $log->ERROR($e->getMessage());
+            return null;
+        }
+    }
+    //回调方法
+    public function appnotify(){
+        try{
+            $notifyback = new WxPayNotify();
+            $notifyback->appHandle(false);
+        }catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    //删除订单
+    public function delAppOrder($order_no){
+        if(!empty($order_no)){
+            DB::table('xx_wx_buycard')->where([['nonce', $order_no],['status',0]])->delete();
+            return 1;
+        }else{
+            return 0 ;
+        }
+
+
+    }
 
 //    private  function test(){
 //        //开始抽奖

@@ -188,6 +188,11 @@ Route::get('/buybeans/{uid}/{bid}','GameSericeController@buyBeans');
 //验证码发送
 Route::get('/sms/{tel}','GameSericeController@sendCodeSms');
 
+//app支付统一下单
+Route::get('/apppay/{uid}/{goods}','GameSericeController@getAppOrder');
+//删除订单
+Route::get('/delorder/{order_no}','GameSericeController@delAppOrder');
+
 //Route::get('/testLottery','GameSericeController@testLottery');
 
 /// end//////////////////////////////

@@ -26,6 +26,9 @@ class WxPayConfig
 	const MCHID = '1498105092';
 	const KEY = 'LYi06L04uosTCF2xpfIaBVlT0bBdJluL';
 	const APPSECRET = '9785764b07bd0dfc4ca8fbb056df1404';
+    const GAMEAPPID = 'wx8236e25cf16a7c2e';
+    const GAMEMCHID = '1498398572';
+    const GAMEKEY = 'ryJRy0WDIxNJ46ALffoJOQOcaszqbO24';
 	
 	//=======【证书路径设置】=====================================
 	/**

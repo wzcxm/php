@@ -34,7 +34,31 @@ class WxPayNotify extends WxPayNotifyReply
 		}
 		$this->ReplyNotify($needSign);
 	}
-	
+
+    /**
+     *
+     * APp支付回调入口
+     * @param bool $needSign  是否需要签名输出
+     */
+    final public function AppHandle($needSign = true)
+    {
+        $msg = "OK";
+        //当返回false的时候，表示notify中调用NotifyCallBack回调失败获取签名校验失败，此时直接回复失败
+        $result = WxpayApi::appNotify(array($this, 'NotifyCallBack'), $msg);
+        if($result == false){
+
+            $this->SetReturn_code("FAIL");
+            $this->SetReturn_msg($msg);
+            $this->AppReplyNotify(false);
+            return;
+        } else {
+            $this->SetReturn_code("SUCCESS");
+            $this->SetReturn_msg("OK");
+        }
+        $this->AppReplyNotify($needSign);
+    }
+
+
 	/**
 	 * 
 	 * 回调方法入口，子类可重写该方法
@@ -73,18 +97,34 @@ class WxPayNotify extends WxPayNotifyReply
 	}
 	
 	/**
-	 * 
-	 * 回复通知
-	 * @param bool $needSign 是否需要签名输出
-	 */
-	final private function ReplyNotify($needSign = true)
-	{
-		//如果需要签名
-		if($needSign == true && 
-			$this->GetReturn_code($return_code) == "SUCCESS")
-		{
-			$this->SetSign();
-		}
-		WxpayApi::replyNotify($this->ToXml());
-	}
+ *
+ * 回复通知
+ * @param bool $needSign 是否需要签名输出
+ */
+    final private function ReplyNotify($needSign = true)
+    {
+        //如果需要签名
+        if($needSign == true &&
+            $this->GetReturn_code($return_code) == "SUCCESS")
+        {
+            $this->SetSign();
+        }
+        WxpayApi::replyNotify($this->ToXml());
+    }
+
+    /**
+     *
+     * 回复通知
+     * @param bool $needSign 是否需要签名输出
+     */
+    final private function AppReplyNotify($needSign = true)
+    {
+        //如果需要签名
+        if($needSign == true &&
+            $this->GetReturn_code($return_code) == "SUCCESS")
+        {
+            $this->SetAppSign();
+        }
+        WxpayApi::replyNotify($this->ToXml());
+    }
 }
