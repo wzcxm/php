@@ -219,14 +219,14 @@ EOT;
             if(empty($uid)) return "";
             $data = DB::table('v_xx_record')
                 ->where('player_id',$uid)
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
                 ->orderBy('create_time', 'desc')
                 ->offset($offset*5)
                 ->limit(5)
                 ->get();
             $total = DB::table('v_xx_record')
                 ->where('player_id',$uid)
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
                 ->count();
             $recordList =  new RecordList();
             $recordList->setTotal($total);
@@ -317,14 +317,14 @@ EOT;
 			if(empty($teaid)) return "";
 			$data = DB::table('xx_player_record')
 				->where('tea_id',$teaid)
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
 				->orderBy('create_time', 'desc')
 				->offset($offset*5)
 				->limit(5)
 				->get();
 			$total = DB::table('xx_player_record')
 				->where('tea_id',$teaid)
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
 				->count();
 			$recordList =  new RecordList();
 			$recordList->setTotal($total);
@@ -367,14 +367,14 @@ EOT;
 			if(empty($teaid)) return "";
 			$data = DB::table('v_xx_record')
 				->where([['player_id',$uid],['tea_id',$teaid]])
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
 				->orderBy('create_time', 'desc')
 				->offset($offset*5)
 				->limit(5)
 				->get();
 			$total = DB::table('v_xx_record')
 				->where([['player_id',$uid],['tea_id',$teaid]])
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d') ])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
 				->count();
 			$recordList =  new RecordList();
 			$recordList->setTotal($total);
