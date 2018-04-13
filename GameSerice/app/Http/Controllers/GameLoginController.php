@@ -322,7 +322,7 @@ class GameLoginController extends Controller
             $server_login_info->setToken($user->openid);
             $server_login_info->setSign(encrypt(env('SIGN')));
             if(empty($user->tea_id)){
-                $temp_teaid = $user->room_id/100;
+                $temp_teaid = floor($user->room_id/100);
             }else{
                 $temp_teaid = $user->tea_id;
             }
