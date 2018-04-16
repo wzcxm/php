@@ -296,8 +296,8 @@ class GameSericeController extends Controller
                     $ret_json =['status'=>0,
                         'message'=>'',
                         'order_no'=>$orderno,
-                        'appid'=>$param["appid"], 'partnerid'=>$param["mch_id"],
-                        'prepayid'=>$param["prepay_id"], 'noncestr'=>$param["nonce_str"],
+                        'appid'=>$param["appid"], 'mch_id'=>$param["mch_id"],
+                        'prepay_id'=>$param["prepay_id"], 'nonce_str'=>$param["nonce_str"],
                         'package'=>'Sign=WXPay', 'timestamp'=>time(),
                         'sign'=>$this->setsgin($arr)
                         ];
