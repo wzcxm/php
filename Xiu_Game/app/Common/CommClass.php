@@ -198,7 +198,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                     $ser_user->setUrgent($str);
             }
             $ser_user->setType($type);
-            //$ser_user->setPlayNum($play_num);
+            $ser_user->setPlayNum($play_num);
             return CommClass::subServer($ser_user->encode(),$uid);
         }catch (\Exception $e){
             return false;
