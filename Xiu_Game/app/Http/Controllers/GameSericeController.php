@@ -365,11 +365,11 @@ class GameSericeController extends Controller
         ksort($param);
         $string = $this->ToUrlParams($param);
         //签名步骤二：在string后加入KEY
-        //$string = $string . "&key=".WxPayConfig::GAMEKEY;
+        $string = $string . "&key=".WxPayConfig::GAMEKEY;
         //签名步骤三：MD5加密
         $string = md5($string);
         //hash_hmac加密
-        //$string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
+        $string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
         //签名步骤四：所有字符转为大写
         $result = strtoupper($string);
         return $result;
