@@ -290,15 +290,17 @@ class GameSericeController extends Controller
                 $ret_json = ['status'=>1,'message'=>'下单失败！'];
             }else{
                 if ($param['return_code'] == "SUCCESS" && $param['result_code'] == "SUCCESS") {
+                    $arr = ['appid'=>$param["appid"], 'mch_id'=>$param["mch_id"],
+                        'prepay_id'=>$param["prepay_id"], 'nonce_str'=>$param["nonce_str"],
+                        'package'=>'Sign=WXPay', 'timestamp'=>time()];
                     $ret_json =['status'=>0,
                         'message'=>'',
                         'order_no'=>$orderno,
-                        'appid'=>$param["appid"],
-                        'mch_id'=>$param["mch_id"],
-                        'prepay_id'=>$param["prepay_id"],
-                        'nonce_str'=>$param["nonce_str"],
-                        'sign'=>$param["sign"],
-                        'timestamp'=>time()];
+                        'appid'=>$param["appid"], 'mch_id'=>$param["mch_id"],
+                        'prepay_id'=>$param["prepay_id"], 'nonce_str'=>$param["nonce_str"],
+                        'package'=>'Sign=WXPay', 'timestamp'=>time(),
+                        'sign'=>$this->setsgin($arr)
+                        ];
                     //保存订单号到数据库
                     $remp = DB::table('xx_wx_buycard')->insert([
                         'userid' => $uid,
@@ -355,6 +357,35 @@ class GameSericeController extends Controller
         }
 
 
+    }
+
+
+    private function setsgin($param){
+        //签名步骤一：按字典序排序参数
+        ksort($param);
+        $string = $this->ToUrlParams($param);
+        //签名步骤二：在string后加入KEY
+        $string = $string . "&key=".WxPayConfig::GAMEKEY;
+        //签名步骤三：MD5加密
+        $string = md5($string);
+        //hash_hmac加密
+        //$string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
+        //签名步骤四：所有字符转为大写
+        $result = strtoupper($string);
+        return $result;
+    }
+    private function ToUrlParams($param)
+    {
+        $buff = "";
+        foreach ($param as $k => $v)
+        {
+            if($k != "sign" && $v != "" && !is_array($v)){
+                $buff .= $k . "=" . $v . "&";
+            }
+        }
+
+        $buff = trim($buff, "&");
+        return $buff;
     }
 
 //    private  function test(){
