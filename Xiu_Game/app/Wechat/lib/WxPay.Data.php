@@ -149,6 +149,8 @@ class WxPayDataBase
         $string = $string . "&key=".WxPayConfig::GAMEKEY;
         //签名步骤三：MD5加密
         $string = md5($string);
+        //hash_hmac加密
+        //$string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
         //签名步骤四：所有字符转为大写
         $result = strtoupper($string);
         return $result;
