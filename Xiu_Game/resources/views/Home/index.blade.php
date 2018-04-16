@@ -1,59 +1,74 @@
 @extends('Layout.WeUiLayout')
 @section('style')
+    <link rel="stylesheet" href="{{asset('css/home.css')}}?v=201804138">
 @endsection
 @section('content')
-<div  class="weui-flex" style="background-color:#ffa500;">
-    @if(!empty($User))
-        <div class="weui-flex__item" style="text-align: center;padding-top: 25px;">
-            <img src="{{$User->head_img_url}}" style="border-radius:80px;" width="150">
-        </div>
-        <div class="weui-flex__item" >
-            <div style="padding-top: 5px;font-size: 1rem;font-weight: bold;">
-                {{$User->nickname}}
+@if(!empty($User))
+    <div  class="weui-flex home_bg" >
+        <div style="width: 100%">
+            <div style="float: left;width: 65%;text-align: right;">
+                <img src="{{$User->head_img_url}}" class="head" width="40%">
             </div>
-            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
-                ID：{{$User->uid}}
-            </div>
-            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
-                我的钻石：{{$User->roomcard}}
-            </div>
-            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
-                我的金豆：{{$User->gold}}
-            </div>
-            <div style="padding-top: 5px;font-size: 0.8rem;font-weight: 400;">
-                @if(!empty($User->uphone))
-                    我的手机：<a href="javascript:void(0)" id="bind_phone">{{$User->uphone}}</a>
-                @else
-                    我的手机：<a href="javascript:void(0)" id="bind_phone">绑定手机</a>
-                @endif
-            </div>
-            <div style="padding-top: 5px;padding-bottom: 5px;font-size: 0.9rem;font-weight: 400;color:white;">
-                <span style="border-radius:3px;background-color: #f36666;">{{$User->rname}}</span>
+            <div style="float: right;width: 35%;text-align: right;margin-top: 20px;">
+                <span class="role">{{$User->rname}}</span>
             </div>
         </div>
-    @endif
-</div>
-<div  class="weui-flex" style="background-color: #f7f7fa;">
+        <div style="text-align:center;color: white;">
+           <div><span style="font-weight: 400;font-size: 1.2rem;">{{$User->nickname}}</span></div>
+            <div style="width: 100%">
+                <div style="float: left;width: 50%;text-align: right;">
+                    ID：
+                </div>
+                <div style="float: right;width: 50%;text-align: left;">
+                    {{$User->uid}}
+                </div>
+            </div>
+            <div style="width: 100%">
+                <div style="float: left;width: 50%;text-align: right;">
+                    手机：
+                </div>
+                <div style="float: right;width: 50%;text-align: left;">
+                    <a href="javascript:$('#bind_tel').show('fast');"  style="color:#a3ff04;">
+                        @if(!empty(trim($User->uphone)))
+                            {{$User->uphone}}
+                        @else
+                            绑定手机
+                        @endif
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="weui-flex zs_bg" >
+        <div class="weui-flex__item" style="text-align: center;">
+            钻石：{{$User->roomcard}}
+        </div>
+        <div class="weui-flex__item" style="text-align: center;">
+            金豆：{{$User->gold}}
+        </div>
+    </div>
+@endif
+<div  class="weui-flex" style="font-size:  0.75rem;padding: 5px 5px 5px 5px;">
     @if($roleid==1)
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size:  0.7rem;font-weight: bold;">下载人数：</span>
-            <span style="font-size:  0.65rem;font-weight: bold;color:red;">{{$count_person}}</span>
+            <span>下载人数：</span>
+            <span style="color:#f11367;">{{$count_person}}</span>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size: 0.7rem;font-weight: bold;">在线人数：</span>
+            <span>在线人数：</span>
 
-            <span style="font-size:  0.65rem;font-weight: bold;color:red;">{{$today_person}}</span>
+            <span style="color:#f11367;">{{$today_person}}</span>
         </div>
     @else
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size:  0.8rem;font-weight: bold;">我的返利：</span>
+            <span>我的返利：</span>
 
-            <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$total_num}}</span>
+            <span style="color:#f11367;">{{$total_num}}</span>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            <span style="font-size: 0.8rem;font-weight: bold;">当月返利：</span>
+            <span>当月返利：</span>
 
-            <span style="font-size:  0.7rem;font-weight: bold;color:red;">{{$month}}</span>
+            <span style="color:#f11367;">{{$month}}</span>
         </div>
     @endif
 
@@ -64,7 +79,7 @@
             @if($menu->linkurl!='/Home' && $menu->linkurl!='/MyInfo')
                 <a href="{{$menu->linkurl=="/BuyBubble"?$menu->linkurl."/index":$menu->linkurl}}" class="weui-grid js_grid">
                     <div class="weui-grid__icon">
-                        <i class="fa {{$menu->icon}}" style="color: #04BE02;"></i>
+                        <img src="img/home/{{$menu->icon}}">
                     </div>
                     <p class="weui-grid__label">
                         {{$menu->name}}
@@ -73,6 +88,43 @@
             @endif
         @endforeach
     @endif
+</div>
+<div id="bind_tel" style="display: none;">
+    <div class="weui-mask weui-mask--visible"></div>
+    <div class="weui-dialog weui-dialog--visible">
+        <div class="weui-dialog__hd" style="position:relative;">
+            <strong class="weui-dialog__title">绑定手机号</strong>
+            <img src="img/login/close.png" width="20"
+                 style="position:absolute; top:10px; right:10px; z-index:10;"
+                 href="#" onclick="$('#bind_tel').hide('fast');">
+        </div>
+        <div class="weui-dialog__bd">
+            <p class="weui-prompt-text">
+                <a style="color: red;">请慎重输入手机号，如果您已绑定手机号，将覆盖原手机号</a>
+            </p>
+        </div>
+        <div style="text-align:center;margin-top: 6%;">
+            <span style="font-size: 0.8rem;">手机号</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="tel" type="number"  style="width: 49%" class="inp_txt" />
+
+        </div>
+        <hr width="80%" style="margin-left: 10%">
+        <div style="text-align:center;margin-top: 6%;">
+            <span style="font-size: 0.8rem;">验证码</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="code" type="number"  style="width: 25%" class="inp_txt" />
+            <button class="code_bg" id="get_code">点击获取</button>
+
+        </div>
+        <hr width="80%" style="margin-left: 10%">
+        <div style="text-align:center;height: 21px;">
+                <span style="color: red;font-size: 1em;" id="message">
+                    @if(session('message'))
+                        {{ session('message') }}
+                    @endif
+                </span>
+        </div>
+        <button class="save_bg" id="tel_save">保存</button>
+    </div>
 </div>
 @endsection
 @section('script')
@@ -83,28 +135,60 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $("#bind_phone").click(function () {
-                $.prompt({
-                    title: '绑定手机号',
-                    text: '<a style="color: red;font-size: 1em;">请慎重输入手机号，如果您已绑定手机号，将覆盖原手机号</a>',
-                    empty: true, // 是否允许为空
-                    onOK: function (input) {
-                        $.post('/Home/bindPhone',{tel:input},function (reslut) {
-                            if(comm.is_null(reslut.Error)){
-                                //$.alert(reslut.Error);
-                                $.toptip(reslut.Error,4000, 'error');
-                            }else{
-                                window.location.reload();
-                            }
-                        });
-                    },
-                    onCancel: function () {
-                        //点击取消
-                    },
-                    autoClose: true
+            $("#get_code").click(function () {
+                var tel = $("#tel").val();
+                $("#message").html("");
+                if(!comm.is_null(tel)){
+                    $("#message").html("请输入手机号!");
+                    return;
+                }
+                $.get('/sms/'+tel,function(data){
+                    if(comm.is_null(data.Error)){
+                        $("#message").html(data.Error);
+                    }else{
+                        settime();
+                    }
+                });
+            });
+            $("#tel_save").click(function () {
+                var tel = $("#tel").val();
+                var code = $("#code").val();
+                $("#message").html("");
+                if(!comm.is_null(tel)){
+                    $("#message").html("请输入手机号!");
+                    return;
+                }
+                if(!comm.is_null(code)){
+                    $("#message").html("请输入验证码!");
+                    return;
+                }
+                $.post('/Home/bindPhone',{tel:tel,code:code},function (reslut) {
+                    if(comm.is_null(reslut.Error)){
+                        $("#message").html(reslut.Error);
+                    }else{
+                        $('#bind_tel').hide('fast',window.location.reload());
+
+                    }
                 });
             });
         });
+
+        var countdown=60;
+        function settime() {
+            if (countdown == 0) {
+                $("#get_code").prop('disabled',false).css({'background-color':'#30c0a4'});
+                $("#get_code").html("点击获取");
+                countdown = 60;
+            } else {
+                $("#get_code").prop('disabled',true).css({'background-color':'#a6afad'});
+                $("#get_code").html(countdown + "s");
+                countdown--;
+                setTimeout(function() {
+                        settime();
+                    },
+                    1000)
+            }
+        }
     </script>
 @endsection
 

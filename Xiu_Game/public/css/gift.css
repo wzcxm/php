@@ -1,0 +1,43 @@
+.gift_head_bg{
+    width:100%;
+    height:20%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/gift/head.png);
+    background-size:100% 100%;
+    font-size: 1.5rem;
+    color:white;
+    text-align: center;
+}
+.zs_jd_bg{
+    width:100%;
+    height:5%;
+    display:-webkit-flex;
+    background:url(/img/gift/myzs_jd.png);
+    background-size:100% 100%;
+    color:white;
+    font-size: 0.8rem;
+    padding-top: 10px;
+}
+.input_number{
+    font-weight: lighter;
+    font-size: 0.8rem;
+    border:2px solid #c1c1c1;
+    outline:none;
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    border-radius:5px;
+    width: 30%;
+    color: #ff7200;
+    vertical-align: unset;
+}
+.search_bg{
+    background-color: #2dbba7;
+    border: 0;
+    border-radius:5px;
+    font-size: 0.8rem;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    margin-bottom: 11px;
+    margin-top: 10px;
+}

@@ -47,7 +47,7 @@
         <div style="text-align:center;height: 21px;">
             <span style="color: red;font-size: 1em;" id="message">
                 @if(session('message'))
-                        {{ session('message') }}
+                    {{ session('message') }}
                 @endif
             </span>
         </div>

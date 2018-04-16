@@ -827,9 +827,9 @@ body {
   position: relative;
 }
 .weui-tabbar__item.weui-bar__item--on .weui-tabbar__label {
-  color: #04BE02;
+  color: #0eb7b5;
 }
-.weui-tabbar__item.weui-bar__item--on .weui-tabbar__icon .fa {  color: #04BE02;  }
+.weui-tabbar__item.weui-bar__item--on .weui-tabbar__icon .fa {  color: #0eb7b5;  }
 .weui-navbar__item {
   color: #888;
 }

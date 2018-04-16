@@ -50,6 +50,18 @@ class HomeController extends Controller
     public function  updatePhone(Request $request){
         try{
             $tel = isset($request['tel'])?$request['tel']:0;
+            $code = isset($request['code'])?$request['code']:0;
+            if(empty($tel)){
+                return response()->json(['Error'=>'请输入手机号！']);
+            }
+            if(empty($code)){
+                return response()->json(['Error'=>'请输入验证码！']);
+            }
+            //验证验证码
+            $oldcode = \Cache::get($tel);
+            if(empty($oldcode) || $oldcode!=$code){
+                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
+            }
             if(!$this->is_mobile($tel)){
                 return response()->json(['Error'=>"请输入合法的手机号!"]);
             }

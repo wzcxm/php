@@ -41,9 +41,6 @@ class UserLoginController extends Controller
 
     public function index(){
         try {
-
-
-
             CommClass::SetDataCache();
             $user_agent = $_SERVER['HTTP_USER_AGENT'];
             if (strpos($user_agent, 'MicroMessenger') === false) {

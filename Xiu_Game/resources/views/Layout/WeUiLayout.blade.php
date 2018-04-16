@@ -21,6 +21,7 @@
             height: 100%;
             -webkit-tap-highlight-color: transparent;
         }
+
     </style>
 </head>
 <body ontouchstart>
@@ -36,21 +37,21 @@
         </div>
     </div>
     <div class="weui-tabbar">
-        <a href="/Home" class="weui-tabbar__item weui-bar__item--on">
+        <a href="/Home" class="weui-tabbar__item weui-bar__item--on" id="wx_home">
             <div class="weui-tabbar__icon">
                 <i class="fa fa-home"></i>
             </div>
             <p class="weui-tabbar__label">首页</p>
         </a>
-        <a href="/MyInfo" class="weui-tabbar__item">
+        <a href="/MyInfo" class="weui-tabbar__item" id="wx_me">
             <div class="weui-tabbar__icon">
-                <i class="fa fa-user-o"></i>
+                <i class="fa fa-user"></i>
             </div>
             <p class="weui-tabbar__label">我</p>
         </a>
-        <a href="/PlayerBuy/index"  class="weui-tabbar__item">
+        <a href="/PlayerBuy/index"  class="weui-tabbar__item" id="wx_buy">
             <div class="weui-tabbar__icon">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-rmb"></i>
             </div>
             <p class="weui-tabbar__label">充值</p>
         </a>
@@ -63,7 +64,18 @@
     $(function () {
         FastClick.attach(document.body);
         $(".weui-tab__bd").css('height',$(".weui-tab__bd").height()-$(".weui-tabbar").height());
-    })
+        set_tabbar_img_src();
+    });
+    function set_tabbar_img_src() {
+        $(".weui-tabbar a").removeClass().addClass('weui-tabbar__item');
+        if(window.location.pathname == '/Home'){
+            $("#wx_home").addClass('weui-bar__item--on');
+        }else if(window.location.pathname == '/MyInfo'){
+            $("#wx_me").addClass('weui-bar__item--on');
+        }else {
+           // $("#wx_home").addClass('weui-bar__item--on');
+        }
+    }
 </script>
 <script src="{{asset('/js/common.js')}}"></script>
 @yield('script')
