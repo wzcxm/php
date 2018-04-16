@@ -290,14 +290,14 @@ class GameSericeController extends Controller
                 $ret_json = ['status'=>1,'message'=>'下单失败！'];
             }else{
                 if ($param['return_code'] == "SUCCESS" && $param['result_code'] == "SUCCESS") {
-                    $arr = ['appid'=>$param["appid"], 'mch_id'=>$param["mch_id"],
-                        'prepay_id'=>$param["prepay_id"], 'nonce_str'=>$param["nonce_str"],
+                    $arr = ['appid'=>$param["appid"], 'partnerid'=>$param["mch_id"],
+                        'prepayid'=>$param["prepay_id"], 'noncestr'=>$param["nonce_str"],
                         'package'=>'Sign=WXPay', 'timestamp'=>time()];
                     $ret_json =['status'=>0,
                         'message'=>'',
                         'order_no'=>$orderno,
-                        'appid'=>$param["appid"], 'mch_id'=>$param["mch_id"],
-                        'prepay_id'=>$param["prepay_id"], 'nonce_str'=>$param["nonce_str"],
+                        'appid'=>$param["appid"], 'partnerid'=>$param["mch_id"],
+                        'prepayid'=>$param["prepay_id"], 'noncestr'=>$param["nonce_str"],
                         'package'=>'Sign=WXPay', 'timestamp'=>time(),
                         'sign'=>$this->setsgin($arr)
                         ];
@@ -369,7 +369,7 @@ class GameSericeController extends Controller
         //签名步骤三：MD5加密
         $string = md5($string);
         //hash_hmac加密
-        $string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
+        //$string = hash_hmac('sha256',$string,WxPayConfig::GAMEKEY);
         //签名步骤四：所有字符转为大写
         $result = strtoupper($string);
         return $result;
