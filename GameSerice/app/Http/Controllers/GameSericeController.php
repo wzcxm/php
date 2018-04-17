@@ -646,7 +646,7 @@ EOT;
             if(empty($realname)){
                 return ['status'=>0,'message'=>'真实姓名为空！'];
             }
-            DB::table('xx_user')->where('uid',$uid)->update(['realname'=>$realname,'idnum'=>$idnum]);
+            DB::table('xx_user')->where('uid',$uid)->update(['realname'=>urldecode($realname),'idnum'=>$idnum]);
             return ['status'=>1,'message'=>''];
         }catch (\Exception $e){
             return ['status'=>0,'message'=>$e->getMessage()];
