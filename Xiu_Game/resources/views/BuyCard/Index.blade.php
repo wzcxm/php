@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="weui-cell">
-            <table width="100%" style="border-collapse:   separate;   border-spacing:   10px;font-size: 0.8rem;">
+            <table width="100%" style="border-collapse:separate;border-spacing:10px;font-size: 0.8rem;">
                 <tr>
                     <td width="45%" align="right">昵称：</td>
                     <td>
