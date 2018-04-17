@@ -93,4 +93,6 @@ $router->get('/isformal/{version}',function ($version){
 });
 
 $router->get('/setredis','GameSericeController@setRedisList');
+//实名认证
+$router->get('/realname/{uid}/{realname}/{idnum}','GameSericeController@realName');
 

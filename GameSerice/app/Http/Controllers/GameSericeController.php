@@ -632,8 +632,29 @@ EOT;
 	}
 
 
+	/*
+	 * 实名认证
+	 * $uid:游戏ID
+	 * $realname:姓名
+	 * $idnum:身份证号
+	 */
+    public function realName($uid,$realname,$idnum){
+        try{
+            if(!CommonFunc::is_idcard($idnum)){
+                return ['status'=>0,'message'=>'身份证格式错误！'];
+            }
+            if(empty($realname)){
+                return ['status'=>0,'message'=>'真实姓名为空！'];
+            }
+            DB::table('xx_user')->where('uid',$uid)->update(['realname'=>$realname,'idnum'=>$idnum]);
+            return ['status'=>1,'message'=>''];
+        }catch (\Exception $e){
+            return ['status'=>0,'message'=>$e->getMessage()];
+        }
+    }
 
-	public function setRedisList(){
+
+    public function setRedisList(){
 	    try{
 	        $arr = [12345,23456,45678,56789,20000,30000,40000,50000,60000,70000,80000,90000,
                 22222,33333,44444,55555,66666,77777,88888,99999,666666,888888,999999];
