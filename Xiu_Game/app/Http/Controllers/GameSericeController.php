@@ -417,7 +417,7 @@ class GameSericeController extends Controller
                 return ['status'=>0,'message'=>$data['status']];
             }
         }catch (\Exception $e){
-            return ['status'=>1,'message'=>$e->getMessage()];
+            return ['status'=>0,'message'=>$e->getMessage()];
         }
     }
 
