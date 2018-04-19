@@ -75,7 +75,7 @@ body, html {
     outline:none;
     cursor: pointer;
     width: 120px;
-    font-size: 1em;
+    font-size: 1.5rem;
     margin-left: 32%;
     color: #bf4502;
     margin-top: 2px;
@@ -86,7 +86,7 @@ body, html {
     outline:none;
     cursor: pointer;
     width: 120px;
-    font-size: 1em;
+    font-size: 1.5rem;
     margin-left: 45%;
     color: #bf4502;
 
@@ -97,9 +97,9 @@ body, html {
     outline:none;
     cursor: pointer;
     width: 120px;
-    font-size: 1em;
+    font-size: 2rem;
     margin-left: 45%;
-    color: #bf4502;
+    color: #0f695f;
     background-color: transparent;
 }
 .buy_nick{
