@@ -479,6 +479,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                     if(empty($wx_order->front_uid)
                         && !empty($wx_order->front)
                         && $wx_order->front != $wx_order->userid
+                        && !empty($wx_order->frid)
                         && $wx_order->frid < 5){
                         $up_arr["front_uid"] = $wx_order->front ;
                         //绑定代理送100钻石
@@ -507,6 +508,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                     if(empty($wx_order->front_uid)
                         && !empty($wx_order->front)
                         && $wx_order->front != $wx_order->userid
+                        && !empty($wx_order->frid)
                         && $wx_order->frid < 5){
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
