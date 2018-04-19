@@ -2,6 +2,7 @@
 namespace App\Common;
 
 use App\Models\Users;
+use App\Wechat\lib\WxPayException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Xxgame\ServerUserBase;
@@ -88,6 +89,45 @@ use Aliyun\DySDKLite\SignatureHelper;
         return $data;
     }
 
+
+    /*
+     * 执行一个Http的Post请求
+     */
+     /**
+      * @param $url
+      * @param null $param
+      * @return mixed
+      * @throws WxPayException
+      */
+     public static function HttpPost($url, $param = null){
+        $ch = curl_init();
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);//严格校验2
+        //设置header
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        //要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        //运行curl
+        $data = curl_exec($ch);
+        //返回结果
+        if($data){
+            curl_close($ch);
+            return json_decode($data, true);
+        } else {
+            $error = curl_errno($ch);
+            curl_close($ch);
+            throw new WxPayException("curl出错，错误码:$error");
+        }
+    }
     //获取用户人数
     public static  function GetPerosn(){
         return DB::table("xx_user")->count();

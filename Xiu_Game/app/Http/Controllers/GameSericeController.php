@@ -388,6 +388,40 @@ class GameSericeController extends Controller
         return $buff;
     }
 
+
+    //苹果支付校验
+    public function applePayCheck($uid,$goodsid,$receipt){
+        try{
+            $param = ['receipt-data'=>$receipt];
+            //$url = 'https://buy.itunes.apple.com/verifyReceipt';
+            $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
+            $data = CommClass::HttpPost($url,$param);
+            if($data['status'] == 0){
+                $product = ShoppingMall::find($goodsid);
+                //玩家增加钻石
+                CommClass::InsertCard(['cbuyid' => $uid, 'csellid' => 999, 'cnumber' => $product->snumber]);
+                //保存订单号到数据库
+                DB::table('xx_wx_buycard')->insert([
+                    'userid' => $uid,
+                    'cardnum' => $product->snumber,
+                    'total' => $product->sprice,
+                    'nonce' => 'ApplePay'.date("YmdHis"),
+                    'btype' => 1,
+                    'payway'=>1,
+                    'status'=>1
+                ]);
+                //更新游戏的钻石数量
+                CommClass::UpGameSer($uid,'card');//玩家的钻石
+                return ['status'=>1,'message'=>''];
+            }else{
+                return ['status'=>0,'message'=>$data['status']];
+            }
+        }catch (\Exception $e){
+            return ['status'=>1,'message'=>$e->getMessage()];
+        }
+    }
+
+
 //    private  function test(){
 //        //开始抽奖
 //        $data = collect(config("conf.Prize"));

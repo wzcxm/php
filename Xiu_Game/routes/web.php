@@ -193,6 +193,9 @@ Route::get('/apppay/{uid}/{goods}','GameSericeController@getAppOrder');
 //删除订单
 Route::get('/delorder/{order_no}','GameSericeController@delAppOrder');
 
+//苹果支付校验
+Route::get('/applepaycheck/{uid}/{goodsid}/{receipt}','GameSericeController@applePayCheck');
+
 //Route::get('/testLottery','GameSericeController@testLottery');
 
 /// end//////////////////////////////
