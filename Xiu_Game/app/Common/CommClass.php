@@ -115,7 +115,7 @@ use Aliyun\DySDKLite\SignatureHelper;
 
         //post提交方式
         curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
         //运行curl
         $data = curl_exec($ch);
         //返回结果
