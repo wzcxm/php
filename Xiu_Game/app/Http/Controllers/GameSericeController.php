@@ -405,7 +405,7 @@ class GameSericeController extends Controller
                 $goods = 7;
             }
             else if ('xxqp_4' == $goodsid){
-                $goods = 9;
+                $goods = 8;
             }
 
             $param = ['receipt-data'=>$receipt];
@@ -414,6 +414,9 @@ class GameSericeController extends Controller
             $data = CommClass::HttpPost($url,$param);
             if($data['status'] == 0){
                 $product = ShoppingMall::find($goods);
+                if(empty($product)){
+                    return ['status'=>0,'message'=>'商品ID错误！'];
+                }
                 //玩家增加钻石
                 CommClass::InsertCard(['cbuyid' => $uid, 'csellid' => 999, 'cnumber' => $product->snumber]);
                 //保存订单号到数据库
