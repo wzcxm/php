@@ -392,12 +392,14 @@ class GameSericeController extends Controller
     //苹果支付校验
     public function applePayCheck($uid,$goodsid,$receipt){
         try{
+            $arr = explode('_',$goodsid);
+            $goods = $arr[1];
             $param = ['receipt-data'=>$receipt];
             //$url = 'https://buy.itunes.apple.com/verifyReceipt';
             $url = 'https://sandbox.itunes.apple.com/verifyReceipt';
             $data = CommClass::HttpPost($url,$param);
             if($data['status'] == 0){
-                $product = ShoppingMall::find($goodsid);
+                $product = ShoppingMall::find($goods);
                 //玩家增加钻石
                 CommClass::InsertCard(['cbuyid' => $uid, 'csellid' => 999, 'cnumber' => $product->snumber]);
                 //保存订单号到数据库
