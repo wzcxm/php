@@ -25,3 +25,6 @@ Route::any('/player/notify','CashController@notify');
 
 //app支付回调
 Route::any('/app/notify','GameSericeController@appnotify');
+
+//苹果支付校验
+Route::any('/applepaycheck','GameSericeController@applePayCheck');

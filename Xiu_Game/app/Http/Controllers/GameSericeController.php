@@ -7,6 +7,7 @@ use App\Models\Users;
 use App\Wechat\example\JsApiPay;
 use App\Wechat\lib\WxAppPayUnifiedOrder;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use App\Wechat\lib\WxPayRedPack;
@@ -390,8 +391,11 @@ class GameSericeController extends Controller
 
 
     //苹果支付校验
-    public function applePayCheck($uid,$goodsid,$receipt){
+    public function applePayCheck(Request $request){
         try{
+            $uid =$request['uid'] ;
+            $goodsid = $request['shopid'] ;
+            $receipt =  $request['receipt'] ;
             $arr = explode('_',$goodsid);
             $goods = $arr[1];
             $param = ['receipt-data'=>$receipt];
