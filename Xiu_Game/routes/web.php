@@ -152,6 +152,14 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
 
     Route::post('/Players/setRole','UserManageController@setRole');
 
+    //牌馆设置
+    Route::get('/Museum',function (){
+        return view('Museum.index');
+    });
+    Route::post('/Museum/data','MuseumController@getData');
+    Route::get('/Museum/setting/{teaid}','MuseumController@setting');
+    Route::post('/Museum/save','MuseumController@save_set');
+
 
     //游戏详情
     Route::get('/System','MyInfoController@getSysInfo');
