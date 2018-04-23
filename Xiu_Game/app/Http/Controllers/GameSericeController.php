@@ -393,10 +393,10 @@ class GameSericeController extends Controller
     //苹果支付校验
     public function applePayCheck(Request $request){
         try{
-            $uid =$request['uid'] ;
+            $uid = $request['uid'] ;
             $goodsid = $request['shopid'] ;
             $receipt =  $request['receipt'] ;
-            if('xxqp_1' == $goodsid){
+             if('xxqp_1' == $goodsid){
                 $goods = 5;
             }else if ('xxqp_2' == $goodsid){
                 $goods = 6;

@@ -114,7 +114,7 @@ EOT;
                 $teaplayer->setState($player->state);
                 $teaplayer->setManager($player->manager);
                 $teaplayer->setHallId($player->hall_id);
-                $teaplayer->setWinnum($player->winnum);
+                $teaplayer->setWinnum($player->score);
                 $teaplayer->setRemarks($player->remarks);
                 $teaplayer->setNumbers($player->numbers);
                 $teaplayer->setDate($player->create_time);
