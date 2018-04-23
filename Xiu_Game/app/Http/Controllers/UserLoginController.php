@@ -92,7 +92,7 @@ class UserLoginController extends Controller
             }
             $user = \DB::table('v_user')->where('uphone',$tel)->first();
             if(empty($user)) {
-                return response()->json(['Error'=>'该手机号码未绑定游戏ID！']);
+                return response()->json(['Error'=>'该手机号码未绑定游戏！']);
             }
             else {
                 if (!empty($user->rid) && $user->rid != 5  && $user->rid != 0 && $user->freeze != 1 && $user->ustate == 0) {
