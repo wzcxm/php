@@ -96,7 +96,7 @@ class HomeController extends Controller
             $data = $tools->GetUserInfo();
             if(!empty($data)){
                 //删除该微信已有的账号
-                DB::table('xx_user')->where('unionid',$data['unionid'])->delete();
+                DB::table('xx_user')->where('unionid',$data['unionid'])->where('uid','<>',session('uid'))->delete();
                 //微信信息绑定到游戏账号
                 DB::table('xx_user')->where('uid',session('uid'))->update([
                     'nickname'=>$data['nickname'],

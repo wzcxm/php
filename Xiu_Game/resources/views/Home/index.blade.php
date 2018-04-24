@@ -204,7 +204,7 @@
         }
 
         function isUpdate() {
-            $.confirm("您是否确定更新为当前微信", function() {
+            $.confirm("<a style='color:red;'>您是否确定绑定当前微信,如果当前微信已有游戏数据，将会被覆盖，且不可恢复，请慎重操作！</a>", function() {
                 //点击确认后的回调函数
                 window.location.href="/UpdateWx";
             }, function() {
