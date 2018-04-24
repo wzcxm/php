@@ -88,18 +88,16 @@ class HomeController extends Controller
         try{
             $tools = new JsApiPay();
             $data = $tools->GetUserInfo();
-            var_dump($data);
-            //$data = $tools->userinfo;
-//            if(!empty($data)){
-//                DB::table('xx_user')->where('uid',session('uid'))->update([
-//                    'nickname'=>$data['nickname'],
-//                    'head_img_url'=>$data['headimgurl'],
-//                    'sex'=>$data['sex'],
-//                    'unionid'=>$data['unionid'],
-//                    'wxopenid'=>$data['openid']
-//                ]);
-//                return redirect('/Home');
-//            }
+            if(!empty($data)){
+                DB::table('xx_user')->where('uid',session('uid'))->update([
+                    'nickname'=>$data['nickname'],
+                    'head_img_url'=>$data['headimgurl'],
+                    'sex'=>$data['sex'],
+                    'unionid'=>$data['unionid'],
+                    'wxopenid'=>$data['openid']
+                ]);
+                return redirect('/Home');
+            }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
         }
