@@ -85,11 +85,11 @@ class HomeController extends Controller
 
     public function updateWx(){
         try{
-            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
-            var_dump($baseUrl);
-            $jsApiPay = new JsApiPay();
-            $openid = $jsApiPay->GetOpenid();
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            $unionid = $tools->data['unionid'];
             var_dump($openid);
+            var_dump($unionid);
 //            $data = $jsApiPay->userinfo;
 //            var_dump($data);
 //            if(!empty($data)){
