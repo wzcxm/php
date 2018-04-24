@@ -95,7 +95,7 @@ class HomeController extends Controller
                     'unionid'=>$data['unionid'],
                     'wxopenid'=>$data['openid']
                 ]);
-                //return redirect('/Home');
+                return redirect('/Home');
             }
         }catch (\Exception $e){
             var_dump($e->getMessage());
