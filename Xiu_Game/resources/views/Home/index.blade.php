@@ -206,13 +206,7 @@
         function isUpdate() {
             $.confirm("您是否确定更新为当前微信", function() {
                 //点击确认后的回调函数
-                $.get('/UpdateWx',function(data){
-                    if(data.status==1){
-                        $.alert(data.message);
-                    }else{
-                        window.location.reload();
-                    }
-                });
+                window.location.href="/UpdateWx";
             }, function() {
             });
         }

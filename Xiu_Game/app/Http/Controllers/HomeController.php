@@ -97,7 +97,6 @@ class HomeController extends Controller
             if(!empty($data)){
                 //删除该微信已有的账号
                 DB::table('xx_user')->where('unionid',$data['unionid'])->delete();
-
                 //微信信息绑定到游戏账号
                 DB::table('xx_user')->where('uid',session('uid'))->update([
                     'nickname'=>$data['nickname'],
@@ -106,13 +105,11 @@ class HomeController extends Controller
                     'unionid'=>$data['unionid'],
                     'wxopenid'=>$data['openid']
                 ]);
-                return response()->json(['status'=>1,'message'=>""]);
-            }else{
-                return response()->json(['status'=>0,'message'=>"获取微信信息失败！"]);
+                return redirect('/Home');
             }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
-            return response()->json(['status'=>0,'message'=>$e->getMessage()]);
+            //return response()->json(['status'=>0,'message'=>$e->getMessage()]);
         }
 
     }
