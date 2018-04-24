@@ -14,7 +14,7 @@
             <div style="text-align:right;margin-top: 20px;">
                 <span class="role">{{$User->rname}}</span>
             </div>
-           <div style="margin-left: 15%;margin-top: 5px;">
+           <div style="margin-left: 15%;">
                <span style="font-weight: 400;font-size: 1rem;">{{$User->nickname}}</span>
            </div>
             <div style="width: 100%">
