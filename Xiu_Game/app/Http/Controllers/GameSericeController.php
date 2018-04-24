@@ -259,7 +259,7 @@ class GameSericeController extends Controller
             if($content->Code == "OK"){
                 return response()->json(['Error'=>""]);
             }else{
-                return response()->json(['Error'=>"发送失败，请检查手机号是否正确！"]);
+                return response()->json(['Error'=>"验证码发送频繁，请稍后再试！"]);
             }
         }catch (\Exception $e){
              return response()->json(['Error'=>"发送失败，请重试！"]);

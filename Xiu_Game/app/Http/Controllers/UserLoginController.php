@@ -85,11 +85,11 @@ class UserLoginController extends Controller
             if(empty($code)){
                 return response()->json(['Error'=>'请输入验证码！']);
             }
-            //验证验证码
-            $oldcode = \Cache::get($tel);
-            if(empty($oldcode) || $oldcode!=$code){
-                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
-            }
+//            //验证验证码
+//            $oldcode = \Cache::get($tel);
+//            if(empty($oldcode) || $oldcode!=$code){
+//                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
+//            }
             $user = \DB::table('v_user')->where('uphone',$tel)->first();
             if(empty($user)) {
                 return response()->json(['Error'=>'该手机号码未绑定游戏！']);
