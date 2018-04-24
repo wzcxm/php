@@ -85,12 +85,13 @@ class HomeController extends Controller
 
 
     public function updateWx(){
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
         try{
-              $tools = new JsApiPay();
-              $openid = $tools->GetOpenid();
-//            $data = $tools->userinfo;
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            $unionid = $tools->data['unionid'];
+            var_dump($openid);
+            var_dump($unionid);
+            //$data = $tools->userinfo;
 //            if(!empty($data)){
 //                DB::table('xx_user')->where('uid',session('uid'))->update([
 //                    'nickname'=>$data['nickname'],
@@ -103,7 +104,6 @@ class HomeController extends Controller
 //            }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
-            $log->ERROR($e->getMessage());
         }
 
     }
