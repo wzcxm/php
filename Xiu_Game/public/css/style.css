@@ -56,7 +56,7 @@ body, html {
 }
 .buy_bg{
     width:100%;
-    height:100%;
+    min-height:100%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
     background:url(/img/diamond/query_bg.png);

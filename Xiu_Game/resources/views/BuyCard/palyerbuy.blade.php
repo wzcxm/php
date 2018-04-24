@@ -19,8 +19,8 @@
 </head>
 <body>
 <div class="buy_bg">
-    <div style="height: 35%;"></div>
-    <div style="height: 53%;">
+    <div style="min-height: 35%;"></div>
+    <div style="min-height: 53%;">
         <div style="height: 20%;">
             <div>
                 <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
@@ -59,7 +59,7 @@
         </div>
         <input type="hidden" id="sid">
     </div>
-    <div style="height:12%;">
+    <div style="min-height:12%;">
         <div style="margin-left: 30%;">
             <a href="#" id="btn_buy" >
                 <img class="img_border " width="150" src="/img/diamond/query.png" />
