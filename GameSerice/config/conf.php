@@ -7,14 +7,14 @@ return [
 	'GAME_DOMAIN_APP' => [
         'gw1' => [
             'INDEX' => 1,
-            'DOMAIN' => 'test.gw.wangqianhong.com',
+            'DOMAIN' => 'gw.wangqianhong.com',
             'PORT' => 10000,
             'STATUS' => 2,
         ],
 
         'gw2' => [
             'INDEX' => 2,
-            'DOMAIN' => 'test.gw.wangqianhong.com',
+            'DOMAIN' => 'gw.wangqianhong.com',
             'PORT' => 10700,
             'STATUS' => 2,
         ],
@@ -22,14 +22,14 @@ return [
     'GAME_DOMAIN_H5'=>[
         'h5_gw1' => [
             'INDEX' => 1,
-            'DOMAIN' => 'test.gw.wangqianhong.com',
+            'DOMAIN' => 'gw.wangqianhong.com',
             'PORT' => 11000,
             'STATUS' => 2,
         ],
 
         'h5_gw2' => [
             'INDEX' => 2,
-            'DOMAIN' => 'test.gw.wangqianhong.com',
+            'DOMAIN' => 'gw.wangqianhong.com',
             'PORT' => 13000,
             'STATUS' => 2,
         ],
