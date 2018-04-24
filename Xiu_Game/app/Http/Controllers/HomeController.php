@@ -67,7 +67,7 @@ class HomeController extends Controller
                 return response()->json(['Error'=>"请输入合法的手机号!"]);
             }
             $user_tel = DB::table('xx_user')->where("uphone",$tel)->get();
-            if(empty($user_tel)){
+            if(count($user_tel) == 0){
                 DB::table('xx_user')->where('uid',session('uid'))->update(['uphone'=>$tel]);
                 return response()->json(['Error'=>""]);
             }else{
@@ -96,8 +96,8 @@ class HomeController extends Controller
             $data = $tools->GetUserInfo();
             if(!empty($data)){
                 //删除该微信已有的账号
-                $temp = DB::table('xx_user')->where('unionid',$data['unionid'])->delete();
-                var_dump($temp.'-'.$data['unionid']);
+                DB::table('xx_user')->where('unionid',$data['unionid'])->delete();
+
                 //微信信息绑定到游戏账号
                 DB::table('xx_user')->where('uid',session('uid'))->update([
                     'nickname'=>$data['nickname'],
