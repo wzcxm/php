@@ -4,6 +4,8 @@ use App\Wechat\lib\WxPayApi;
 use App\Wechat\lib\WxPayException;
 use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayJsApiPay;
+use App\Wechat\example\log;
+use App\Wechat\example\CLogFileHandler;
 /**
  * 
  * JSAPI支付实现类
@@ -46,8 +48,7 @@ class JsApiPay
 	 */
 	public function GetOpenid()
 	{
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
+
 		//通过code获得openid
 		if (!isset($_GET['code'])){
 			//触发微信返回code码
@@ -59,7 +60,6 @@ class JsApiPay
 			//获取code码，以获取openid
 		    $code = $_GET['code'];
 			$openid = $this->getOpenidFromMp($code);
-            $log->ERROR('opendid:'.$openid);
 			return $openid;
 
 		}
@@ -142,8 +142,6 @@ class JsApiPay
 	 */
 	public function GetOpenidFromMp($code)
 	{
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
 		$url = $this->__CreateOauthUrlForOpenid($code);
 		//取出openid
 		$data = $this->HttpGet($url);
@@ -153,7 +151,6 @@ class JsApiPay
             $access_token = $data['access_token'];
             //获取unionid
             $this->GetUnionidFromMp($access_token, $openid);
-            $log->ERROR('access_token:'.$access_token);
             return $openid;
 
         }
@@ -259,15 +256,13 @@ class JsApiPay
 
     ///获取用户信息
     private function  GetUnionidFromMp($access_token,$openid){
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
+
         $url = $this->__CreateOauthUrlForUnionID($access_token,$openid);
         //取出unionid
         $data = $this->HttpGet($url);
         if (!array_key_exists("errcode", $data)){
             $this->data['unionid'] = $data['unionid'];
             $this->userinfo = $data;
-            $log->ERROR('data:'.json_decode($data));
         }
     }
 
