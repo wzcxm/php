@@ -15,7 +15,7 @@
                 <span class="role">{{$User->rname}}</span>
             </div>
            <div style="text-align:center;margin-top: 5px;">
-               <span style="font-weight: 400;font-size: 1.2rem;">{{$User->nickname}}</span>
+               <span style="font-weight: 400;font-size: 1rem;">{{$User->nickname}}</span>
            </div>
             <div style="width: 100%">
                 <div style="float: left;width: 50%;text-align: right;">
