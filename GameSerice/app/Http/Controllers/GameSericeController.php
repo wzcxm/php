@@ -166,25 +166,23 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 2.11) {
+			if ($version == 3.4) {
 				$ret = "2";
 			} else {
-				if($version < 2.5){
-					$ret = "0";
+				if($version < 3.0){
+					$ret = "1";
 				}else{
 					$ret = "0";
 				}
 			}
 		}else if($type==2){
-			if($version < 2.7){
+			if($version < 3.0){
 				$ret = "1";
 			}else{
 				$ret = "0";
 			}
 		}else{ }
-		if($ret=="0"){
-			$ret .= "|1|1|1";
-		}
+
 		return $ret;
 	}
 

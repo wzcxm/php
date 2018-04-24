@@ -83,13 +83,14 @@ $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@get
 $router->get('/winnlist/{uid}/{sign}','GameSericeController@getWinnList');
 
 $router->get('/isformal/{version}',function ($version){
-    if(empty($version))
-        return 0;
-    if($version == 2.11){
-        return 1;
-    }else{
-        return 0;
-    }
+//    if(empty($version))
+//        return 0;
+//    if($version == 2.11){
+//        return 1;
+//    }else{
+//        return 0;
+//    }
+    return 0;
 });
 
 $router->get('/setredis','GameSericeController@setRedisList');
