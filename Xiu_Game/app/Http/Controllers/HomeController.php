@@ -66,8 +66,14 @@ class HomeController extends Controller
             if(!$this->is_mobile($tel)){
                 return response()->json(['Error'=>"请输入合法的手机号!"]);
             }
-            DB::table('xx_user')->where('uid',session('uid'))->update(['uphone'=>$tel]);
-            return response()->json(['Error'=>""]);
+            $user_tel = DB::table('xx_user')->where("uphone",$tel)->get();
+            if(empty($user_tel)){
+                DB::table('xx_user')->where('uid',session('uid'))->update(['uphone'=>$tel]);
+                return response()->json(['Error'=>""]);
+            }else{
+                return response()->json(['Error'=>"该手机号已绑定，不能重复绑定!"]);
+            }
+
         }catch (\Exception $e){
             return response()->json(['Error'=>"绑定失败！"]);
         }
@@ -89,6 +95,9 @@ class HomeController extends Controller
             $tools = new JsApiPay();
             $data = $tools->GetUserInfo();
             if(!empty($data)){
+                //删除该微信已有的账号
+                DB::table('xx_user')->where('unionid',$data['unionid'])->delete();
+                //微信信息绑定到游戏账号
                 DB::table('xx_user')->where('uid',session('uid'))->update([
                     'nickname'=>$data['nickname'],
                     'head_img_url'=>$data['headimgurl'],
