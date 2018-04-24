@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201804241">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180424">
 </head>
 <body>
 <div class="buy_bg">
-    <div style="min-height: 35%;"></div>
-    <div style="min-height: 53%;">
-        <div style="min-height: 20%;">
+    <div style="height: 35%;"></div>
+    <div style="height: 53%;">
+        <div style="height: 20%;">
             <div>
                 <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
                 <a href="#" id="getnick" style="margin-left: 15px;">
@@ -32,7 +32,7 @@
                 <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
             </div>
         </div>
-        <div style="min-height: 40%;text-align: center;" id="mall">
+        <div style="height: 40%;text-align: center;" id="mall">
             @if(!empty($mallList))
                 @foreach($mallList as $item)
                     @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
@@ -43,14 +43,14 @@
                 @endforeach
             @endif
         </div>
-        <div style="min-height: 20%;text-align: center;" id="first">
+        <div style="height: 20%;text-align: center;" id="first">
             @if(!empty($player) && $player->flag == 0)
                 <img class="img_border " width="350" src="/img/diamond/first.png" />
             @else
                 <img class="img_border " width="350" src="/img/diamond/warning.png" />
             @endif
         </div>
-        <div style="min-height: 20%;">
+        <div style="height: 20%;">
             @if(!empty($player) && !empty($player->front_uid))
                 <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
             @else
@@ -59,7 +59,7 @@
         </div>
         <input type="hidden" id="sid">
     </div>
-    <div style="min-height:12%;">
+    <div style="height:12%;">
         <div style="margin-left: 30%;">
             <a href="#" id="btn_buy" >
                 <img class="img_border " width="150" src="/img/diamond/query.png" />
