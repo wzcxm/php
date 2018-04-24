@@ -88,19 +88,19 @@ class HomeController extends Controller
         $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
         $log = Log::Init($logHandler, 15);
         try{
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            $data = $tools->userinfo;
-            if(!empty($data)){
-                DB::table('xx_user')->where('uid',session('uid'))->update([
-                    'nickname'=>$data['nickname'],
-                    'head_img_url'=>$data['headimgurl'],
-                    'sex'=>$data['sex'],
-                    'unionid'=>$data['unionid'],
-                    'wxopenid'=>$data['openid']
-                ]);
-                return redirect('/Home');
-            }
+              $tools = new JsApiPay();
+//            $openid = $tools->GetOpenid();
+//            $data = $tools->userinfo;
+//            if(!empty($data)){
+//                DB::table('xx_user')->where('uid',session('uid'))->update([
+//                    'nickname'=>$data['nickname'],
+//                    'head_img_url'=>$data['headimgurl'],
+//                    'sex'=>$data['sex'],
+//                    'unionid'=>$data['unionid'],
+//                    'wxopenid'=>$data['openid']
+//                ]);
+//                return redirect('/Home');
+//            }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
             $log->ERROR($e->getMessage());
