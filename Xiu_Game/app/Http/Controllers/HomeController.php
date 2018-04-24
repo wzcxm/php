@@ -84,18 +84,23 @@ class HomeController extends Controller
 
 
     public function updateWx(){
-        $jsApiPay = new JsApiPay();
-        $data = $jsApiPay->GetUserInfo();
-        if(!empty($data)){
-            DB::table('xx_user')->where('uid',session('uid'))->update([
-                'nickname'=>$data['nickname'],
-                'head_img_url'=>$data['headimgurl'],
-                'sex'=>$data['sex'],
-                'unionid'=>$data['unionid'],
-                'wxopenid'=>$data['openid']
-            ]);
-            return redirect('/Home');
+        try{
+            $jsApiPay = new JsApiPay();
+            $data = $jsApiPay->GetUserInfo();
+            if(!empty($data)){
+                DB::table('xx_user')->where('uid',session('uid'))->update([
+                    'nickname'=>$data['nickname'],
+                    'head_img_url'=>$data['headimgurl'],
+                    'sex'=>$data['sex'],
+                    'unionid'=>$data['unionid'],
+                    'wxopenid'=>$data['openid']
+                ]);
+                return redirect('/Home');
+            }
+        }catch (\Exception $e){
+            var_dump($e->getMessage());
         }
+
     }
 
 }

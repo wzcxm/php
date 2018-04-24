@@ -13,7 +13,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休游戏管理系统</title>
     <link rel="stylesheet" href="{{ asset('css/wxLoginCss.css')}}">
-
+    <link rel="stylesheet" href="{{asset('css/home.css')}}?v=201804139">
+    <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
 </head>
 <body>
     <div class="login_bg">
@@ -23,40 +25,44 @@
         </div>
         <div style="height: 5%;"></div>
         <div style="text-align: center">
-            <img src="img/login/phone_login.png" width="60%" href="#" onclick="$('#phone_login').show();">
+            <img src="img/login/phone_login.png" width="60%" href="#" onclick="$('#phone_login').show('fast');">
         </div>
     </div>
-    <div id="phone_login" class="phone_bg" style="display:none ;">
+    <div id="phone_login" style="display: none;">
+        <div class="weui-mask weui-mask--visible"></div>
+        <div class="weui-dialog weui-dialog--visible">
+            <div class="weui-dialog__hd" style="position:relative;">
+                <strong class="weui-dialog__title">手机登录</strong>
+                <img src="img/login/close.png" width="20"
+                     style="position:absolute; top:10px; right:10px; z-index:10;"
+                     href="#" onclick="$('#phone_login').hide('fast');">
+            </div>
 
-        <div style="height: 7%;"></div>
-        <div style="text-align: right;">
-            <img src="img/login/close.png" style="margin-right: 10%;" width="20" href="#" onclick="$('#phone_login').hide();">
-        </div>
-        <div style="text-align:center;margin-top: 15%;">
-            <span class="span_font">手机号</span>&nbsp;&nbsp;&nbsp;&nbsp;<input id="tel" name="tel" type="number"  style="width: 48%" class="input_txt"><span style="color: red">*</span>
-            <br>
-            <hr width="70%">
-        </div>
+            <div style="text-align:center;margin-top: 6%;">
+                <span style="font-size: 0.8rem;">手机号</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="tel" type="number"  style="width: 49%" class="inp_txt" />
 
-        <div style="text-align:center;margin-top: 7%;">
-            <span class="span_font">验证码</span>&nbsp;&nbsp;&nbsp;&nbsp;<input id="code" name="code" type="number"  style="width: 25%" class="input_txt" ><span style="color: red">*</span>
-            &nbsp;&nbsp;<img src="img/login/get.png" width="18%" style="vertical-align:middle;" id="getcode" >
-            <br>
-            <hr width="70%">
-        </div>
-        <div style="text-align:center;height: 21px;">
-            <span style="color: red;font-size: 1em;" id="message">
-                @if(session('message'))
-                    {{ session('message') }}
-                @endif
-            </span>
-        </div>
-        <div style="text-align:center;margin-top: 2%;">
-            <img src="img/login/login.png"  width="45%" href="#" id="login">
+            </div>
+            <hr width="80%" style="margin-left: 10%">
+            <div style="text-align:center;margin-top: 6%;">
+                <span style="font-size: 0.8rem;">验证码</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="code" type="number"  style="width: 25%" class="inp_txt" />
+                <button class="code_bg" id="get_code">点击获取</button>
+
+            </div>
+            <hr width="80%" style="margin-left: 10%">
+            <div style="text-align:center;height: 21px;">
+                <span style="color: red;font-size: 1em;" id="message">
+
+                </span>
+            </div>
+            <button class="save_bg" id="login">登录</button>
         </div>
     </div>
+
 </body>
 <script src="{{asset('js/jquery-1.12.4.min.js')}}"></script>
+<script src="{{asset('js/weui/js/jquery-weui.min.js')}}"></script>
 <script src="{{asset('js/common.js')}}"></script>
 <script type="text/javascript">
     $(function () {
@@ -67,20 +73,18 @@
             }
         });
 
-        $("#getcode").click(function () {
-             var tel = $("#tel").val();
+        $("#get_code").click(function () {
+            var tel = $("#tel").val();
             $("#message").html("");
             if(!comm.is_null(tel)){
-                //$.alert("请输入手机号!");
                 $("#message").html("请输入手机号!");
                 return;
             }
             $.get('/sms/'+tel,function(data){
                 if(comm.is_null(data.Error)){
-                    //$.alert(data.Error);
                     $("#message").html(data.Error);
                 }else{
-                    // $("#message").html();
+                    settime();
                 }
             });
         });
@@ -89,12 +93,10 @@
             var code = $("#code").val();
             $("#message").html("");
             if(!comm.is_null(tel)){
-                //$.alert("请输入手机号!");
                 $("#message").html("请输入手机号!");
                 return;
             }
             if(!comm.is_null(code)){
-                //$.alert("请输入验证码！");
                 $("#message").html("请输入验证码!");
                 return;
             }
@@ -108,6 +110,23 @@
                }
             });
         });
-    })
+    });
+
+    var countdown=60;
+    function settime() {
+        if (countdown == 0) {
+            $("#get_code").prop('disabled',false).css({'background-color':'#30c0a4'});
+            $("#get_code").html("点击获取");
+            countdown = 60;
+        } else {
+            $("#get_code").prop('disabled',true).css({'background-color':'#a6afad'});
+            $("#get_code").html(countdown + "s");
+            countdown--;
+            setTimeout(function() {
+                    settime();
+                },
+                1000)
+        }
+    }
 </script>
 </html>

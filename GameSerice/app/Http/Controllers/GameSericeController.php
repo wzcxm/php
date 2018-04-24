@@ -182,7 +182,9 @@ EOT;
 				$ret = "0";
 			}
 		}else{ }
-
+		if($ret=="0"){
+			$ret .= "|1|1|1";
+		}
 		return $ret;
 	}
 
