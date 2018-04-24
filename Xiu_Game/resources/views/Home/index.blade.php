@@ -5,31 +5,31 @@
 @section('content')
 @if(!empty($User))
     <div  class=" home_bg" >
-        <div style="float:left;width: 50%;">
+        <div style="float:left;width: 40%;">
             <div style="text-align: right;">
-                <img src="{{$User->head_img_url}}" class="head" width="65%">
+                <img src="{{$User->head_img_url}}" class="head" width="80%">
             </div>
         </div>
-        <div style="float:right;width: 50%;color: white;">
+        <div style="float:right;width: 60%;color: white;">
             <div style="text-align:right;margin-top: 20px;">
                 <span class="role">{{$User->rname}}</span>
             </div>
-           <div style="text-align:center;margin-top: 5px;">
+           <div style="margin-left: 15%;margin-top: 5px;">
                <span style="font-weight: 400;font-size: 1rem;">{{$User->nickname}}</span>
            </div>
             <div style="width: 100%">
-                <div style="float: left;width: 50%;text-align: right;">
+                <div style="float: left;width: 30%;text-align: right;">
                     ID：
                 </div>
-                <div style="float: right;width: 50%;text-align: left;">
+                <div style="float: right;width: 70%;text-align: left;">
                     {{$User->uid}}
                 </div>
             </div>
             <div style="width: 100%">
-                <div style="float: left;width: 50%;text-align: right;">
+                <div style="float: left;width: 30%;text-align: right;">
                     手机：
                 </div>
-                <div style="float: right;width: 50%;text-align: left;">
+                <div style="float: right;width: 70%;text-align: left;">
                     <a href="javascript:$('#bind_tel').show('fast');"  style="color:#a3ff04;">
                         @if(!empty(trim($User->uphone)))
                             {{$User->uphone}}
