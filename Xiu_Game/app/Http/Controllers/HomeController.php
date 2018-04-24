@@ -7,8 +7,6 @@ use App\Wechat\example\JsApiPay;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Wechat\example\log;
-use App\Wechat\example\CLogFileHandler;
 
 
 class HomeController extends Controller
@@ -86,29 +84,21 @@ class HomeController extends Controller
 
 
     public function updateWx(){
-        $logHandler = new CLogFileHandler($_SERVER['DOCUMENT_ROOT'] . "/logs/" . date('Y-m-d') . '.log');
-        $log = Log::Init($logHandler, 15);
         try{
             $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-//            $unionid = $tools->data['unionid'];
-            var_dump($openid);
-//            var_dump($unionid);
-//            $data = $jsApiPay->userinfo;
-//            var_dump($data);
-//            if(!empty($data)){
-//                DB::table('xx_user')->where('uid',session('uid'))->update([
-//                    'nickname'=>$data['nickname'],
-//                    'head_img_url'=>$data['headimgurl'],
-//                    'sex'=>$data['sex'],
-//                    'unionid'=>$data['unionid'],
-//                    'wxopenid'=>$data['openid']
-//                ]);
-//                //return redirect('/Home');
-//            }
+            $data = $tools->GetUserInfo();
+            if(!empty($data)){
+                DB::table('xx_user')->where('uid',session('uid'))->update([
+                    'nickname'=>$data['nickname'],
+                    'head_img_url'=>$data['headimgurl'],
+                    'sex'=>$data['sex'],
+                    'unionid'=>$data['unionid'],
+                    'wxopenid'=>$data['openid']
+                ]);
+                //return redirect('/Home');
+            }
         }catch (\Exception $e){
             var_dump($e->getMessage());
-            $log->ERROR($e->getMessage());
         }
 
     }

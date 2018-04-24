@@ -32,7 +32,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //绑定手机
     Route::post('/Home/bindPhone','HomeController@updatePhone');
     //更新微信
-    Route::get('//UpdateWx','HomeController@updateWx');
+    Route::get('/UpdateWx','HomeController@updateWx');
     //菜单
     Route::get('/Menus',function (){
         return view('Menus.Index');
