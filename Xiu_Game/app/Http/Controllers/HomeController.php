@@ -87,9 +87,9 @@ class HomeController extends Controller
         try{
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
-            $unionid = $tools->data['unionid'];
+//            $unionid = $tools->data['unionid'];
             var_dump($openid);
-            var_dump($unionid);
+//            var_dump($unionid);
 //            $data = $jsApiPay->userinfo;
 //            var_dump($data);
 //            if(!empty($data)){
