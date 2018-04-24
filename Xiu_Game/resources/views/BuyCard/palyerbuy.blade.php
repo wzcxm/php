@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180419">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180424">
 </head>
 <body>
 <div class="buy_bg">
