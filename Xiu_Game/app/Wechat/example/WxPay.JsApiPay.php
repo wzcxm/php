@@ -34,6 +34,7 @@ class JsApiPay
 	 */
 	public $data = null;
 
+	public $userinfo = null;
 	
 	/**
 	 * 
@@ -255,6 +256,7 @@ class JsApiPay
         $data = $this->HttpGet($url);
         if (!array_key_exists("errcode", $data)){
             $this->data['unionid'] = $data['unionid'];
+            $this->userinfo = $data;
         }
     }
 

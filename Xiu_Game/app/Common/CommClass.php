@@ -406,10 +406,11 @@ use Aliyun\DySDKLite\SignatureHelper;
          $oneback =CommClass::GetParameter("upper_one");
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
-         //玩家
-         //$playback = CommClass::GetParameter("invitation");
+         //如果购买的玩家为空，或者玩家不为总代也不为代理，直接return
+         if(!CommClass::isAgent($buy_id))
+             return;
          $buy_user = Users::find($buy_id);
-         if(!empty($buy_user) && $buy_user->rid == 3){ //总代购买，直接返25%给总代
+         if($buy_user->rid == 3){ //总代购买，直接返25%给总代
              $ret_monery = $cash*25/100;
              DB::table("xx_wx_backgold")->insert(
                  ['get_id'=>$buy_id,
@@ -418,43 +419,62 @@ use Aliyun\DySDKLite\SignatureHelper;
                      'gold'=>$cash,
                      'ratio'=>25,
                      'level'=>4]);
-         }else{
-             //上级不能为空，且上级必须是代理
-             if(!empty($buy_user) && !empty($buy_user->front_uid)){
-                 $front = Users::find($buy_user->front_uid);
-                 if(!empty($front) && $front->rid < 5){
-                     //如果购买人是代理，走代理返利流程
-                     if($buy_user->rid == 2){
-                         //上级返利
-                         $return_one = $cash*$oneback/100;
-                         DB::table("xx_wx_backgold")->insert(
-                             ['get_id'=>$buy_user->front_uid,
-                                 'back_id'=>$buy_id,
-                                 'backgold'=>$return_one,
-                                 'gold'=>$cash,
-                                 'ratio'=>$oneback,
-                                 'level'=>1]);
-                         //上上级代理返利
-                         if(!empty($front->front_uid)){
-                             $front_front = Users::find($front->front_uid);
-                             if(!empty($front_front) && $front_front->rid < 5){
-                                 $return_two = $cash*$twoback/100;
-                                 DB::table("xx_wx_backgold")->insert(
-                                     ['get_id'=>$front->front_uid,
-                                         'back_id'=>$buy_id,
-                                         'backgold'=>$return_two,
-                                         'gold'=>$cash,
-                                         'ratio'=>$twoback,
-                                         'level'=>2]);
-                             }
-                         }
-                     }
-                 }
-             }
          }
+         //上级返利
+         //上级为空，或者上级不为总代也不为代理，直接return
+         if(!CommClass::isAgent($buy_user->front_uid))
+             return;
+         $front = Users::find($buy_user->front_uid);
+         //如果上级为总代，返25%，其他代理返20%
+         if($front->rid == 3){
+             $back = 25;
+             $return_one = $cash*25/100;
+         }else if($front->rid == 2){//其他代理返20%
+             $back = $oneback;
+             $return_one = $cash*$oneback/100;
+         }
+         //保存返利信息
+         DB::table("xx_wx_backgold")->insert(
+             ['get_id'=>$buy_user->front_uid,
+                 'back_id'=>$buy_id,
+                 'backgold'=>$return_one,
+                 'gold'=>$cash,
+                 'ratio'=>$back,
+                 'level'=>1]);
+         //上上级返利
+         //上上级为空，或者上上级不为总代也不为代理，直接返回
+         if(!CommClass::isAgent($front->front_uid))
+             return;
+         //保存返利记录
+         $return_two = $cash*$twoback/100;
+         DB::table("xx_wx_backgold")->insert(
+             ['get_id'=>$front->front_uid,
+                 'back_id'=>$buy_id,
+                 'backgold'=>$return_two,
+                 'gold'=>$cash,
+                 'ratio'=>$twoback,
+                 'level'=>2]);
      }
 
-
+     /*
+      * 判断玩家是否是代理或者总代
+      */
+     private static function isAgent($uid){
+         try{
+             if(empty($uid)){
+                 return false;
+             }
+             else{
+                 $user = Users::find($uid);
+                 if(empty($user) ||($user->rid !=3 && $user->rid !=2))
+                     return false;
+                 else
+                     return true;
+             }
+         }catch (\Exception $e){
+             return false;
+         }
+     }
      /// <summary>
      /// 支付成功后，更新玩家钻石
      /// </summary>
