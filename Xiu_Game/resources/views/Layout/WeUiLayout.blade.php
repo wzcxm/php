@@ -12,8 +12,8 @@
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休游戏管理系统</title>
-    <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
-    <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}?v=20180424">
+    <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}?v=20180424">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     @yield('style')
     <style>
