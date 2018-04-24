@@ -87,8 +87,9 @@ class HomeController extends Controller
         try{
             $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
             var_dump($baseUrl);
-//            $jsApiPay = new JsApiPay();
-//            $jsApiPay->GetOpenid();
+            $jsApiPay = new JsApiPay();
+            $openid = $jsApiPay->GetOpenid();
+            var_dump($openid);
 //            $data = $jsApiPay->userinfo;
 //            var_dump($data);
 //            if(!empty($data)){
