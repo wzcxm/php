@@ -62,6 +62,7 @@
 <script src="{{asset('/js/weui/js/fastclick.js')}}"></script>
 <script>
     $(function () {
+        $('body').height($('body')[0].clientHeight);
         FastClick.attach(document.body);
         $(".weui-tab__bd").css('height',$(".weui-tab__bd").height()-$(".weui-tabbar").height());
         set_tabbar_img_src();

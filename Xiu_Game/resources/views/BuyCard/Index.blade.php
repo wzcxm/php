@@ -78,6 +78,7 @@
 @section('easyui_script')
     <script>
         $(function () {
+
 //            $('#payer_id').autocompleter({
 //                source: '/autocompleter'
 //

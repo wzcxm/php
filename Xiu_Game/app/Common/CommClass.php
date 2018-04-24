@@ -406,6 +406,9 @@ use Aliyun\DySDKLite\SignatureHelper;
          $oneback =CommClass::GetParameter("upper_one");
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
+         //消费金额小于等于0，return
+         if($cash <= 0)
+             return;
          //如果购买的玩家为空，或者玩家不为总代也不为代理，直接return
          if(!CommClass::isAgent($buy_id))
              return;
