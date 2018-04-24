@@ -85,20 +85,22 @@ class HomeController extends Controller
 
     public function updateWx(){
         try{
-            $jsApiPay = new JsApiPay();
-            $jsApiPay->GetOpenid();
-            $data = $jsApiPay->userinfo;
-            var_dump($data);
-            if(!empty($data)){
-                DB::table('xx_user')->where('uid',session('uid'))->update([
-                    'nickname'=>$data['nickname'],
-                    'head_img_url'=>$data['headimgurl'],
-                    'sex'=>$data['sex'],
-                    'unionid'=>$data['unionid'],
-                    'wxopenid'=>$data['openid']
-                ]);
-                //return redirect('/Home');
-            }
+            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
+            var_dump($baseUrl);
+//            $jsApiPay = new JsApiPay();
+//            $jsApiPay->GetOpenid();
+//            $data = $jsApiPay->userinfo;
+//            var_dump($data);
+//            if(!empty($data)){
+//                DB::table('xx_user')->where('uid',session('uid'))->update([
+//                    'nickname'=>$data['nickname'],
+//                    'head_img_url'=>$data['headimgurl'],
+//                    'sex'=>$data['sex'],
+//                    'unionid'=>$data['unionid'],
+//                    'wxopenid'=>$data['openid']
+//                ]);
+//                //return redirect('/Home');
+//            }
         }catch (\Exception $e){
             var_dump($e->getMessage());
         }
