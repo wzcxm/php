@@ -89,7 +89,7 @@ class HomeController extends Controller
         $log = Log::Init($logHandler, 15);
         try{
               $tools = new JsApiPay();
-//            $openid = $tools->GetOpenid();
+              $openid = $tools->GetOpenid();
 //            $data = $tools->userinfo;
 //            if(!empty($data)){
 //                DB::table('xx_user')->where('uid',session('uid'))->update([
