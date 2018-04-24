@@ -106,10 +106,13 @@ class HomeController extends Controller
                     'unionid'=>$data['unionid'],
                     'wxopenid'=>$data['openid']
                 ]);
-                //return redirect('/Home');
+                return response()->json(['status'=>1,'message'=>""]);
+            }else{
+                return response()->json(['status'=>0,'message'=>"获取微信信息失败！"]);
             }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
+            return response()->json(['status'=>0,'message'=>$e->getMessage()]);
         }
 
     }
