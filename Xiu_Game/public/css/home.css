@@ -1,21 +1,22 @@
 
 .home_bg{
     width:100%;
-    height:35%;
+    height:25%;
     display:-webkit-flex;
-    -webkit-flex-direction:column;
+    /*-webkit-flex-direction:column;*/
     background:url(/img/home/home_bg.png);
     background-size:100% 100%;
 }
 .zs_bg{
     width:100%;
-    height:6%;
+    height:4%;
     display:-webkit-flex;
     background:url(/img/home/zs.png);
     background-size:100% 100%;
     color:white;
     font-size: 0.8rem;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .head{
     border-radius:80px;

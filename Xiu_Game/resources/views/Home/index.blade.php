@@ -1,20 +1,22 @@
 @extends('Layout.WeUiLayout')
 @section('style')
-    <link rel="stylesheet" href="{{asset('css/home.css')}}?v=201804138">
+    <link rel="stylesheet" href="{{asset('css/home.css')}}?v=2018042402">
 @endsection
 @section('content')
 @if(!empty($User))
-    <div  class="weui-flex home_bg" >
-        <div style="width: 100%">
-            <div style="float: left;width: 65%;text-align: right;">
-                <img src="{{$User->head_img_url}}" class="head" width="40%">
-            </div>
-            <div style="float: right;width: 35%;text-align: right;margin-top: 20px;">
-                <span class="role">{{$User->rname}}</span>
+    <div  class=" home_bg" >
+        <div style="float:left;width: 50%;">
+            <div style="text-align: right;">
+                <img src="{{$User->head_img_url}}" class="head" width="65%">
             </div>
         </div>
-        <div style="text-align:center;color: white;">
-           <div><span style="font-weight: 400;font-size: 1.2rem;">{{$User->nickname}}</span></div>
+        <div style="float:right;width: 50%;color: white;">
+            <div style="text-align:right;margin-top: 20px;">
+                <span class="role">{{$User->rname}}</span>
+            </div>
+           <div style="text-align:center;margin-top: 5px;">
+               <span style="font-weight: 400;font-size: 1.2rem;">{{$User->nickname}}</span>
+           </div>
             <div style="width: 100%">
                 <div style="float: left;width: 50%;text-align: right;">
                     ID：
