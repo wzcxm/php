@@ -87,10 +87,8 @@ class HomeController extends Controller
     public function updateWx(){
         try{
             $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            $unionid = $tools->data['unionid'];
-            var_dump($openid);
-            var_dump($unionid);
+            $data = $tools->GetUserInfo();
+            var_dump($data);
             //$data = $tools->userinfo;
 //            if(!empty($data)){
 //                DB::table('xx_user')->where('uid',session('uid'))->update([
