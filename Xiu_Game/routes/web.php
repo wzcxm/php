@@ -31,8 +31,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::get('/Home','HomeController@index');
     //绑定手机
     Route::post('/Home/bindPhone','HomeController@updatePhone');
-    //更新微信
-    Route::get('/UpdateWx','HomeController@updateWx');
+
     //菜单
     Route::get('/Menus',function (){
         return view('Menus.Index');
@@ -178,6 +177,8 @@ Route::get('/PlayerBuy/index','CashController@index');
 Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
 Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
+//更新微信
+Route::get('/UpdateWx','HomeController@updateWx');
 //分享
 Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
 
