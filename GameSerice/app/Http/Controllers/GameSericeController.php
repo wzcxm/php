@@ -99,11 +99,8 @@ EOT;
 
 			$user_mode = DB::table("xx_sys_teas")
                 ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
-			var_dump($user_mode);
-			if(empty($user_mode) || count($user_mode) <= 0){
-                var_dump(empty($user_mode));
-                var_dump(count($user_mode));
-                return "";
+			if(count($user_mode) <= 0){
+                return "1";
             }
 
 			$sql = <<<EOT
@@ -129,7 +126,8 @@ EOT;
 			}
 			return $teaPlayerList->encode();
 		}catch (\Exception $e){
-			return "";
+		    var_dump($e->getMessage());
+			return "2";
 		}
 
 	}
