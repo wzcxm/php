@@ -93,7 +93,7 @@ EOT;
 	public function GetTeaPlayerList($teaid,$uid,$sign){
 		try{
 			//验证签名
-			if(!$this->checkSign($sign)) return "";
+			//if(!$this->checkSign($sign)) return "";
 
 			if(empty($teaid)) return "";
 
