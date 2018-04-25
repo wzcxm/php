@@ -93,14 +93,14 @@ EOT;
 	public function GetTeaPlayerList($teaid,$uid,$sign){
 		try{
 			//验证签名
-			//if(!$this->checkSign($sign)) return "";
+			if(!$this->checkSign($sign)) return "";
 
 			if(empty($teaid)) return "";
 
 			$user_mode = DB::table("xx_sys_teas")
                 ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
-			if(count($user_mode) <= 0){
-                return "1";
+			if(empty($user_mode) || count($user_mode) <= 0){
+                return "";
             }
 
 			$sql = <<<EOT
@@ -126,8 +126,7 @@ EOT;
 			}
 			return $teaPlayerList->encode();
 		}catch (\Exception $e){
-		    var_dump($e->getMessage());
-			return "2";
+			return "";
 		}
 
 	}
