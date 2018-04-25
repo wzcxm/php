@@ -1,0 +1,47 @@
+.inp_sty{
+    font-weight: lighter;
+    font-size: 0.7rem;
+    border:2px solid #c1c1c1;
+    outline:none;
+    cursor: pointer;
+    padding: 0 5px 0 5px;
+    border-radius:5px;
+    width: 28px;
+    vertical-align: unset;
+}
+.tea_head_bg{
+    width:100%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/gift/head.png);
+    background-size:100% 100%;
+    font-size: 1.2rem;
+    color:white;
+    text-align: center;
+}
+.muse_name_bg{
+    width:100%;
+    display:-webkit-flex;
+    background:url(/img/gift/myzs_jd.png);
+    background-size:100% 100%;
+    color:white;
+    font-size: 0.8rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.save_bg{
+    background-color: #2dbba7;
+    border: 0;
+    border-radius:5px;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    font-size: 1rem;
+}
+.cancel_bg{
+    background-color: #a4a19f;
+    border: 0;
+    border-radius:5px;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    font-size: 1rem;
+}

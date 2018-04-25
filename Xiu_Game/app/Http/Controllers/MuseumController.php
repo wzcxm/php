@@ -52,10 +52,22 @@ class MuseumController extends Controller
             $jifen1 = isset($data['jifen1'])?$data['jifen1']:0;
             $jifen2 = isset($data['jifen2'])?$data['jifen2']:0;
             $jifen3 = isset($data['jifen3'])?$data['jifen3']:0;
-            //茶水费
+            //大于等于中间值茶水费
             $huilv1 = isset($data['huilv1'])?$data['huilv1']:0;
             $huilv2 = isset($data['huilv2'])?$data['huilv2']:0;
             $huilv3 = isset($data['huilv3'])?$data['huilv3']:0;
+            //茶水费中间值
+            $bzfen1 = isset($data['bzfen1'])?$data['bzfen1']:0;
+            $bzfen2 = isset($data['bzfen2'])?$data['bzfen2']:0;
+            $bzfen3 = isset($data['bzfen3'])?$data['bzfen3']:0;
+            //小于标准值茶水费
+            $mincf1 = isset($data['mincf1'])?$data['mincf1']:0;
+            $mincf2 = isset($data['mincf2'])?$data['mincf2']:0;
+            $mincf3 = isset($data['mincf3'])?$data['mincf3']:0;
+            //积分开关
+            $jfoff1 = isset($data['jfoff1'])?$data['jfoff1']:0;
+            $jfoff2 = isset($data['jfoff2'])?$data['jfoff2']:0;
+            $jfoff3 = isset($data['jfoff3'])?$data['jfoff3']:0;
             if(empty($teaid)) {
                 return response()->json(['status'=>0,'message'=>'牌馆ID错误！']);
             }
@@ -64,7 +76,10 @@ class MuseumController extends Controller
                     'score1'=>$score1,'score2'=>$score2,'score3'=>$score3,
                     'off1'=>$off1,'off2'=>$off2,'off3'=>$off3,
                     'jifen1'=>$jifen1,'jifen2'=>$jifen2,'jifen3'=>$jifen3,
-                    'huilv1'=>$huilv1,'huilv2'=>$huilv2,'huilv3'=>$huilv3
+                    'huilv1'=>$huilv1,'huilv2'=>$huilv2,'huilv3'=>$huilv3,
+                    'bzfen1'=>$bzfen1,'bzfen2'=>$bzfen2,'bzfen3'=>$bzfen3,
+                    'mincf1'=>$mincf1,'mincf2'=>$mincf2,'mincf3'=>$mincf3,
+                    'jfoff1'=>$jfoff1,'jfoff2'=>$jfoff2,'jfoff3'=>$jfoff3
                 ]);
             return response()->json(['status'=>1,'message'=>'']);
         }catch (\Exception $e){
