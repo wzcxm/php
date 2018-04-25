@@ -97,9 +97,15 @@ EOT;
 
 			if(empty($teaid)) return "";
 
-			$user_mode = DB::table("xx_sys_teas")->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
-			if(empty($user_mode) || count($user_mode) <= 0)
+			$user_mode = DB::table("xx_sys_teas")
+                ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
+			var_dump($user_mode);
+			if(empty($user_mode) || count($user_mode) <= 0){
+                var_dump(empty($user_mode));
+                var_dump(count($user_mode));
                 return "";
+            }
+
 			$sql = <<<EOT
 			select t.*,u.nickname,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.tea_id = $teaid
 EOT;
