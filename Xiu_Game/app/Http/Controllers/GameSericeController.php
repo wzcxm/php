@@ -94,7 +94,6 @@ class GameSericeController extends Controller
                 //牌馆ID
                 $ret_arr['teaid'] = $RedisTableInfo->getTeaId();
                 //游戏类型
-                $ret_arr['bgimg'];
                 $gameType = $RedisTableInfo->getServerType();
                 if($gameType == 200){
                     $ret_arr['bgimg'] = 'pdk.png';
