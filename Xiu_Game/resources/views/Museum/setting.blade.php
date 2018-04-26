@@ -47,9 +47,9 @@
                     </div>
                     <div>
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}">，<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> ,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> 体力<br>
                         <div style="float: left;width: 70%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">。
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">体力
                         </div>
                         <div style="float: right;width: 30%;">
                             <button style="margin-left: 30%;" class="open_btn" id="hall_one">保存</button>
@@ -89,9 +89,9 @@
                     </div>
                     <div>
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}">，<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">体力<br>
                         <div style="float: left;width: 70%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">。
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">体力
                         </div>
                         <div style="float: right;width: 30%;">
                             <button style="margin-left: 30%;" class="open_btn" id="hall_two">保存</button>
@@ -131,9 +131,9 @@
                     <div>
 
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}">，<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">体力<br>
                         <div style="float: left;width: 70%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">。
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">体力
                         </div>
                         <div style="float: right;width: 30%;">
                             <button style="margin-left: 30%;" class="open_btn" id="hall_three">保存</button>
