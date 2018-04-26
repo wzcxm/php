@@ -135,11 +135,10 @@ class GameSericeController extends Controller
                 }
                 return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr]);
             }else {
-                var_dump(222);
                 return  view('Share.Index');
             }
         }catch (\Exception $e){
-            var_dump(111);
+            var_dump($e->getMessage());
             return view('Share.Index');
         }
 
