@@ -137,7 +137,6 @@ class GameSericeController extends Controller
                 return  view('Share.Index');
             }
         }catch (\Exception $e){
-            var_dump($e->getMessage());
             return view('Share.Index');
         }
 
