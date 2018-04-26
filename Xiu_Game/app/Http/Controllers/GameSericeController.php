@@ -94,7 +94,15 @@ class GameSericeController extends Controller
                 //牌馆ID
                 $ret_arr['teaid'] = $RedisTableInfo->getTeaId();
                 //游戏类型
-                $ret_arr['gametype'] = $RedisTableInfo->getServerType();
+                $ret_arr['bgimg'];
+                $gameType = $RedisTableInfo->getServerType();
+                if($gameType == 200){
+                    $ret_arr['bgimg'] = 'pdk.png';
+                }else if($gameType == 300){
+                    $ret_arr['bgimg'] = 'nsb.png';
+                }else{
+                    $ret_arr['bgimg'] = 'mazi.png';
+                }
                 //局数
                 $ret_arr['number'] = $RedisTableInfo->getMaxNumber();
                 if($ret_arr['number']>8){

@@ -35,7 +35,8 @@ return [
         ],
     ],
     'GameType'=>[
-        300 =>'xx_nsb_record',
-        400=>'xx_pdk_record'
+        200 =>'xx_pdk_record',//跑得快
+        300 =>'xx_nsb_record',//牛十别
+        400=>'xx_dmz_record'  //打麻子
         ],
 ];

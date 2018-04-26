@@ -50,7 +50,7 @@ body, html {
     margin: 0 0 0 15%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
-    background:url(/img/share/nsb_desk.png) no-repeat center center;
+    background:url(/img/share/desk.png) no-repeat center center;
     background-size:100% 100%;
     color:white;
 }
