@@ -29,11 +29,11 @@
                     </div>
                 </div>
                 <div style="display: {{$tea->jfoff1==0?'none':'block'}};" id="setting_one">
-                    <div>
+                    <div style="margin-top: 5px;">
                         1、1积分兑换
                         <input type="number" id="jifen1" class="inp_sty" value="{{empty($tea->jifen1)?0:$tea->jifen1}}">
                         体力</div>
-                    <div>
+                    <div style="margin-top: 5px;">
                         2、体力负
                         <input type="number" id="score1" class="inp_sty" value="{{empty($tea->score1)?0:$tea->score1}}">
                         禁入牌桌。是否启用
@@ -45,9 +45,13 @@
                             <input type="hidden" id="off_one" value="0">
                         @endif
                     </div>
-                    <div>
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}"><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">体力<br>
+                    <div style="margin-top: 5px;">
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">体力
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> 体力
                         </div>
@@ -71,11 +75,11 @@
                     </div>
                 </div>
                 <div style="display: {{$tea->jfoff2==0?'none':'block'}};" id="setting_two">
-                    <div>
+                    <div style="margin-top: 5px;">
                         1、1积分兑换
                         <input type="number" id="jifen2" class="inp_sty" value="{{empty($tea->jifen2)?0:$tea->jifen2}}">
                         体力</div>
-                    <div>
+                    <div style="margin-top: 5px;">
                         2、体力负
                         <input type="number" id="score2" class="inp_sty" value="{{empty($tea->score2)?0:$tea->score2}}">
                         禁入牌桌。是否启用
@@ -87,9 +91,13 @@
                             <input type="hidden" id="off_two" value="0">
                         @endif
                     </div>
-                    <div>
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}"><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">体力<br>
+                    <div style="margin-top: 5px;">
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">体力
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">体力
                         </div>
@@ -112,11 +120,11 @@
                     </div>
                 </div>
                 <div style="display: {{$tea->jfoff3==0?'none':'block'}};" id="setting_three">
-                    <div>
+                    <div style="margin-top: 5px;">
                         1、1积分兑换
                         <input type="number" id="jifen3" class="inp_sty" value="{{empty($tea->jifen3)?0:$tea->jifen3}}">
                         体力</div>
-                    <div>
+                    <div style="margin-top: 5px;">
                         2、体力负
                         <input type="number" id="score3" class="inp_sty" value="{{empty($tea->score3)?0:$tea->score3}}">
                         禁入牌桌。是否启用
@@ -128,10 +136,13 @@
                             <input type="hidden" id="off_three" value="0">
                         @endif
                     </div>
-                    <div>
-
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}"><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">体力<br>
+                    <div style="margin-top: 5px;">
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}">
+                    </div>
+                    <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">体力
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">体力
                         </div>
