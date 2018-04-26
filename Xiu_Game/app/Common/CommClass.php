@@ -413,16 +413,16 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!CommClass::isAgent($buy_id))
              return;
          $buy_user = Users::find($buy_id);
-         if($buy_user->rid == 3){ //总代购买，直接返25%给总代
-             $ret_monery = $cash*25/100;
-             DB::table("xx_wx_backgold")->insert(
-                 ['get_id'=>$buy_id,
-                     'back_id'=>10000,
-                     'backgold'=>$ret_monery,
-                     'gold'=>$cash,
-                     'ratio'=>25,
-                     'level'=>4]);
-         }
+//         if($buy_user->rid == 3){ //总代购买，直接返25%给总代
+//             $ret_monery = $cash*25/100;
+//             DB::table("xx_wx_backgold")->insert(
+//                 ['get_id'=>$buy_id,
+//                     'back_id'=>10000,
+//                     'backgold'=>$ret_monery,
+//                     'gold'=>$cash,
+//                     'ratio'=>25,
+//                     'level'=>4]);
+//         }
          //上级返利
          //上级为空，或者上级不为总代也不为代理，直接return
          if(!CommClass::isAgent($buy_user->front_uid))

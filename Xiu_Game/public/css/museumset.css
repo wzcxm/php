@@ -45,3 +45,19 @@
     color: white;
     font-size: 1rem;
 }
+.open_btn{
+    background-color: #2dbba7;
+    border: 0;
+    border-radius:5px;
+    padding: 0 5px 0 5px;
+    color: white;
+    font-size: 0.75rem;
+}
+.close_btn{
+    background-color: #a4a19f;
+    border: 0;
+    border-radius:5px;
+    padding: 0 5px 0 5px;
+    color: white;
+    font-size: 0.75rem;
+}

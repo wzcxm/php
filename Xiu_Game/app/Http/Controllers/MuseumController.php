@@ -40,47 +40,82 @@ class MuseumController extends Controller
             }
             //id
             $teaid = isset($data['tea_id'])?$data['tea_id']:0;
+            $arr_tea = [];
             //最低积分
-            $score1 = isset($data['score1'])?$data['score1']:0;
-            $score2 = isset($data['score2'])?$data['score2']:0;
-            $score3 = isset($data['score3'])?$data['score3']:0;
+            if(isset($data['score1'])){
+                $arr_tea['score1']=$data['score1'];
+            }
+            if(isset($data['score2'])){
+                $arr_tea['score2']=$data['score2'];
+            }
+            if(isset($data['score3'])){
+                $arr_tea['score3']=$data['score3'];
+            }
             //是否开启最低积分校验
-            $off1 = isset($data['off1'])?$data['off1']:0;
-            $off2 = isset($data['off2'])?$data['off2']:0;
-            $off3 = isset($data['off3'])?$data['off3']:0;
+            if(isset($data['off1'])){
+                $arr_tea['off1']=$data['off1'];
+            }
+            if(isset($data['off2'])){
+                $arr_tea['off2']=$data['off2'];
+            }
+            if(isset($data['off3'])){
+                $arr_tea['off3']=$data['off3'];
+            }
             //基础积分
-            $jifen1 = isset($data['jifen1'])?$data['jifen1']:0;
-            $jifen2 = isset($data['jifen2'])?$data['jifen2']:0;
-            $jifen3 = isset($data['jifen3'])?$data['jifen3']:0;
+            if(isset($data['jifen1'])){
+                $arr_tea['jifen1']=$data['jifen1'];
+            }
+            if(isset($data['jifen2'])){
+                $arr_tea['jifen2']=$data['jifen2'];
+            }
+            if(isset($data['jifen3'])){
+                $arr_tea['jifen3']=$data['jifen3'];
+            }
             //大于等于中间值茶水费
-            $huilv1 = isset($data['huilv1'])?$data['huilv1']:0;
-            $huilv2 = isset($data['huilv2'])?$data['huilv2']:0;
-            $huilv3 = isset($data['huilv3'])?$data['huilv3']:0;
+            if(isset($data['huilv1'])){
+                $arr_tea['huilv1']=$data['huilv1'];
+            }
+            if(isset($data['huilv2'])){
+                $arr_tea['huilv2']=$data['huilv2'];
+            }
+            if(isset($data['huilv3'])){
+                $arr_tea['huilv3']=$data['huilv3'];
+            }
             //茶水费中间值
-            $bzfen1 = isset($data['bzfen1'])?$data['bzfen1']:0;
-            $bzfen2 = isset($data['bzfen2'])?$data['bzfen2']:0;
-            $bzfen3 = isset($data['bzfen3'])?$data['bzfen3']:0;
+            if(isset($data['bzfen1'])){
+                $arr_tea['bzfen1']=$data['bzfen1'];
+            }
+            if(isset($data['bzfen2'])){
+                $arr_tea['bzfen2']=$data['bzfen2'];
+            }
+            if(isset($data['bzfen3'])){
+                $arr_tea['bzfen3']=$data['bzfen3'];
+            }
             //小于标准值茶水费
-            $mincf1 = isset($data['mincf1'])?$data['mincf1']:0;
-            $mincf2 = isset($data['mincf2'])?$data['mincf2']:0;
-            $mincf3 = isset($data['mincf3'])?$data['mincf3']:0;
+            if(isset($data['mincf1'])){
+                $arr_tea['mincf1']=$data['mincf1'];
+            }
+            if(isset($data['mincf2'])){
+                $arr_tea['mincf2']=$data['mincf2'];
+            }
+            if(isset($data['mincf3'])){
+                $arr_tea['mincf3']=$data['mincf3'];
+            }
             //积分开关
-            $jfoff1 = isset($data['jfoff1'])?$data['jfoff1']:0;
-            $jfoff2 = isset($data['jfoff2'])?$data['jfoff2']:0;
-            $jfoff3 = isset($data['jfoff3'])?$data['jfoff3']:0;
+            if(isset($data['jfoff1'])){
+                $arr_tea['jfoff1']=$data['jfoff1'];
+            }
+            if(isset($data['jfoff2'])){
+                $arr_tea['jfoff2']=$data['jfoff2'];
+            }
+            if(isset($data['jfoff3'])){
+                $arr_tea['jfoff3']=$data['jfoff3'];
+            }
             if(empty($teaid)) {
                 return response()->json(['status'=>0,'message'=>'牌馆ID错误！']);
             }
             DB::table('xx_sys_tea')->where('tea_id',$teaid)
-                ->update([
-                    'score1'=>$score1,'score2'=>$score2,'score3'=>$score3,
-                    'off1'=>$off1,'off2'=>$off2,'off3'=>$off3,
-                    'jifen1'=>$jifen1,'jifen2'=>$jifen2,'jifen3'=>$jifen3,
-                    'huilv1'=>$huilv1,'huilv2'=>$huilv2,'huilv3'=>$huilv3,
-                    'bzfen1'=>$bzfen1,'bzfen2'=>$bzfen2,'bzfen3'=>$bzfen3,
-                    'mincf1'=>$mincf1,'mincf2'=>$mincf2,'mincf3'=>$mincf3,
-                    'jfoff1'=>$jfoff1,'jfoff2'=>$jfoff2,'jfoff3'=>$jfoff3
-                ]);
+                ->update($arr_tea);
             return response()->json(['status'=>1,'message'=>'']);
         }catch (\Exception $e){
             return response()->json(['status'=>0,'message'=>$e->getMessage()]);
