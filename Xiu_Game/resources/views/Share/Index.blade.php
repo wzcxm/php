@@ -27,7 +27,9 @@
 
     <div style="height: 100%;">
         <div class="desk_bg">
-            <div style="width: 100%;height: 100%;background:url({{empty($item['bgimg'])?"/img/share/pdk.png":"/img/share/".$item['bgimg']}}) no-repeat center;">
+            <div style="width: 100%;height: 100%;
+                    background:url({{empty($item['bgimg'])?"/img/share/pdk.png":"/img/share/".$item['bgimg']}}) no-repeat center;
+                    background-size:30%;">
                 <div style="height: 35%;">
                     <div style="width: 45%;float: left;font-size:0.8em;">
                         <div style="margin-top: 5px;font-weight: bold;">
