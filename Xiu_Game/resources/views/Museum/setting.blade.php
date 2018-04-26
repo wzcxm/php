@@ -5,7 +5,7 @@
 @section('content')
 
     <div  class="weui-flex tea_head_bg" >
-        <div style="margin-top: 10px;margin-bottom: 10px">牌馆设置</div>
+        <div style="margin-top: 10px;margin-bottom: 10px">体力设置</div>
     </div>
     <div  class="weui-flex muse_name_bg" >
         <div class="weui-flex__item" style="text-align: center;">
@@ -20,9 +20,9 @@
         <div class="weui-cell">
             <div style="font-size: 0.7rem;width: 100%;">
                 <div style="font-size: 0.8rem;font-weight: 600;">
-                    <div style="float: left;width: 70%;">一号厅规则设置：</div>
-                    <div style="float: right;width: 30%;">
-                        <button style="margin-left: 30%;" class="{{$tea->jfoff1==0?'open_btn':'close_btn'}}"
+                    <div style="float: left;width: 80%;">一号厅规则设置：</div>
+                    <div style="float: right;width: 20%;">
+                        <button style="margin-left: 20%;" class="{{$tea->jfoff1==0?'open_btn':'close_btn'}}"
                                 onclick="open_close(this,'jfoff1','setting_one')">{{$tea->jfoff1==0?'开启':'关闭'}}
                         </button>
                         <input type="hidden" id="jfoff1" value="{{$tea->jfoff1}}">
@@ -46,13 +46,13 @@
                         @endif
                     </div>
                     <div>
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}">，<br>
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}"><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">体力<br>
-                        <div style="float: left;width: 70%;">
+                        <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> 体力
                         </div>
-                        <div style="float: right;width: 30%;">
-                            <button style="margin-left: 30%;" class="open_btn" id="hall_one">保存</button>
+                        <div style="float: right;width: 20%;">
+                            <button style="margin-left: 20%;" class="open_btn" id="hall_one">保存</button>
                         </div>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
         <div class="weui-cell">
             <div style="font-size: 0.7rem;width: 100%;">
                 <div style="font-size: 0.8rem;font-weight: 600;">
-                    <div style="float: left;width: 70%;">二号厅规则设置：</div>
-                    <div style="float: right;width: 30%;">
-                        <button style="margin-left: 30%;" class="{{$tea->jfoff2==0?'open_btn':'close_btn'}}"
+                    <div style="float: left;width: 80%;">二号厅规则设置：</div>
+                    <div style="float: right;width: 20%;">
+                        <button style="margin-left: 20%;" class="{{$tea->jfoff2==0?'open_btn':'close_btn'}}"
                                 onclick="open_close(this,'jfoff2','setting_two')">{{$tea->jfoff2==0?'开启':'关闭'}}
                         </button>
                         <input type="hidden" id="jfoff2" value="{{$tea->jfoff2}}">
@@ -88,13 +88,13 @@
                         @endif
                     </div>
                     <div>
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}">，<br>
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}"><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">体力<br>
-                        <div style="float: left;width: 70%;">
+                        <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">体力
                         </div>
-                        <div style="float: right;width: 30%;">
-                            <button style="margin-left: 30%;" class="open_btn" id="hall_two">保存</button>
+                        <div style="float: right;width: 20%;">
+                            <button style="margin-left: 20%;" class="open_btn" id="hall_two">保存</button>
                         </div>
                     </div>
                 </div>
@@ -103,10 +103,10 @@
         <div class="weui-cell">
             <div style="font-size: 0.7rem;width: 100%;">
                 <div style="font-size: 0.8rem;font-weight: 600;width: 100%;">
-                    <div style="float: left;width: 70%;">三号厅规则设置：</div>
-                    <div style="float: right;width: 30%;">
-                        <button style="margin-left: 30%;" class="{{$tea->jfoff3==0?'open_btn':'close_btn'}}"
-                                onclick="open_close(this,'jfoff3','setting_three')">{{$tea->jfoff2==3?'开启':'关闭'}}
+                    <div style="float: left;width: 80%;">三号厅规则设置：</div>
+                    <div style="float: right;width: 20%;">
+                        <button style="margin-left: 20%;" class="{{$tea->jfoff3==0?'open_btn':'close_btn'}}"
+                                onclick="open_close(this,'jfoff3','setting_three')">{{$tea->jfoff3==0?'开启':'关闭'}}
                         </button>
                         <input type="hidden" id="jfoff3" value="{{$tea->jfoff3}}">
                     </div>
@@ -130,13 +130,13 @@
                     </div>
                     <div>
 
-                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}">，<br>
+                        3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}"><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">体力<br>
-                        <div style="float: left;width: 70%;">
+                        <div style="float: left;width: 80%;">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">体力
                         </div>
-                        <div style="float: right;width: 30%;">
-                            <button style="margin-left: 30%;" class="open_btn" id="hall_three">保存</button>
+                        <div style="float: right;width: 20%;">
+                            <button style="margin-left: 20%;" class="open_btn" id="hall_three">保存</button>
                         </div>
                     </div>
                 </div>
