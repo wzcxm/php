@@ -35,7 +35,7 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score1" class="inp_sty" value="{{empty($tea->score1)?0:$tea->score1}}">
+                        <input type="number" id="score1" class="inp_sty" value="{{empty($tea->score1)?0:abs($tea->score1)}}">
                         禁入牌桌。是否启用
                         @if(!empty($tea) && !empty($tea->off1) && $tea->off1==1)
                             <input type="checkbox" id = "off1" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_one')">
@@ -81,7 +81,7 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score2" class="inp_sty" value="{{empty($tea->score2)?0:$tea->score2}}">
+                        <input type="number" id="score2" class="inp_sty" value="{{empty($tea->score2)?0:abs($tea->score2)}}">
                         禁入牌桌。是否启用
                         @if(!empty($tea) && !empty($tea->off2) && $tea->off2==1)
                             <input type="checkbox" id = "off2" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_two')">
@@ -126,7 +126,7 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score3" class="inp_sty" value="{{empty($tea->score3)?0:$tea->score3}}">
+                        <input type="number" id="score3" class="inp_sty" value="{{empty($tea->score3)?0:abs($tea->score3)}}">
                         禁入牌桌。是否启用
                         @if(!empty($tea) && !empty($tea->off3) && $tea->off3==1)
                             <input type="checkbox" id = "off3" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_three')">

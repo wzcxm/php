@@ -43,13 +43,13 @@ class MuseumController extends Controller
             $arr_tea = [];
             //最低积分
             if(isset($data['score1'])){
-                $arr_tea['score1']=$data['score1'];
+                $arr_tea['score1']='-'.$data['score1'];
             }
             if(isset($data['score2'])){
-                $arr_tea['score2']=$data['score2'];
+                $arr_tea['score2']='-'.$data['score2'];
             }
             if(isset($data['score3'])){
-                $arr_tea['score3']=$data['score3'];
+                $arr_tea['score3']='-'.$data['score3'];
             }
             //是否开启最低积分校验
             if(isset($data['off1'])){

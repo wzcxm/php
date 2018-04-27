@@ -668,7 +668,6 @@ EOT;
                    array_push($str,$i);
                 }
             }
-            //var_dump($str);
             Redis::rpush('xx_user_id_list', $str);
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
