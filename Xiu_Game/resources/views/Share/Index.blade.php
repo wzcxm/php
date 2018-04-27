@@ -18,7 +18,7 @@
 <body>
 <div class="share_head_bg">
     <div style="height: 90%;"></div>
-    <div style="font-size: 1.5rem;color: green;text-align: center;font-weight: 800;margin-bottom: 10px;">
+    <div style="font-size: 1.5rem;color: green;font-weight: 800;margin-bottom: 10px;margin-left: 10px;margin-right: 10px;">
         {{--<span>局数：{{empty($item['number'])?"":$item['number']}}</span>--}}
         {{--<span>玩法：{{empty($item['play'])?"":$item['play']}}</span>--}}
         {{empty($item['play'])?"":$item['play']}}
