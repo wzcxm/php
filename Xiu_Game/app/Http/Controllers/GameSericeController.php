@@ -110,7 +110,7 @@ class GameSericeController extends Controller
                     $ret_arr['number'] .= '局';
                 }
                 //玩法
-                $ret_arr['play'] = $msg ;
+                $ret_arr['play'] = urldecode($msg) ;
                 //桌号
                 $desk = substr($roomNo,strlen($ret_arr['teaid']));
                 $ret_arr['desk'] =$desk;
