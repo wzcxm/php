@@ -117,11 +117,12 @@ EOT;
                 $teaplayer->setState($player->state);
                 $teaplayer->setManager($player->manager);
                 $teaplayer->setHallId($player->hall_id);
-                $teaplayer->setWinnum($player->score);
+                $teaplayer->setWinnum($player->winnum);
                 $teaplayer->setRemarks($player->remarks);
                 $teaplayer->setNumbers($player->numbers);
                 $teaplayer->setDate($player->create_time);
                 $teaplayer->setOnline($player->online_state);
+                $teaplayer->setTpScore($player->score);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
 			return $teaPlayerList->encode();

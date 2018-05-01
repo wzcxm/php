@@ -316,7 +316,9 @@ class GameLoginController extends Controller
             $server_login_info->setBubble($user->gold);
             $server_login_info->setPasswd(encrypt($user->pwd));
             //$server_login_info->setPhone($user->uphone);
+            $server_login_info->setIdnum($user->idnum);
             $server_login_info->setRid($user->rid);
+            $server_login_info->setRealname($user->realname);
             $server_login_info->setRoomId($user->room_id);
             $server_login_info->setTeaId($user->tea_id);
             $server_login_info->setToken($user->openid);
