@@ -491,7 +491,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                 if($wx_order->flag == 0){
                     //首冲套餐
                     if($wx_order->isfirst == 1){
-                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum + 100]) ;
+                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 400]) ;
                     }else{
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     }

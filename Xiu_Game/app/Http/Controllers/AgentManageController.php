@@ -103,7 +103,8 @@ EOT;
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
         }
-        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where);
+        $orderby = ' create_time desc';
+        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
         return response()->json($menu_arr);
     }
 }
