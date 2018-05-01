@@ -122,7 +122,7 @@ EOT;
                 $teaplayer->setNumbers($player->numbers);
                 $teaplayer->setDate($player->create_time);
                 $teaplayer->setOnline($player->online_state);
-                //$teaplayer->setTpScore($player->score);
+                $teaplayer->setTpScore($player->score);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
 			return $teaPlayerList->encode();
