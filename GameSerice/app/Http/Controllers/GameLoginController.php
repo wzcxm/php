@@ -307,7 +307,7 @@ class GameLoginController extends Controller
     private function setProtobuf($user,$gw_type){
 	    try{
             $server_login_info = new ServerLoginInfo();
-            $server_login_info->setLogSwitch(1);//日志开关
+            $server_login_info->setLogSwitch(2);//日志开关
             $server_login_info->setCode(1);
             $server_login_info->setUid($user->uid);
             $server_login_info->setNickname($user->nickname);
