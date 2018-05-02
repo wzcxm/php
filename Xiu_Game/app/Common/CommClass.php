@@ -158,8 +158,8 @@ use Aliyun\DySDKLite\SignatureHelper;
             //字符串长度不能为0；
             if($msg_len<=0) return "ERROR:NULL";
             //地址
-            $ip = "172.18.141.83";
-            //$ip = "127.0.0.1";
+            //$ip = "172.18.141.83";
+            $ip = "127.0.0.1";
             //$ip = "login.wangqianhong.com";
             //创建一个socket套接流
             $socket = socket_create(AF_INET,SOCK_STREAM,SOL_TCP);
