@@ -104,7 +104,7 @@ EOT;
             }
 
 			$sql = <<<EOT
-			select t.*,u.nickname,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.tea_id = $teaid
+			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.tea_id = $teaid
 EOT;
 			$player_data =  DB::select($sql);
 			if(empty($player_data)) return "";
@@ -123,6 +123,7 @@ EOT;
                 $teaplayer->setDate($player->create_time);
                 $teaplayer->setOnline($player->online_state);
                 $teaplayer->setTpScore($player->score);
+                $teaplayer->setHeadUrl($player->head_img_url);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
 			return $teaPlayerList->encode();
