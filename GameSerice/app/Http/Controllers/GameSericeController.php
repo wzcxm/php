@@ -174,7 +174,7 @@ EOT;
 				$ret = "2";
 			} else {
 				if($version < 3.1){
-					$ret = "1";
+					$ret = "0";
 				}else{
 					$ret = "0";
 				}
@@ -669,6 +669,7 @@ EOT;
                    array_push($str,$i);
                 }
             }
+            var_dump(Redis::llen('xx_user_id_list')) ;
             Redis::rpush('xx_user_id_list', $str);
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
