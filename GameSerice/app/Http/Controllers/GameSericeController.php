@@ -170,8 +170,8 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 3.6) {
-				$ret = "2";
+			if ($version == 3.6) { //
+				$ret = "2";//2-审核版本；0-正常；1-强制更新
 			} else {
 				if($version < 3.1){
 					$ret = "0";
@@ -181,7 +181,7 @@ EOT;
 			}
 		}else if($type==2){
 			if($version < 3.1){
-				$ret = "1";
+				$ret = "0";
 			}else{
 				$ret = "0";
 			}
@@ -669,7 +669,8 @@ EOT;
                    array_push($str,$i);
                 }
             }
-            var_dump(Redis::llen('xx_user_id_list')) ;
+            //Redis::delete();
+            //var_dump(Redis::llen('xx_user_id_list')) ;
             Redis::rpush('xx_user_id_list', $str);
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
