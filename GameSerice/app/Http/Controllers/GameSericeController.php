@@ -669,9 +669,11 @@ EOT;
                    array_push($str,$i);
                 }
             }
+            //删除队列
             Redis::del('xx_user_id_list');
-            //var_dump(Redis::llen('xx_user_id_list')) ;
+	        //创建队列
             Redis::rpush('xx_user_id_list', $str);
+            //查看队列元素个数
             var_dump(Redis::llen('xx_user_id_list')) ;
         }catch (\Exception $e){
             var_dump ($e->getMessage());
