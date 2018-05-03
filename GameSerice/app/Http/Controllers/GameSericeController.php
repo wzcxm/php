@@ -669,7 +669,7 @@ EOT;
                    array_push($str,$i);
                 }
             }
-            //Redis::delete();
+            Redis::del('xx_user_id_list');
             //var_dump(Redis::llen('xx_user_id_list')) ;
             Redis::rpush('xx_user_id_list', $str);
             var_dump(Redis::llen('xx_user_id_list')) ;
