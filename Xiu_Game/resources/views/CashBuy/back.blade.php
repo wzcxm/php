@@ -65,7 +65,10 @@
                                 return "下级";
                             }else if(value==2){
                                 return "下下级";
-                            }else if(value==4){
+                            }else if(value==3){
+                                return "玩家";
+                            }
+                            else if(value==4){
                                 return "自购";
                             }else if(value==5){
                                 return "下级首冲";

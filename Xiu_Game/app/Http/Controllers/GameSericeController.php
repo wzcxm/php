@@ -436,6 +436,8 @@ class GameSericeController extends Controller
                     'payway'=>1,
                     'status'=>1
                 ]);
+                //玩家购买返现
+                CommClass::PlayBackCash($uid,$product->sprice);
                 //更新游戏的钻石数量
                 CommClass::UpGameSer($uid,'card');//玩家的钻石
                 return ['status'=>1,'message'=>''];

@@ -597,7 +597,8 @@ use Aliyun\DySDKLite\SignatureHelper;
         $wx_order = DB::table('xx_wx_buycard')->where([['nonce', $order_no],['status',0]])->first();
         if (!empty($wx_order)) {
             CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
-
+            //玩家购买返现
+            CommClass::PlayBackCash($wx_order->userid,$wx_order->total);
             //更新订单状态
             DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
             //更新游戏的钻石数量
@@ -648,6 +649,30 @@ use Aliyun\DySDKLite\SignatureHelper;
              return $content;
          }catch (\Exception $e){
              return $e->getMessage();
+         }
+     }
+
+
+     //玩家购买返现
+     public static function PlayBackCash($uid,$cash){
+         $play = Users::find($uid);
+         //上级返利
+         if(!empty($play->chief_uid)){
+             //玩家的推荐人必须是代理，才返现
+             $font = Users::find($play->chief_uid);
+             if(!empty($font) && ($font->rid == 2 || $font->rid == 3)){
+                 //返利比例
+                 $invitation = CommClass::GetParameter("invitation");
+                 $back_cash = $cash*$invitation/100;
+                 //保存返利信息
+                 DB::table("xx_wx_backgold")->insert(
+                     ['get_id'=>$play->chief_uid,
+                         'back_id'=>$uid,
+                         'backgold'=>$back_cash,
+                         'gold'=>$cash,
+                         'ratio'=>$invitation,
+                         'level'=>3]);
+             }
          }
      }
 }

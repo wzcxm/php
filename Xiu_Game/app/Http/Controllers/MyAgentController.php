@@ -17,7 +17,8 @@ class MyAgentController extends Controller
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
         }
-        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where);
+        $orderby = ' create_time desc ';
+        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
         return response()->json($menu_arr);
     }
 
@@ -26,11 +27,12 @@ class MyAgentController extends Controller
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
         $uid = isset($request['uid']) ? intval($request['uid']) : 0;
-        $where = ' rid = 5  and front_uid = '.session('uid');
+        $where = ' rid = 5  and chief_uid = '.session('uid');
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
         }
-        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where);
+        $orderby = ' create_time desc ';
+        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
         return response()->json($menu_arr);
     }
 }

@@ -295,7 +295,7 @@ class GameLoginController extends Controller
 				//保存我的微信openid
 				DB::table('xx_user')
 					->where('unionid',$unionid)
-					->update(['wxopenid'=>$temp_user->wxopenid]);
+					->update(['chief_uid'=>$temp_user->front,'wxopenid'=>$temp_user->wxopenid]);
 			}
 		}catch (\Exception $e){
 
