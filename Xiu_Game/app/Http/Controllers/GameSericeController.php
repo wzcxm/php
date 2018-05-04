@@ -42,8 +42,8 @@ class GameSericeController extends Controller
             foreach ($data as $item){
                 $nownum += $item['level'];
                 if($rand <= $nownum){
-                    $this->setUserInfo($uid,$item);
-                    return $item['id'];
+                    //$this->setUserInfo($uid,$item);
+                    return 1;//$item['id'];
                 }
             }
         }catch (\Exception $e){
