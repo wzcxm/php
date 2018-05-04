@@ -549,10 +549,10 @@ use Aliyun\DySDKLite\SignatureHelper;
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
-                    //总代首冲也返利
-                    if($wx_order->rid == 3){
-                        CommClass::BackCash($wx_order->userid, $wx_order->total);
-                    }
+//                    //总代首冲也返利
+//                    if($wx_order->rid == 3){
+//                        CommClass::BackCash($wx_order->userid, $wx_order->total);
+//                    }
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理

@@ -71,7 +71,7 @@
                             else if(value==4){
                                 return "自购";
                             }else if(value==5){
-                                return "下级首冲";
+                                return "推荐代理";
                             }
                             else{return "";}
                         }},
