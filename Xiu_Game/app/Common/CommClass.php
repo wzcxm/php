@@ -430,8 +430,8 @@ use Aliyun\DySDKLite\SignatureHelper;
          $front = Users::find($buy_user->front_uid);
          //如果上级为总代，返25%，其他代理返20%
          if($front->rid == 3){
-             $back = 25;
-             $return_one = $cash*25/100;
+             $back = CommClass::getProxyScale($buy_user->front_uid);
+             $return_one = $cash*$back/100;
          }else if($front->rid == 2){//其他代理返20%
              $back = $oneback;
              $return_one = $cash*$oneback/100;
@@ -457,6 +457,34 @@ use Aliyun\DySDKLite\SignatureHelper;
                  'gold'=>$cash,
                  'ratio'=>$twoback,
                  'level'=>2]);
+     }
+
+     /*
+      * 获取总代的提成比例
+      * $uid：总代ID
+      */
+     private static function getProxyScale($uid){
+         //总代的下级代理个数
+        $people = DB::table('xx_user')->where('front_uid',$uid)->count();
+        //总代的提成规则
+        $data = DB::table('xx_sys_proxyscale')->where('uid',$uid)->get();
+        //提成比例
+        $scale = 0;
+        if(count($data)>0){ //如果总代设置了，提成规则，则取设置的提成比例
+            foreach ($data as $item){
+                if($people >= $item->people){
+                    $scale = $item->scale;
+                }
+            }
+        }else{ //如果没有设置，则取默认的提成比例
+            $data = DB::table('xx_sys_proxyscale')->where('uid',0)->get();
+            foreach ($data as $item){
+                if($people >= $item->people){
+                    $scale = $item->scale;
+                }
+            }
+        }
+        return $scale;
      }
 
      /*
