@@ -38,10 +38,10 @@
                     <td align="right">钻石：</td>
                     <td><span  style="color: #545454" id="u_card"></span></td>
                 </tr>
-                <tr>
-                    <td align="right">金豆：</td>
-                    <td><span  style="color: #545454" id="u_gold"></span></td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td align="right">金豆：</td>--}}
+                    {{--<td><span  style="color: #545454" id="u_gold"></span></td>--}}
+                {{--</tr>--}}
                 <tr>
                     <td colspan="2" align="center"><span style="color:#ee3723;">请仔细核对玩家信息后，再确认赠送!</span></td>
                 </tr>
@@ -100,14 +100,12 @@
                         $("#head_url").attr('src',"");
                         $("#player_nick").html("");
                         $("#u_card").html("");
-                        $("#u_gold").html("");
                         $("#uid").val("");
                     } else {
                         var player = data.user;
                         $("#head_url").attr('src',player['head_img_url']);
                         $("#player_nick").html(player['nickname']);
                         $("#u_card").html(player['roomcard']);
-                        $("#u_gold").html(player['gold']);
                         $("#uid").val(player['uid']);
                     }
                 });
