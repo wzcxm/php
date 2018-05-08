@@ -49,8 +49,6 @@ class MyInfoController extends Controller
         // 设置运行时间为无限制
         set_time_limit ( 0 );
         $url = trim ( $url );
-
-
         $curl = curl_init ();
         // 设置你需要抓取的URL
         curl_setopt ( $curl, CURLOPT_URL, $url );

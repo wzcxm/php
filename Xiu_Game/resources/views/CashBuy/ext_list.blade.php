@@ -40,7 +40,9 @@
                 columns:[[
                     {field:'id',title:'ID',width:60,hidden:true},
                     {field:'uid',title:'提现人ID',width:100},
-                    {field:'gold',title:'提现金额',width:100},
+                    {field:'gold',title:'提现金额',width:100,formatter:function (value,row,index) {
+                            return parseInt(value);
+                        }},
                     {field:'ctradedate',title:'提现日期',width:150}
                 ]]
             });
