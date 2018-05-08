@@ -30,7 +30,7 @@
                 fit:true,
 //                fitColumns:true,
                 scrollbarSize:0,
-                pagination:false,
+                pagination:true,
                 rownumbers:true,
                 showFooter: true,
                 url:'/MyPlayer/data',

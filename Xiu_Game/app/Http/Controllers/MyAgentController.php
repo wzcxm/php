@@ -46,10 +46,7 @@ class MyAgentController extends Controller
             $where .= " and uid = ".$uid;
         }
         $orderby = ' create_time desc ';
-        $sql = " select * from xx_user where ".$where.' order by '.$orderby;
-        $result= DB::select($sql);
-        $total = collect($result)->count();
-        $menu_arr = ['total'=>$total,'rows'=>$result];//CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
+        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
         return response()->json($menu_arr);
     }
 }
