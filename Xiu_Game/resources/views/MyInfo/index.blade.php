@@ -9,12 +9,11 @@
     </style>
 @endsection
 @section('content')
+    <div  class = "head_bg" >
+        <img src='{{empty($user->head_img_url)?asset('/img/ui-default.jpg'):$user->head_img_url}}'
+             style='border-radius:80px;margin-top:15%;border:4px solid #9ccabf;' width='30%' >
+    </div>
     <div class="weui-cells_form">
-        <div  class="weui-flex head_bg" >
-            <div>
-                <img src='{{empty($user->head_img_url)?asset('/img/ui-default.jpg'):$user->head_img_url}}' style='border-radius:80px;margin-top:15%;border:4px solid #9ccabf;' width='25%' >
-            </div>
-        </div>
         <div class="weui-cell">
             <div class="weui-cell__hd" style="width: 40%;text-align: right;">
                 <label class="weui-label">我的昵称</label>

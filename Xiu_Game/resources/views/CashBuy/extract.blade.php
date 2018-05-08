@@ -10,7 +10,7 @@
     <div class="weui-cells_form">
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
-                <div style="float: left;width: 28%;text-align: right;">
+                <div style="float: left;width: 35%;text-align: right;">
                     我的提成：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
@@ -20,7 +20,7 @@
         </div>
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
-                <div style="float: left;width: 28%;text-align: right;">
+                <div style="float: left;width: 35%;text-align: right;">
                     本次提取：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
@@ -33,7 +33,7 @@
         </div>
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
-                <div style="float: left;width: 28%;text-align: right;">
+                <div style="float: left;width: 35%;text-align: right;">
                     手机验证码：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
