@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 class MyAgentController extends Controller
 {
 
+    public function myAgent(){
+        $sql = ' select * from xx_user where rid = 2  and front_uid =  '.session('uid');
+        $data = DB::select($sql);
+        $total = collect($data)->count();
+        return view('MyAgent.MyAgent',['total'=>$total]);
+    }
     //我的代理
     public function getData(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;

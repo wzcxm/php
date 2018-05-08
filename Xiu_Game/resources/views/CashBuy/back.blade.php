@@ -32,7 +32,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'返利查询（返利比例：下级20%；下下级5%；）',
+                title:'提成查询',
                 singleSelect:true,
                 border:false,
                 fit:true,
@@ -59,7 +59,7 @@
                         }},
                     {field:'back_id',title:'ID',width:50},
                     {field:'b_nick',title:'昵称',width:80},
-                    {field:'level',title:'返利来源',width:60,
+                    {field:'level',title:'提成来源',width:60,
                         formatter:function (value) {
                             if(value==1){
                                 return "下级";
@@ -76,7 +76,7 @@
                             else{return "";}
                         }},
                     {field:'gold',title:'消费金额',width:60},
-                    {field:'backgold',title:'返利金额',width:60},
+                    {field:'backgold',title:'提成金额',width:60},
                     {field:'create_time',title:'日期',width:120}
                 ]]
             });

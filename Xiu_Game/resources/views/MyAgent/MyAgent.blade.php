@@ -2,6 +2,7 @@
 @section('easyui_style')
 @endsection
 @section('easyui_content')
+    <input type="hidden" id ='total' value="{{$total}}" />
     <table id="tab_grid" ></table>
     <div id="tb" style="padding:3px">
         <table><tr>
@@ -21,7 +22,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'我的代理',
+                title:'<p style="font-size: 0.8rem;">我的代理：'+$("#total").val()+'</p>',
                 singleSelect:true,
                 border:false,
                 fit:true,

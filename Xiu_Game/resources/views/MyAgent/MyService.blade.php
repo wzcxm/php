@@ -24,7 +24,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'<p style="font-size: 0.8rem;">我的玩家（共计 '+$("#total").val()+' 人）</p>',
+                title:'<p style="font-size: 0.8rem;">我的玩家：'+$("#total").val()+'</p>',
                 singleSelect:true,
                 border:false,
                 fit:true,

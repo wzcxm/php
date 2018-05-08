@@ -77,9 +77,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/ShoppingMall/del/{id}','ShoppingMallController@destroy');
 
     //我的代理
-    Route::get('/MyAgent',function (){
-        return view('MyAgent.MyAgent');
-    });
+    Route::get('/MyAgent','MyAgentController@myAgent');
     Route::post('/MyAgent/data','MyAgentController@getData');
     //我的玩家
     Route::get('/MyPlayer','MyAgentController@myPlayer');

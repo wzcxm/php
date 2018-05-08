@@ -463,7 +463,7 @@ use Aliyun\DySDKLite\SignatureHelper;
       * 获取总代的提成比例
       * $uid：总代ID
       */
-     private static function getProxyScale($uid){
+     public static function getProxyScale($uid){
          //总代的下级代理个数
         $people = DB::table('xx_user')->where('front_uid',$uid)->count();
         //总代的提成规则

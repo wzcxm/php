@@ -48,10 +48,18 @@
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd" style="width: 40%;text-align: right;">
-                <label class="weui-label">我的返利</label>
+                <label class="weui-label">我的提成</label>
             </div>
             <div class="weui-cell__bd">
                 {{$user->money}}
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd" style="width: 40%;text-align: right;">
+                <label class="weui-label">提成比例</label>
+            </div>
+            <div class="weui-cell__bd">
+                下级：{{$back_agent}}%；下下级：{{$back_agent_front}}%；玩家：{{$back_play}}%；
             </div>
         </div>
         <div class="weui-cell">
@@ -62,6 +70,7 @@
                 {{$user->create_time}}
             </div>
         </div>
+
     </div>
 @endsection
 @section('script')

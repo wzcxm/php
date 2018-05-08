@@ -6,12 +6,24 @@ use App\Common\CommClass;
 use App\Models\Message;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MyInfoController extends Controller
 {
     //我的信息
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(){
-        return view('MyInfo.index',['user'=>Users::find(session('uid'))]);
+        $user = Users::find(session('uid'));
+        if($user->rid == 3){
+            $back_agent = CommClass::getProxyScale(session('uid'));
+        }else{
+            $back_agent = CommClass::GetParameter("upper_one");
+        }
+        $back_agent_front = CommClass::GetParameter("upper_two");
+        $back_play = CommClass::GetParameter("invitation");
+        return view('MyInfo.index',['user'=>$user,'back_agent'=>$back_agent,'back_agent_front'=>$back_agent_front,'back_play'=>$back_play]);
     }
 
     //活动公告
