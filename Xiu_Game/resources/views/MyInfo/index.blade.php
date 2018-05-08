@@ -1,15 +1,18 @@
 @extends('Layout.WeUiLayout')
+@section('style')
+    <style>
+        .head_bg{
+            background:url(/img/other/myinfo.png);
+            background-size:100% 100%;
+            text-align: center;
+        }
+    </style>
+@endsection
 @section('content')
-    <header style="text-align: center;padding-top: 10px;">
-        <h2>我的信息</h2>
-    </header>
-    <div class="weui-cells weui-cells_form">
-        <div class="weui-cell">
-            <div class="weui-cell__hd">
-                <label class="weui-label"></label>
-            </div>
-            <div class="weui-cell__bd">
-                <img src='{{empty($user->head_img_url)?asset('/img/ui-default.jpg'):$user->head_img_url}}' style='border-radius:80px;' width='50%' >
+    <div class="weui-cells_form">
+        <div  class="weui-flex head_bg" >
+            <div>
+                <img src='{{empty($user->head_img_url)?asset('/img/ui-default.jpg'):$user->head_img_url}}' style='border-radius:80px;margin-top:15%;border:4px solid #9ccabf;' width='25%' >
             </div>
         </div>
         <div class="weui-cell">

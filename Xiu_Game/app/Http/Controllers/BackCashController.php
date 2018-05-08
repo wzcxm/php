@@ -105,15 +105,31 @@ class BackCashController extends Controller
 
     public function take(){
         $user = Users::find(session('uid'));
-        return view('CashBuy.extract',['backgold'=>$user->money]);
+        return view('CashBuy.extract',['backgold'=>$user->money,'tel'=>$user->uphone]);
     }
     //提现
-    public function ext($gold){
+    public function ext(Request $request){
         try{
+            $data = isset($request['data'])?$request['data']:"";
+            $gold = isset($data['gold'])?$data['gold']:0;
+            $code = isset($data['code'])?$data['code']:0;
+            $model = Users::find(session('uid'));
+            if(empty($code)){
+                return response()->json(['Error'=>'请输入验证码！']);
+            }
+            //验证验证码
+            $oldcode = \Cache::get($model->uphone);
+            if(empty($oldcode) || $oldcode!=$code){
+                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
+            }
+            //本次提取金额必须大于50
+            if(empty($gold) || $gold < 50){
+                return response()->json(['Error'=>'提取金额必须大于50！']);
+            }
             //先扣除积分，并返回openid
             $data = DB::select('CALL query_update_cash('.session('uid').','.$gold .')');
             if(empty($data) || count($data) <= 0){ //扣除失败，说明余额不足
-                return response()->json(["Error"=>"余额不足！"]);
+                return response()->json(["Error"=>"提取失败，您的提成不足！"]);
             }
             else{
                 //生成订单号
@@ -171,14 +187,14 @@ class BackCashController extends Controller
     public function extlist(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
-        $where = " status = 0 and playerid = ".session('uid');
+        $where = " status = 0 and uid = ".session('uid');
         $orderby = ' create_time desc ';
         $order_arr = CommClass::PagingData($page,$rows,"xx_sys_extract",$where,$orderby);
         //增加合计行
         $sql = 'select * from xx_sys_extract where '.$where;
         $data = DB::select($sql);
         $total = collect($data)->sum('gold');
-        $footer =[['playerid'=>'合计','gold'=>$total]];
+        $footer =[['uid'=>'合计','gold'=>$total]];
         $order_arr['footer'] = $footer;
         return response()->json($order_arr);
     }

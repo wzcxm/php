@@ -82,9 +82,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     });
     Route::post('/MyAgent/data','MyAgentController@getData');
     //我的玩家
-    Route::get('/MyPlayer',function (){
-        return view('MyAgent.MyService');
-    });
+    Route::get('/MyPlayer','MyAgentController@myPlayer');
     Route::post('/MyPlayer/data','MyAgentController@getPlayer');
 
     //充卡
@@ -116,19 +114,19 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::get('/BackCash','BackCashController@index');
     Route::post('/BackCash/data','BackCashController@getData');
     //提现
-    Route::get('/Extract','BackCashController@extract');
-    //初次登录设置密码
-    Route::get('/Extract/first',function (){
-        return view('CashBuy.first');
-    });
-    Route::post('/Extract/first/save','BackCashController@savepwd');
-    //输入提现密码，登录
-    Route::get('/Extract/login',function (){
-        return view('CashBuy.login');
-    });
-    Route::post('/Extract/login/submit','BackCashController@login');
-    Route::get('/Extract/index','BackCashController@take');
-    Route::post('/Extract/ext/{gold}','BackCashController@ext');
+    Route::get('/Extract','BackCashController@take');
+//    //初次登录设置密码
+//    Route::get('/Extract/first',function (){
+//        return view('CashBuy.first');
+//    });
+//    Route::post('/Extract/first/save','BackCashController@savepwd');
+//    //输入提现密码，登录
+//    Route::get('/Extract/login',function (){
+//        return view('CashBuy.login');
+//    });
+//    Route::post('/Extract/login/submit','BackCashController@login');
+//    Route::get('/Extract/index','BackCashController@take');
+    Route::post('/Extract/ext','BackCashController@ext');
     Route::get('/Extract/extlist',function (){
         return view('CashBuy.ext_list');
     });

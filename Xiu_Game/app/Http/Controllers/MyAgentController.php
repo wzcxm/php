@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Common\CommClass;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MyAgentController extends Controller
 {
@@ -22,6 +23,13 @@ class MyAgentController extends Controller
         return response()->json($menu_arr);
     }
 
+    public function myPlayer(){
+        $sql = ' select * from xx_user where rid = 5  and chief_uid = '.session('uid');
+        $data = DB::select($sql);
+        $total = collect($data)->count();
+        return view('MyAgent.MyService',['total'=>$total]);
+    }
+
     //我的玩家
     public function getPlayer(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;
@@ -32,7 +40,10 @@ class MyAgentController extends Controller
             $where .= " and uid = ".$uid;
         }
         $orderby = ' create_time desc ';
-        $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
+        $sql = " select * from xx_user where ".$where.' order by '.$orderby;
+        $result= DB::select($sql);
+        $total = collect($result)->count();
+        $menu_arr = ['total'=>$total,'rows'=>$result];//CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
         return response()->json($menu_arr);
     }
 }

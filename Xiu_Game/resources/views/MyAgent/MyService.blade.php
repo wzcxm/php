@@ -2,6 +2,7 @@
 @section('easyui_style')
 @endsection
 @section('easyui_content')
+    <input type="hidden" id ='total' value="{{$total}}" />
     <table id="tab_grid" ></table>
     <div id="tb" style="padding:3px">
         <table>
@@ -23,13 +24,13 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'我的玩家',
+                title:'<p style="font-size: 0.8rem;">我的玩家（共计 '+$("#total").val()+' 人）</p>',
                 singleSelect:true,
                 border:false,
                 fit:true,
 //                fitColumns:true,
                 scrollbarSize:0,
-                pagination:true,
+                pagination:false,
                 rownumbers:true,
                 showFooter: true,
                 url:'/MyPlayer/data',
