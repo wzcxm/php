@@ -261,37 +261,9 @@ class GameLoginController extends Controller
 	private function setRedPack($unionid){
 		try{
 			$temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-			if(!empty($temp_user)){
-				if(!empty($temp_user->front)){
-					$front = DB::table('xx_user')->where('uid',$temp_user->front)->first();
-					if(!empty($front)){
-						$sharenum = $front->sharenum + 1;
-						$redbag = $front->redbag + 2;
-						$red_name = "2元红包";
-						$red_other = "";
-						if($sharenum == 20){ //如果推荐满20人，额外送18.8元
-							$redbag += 18.8;
-							$red_other = "18.8元红包";
-						}else if ($sharenum == 50){//如果推荐满50人，额外送38.8元
-							$redbag += 38.8;
-							$red_other = "38.8元红包";
-						}else if ($sharenum == 80){//如果推荐满80人，额外送58.8元
-							$redbag += 58.8;
-							$red_other = "58.8元红包";
-						}
-						//更新推荐人的推荐人数和红包金额
-						DB::table('xx_user')
-							->where('uid',$temp_user->front)
-							->update(['sharenum'=>$sharenum,'redbag'=>$redbag]);
-						//保存红包记录
-						if(!empty($red_name)){
-							DB::table('xx_sys_prize')->insert(['name'=>$red_name,'uid'=>$temp_user->front,'type'=>2,'jptype'=>3]);
-						}
-						if(!empty($red_other)){
-							DB::table('xx_sys_prize')->insert(['name'=>$red_other,'uid'=>$temp_user->front,'type'=>2,'jptype'=>3]);
-						}
-					}
-				}
+			if(!empty($temp_user) && !empty($temp_user->front)){
+			    //推荐人增加一次分享次数
+                DB::table('xx_user')->where('uid',$temp_user->front)->increment('sharenum',1);
 				//保存我的微信openid
 				DB::table('xx_user')
 					->where('unionid',$unionid)
