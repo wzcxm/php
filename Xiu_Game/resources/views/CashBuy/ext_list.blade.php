@@ -43,7 +43,7 @@
                     {field:'gold',title:'提现金额',width:100,formatter:function (value,row,index) {
                             return parseInt(value);
                         }},
-                    {field:'ctradedate',title:'提现日期',width:150}
+                    {field:'create_time',title:'提现日期',width:150}
                 ]]
             });
         })

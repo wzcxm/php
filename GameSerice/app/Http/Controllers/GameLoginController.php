@@ -261,13 +261,17 @@ class GameLoginController extends Controller
 	private function setRedPack($unionid){
 		try{
 			$temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-			if(!empty($temp_user) && !empty($temp_user->front)){
-			    //推荐人增加一次分享次数
-                DB::table('xx_user')->where('uid',$temp_user->front)->increment('sharenum',1);
+			if(!empty($temp_user)){
+			    $arr = ['wxopenid'=>$temp_user->wxopenid];
+			    if(!empty($temp_user->front)){
+                    //推荐人增加一次分享次数
+                    DB::table('xx_user')->where('uid',$temp_user->front)->increment('sharenum');
+                    $arr['chief_uid'] = $temp_user->front;
+                }
 				//保存我的微信openid
 				DB::table('xx_user')
 					->where('unionid',$unionid)
-					->update(['chief_uid'=>$temp_user->front,'wxopenid'=>$temp_user->wxopenid]);
+					->update($arr);
 			}
 		}catch (\Exception $e){
 
