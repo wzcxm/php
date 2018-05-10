@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180424">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180510">
 </head>
 <body>
 <div class="buy_bg">
@@ -54,7 +54,7 @@
             @if(!empty($player) && !empty($player->front_uid))
                 <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
             @else
-                <input id="front" type="number" class="front_input" >
+                <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:''}}">
             @endif
         </div>
         <input type="hidden" id="sid">
