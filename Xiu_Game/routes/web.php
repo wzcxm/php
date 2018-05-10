@@ -169,7 +169,7 @@ Route::get('/MyQrCode','MyInfoController@getQrCode');
 //玩家购买钻石
 Route::get('/PlayerBuy/buy','CashController@buycard');
 Route::post('/PlayerBuy/delno','CashController@delNo');
-Route::get('/PlayerBuy/index','CashController@index');
+Route::get('/PlayerBuy/index{at_id?}','CashController@index');
 Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
 Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 

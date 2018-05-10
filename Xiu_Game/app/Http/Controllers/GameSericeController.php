@@ -51,22 +51,20 @@ class GameSericeController extends Controller
         }
     }
 
-    private function setUserInfo($uid,$item){
+    private function setUserInfo($uid,$item,$user_lottery){
         try{
-            if($item['id'] !=1){
-                if($item['id'] == 9 || $item['id'] == 10){
-                    DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
-                    DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1,'jptype'=>1]);
-                }else{
-                    DB::table('xx_user')->where('uid',$uid)->increment('redbag', $item['value'],['lottery' => 2]);
-                    DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1,'jptype'=>3]);
-
-                    //$message = "<color='red'>恭喜玩家：【".Users::find($uid)->nickname."】,在每日分享抽奖中，抽中了：【".$item['name']."】！</color>";
-                    //CommClass::UpGameSer(1,'msg',$message,3);
-                }
-            }else{
-                DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
+            //如果是红包，玩家的红包金额增加
+            if($item['value'] > 0){
+                DB::table('xx_user')->where('uid',$uid)->increment('redbag', $item['value']);
             }
+            //如果是每次分享抽奖，修改每日分享标识，不减推荐人数
+            if($user_lottery == 1){
+                DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
+            }else{ //推荐人数减1
+                DB::table('xx_user')->where('uid',$uid)->decrement('sharenum');
+            }
+            //保存中奖记录
+            DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1]);
         }catch (\Exception $e){
         }
     }
@@ -213,13 +211,27 @@ class GameSericeController extends Controller
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
             $unionid = $tools->data['unionid'];
+            $play_uid = 0;
+            $type = 1;
             if(!empty($unionid)){
-                //下载人没有记录的保存记录
-                $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                if(empty($temp_user)){
-                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                $user = DB::table('xx_user')->where('unionid',$unionid)->first();
+                if(!empty($user)){
+                    $play_uid = $user->uid;
+                    if($user->rid == 2 || $user->rid == 3){
+                        $type = 2;
+                    }
+                    if(empty($user->wxopenid)){
+                        DB::table('xx_user')->where('unionid',$unionid)->update(['wxopenid'=>$openid]);
+                    }
+                }else{
+                    //下载人没有记录的保存记录
+                    $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+                    if(empty($temp_user)){
+                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                    }
                 }
             }
+            //header('Location: http://127.0.0.1:5549/index.html?type='.$type.'&id='.$play_uid);
             return view('MyInfo.download');
         }catch (\Exception $e){
             return view('MyInfo.download');
@@ -227,6 +239,69 @@ class GameSericeController extends Controller
     }
 
 
+    /*
+     * 获取抽奖用户的信息
+     */
+    public function  GetPlay($uid){
+        $retUser = [];
+        $user = Users::find($uid);
+        if(!empty($user)){
+            $retUser['uid'] = $user->uid;
+            $retUser['nick']= $user->nickname;
+            $retUser['amount']= $user->redbag;
+            $surplus = $user->sharenum;
+            if($user->lottery == 1){
+                $surplus += 1;
+            }
+            $retUser['surplus']= $surplus;
+            $retUser['head']= CommClass::GetWxHeadForBase64($user->head_img_url);
+        }
+        return $retUser;
+    }
+
+    /*
+     * 获取玩家的抽奖记录
+     */
+    public function GetRadList($uid){
+        $list  =  DB::table('xx_sys_prize')
+            ->where([['uid',$uid],['type',1]])
+            ->select('name','u_date')
+            ->orderByDesc('u_date')
+            ->get();
+        if(empty($list)) return "";
+        return $list;
+    }
+
+    /*
+     * 抽奖
+     */
+    public function GetLotteryItem($uid){
+        $user = Users::find($uid);
+        if(empty($user)) return 1; //玩家不存在
+        //抽奖次数
+        $surplus = $user->sharenum;
+        if($user->lottery == 1){
+            $surplus += 1;
+        }
+        if($surplus>0){
+            //开始抽奖
+            $data = collect(config("conf.Prize"));
+            if(empty($data)) return ""; //奖品个数不能为空
+            $poll  = $data->sum('level');
+            $rand = rand(0,$poll);
+            $nownum = 0;
+            foreach ($data as $item){
+                $nownum += $item['level'];
+                if($rand <= $nownum){
+                    $this->setUserInfo($uid,$item,$user->lottery);
+                    return $item;
+                }
+            }
+        }else{
+            return 2; //抽奖次数为0；
+        }
+
+    }
 
     ///购买金豆
     /// $uid:玩家ID
@@ -272,7 +347,6 @@ class GameSericeController extends Controller
              return response()->json(['Error'=>"发送失败，请重试！"]);
         }
     }
-
 
     /*
      * App支付统一下单
