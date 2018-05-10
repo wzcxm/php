@@ -239,9 +239,12 @@ class GameLoginController extends Controller
 		//所在茶楼大厅的游戏类型
 		if($hallid > 0 && $hallid < 4){
             $type_id = 'type'.$hallid;
-            $game_type = DB::table('xx_sys_tea')->where('tea_id',$teaid)->value($type_id);
+            $tea_data = DB::table('xx_sys_tea')->where('tea_id',$teaid)->first();
+            $game_type = $tea_data->$type_id;
+            $voice = $tea_data->voice;
 		}else{
             $game_type = 0;
+            $voice = 1;
 		}
 		//获取系统信息
 		$message =  DB::table("xx_sys_message")->get();
@@ -254,7 +257,7 @@ class GameLoginController extends Controller
 			//紧急通知
 			$urgent = collect($message)->where('mtype',3)->first()->mcontent;//->get('mcontent');
 		}
-		return ['hallid'=>$hallid,'game_type'=>$game_type,'marquee'=>$marquee,'urgent'=>$urgent];
+		return ['hallid'=>$hallid,'game_type'=>$game_type,'marquee'=>$marquee,'urgent'=>$urgent,'voice'=>$voice];
 	}
 
 	//设置推荐人的人数和红包
@@ -308,6 +311,7 @@ class GameLoginController extends Controller
             $sysMssage = $this->GetMessage($user->uid,$temp_teaid);
             $server_login_info->setHallId($sysMssage['hallid']);//大厅号
             $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
+            $server_login_info->setVoice($sysMssage['voice']);//语音开关
             $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
             $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
             if($gw_type == 1){

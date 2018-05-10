@@ -279,13 +279,13 @@ EOT;
 			$time = urldecode($time);
 			$data = DB::table($table)
 				->where([['room_id',$roomid],['create_time',$time]])
-				->offset($offset*5)
-				->limit(5)
+//				->offset($offset*5)
+//				->limit(5)
 				->get();
-			$total = DB::table($table)
-				->where([['room_id',$roomid],['create_time',$time]])->count();
+//			$total = DB::table($table)
+//				->where([['room_id',$roomid],['create_time',$time]])->count();
 			$singleList = new SingleList();
-			$singleList->setTotal($total);
+			$singleList->setTotal(-1);
 			if(!empty($data)){
 				foreach ($data as $da){
 					$single = new Single();
