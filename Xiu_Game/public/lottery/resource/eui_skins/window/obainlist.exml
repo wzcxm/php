@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="obainlist_skin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect width="750" height="1206" fillAlpha="0.5" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image source="receive_list_png" top="122" horizontalCenter="0"/>
+	<e:Button id="ob_close" label="" bottom="267" horizontalCenter="0">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="close_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Scroller width="510" height="360" anchorOffsetX="0" anchorOffsetY="0" horizontalCenter="0" top="387">
+		<e:Group>
+		<e:List id="ob_data" itemRendererSkinName="datarow" left="0" top="0"/>
+		</e:Group>
+	</e:Scroller>
+</e:Skin>

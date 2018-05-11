@@ -152,6 +152,9 @@ class GameSericeController extends Controller
             //查询并扣除用户红包金额
             $data = DB::select('CALL query_update('.$uid.')');
             $orderno = WxPayConfig::MCHID . date("YmdHis");
+            if(empty($data[0]->wxopenid)){
+                return "OPENID_ERROR";
+            }
             $openid = $data[0]->wxopenid;
             $total = $data[0]->redbag;
             if($total < 1) {
@@ -258,7 +261,7 @@ class GameSericeController extends Controller
             $retUser['uid'] = $user->uid;
             $retUser['nick']= $user->nickname;
             $retUser['amount']= $user->redbag;
-            $retUser['head']= CommClass::GetWxHeadForBase64($user->head_img_url);
+            $retUser['head']= $user->head_img_url;
         }
         return $retUser;
     }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="datarow" width="510" height="60" xmlns:e="http://ns.egret.com/eui">
+	<e:Label text="{data.name}" verticalCenter="0" left="21" textColor="0x6c6c6c"/>
+	<e:Label verticalCenter="0" right="14" text="{data.date}" textColor="0x6c6c6c"/>
+</e:Skin>

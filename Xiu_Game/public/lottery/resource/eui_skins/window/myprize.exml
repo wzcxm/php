@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="myprize_skin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Rect fillAlpha="0.5" horizontalCenter="0" verticalCenter="0" width="750" height="1206"/>
+	<e:Image source="myred_png" horizontalCenter="0" verticalCenter="-81.5"/>
+	<e:Button id="mp_close" label="" bottom="126" horizontalCenter="0">
+		<e:skinName>
+		<e:Skin states="up,down,disabled" xmlns:w="http://ns.egret.com/wing">
+			<e:Image width="100%" height="100%" source="close_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="mp_head" source="def_head_png" top="238" left="165"/>
+	<e:Image source="head_two_png" left="157" top="232"/>
+	<e:Label id="mp_nick" text="" textColor="0x000000" fontFamily="SimHei" top="247" left="259"/>
+	<e:Label id="mp_uid" text="ID:" textColor="0x000000" top="286" left="260"/>
+	<e:Label id="mp_amount" text="0" size="60" textColor="0xff0000" fontFamily="SimHei" top="362" right="213" anchorOffsetX="0" width="180" textAlign="center"/>
+	<e:Button id="mp_obtain" label="" horizontalCenter="0.5" bottom="465">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="obtain_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="mp_notes" label="" bottom="339" left="122">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="notes_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="mp_receive" label="" bottom="339" right="123">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="receive_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

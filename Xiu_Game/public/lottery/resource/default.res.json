@@ -1,0 +1,145 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,rule_png,download_png,head_png,pointer_png,prize_png,ring_one_png,ring_two_png,rule_one_png,close_png,query_png,red_bag_png,light_png,roundthumb_png,track_sb_png,def_head_png,message_png,agent_png,myprize_png,myred_png,head_two_png,notes_png,receive_png,obtain_png,receive_list_png,record_list_png,bg_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "rule_png",
+			"type": "image",
+			"url": "assets/index/rule.png"
+		},
+		{
+			"name": "download_png",
+			"type": "image",
+			"url": "assets/index/download.png"
+		},
+		{
+			"name": "head_png",
+			"type": "image",
+			"url": "assets/index/head.png"
+		},
+		{
+			"name": "pointer_png",
+			"type": "image",
+			"url": "assets/index/pointer.png"
+		},
+		{
+			"name": "prize_png",
+			"type": "image",
+			"url": "assets/index/prize.png"
+		},
+		{
+			"name": "ring_one_png",
+			"type": "image",
+			"url": "assets/index/ring_one.png"
+		},
+		{
+			"name": "ring_two_png",
+			"type": "image",
+			"url": "assets/index/ring_two.png"
+		},
+		{
+			"name": "rule_one_png",
+			"type": "image",
+			"url": "assets/window/rule_one.png"
+		},
+		{
+			"name": "close_png",
+			"type": "image",
+			"url": "assets/window/close.png"
+		},
+		{
+			"name": "query_png",
+			"type": "image",
+			"url": "assets/window/query.png"
+		},
+		{
+			"name": "red_bag_png",
+			"type": "image",
+			"url": "assets/window/red_bag.png"
+		},
+		{
+			"name": "light_png",
+			"type": "image",
+			"url": "assets/window/light.png"
+		},
+		{
+			"name": "roundthumb_png",
+			"type": "image",
+			"url": "assets/ScrollBar/roundthumb.png"
+		},
+		{
+			"name": "track_sb_png",
+			"type": "image",
+			"url": "assets/ScrollBar/track_sb.png"
+		},
+		{
+			"name": "def_head_png",
+			"type": "image",
+			"url": "assets/index/def_head.png"
+		},
+		{
+			"name": "message_png",
+			"type": "image",
+			"url": "assets/window/message.png"
+		},
+		{
+			"name": "agent_png",
+			"type": "image",
+			"url": "assets/index/agent.png"
+		},
+		{
+			"name": "myprize_png",
+			"type": "image",
+			"url": "assets/index/myprize.png"
+		},
+		{
+			"name": "myred_png",
+			"type": "image",
+			"url": "assets/window/myred.png"
+		},
+		{
+			"name": "head_two_png",
+			"type": "image",
+			"url": "assets/window/head_two.png"
+		},
+		{
+			"name": "notes_png",
+			"type": "image",
+			"url": "assets/window/notes.png"
+		},
+		{
+			"name": "receive_png",
+			"type": "image",
+			"url": "assets/window/receive.png"
+		},
+		{
+			"name": "obtain_png",
+			"type": "image",
+			"url": "assets/window/obtain.png"
+		},
+		{
+			"name": "receive_list_png",
+			"type": "image",
+			"url": "assets/window/receive_list.png"
+		},
+		{
+			"name": "record_list_png",
+			"type": "image",
+			"url": "assets/window/record_list.png"
+		},
+		{
+			"name": "bg_png",
+			"type": "image",
+			"url": "assets/index/bg.png"
+		}
+	]
+}
