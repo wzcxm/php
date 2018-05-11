@@ -36,5 +36,7 @@ Route::any('/GetPlay/{uid}','GameSericeController@GetPlay');
 //获取玩家的抽奖记录
 Route::any('/GetRadList/{uid}','GameSericeController@GetRadList');
 
+//获取玩家的领取记录
+Route::any('/GetObainList/{uid}','GameSericeController@GetObainList');
 //抽奖
 Route::any('/GetLottery/{uid}','GameSericeController@GetLotteryItem');

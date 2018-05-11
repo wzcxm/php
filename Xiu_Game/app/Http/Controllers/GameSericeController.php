@@ -207,32 +207,41 @@ class GameSericeController extends Controller
     //下载页面
     public function  Download($uid = 0){
         try{
-            //推荐人，不为空，保存记录
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            $unionid = $tools->data['unionid'];
-            $play_uid = 0;
-            $type = 1;
-            if(!empty($unionid)){
-                $user = DB::table('xx_user')->where('unionid',$unionid)->first();
-                if(!empty($user)){
-                    $play_uid = $user->uid;
-                    if($user->rid == 2 || $user->rid == 3){
-                        $type = 2;
-                    }
-                    if(empty($user->wxopenid)){
-                        DB::table('xx_user')->where('unionid',$unionid)->update(['wxopenid'=>$openid]);
-                    }
-                }else{
-                    //下载人没有记录的保存记录
-                    $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                    if(empty($temp_user)){
-                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+            if(empty($uid)){
+                return view('MyInfo.download');
+            }else{
+                //推荐人，不为空，保存记录
+                $tools = new JsApiPay();
+                $openid = $tools->GetOpenid();
+                $unionid = $tools->data['unionid'];
+                if(!empty($unionid)){
+                    $user = DB::table('xx_user')->where('unionid',$unionid)->first();
+                    if(!empty($user)){
+                        if(empty($user->wxopenid)){
+                            DB::table('xx_user')->where('unionid',$unionid)->update(['wxopenid'=>$openid]);
+                        }
+                        $surplus = $user->sharenum;
+                        if($user->lottery == 1){
+                            $surplus += 1;
+                        }
+                        if($user->rid == 2 || $user->rid == 3){
+                            $type = 2;
+                        }
+                        $play_uid = $user->uid;
+                    }else{
+                        //下载人没有记录的保存记录
+                        $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+                        if(empty($temp_user)){
+                            DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                        }
+                        $play_uid = 0;
+                        $surplus = 0;
+                        $type = 1;
                     }
                 }
+                $param = 'type='.$type.'&shareuid='.$uid.'&playuid='.$play_uid.'&surplus='.$surplus;
+                header('Location:http://agent.wangqianhong.com/index.html?'.$param);
             }
-            //header('Location: http://127.0.0.1:5549/index.html?type='.$type.'&id='.$play_uid);
-            return view('MyInfo.download');
         }catch (\Exception $e){
             return view('MyInfo.download');
         }
@@ -249,11 +258,6 @@ class GameSericeController extends Controller
             $retUser['uid'] = $user->uid;
             $retUser['nick']= $user->nickname;
             $retUser['amount']= $user->redbag;
-            $surplus = $user->sharenum;
-            if($user->lottery == 1){
-                $surplus += 1;
-            }
-            $retUser['surplus']= $surplus;
             $retUser['head']= CommClass::GetWxHeadForBase64($user->head_img_url);
         }
         return $retUser;
@@ -267,6 +271,19 @@ class GameSericeController extends Controller
             ->where([['uid',$uid],['type',1]])
             ->select('name','u_date')
             ->orderByDesc('u_date')
+            ->get();
+        if(empty($list)) return "";
+        return $list;
+    }
+
+    /*
+     * 获取红包领取纪录
+     */
+    public function GetObainList($uid){
+        $list  =  DB::table('xx_sys_extract')
+            ->where([['uid',$uid],['status',1]])
+            ->select('gold','create_time')
+            ->orderByDesc('create_time')
             ->get();
         if(empty($list)) return "";
         return $list;
