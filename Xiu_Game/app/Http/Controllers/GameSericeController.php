@@ -243,7 +243,7 @@ class GameSericeController extends Controller
                     }
                 }
                 $param = 'type='.$type.'&shareuid='.$uid.'&playuid='.$play_uid.'&surplus='.$surplus;
-                header('Location:http://agent.wangqianhong.com/index.html?'.$param);
+                header('Location:http://lottery.wangqianhong.com?'.$param);
             }
         }catch (\Exception $e){
             return view('MyInfo.download');
