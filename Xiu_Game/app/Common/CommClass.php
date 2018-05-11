@@ -413,16 +413,6 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!CommClass::isAgent($buy_id))
              return;
          $buy_user = Users::find($buy_id);
-//         if($buy_user->rid == 3){ //总代购买，直接返25%给总代
-//             $ret_monery = $cash*25/100;
-//             DB::table("xx_wx_backgold")->insert(
-//                 ['get_id'=>$buy_id,
-//                     'back_id'=>10000,
-//                     'backgold'=>$ret_monery,
-//                     'gold'=>$cash,
-//                     'ratio'=>25,
-//                     'level'=>4]);
-//         }
          //上级返利
          //上级为空，或者上级不为总代也不为代理，直接return
          if(!CommClass::isAgent($buy_user->front_uid))
@@ -536,7 +526,6 @@ use Aliyun\DySDKLite\SignatureHelper;
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
                         //上级送100返利
-                        //DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
                         DB::table("xx_wx_backgold")->insert(
                             ['get_id'=>$wx_order->front,
                                 'back_id'=>$wx_order->userid,
@@ -549,10 +538,6 @@ use Aliyun\DySDKLite\SignatureHelper;
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
-//                    //总代首冲也返利
-//                    if($wx_order->rid == 3){
-//                        CommClass::BackCash($wx_order->userid, $wx_order->total);
-//                    }
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
@@ -564,15 +549,18 @@ use Aliyun\DySDKLite\SignatureHelper;
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-                        //上级送100返利
-                        //DB::table('xx_user')->where('uid', $wx_order->front)->increment('money',100);
-                        DB::table("xx_wx_backgold")->insert(
-                            ['get_id'=>$wx_order->front,
-                                'back_id'=>$wx_order->userid,
-                                'backgold'=>100,
-                                'gold'=>$wx_order->total,
-                                'ratio'=>0,
-                                'level'=>5]);
+                        //如果是买的300的套餐，返100提成
+                        if($wx_order->total == 300){
+                            DB::table("xx_wx_backgold")->insert(
+                                ['get_id'=>$wx_order->front,
+                                    'back_id'=>$wx_order->userid,
+                                    'backgold'=>100,
+                                    'gold'=>$wx_order->total,
+                                    'ratio'=>0,
+                                    'level'=>5]);
+                        }else{ //如果不是，按正常返利
+                            CommClass::BackCash($wx_order->userid, $wx_order->total);
+                        }
                     }else{
                         //代理返利
                         CommClass::BackCash($wx_order->userid, $wx_order->total);
@@ -582,7 +570,6 @@ use Aliyun\DySDKLite\SignatureHelper;
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
                 //更新游戏的钻石数量
                 CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
-
             }
         }catch (\Exception $e){
 
