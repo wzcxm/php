@@ -8,11 +8,18 @@
 						<e:Object alpha="{1}"/>
 					</tween:props>
 				</tween:Set>
-				<tween:To duration="500">
+				<tween:Wait duration="250"/>
+				<tween:Set>
 					<tween:props>
 						<e:Object alpha="{0}"/>
 					</tween:props>
-				</tween:To>
+				</tween:Set>
+				<tween:Wait duration="250"/>
+				<tween:Set>
+					<tween:props>
+						<e:Object alpha="{1}"/>
+					</tween:props>
+				</tween:Set>
 			</tween:TweenItem>
 			<tween:TweenItem target="{index_ring_two}">
 				<tween:Set>
@@ -20,17 +27,18 @@
 						<e:Object alpha="{0}"/>
 					</tween:props>
 				</tween:Set>
-				<tween:Wait duration="500"/>
+				<tween:Wait duration="250"/>
 				<tween:Set>
 					<tween:props>
 						<e:Object alpha="{1}"/>
 					</tween:props>
 				</tween:Set>
-				<tween:To duration="500">
+				<tween:Wait duration="250"/>
+				<tween:Set>
 					<tween:props>
 						<e:Object alpha="{0}"/>
 					</tween:props>
-				</tween:To>
+				</tween:Set>
 			</tween:TweenItem>
 		</tween:TweenGroup>
 	</w:Declarations>
