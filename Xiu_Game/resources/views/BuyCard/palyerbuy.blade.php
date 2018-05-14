@@ -14,61 +14,83 @@
     <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180510">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805142">
 </head>
 <body>
 <div class="buy_bg">
     <div style="height: 35%;"></div>
-    <div style="height: 53%;">
-        <div style="height: 20%;">
-            <div>
-                <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
-                <a href="#" id="getnick" style="margin-left: 15px;">
-                    <img class="img_border " width="85" src="/img/diamond/nick.png" />
-                </a>
+    <div style="width:100%;">
+        <div style="float: left;width: 40%;text-align: right;">
+            <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
+        </div>
+        <div style="float: right;width: 60%;text-align: left;">
+            <div style="width:100%;">
+                <div style="float: left;width: 50%;text-align: left;">
+                    <input id="plyerid" type="number" class="buy_input" value="{{empty($player)?"":$player->uid}}">
+                </div>
+                <div style="float: right;width: 50%;text-align: left;">
+                    <a href="#" id="getnick" style="margin-left: 10px;">
+                        <img class="img_border " width="80%" src="/img/diamond/nick.png" />
+                    </a>
+                </div>
             </div>
-            <div>
-                <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
-            </div>
         </div>
-        <div style="height: 40%;text-align: center;" id="mall">
-            @if(!empty($mallList))
-                @foreach($mallList as $item)
-                    @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        <img class="img_border " width="80" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
-                    @else
-                        <img class="img_border " width="80" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
-                    @endif
-                @endforeach
-            @endif
-        </div>
-        <div style="height: 20%;text-align: center;" id="first">
-            @if(!empty($player) && $player->flag == 0)
-                <img class="img_border " width="350" src="/img/diamond/first.png" />
-            @else
-                <img class="img_border " width="350" src="/img/diamond/warning.png" />
-            @endif
-        </div>
-        <div style="height: 20%;">
-            @if(!empty($player) && !empty($player->front_uid))
-                <input id="front" readonly="readonly" type="number" class="front_input_red" value="{{$player->front_uid}}">
-            @else
-                <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:''}}">
-            @endif
-        </div>
-        <input type="hidden" id="sid">
     </div>
-    <div style="height:12%;">
-        <div style="margin-left: 30%;">
+    <div style="width:100%;">
+        <div style="float: left;width: 40%;text-align: right;">
+            <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家昵称：</p>
+        </div>
+        <div style="float: right;width: 60%;text-align: left;">
+            <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
+        </div>
+    </div>
+    <div style="margin-top:10px;text-align: center;" id="mall">
+        @if(!empty($mallList))
+            @foreach($mallList as $item)
+                @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
+                    <img class="img_border " width="22%" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
+                @else
+                    <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
+                @endif
+            @endforeach
+        @endif
+    </div>
+    <div style="margin-top:10px;text-align: center;" id="first">
+        @if(!empty($player) && $player->flag == 0)
+            <img class="img_border " width="95%" src="/img/diamond/first.png" />
+        @else
+            <img class="img_border " width="95%" src="/img/diamond/warning.png" />
+        @endif
+    </div>
+    <div style="width: 100%;text-align: center;">
+        <img class="img_border " width="100%" src="/img/diamond/phone.png">
+    </div>
+    <div id="div_front">
+        @if(empty($player->front_uid))
+            <div style="width:100%;margin-top: 5%;">
+                <div style="float: left;width: 50%;text-align: right;">
+                    <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>
+                </div>
+                <div style="float: right;width: 50%;text-align: left;">
+                    <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:''}}">
+                </div>
+            </div>
+        @endif
+    </div>
+
+    <div style="width: 100%;margin-top: 10px;text-align: center;">
+        <div style="width: 100%;">
             <a href="#" id="btn_buy" >
-                <img class="img_border " width="150" src="/img/diamond/query.png" />
+                <img class="img_border " width="35%" src="/img/diamond/query.png" />
             </a>
+        </div>
+        <div style="width: 100%;margin-top: 5px;">
             <a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >
-                <img class="img_border " width="90" src="/img/diamond/buylist.png" />
+                <img class="img_border " width="30%" src="/img/diamond/buylist.png" />
             </a>
         </div>
     </div>
+    <input type="hidden" id="sid">
 </div>
 <script src="{{asset('js/weui/js/jquery-2.1.4.js')}}"></script>
 <script src="{{asset('js/weui/js/jquery-weui.min.js')}}"></script>
@@ -97,16 +119,21 @@
                     $("#11").remove();
                     $("#first").empty()
                     if(reslut.user['flag'] == 0){
-                        $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
-                        $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/first.png\" />");
+                        $("#mall").prepend("<img class=\"img_border \" width=\"22%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/first.png\" />");
                     }else{
-                        $("#mall").prepend("<img class=\"img_border \" width=\"80\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
-                        $("#first").append("<img class=\"img_border \" width=\"350\" src=\"/img/diamond/warning.png\" />");
+                        $("#mall").prepend("<img class=\"img_border \" width=\"22%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/warning.png\" />");
                     }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
-                        $("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
+                        //$("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
+                        $("#div_front").empty()
                     }else {
-                        $("#front").val("").removeAttr("readonly").removeClass().addClass("front_input");
+                        $("#div_front").empty().append("<div style='width:100%;margin-top: 5%;'>"+
+                            "<div style='float: left;width: 50%;text-align: right;'>"+
+                            "<p style='font-size: 1rem;color: #0f695f;font-weight: 500;'>推荐代理ID：</p></div>"+
+                            "<div style='float: right;width: 50%;text-align: left;'>"+
+                            "<input id='front' type='number' class='front_input' ></div></div>");
                     }
                 }
             });

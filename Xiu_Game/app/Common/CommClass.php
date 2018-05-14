@@ -685,4 +685,21 @@ use Aliyun\DySDKLite\SignatureHelper;
          $base64 = chunk_split(base64_encode($file));
          return $base64;
      }
+
+
+     /*
+      * url参数加密
+      */
+     public static function encrypt($param){
+         $return_str = "";
+         $key = 112;
+         for ($i = 0; $i < strlen($param); $i++){
+             if(empty($return_str)){
+                 $return_str .= (ord($param[$i])^ $key) ;
+             }else{
+                 $return_str .='-'. (ord($param[$i])^ $key);
+             }
+         }
+         return $return_str;
+     }
 }

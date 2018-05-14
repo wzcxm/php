@@ -208,7 +208,7 @@ class GameSericeController extends Controller
     }
 
     //下载页面
-    public function  Download($uid = 0){
+    public function  Download($uid = 23464){
         try{
             if(empty($uid)){
                 return view('MyInfo.download');
@@ -217,56 +217,52 @@ class GameSericeController extends Controller
                 $tools = new JsApiPay();
                 $openid = $tools->GetOpenid();
                 $unionid = $tools->data['unionid'];
+                //参数
+                $param = [];
+                //分享人信息
+                $share = Users::find($uid);
+                if(!empty($share)){
+                    $param['share_uid'] = $share->uid;
+                    $param['share_nick'] = $share->nickname;
+                    $param['share_head'] = $share->head_img_url;
+                    if($share->rid == 2 || $share->rid == 3){
+                        $param['share_role'] = 2;
+                    }else{
+                        $param['share_role'] = 1;
+                    }
+                }
                 if(!empty($unionid)){
                     $user = DB::table('xx_user')->where('unionid',$unionid)->first();
                     if(!empty($user)){
                         if(empty($user->wxopenid)){
                             DB::table('xx_user')->where('unionid',$unionid)->update(['wxopenid'=>$openid]);
                         }
+                        //当前登录人信息
+                        $param['login_uid'] = $user->uid;
+                        $param['login_nick'] = $user->nickname;
+                        $param['login_head'] = $user->head_img_url;
+                        $param['login_amount'] = $user->redbag;
                         $surplus = $user->sharenum;
                         if($user->lottery == 1){
                             $surplus += 1;
                         }
-                        if($user->rid == 2 || $user->rid == 3){
-                            $type = 2;
-                        }else{
-                            $type = 1;
-                        }
-                        $play_uid = $user->uid;
+                        $param['login_surplus'] = $surplus;
                     }else{
                         //下载人没有记录的保存记录
                         $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
                         if(empty($temp_user)){
                             DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                         }
-                        $play_uid = 0;
-                        $surplus = 0;
-                        $type = 1;
+
                     }
                 }
-                $param = 'type='.$type.'&shareuid='.$uid.'&playuid='.$play_uid.'&surplus='.$surplus;
-                header('Location:http://lottery.wangqianhong.com/index.html?'.$param);
+                $retStr = CommClass::encrypt(json_encode($param));
+                header('Location:http://lottery.wangqianhong.com/index.html?param='.$retStr);
             }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
             return view('MyInfo.download');
         }
-    }
-
-
-    /*
-     * 获取抽奖用户的信息
-     */
-    public function  GetPlay($uid){
-        $retUser = [];
-        $user = Users::find($uid);
-        if(!empty($user)){
-            $retUser['uid'] = $user->uid;
-            $retUser['nick']= $user->nickname;
-            $retUser['amount']= $user->redbag;
-            $retUser['head']= $user->head_img_url;
-        }
-        return $retUser;
     }
 
     /*
@@ -570,6 +566,7 @@ class GameSericeController extends Controller
 //        $ret4 = 0;
 //        $ret5 = 0;
 //        $ret6 = 0;
+//        $ret7 = 0;
 //        for ($i=1 ;$i<1000;$i++){
 //           $ret = $this->test();
 //            if($ret == 1){
@@ -590,21 +587,26 @@ class GameSericeController extends Controller
 //            if($ret == 6){
 //                $ret6++;
 //            }
+//            if($ret == 7){
+//                $ret7++;
+//            }
 //        }
-//        $ret1 = $ret1*0;
-//        $ret2 = $ret2*0.88;
-//        $ret3 = $ret3*1.88;
-//        $ret4 = $ret4*2.88;
-//        $ret5 = $ret5*3.88;
-//        $ret6 = $ret6*8.88;
-//        $ret7 = $ret1+$ret2+$ret3+$ret4+$ret5+$ret6;
+//        $ret11 = $ret1*0;
+//        $ret22 = $ret2*0;
+//        $ret33 = $ret3*8.88;
+//        $ret44 = $ret4*88;
+//        $ret55 = $ret5*0.88;
+//        $ret66 = $ret6*888;
+//        $ret77 = $ret7*0.18;
+//        $ret8 = $ret1+$ret2+$ret3+$ret4+$ret5+$ret6+$ret6;
 ////        return '谢谢：'.$ret1.'%\n0.88:'.$ret2.'%\n1.88:'.$ret3.'%\n2.88:'.$ret4.'%\n3.88:'.$ret5.'%\n8.88:'.$ret6;
-//        var_dump('谢谢：'.$ret1.'$') ;
-//        var_dump( '0.88:'.$ret2.'$');
-//        var_dump( '1.88:'.$ret3.'$');
-//        var_dump( '2.88：'.$ret4.'$');
-//        var_dump( '3.88：'.$ret5.'$');
-//        var_dump( '8.88：'.$ret6.'$');
-//        var_dump( 'sum：'.$ret7.'$');
+//        var_dump('X：'.$ret11.'$'.$ret1) ;
+//        var_dump( 'pad:'.$ret22.'$'.$ret2);
+//        var_dump( '8.88:'.$ret33.'$'.$ret3);
+//        var_dump( '88：'.$ret44.'$'.$ret4);
+//        var_dump( '0.88：'.$ret55.'$'.$ret5);
+//        var_dump( '888：'.$ret66.'$'.$ret6);
+//        var_dump( '0.18：'.$ret77.'$'.$ret7);
+//        var_dump( 'sum：'.$ret8.'$');
 //    }
 }
