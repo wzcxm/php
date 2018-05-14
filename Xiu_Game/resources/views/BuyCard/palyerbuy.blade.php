@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="buy_bg">
-    <div style="height: 45%"></div>
+    <div style="height: 35%"></div>
     <div style="width:100%;">
         <div style="float: left;width: 40%;text-align: right;">
             <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
@@ -55,7 +55,7 @@
             @endforeach
         @endif
     </div>
-    <div style="margin-top:10px;text-align: center;" id="first">
+    <div style="margin-top:5px;text-align: center;" id="first">
         @if(!empty($player) && $player->flag == 0)
             <img class="img_border " width="95%" src="/img/diamond/first.png" />
         @else
@@ -67,7 +67,7 @@
     </div>
     <div id="div_front">
         @if(empty($player->front_uid))
-            <div style="width:100%;margin-top: 5%;">
+            <div style="width:100%;margin-top: 5px;">
                 <div style="float: left;width: 50%;text-align: right;">
                     <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>
                 </div>
@@ -83,7 +83,7 @@
                 <img class="img_border " width="35%" src="/img/diamond/query.png" />
             </a>
         </div>
-        <div style="width: 100%;margin-top: 5px;">
+        <div style="width: 100%;margin-top: 3px;">
             <a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >
                 <img class="img_border " width="30%" src="/img/diamond/buylist.png" />
             </a>
@@ -128,7 +128,7 @@
                         //$("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
                         $("#div_front").empty()
                     }else {
-                        $("#div_front").empty().append("<div style='width:100%;margin-top: 5%;'>"+
+                        $("#div_front").empty().append("<div style='width:100%;margin-top: 5px;'>"+
                             "<div style='float: left;width: 50%;text-align: right;'>"+
                             "<p style='font-size: 1rem;color: #0f695f;font-weight: 500;'>推荐代理ID：</p></div>"+
                             "<div style='float: right;width: 50%;text-align: left;'>"+
