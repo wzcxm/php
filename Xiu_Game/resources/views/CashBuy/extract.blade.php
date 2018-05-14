@@ -83,7 +83,7 @@
 
             $("#btn_extr").click(function () {
                 var R = new Object();
-                R.gold = parseInt($("#gold").val());
+                R.gold = $("#gold").val();
                 R.code = $("#code").val();
                 $.post("/Extract/ext",{data:R},function (data) {
                     if(comm.is_null(data.Error)){
