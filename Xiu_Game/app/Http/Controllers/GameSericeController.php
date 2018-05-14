@@ -229,6 +229,8 @@ class GameSericeController extends Controller
                         }
                         if($user->rid == 2 || $user->rid == 3){
                             $type = 2;
+                        }else{
+                            $type = 1;
                         }
                         $play_uid = $user->uid;
                     }else{
