@@ -208,7 +208,7 @@ class GameSericeController extends Controller
     }
 
     //下载页面
-    public function  Download($uid = 23464){
+    public function  Download($uid = 0){
         try{
             if(empty($uid)){
                 return view('MyInfo.download');
