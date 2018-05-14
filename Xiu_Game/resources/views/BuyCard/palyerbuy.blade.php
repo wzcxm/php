@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="buy_bg">
-    <div style="height: 35%"></div>
+    <div style="height: 45%"></div>
     <div style="width:100%;">
         <div style="float: left;width: 40%;text-align: right;">
             <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
