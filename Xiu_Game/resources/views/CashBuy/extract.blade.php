@@ -26,7 +26,7 @@
                 <div style="float: right;width: 60%;text-align: left;">
                     <input class="input_number" type="number" id="gold" style="width: 50%;">
                     <div style="font-size: 0.6rem;font-weight: bold;color: coral;">
-                        提示：提取必须大于50。
+                        提示：提取金额必须为正整数。
                     </div>
                 </div>
             </div>
@@ -82,19 +82,19 @@
 
 
             $("#btn_extr").click(function () {
-                comm.btn_status('btn_extr','Disabled');
                 var R = new Object();
                 R.gold = parseInt($("#gold").val());
                 R.code = $("#code").val();
                 $.post("/Extract/ext",{data:R},function (data) {
                     if(comm.is_null(data.Error)){
-                        $.alert(data.Error);
+                        $.alert(data.Error,function () {
+                            //window.location.reload();
+                        });
                     }else{
                         $.alert('提现成功！',function () {
                             window.location.reload();
                         });
                     }
-                    comm.btn_status('btn_extr','Enabled');
                 });
             });
         });

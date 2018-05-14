@@ -122,9 +122,9 @@ class BackCashController extends Controller
             if(empty($oldcode) || $oldcode!=$code){
                 return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
             }
-            //本次提取金额必须大于50
-            if(empty($gold) || $gold < 50){
-                return response()->json(['Error'=>'提取金额必须大于50！']);
+            //本次提取金额为正整数
+            if(!$this->isInteger($gold)){
+                return response()->json(['Error'=>'提取金额必须大于0,且为正整数！']);
             }
             //先扣除积分，并返回openid
             $data = DB::select('CALL query_update_cash('.session('uid').','.$gold .')');
@@ -153,6 +153,22 @@ class BackCashController extends Controller
             }
         }catch (\Exception $e){
             return response()->json(["Error"=>$e->getMessage()]);
+        }
+    }
+
+    private function isInteger($number){
+        if(is_numeric($number)){
+            if($number <= 0){
+                return false;
+            }else{
+                if(floor($number)==$number){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }else{
+            return false;
         }
     }
 
