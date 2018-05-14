@@ -248,8 +248,8 @@ class GameSericeController extends Controller
                 header('Location:http://lottery.wangqianhong.com/index.html?'.$param);
             }
         }catch (\Exception $e){
-            var_dump($e->getMessage());
-            //return view('MyInfo.download');
+            //var_dump($e->getMessage());
+            return view('MyInfo.download');
         }
     }
 
