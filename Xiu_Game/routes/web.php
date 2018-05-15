@@ -155,6 +155,11 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::get('/Museum/setting/{teaid}','MuseumController@setting');
     Route::post('/Museum/save','MuseumController@save_set');
 
+    //修改ID
+    Route::get('/UpdateId',function (){
+        return view('UpdateId.updateid');
+    });
+    Route::post('/UpdateId/update','UpdateIdController@update');
 
     //游戏详情
     Route::get('/System','MyInfoController@getSysInfo');
