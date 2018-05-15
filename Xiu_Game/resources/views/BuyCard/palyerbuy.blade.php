@@ -14,7 +14,7 @@
     <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805151">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805152">
 </head>
 <body>
 <div class="buy_head_bg"></div>
@@ -44,7 +44,7 @@
             <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
         </div>
     </div>
-    <div style="margin-top:10px;text-align: center;" id="mall">
+    <div style="margin-top:5px;text-align: center;" id="mall">
         @if(!empty($mallList))
             @foreach($mallList as $item)
                 @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
@@ -80,7 +80,7 @@
     <div style="width: 100%;margin-top: 10px;text-align: center;">
         <div style="width: 100%;">
             <a href="#" id="btn_buy" >
-                <img class="img_border " width="30%" src="/img/diamond/query.png" />
+                <img class="img_border " width="35%" src="/img/diamond/query.png" />
             </a>
         </div>
         <div style="width: 100%;margin-top: 3px;">
