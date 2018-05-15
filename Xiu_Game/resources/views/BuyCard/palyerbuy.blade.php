@@ -14,14 +14,14 @@
     <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805152">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805153">
 </head>
 <body>
 <div class="buy_head_bg"></div>
 <div class="buy_bg">
     <div style="width:100%;">
         <div style="float: left;width: 40%;text-align: right;">
-            <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
+            <p style="font-size: 0.9rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
         </div>
         <div style="float: right;width: 60%;text-align: left;">
             <div style="width:100%;">
@@ -38,7 +38,7 @@
     </div>
     <div style="width:100%;">
         <div style="float: left;width: 40%;text-align: right;">
-            <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家昵称：</p>
+            <p style="font-size: 0.9rem;color: #0f695f;font-weight: 500;">玩家昵称：</p>
         </div>
         <div style="float: right;width: 60%;text-align: left;">
             <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
@@ -69,7 +69,7 @@
         @if(empty($player->front_uid))
             <div style="width:100%;margin-top: 5px;">
                 <div style="float: left;width: 50%;text-align: right;">
-                    <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>
+                    <p style="font-size: 0.9rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>
                 </div>
                 <div style="float: right;width: 50%;text-align: left;">
                     <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:''}}">
@@ -77,7 +77,7 @@
             </div>
         @endif
     </div>
-    <div style="width: 100%;margin-top: 10px;text-align: center;">
+    <div style="width: 100%;margin-top: 5px;text-align: center;">
         <div style="width: 100%;">
             <a href="#" id="btn_buy" >
                 <img class="img_border " width="35%" src="/img/diamond/query.png" />

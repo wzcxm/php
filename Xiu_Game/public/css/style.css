@@ -64,7 +64,7 @@ body, html {
 }
 .buy_bg{
     width:100%;
-    height:100%;
+    height:70%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
     background:url(/img/diamond/query_bg.png?v=20180515);
@@ -104,14 +104,14 @@ body, html {
     outline:none;
     cursor: pointer;
     width: 120px;
-    font-size: 2rem;
+    font-size: 0.9rem;
     margin-left: 45%;
     color: #0f695f;
     background-color: transparent;
 }
 .buy_nick{
     color: #bf4502;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 .img_border{
     border-radius: 6px;
