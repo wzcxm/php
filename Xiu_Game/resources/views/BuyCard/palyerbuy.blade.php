@@ -30,7 +30,7 @@
                 </div>
                 <div style="float: right;width: 50%;text-align: left;">
                     <a href="#" id="getnick" style="margin-left: 10px;">
-                        <img class="img_border " width="80%" src="/img/diamond/nick.png" />
+                        <img class="img_border " width="70%" src="/img/diamond/nick.png" />
                     </a>
                 </div>
             </div>
