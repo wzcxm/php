@@ -17,8 +17,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=201805143">
 </head>
 <body>
+<div class="buy_head_bg"></div>
 <div class="buy_bg">
-    <div style="height: 35%"></div>
     <div style="width:100%;">
         <div style="float: left;width: 40%;text-align: right;">
             <p style="font-size: 1rem;color: #0f695f;font-weight: 500;">玩家ID：</p>
