@@ -174,7 +174,7 @@ EOT;
 			if ($version == 3.8) { //
 				$ret = "2";//2-审核版本；0-正常；1-强制更新
 			} else {
-				if($version < 3.2){
+				if($version < 3.3){
 					$ret = "1";
 				}else{
 					$ret = "0";
