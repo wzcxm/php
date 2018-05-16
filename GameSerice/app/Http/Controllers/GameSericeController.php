@@ -360,6 +360,50 @@ EOT;
 		}
 	}
 
+
+	///获取牌馆下，某玩家所有战绩
+    /// $teaid:茶楼ID
+    /// $uid：玩家ID
+    /// $sign：签名
+    public function getPlayRec($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+            if(empty($teaid)) return "";
+            $data = DB::table('v_xx_record')
+                ->where([['tea_id',$teaid],['player_id',$uid]])
+                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
+                ->orderBy('create_time', 'desc')
+                ->get();
+
+            $recordList =  new RecordList();
+            $recordList->setTotal(-1);
+            if(!empty($data)){
+                foreach ($data as $da){
+                    $record = new Record();
+                    $record->setGameno($da->id);
+                    $record->setRoomid($da->roomid);
+                    $record->setNumber($da->number);
+                    $record->setGametype($da->gametype);
+                    $record->setCreatetime($da->create_time);
+                    $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                    if(!empty($plays)){
+                        foreach ($plays as $item) {
+                            $player =  new Playerinfo();
+                            $player->setUid($item->player_id);
+                            $player->setNickname($item->player_name);
+                            $player->setScore($item->score);
+                            $record->getPlayer()[] = $player;
+                        }
+                    }
+                    $recordList->getRecordList()[] = $record;
+                }
+            }
+            return $recordList->encode();
+        }catch (\Exception $e){
+            return "";
+        }
+    }
 	///获取茶楼我的战绩
 	/// $teaid:茶楼ID
 	/// $uid：玩家ID
