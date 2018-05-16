@@ -181,7 +181,7 @@ EOT;
 				}
 			}
 		}else if($type==2){
-			if($version < 3.2){
+			if($version < 3.3){
 				$ret = "1";
 			}else{
 				$ret = "0";
