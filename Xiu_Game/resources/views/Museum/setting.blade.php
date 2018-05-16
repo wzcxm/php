@@ -257,10 +257,13 @@
             obj.tea_id = $("#teaid").val();
             if(control == 'jfoff3'){
                 obj.jfoff3 = 0;
+                obj.off3 = 0;
             }else if (control == 'jfoff2'){
                 obj.jfoff2 = 0;
+                obj.off2 = 0
             }else{
                 obj.jfoff1 = 0;
+                obj.off1 = 0
             }
             $.post('/Museum/save',{data:obj},function(data){
                 if(data.status==1){
