@@ -17,7 +17,7 @@ class UpdateIdController extends Controller
             $old_teaid = isset($data['old_teaid'])?$data['old_teaid']:0;
             $new_teaid = isset($data['new_teaid'])?$data['new_teaid']:0;
             $new_user = DB::table('xx_user')->where('uid',$new_uid)->get();
-            if(!empty($new_user) || count($new_user)>0){
+            if(count($new_user)>0){
                 return response()->json(['Error'=>'新id已存在！']);
             }
             if(!empty($old_uid) && !empty($new_uid)){
