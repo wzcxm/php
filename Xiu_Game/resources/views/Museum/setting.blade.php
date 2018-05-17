@@ -35,15 +35,8 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score1" class="inp_sty" value="{{empty($tea->score1)?0:abs($tea->score1)}}">
-                        禁入牌桌。是否启用
-                        @if(!empty($tea) && !empty($tea->off1) && $tea->off1==1)
-                            <input type="checkbox" id = "off1" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_one')">
-                            <input type="hidden" id="off_one" value="1">
-                        @else
-                            <input type="checkbox" id = "off1" class="weui-agree__checkbox" onclick="ckb_setvalue('off_one')">
-                            <input type="hidden" id="off_one" value="0">
-                        @endif
+                        <input type="number" id="score1" class="inp_sty" value="{{empty($tea->score1)?9999:abs($tea->score1)}}">
+                        禁入牌桌。
                     </div>
                     <div style="margin-top: 5px;">
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen1" class="inp_sty" value="{{empty($tea->bzfen1)?0:$tea->bzfen1}}">
@@ -81,15 +74,8 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score2" class="inp_sty" value="{{empty($tea->score2)?0:abs($tea->score2)}}">
-                        禁入牌桌。是否启用
-                        @if(!empty($tea) && !empty($tea->off2) && $tea->off2==1)
-                            <input type="checkbox" id = "off2" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_two')">
-                            <input type="hidden" id="off_two" value="1">
-                        @else
-                            <input type="checkbox" id = "off2" class="weui-agree__checkbox" onclick="ckb_setvalue('off_two')">
-                            <input type="hidden" id="off_two" value="0">
-                        @endif
+                        <input type="number" id="score2" class="inp_sty" value="{{empty($tea->score2)?9999:abs($tea->score2)}}">
+                        禁入牌桌。
                     </div>
                     <div style="margin-top: 5px;">
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen2" class="inp_sty" value="{{empty($tea->bzfen2)?0:$tea->bzfen2}}">
@@ -126,15 +112,8 @@
                         体力</div>
                     <div style="margin-top: 5px;">
                         2、体力负
-                        <input type="number" id="score3" class="inp_sty" value="{{empty($tea->score3)?0:abs($tea->score3)}}">
-                        禁入牌桌。是否启用
-                        @if(!empty($tea) && !empty($tea->off3) && $tea->off3==1)
-                            <input type="checkbox" id = "off3" class="weui-agree__checkbox" checked="checked" onclick="ckb_setvalue('off_three')">
-                            <input type="hidden" id="off_three" value="1">
-                        @else
-                            <input type="checkbox" id = "off3" class="weui-agree__checkbox" onclick="ckb_setvalue('off_three')">
-                            <input type="hidden" id="off_three" value="0">
-                        @endif
+                        <input type="number" id="score3" class="inp_sty" value="{{empty($tea->score3)?9999:abs($tea->score3)}}">
+                        禁入牌桌。
                     </div>
                     <div style="margin-top: 5px;">
                         3、大赢家扣体力标准：扣体力标准值<input type="number" id="bzfen3" class="inp_sty" value="{{empty($tea->bzfen3)?0:$tea->bzfen3}}">
@@ -174,19 +153,17 @@
                 var obj = new Object();
                 obj.tea_id = $("#teaid").val();
                 obj.score1 = $("#score1").val();
-                obj.off1 = $("#off_one").val();
+                obj.off1 = 1;
                 obj.jifen1 = $("#jifen1").val();
                 obj.huilv1 = $("#huilv1").val();
                 obj.bzfen1 = $("#bzfen1").val();
                 obj.mincf1 = $("#mincf1").val();
                 obj.jfoff1 = $("#jfoff1").val();
                 $.post('/Museum/save',{data:obj},function(data){
-                    if(data.status==1){
-                        $.alert('保存成功！',function () {
-                            window.location.reload();
-                        })
+                    if(data.message==''){
+                        $.toast('保存成功');
                     }else{
-                        $.alert(data.message);
+                        $.toptip(data.message,4000,'error');
                     }
                 });
             });
@@ -194,19 +171,17 @@
                 var obj = new Object();
                 obj.tea_id = $("#teaid").val();
                 obj.score2 = $("#score2").val();
-                obj.off2 = $("#off_two").val();
+                obj.off2 = 1;
                 obj.jifen2 = $("#jifen2").val();
                 obj.huilv2 = $("#huilv2").val();
                 obj.bzfen2 = $("#bzfen2").val();
                 obj.mincf2 = $("#mincf2").val();
                 obj.jfoff2 = $("#jfoff2").val();
                 $.post('/Museum/save',{data:obj},function(data){
-                    if(data.status==1){
-                        $.alert('保存成功！',function () {
-                            window.location.reload();
-                        })
+                    if(data.message==''){
+                        $.toast('保存成功');
                     }else{
-                        $.alert(data.message);
+                        $.toptip(data.message,4000,'error');
                     }
                 });
             });
@@ -214,19 +189,17 @@
                 var obj = new Object();
                 obj.tea_id = $("#teaid").val();
                 obj.score3 = $("#score3").val();
-                obj.off3 = $("#off_three").val();
+                obj.off3 = 1;
                 obj.jifen3 = $("#jifen3").val();
                 obj.huilv3 = $("#huilv3").val();
                 obj.bzfen3 = $("#bzfen3").val();
                 obj.mincf3 = $("#mincf3").val();
                 obj.jfoff3 = $("#jfoff3").val();
                 $.post('/Museum/save',{data:obj},function(data){
-                    if(data.status==1){
-                        $.alert('保存成功！',function () {
-                            window.location.reload();
-                        })
+                    if(data.message==''){
+                        $.toast('保存成功');
                     }else{
-                        $.alert(data.message);
+                        $.toptip(data.message,4000,'error');
                     }
                 });
             });
@@ -266,8 +239,8 @@
                 obj.off1 = 0
             }
             $.post('/Museum/save',{data:obj},function(data){
-                if(data.status==1){
-                    console.log()
+                if(data.message==''){
+                    console.log('ok')
                 }else{
                     console.log(data.message);
                 }

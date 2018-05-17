@@ -32,40 +32,26 @@ class BuyCardController extends Controller
             $number = isset($data['card_number'])?$data['card_number']:0;
             $uid = isset($data['payer_id'])?$data['payer_id']:0;
             $sel_type = isset($data['sel_type'])?$data['sel_type']:0;
-            $user_id = session('uid');
-            $retMsg = "";
-            if(empty($uid) || empty($number) || empty($user_id)){
-                $retMsg = "失败，请检查是否输入正确！";
-            }else if($number < 0){
-                $retMsg = "数量不能小于0！";
-            }else {
-                $user = Users::find($user_id);
+            if(empty($uid)){
+                return response()->json(['msg' => '请输入玩家ID']);
+            }
+            if($number <= 0){
+                return response()->json(['msg' => '赠送数量不能小于0！']);
+            }
+            if($uid == 1) {
                 if($sel_type == 1){
-                    if ($user->roomcard - $number < 0) {
-                        $retMsg = "您的钻石不足！";
-                    }else{
-                        //保存充卡信息
-                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number,'buytype'=>2];
-                         CommClass::InsertCard($arr);
-                        //更新游戏的房卡数量
-                        CommClass::UpGameSer($uid,'card');//玩家的卡
-                        CommClass::UpGameSer($user_id,'card');//我的卡
-                    }
+                    DB::table('xx_user')->increment('roomcard',$number);
                 }else if($sel_type == 2) {
-                    if ($user->gold - $number < 0) {
-                        $retMsg = "您的金豆不足！";
-                    }else{
-                        //保存充卡信息
-                        $arr = ['cbuyid' => $uid, 'csellid' => $user_id, 'cnumber' => $number, 'ctype' => 2,'buytype'=>2];
-                        CommClass::InsertCard($arr);
-                        //更新游戏的金币数量
-                        CommClass::UpGameSer($uid,'coin');//玩家的卡
-                        CommClass::UpGameSer($user_id,'coin');//我的卡
-                    }
-
+                    DB::table('xx_user')->increment('gold',$number);
+                }
+            }else {
+                if($sel_type == 1){
+                    DB::table('xx_user')->where('uid',$uid)->increment('roomcard',$number);
+                }else if($sel_type == 2) {
+                    DB::table('xx_user')->where('uid',$uid)->increment('gold',$number);
                 }
             }
-            return response()->json(['msg' => $retMsg]);
+            return response()->json(['msg' => "111"]);
         }catch (\Exception $e){
             return response()->json(['msg' => $e->getMessage()]);
         }

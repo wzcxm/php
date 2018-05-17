@@ -36,10 +36,13 @@ class MuseumController extends Controller
         try{
             $data = isset($request['data'])?$request['data']:"";
             if(empty($data)){
-                return response()->json(['status'=>0,'message'=>'数据错误！']);
+                return response()->json(['message'=>'数据错误！']);
             }
             //id
             $teaid = isset($data['tea_id'])?$data['tea_id']:0;
+            if(empty($teaid)) {
+                return response()->json(['message'=>'牌馆ID错误！']);
+            }
             $arr_tea = [];
             //最低积分
             if(isset($data['score1'])){
@@ -111,14 +114,11 @@ class MuseumController extends Controller
             if(isset($data['jfoff3'])){
                 $arr_tea['jfoff3']=$data['jfoff3'];
             }
-            if(empty($teaid)) {
-                return response()->json(['status'=>0,'message'=>'牌馆ID错误！']);
-            }
             DB::table('xx_sys_tea')->where('tea_id',$teaid)
                 ->update($arr_tea);
-            return response()->json(['status'=>1,'message'=>'']);
+            return response()->json(['message'=>'']);
         }catch (\Exception $e){
-            return response()->json(['status'=>0,'message'=>$e->getMessage()]);
+            return response()->json(['message'=>$e->getMessage()]);
         }
     }
 }

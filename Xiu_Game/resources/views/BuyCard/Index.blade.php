@@ -6,14 +6,14 @@
     <div  class="weui-flex gift_head_bg" >
         <div style="margin-top: 8%;"><i class="fa fa-diamond">&nbsp;&nbsp;钻石赠送</i></div>
     </div>
-    <div  class="weui-flex zs_jd_bg" >
-        <div class="weui-flex__item" style="text-align: center;">
-            我的钻石：{{$card}}
-        </div>
-        <div class="weui-flex__item" style="text-align: center;">
-            我的金豆：{{$gold}}
-        </div>
-    </div>
+    {{--<div  class="weui-flex zs_jd_bg" >--}}
+        {{--<div class="weui-flex__item" style="text-align: center;">--}}
+            {{--我的钻石：{{$card}}--}}
+        {{--</div>--}}
+        {{--<div class="weui-flex__item" style="text-align: center;">--}}
+            {{--我的金豆：{{$gold}}--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div class="weui-cells_form">
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
@@ -38,10 +38,10 @@
                     <td align="right">钻石：</td>
                     <td><span  style="color: #545454" id="u_card"></span></td>
                 </tr>
-                {{--<tr>--}}
-                    {{--<td align="right">金豆：</td>--}}
-                    {{--<td><span  style="color: #545454" id="u_gold"></span></td>--}}
-                {{--</tr>--}}
+                <tr>
+                    <td align="right">金豆：</td>
+                    <td><span  style="color: #545454" id="u_gold"></span></td>
+                </tr>
                 <tr>
                     <td colspan="2" align="center"><span style="color:#ee3723;">请仔细核对玩家信息后，再确认赠送!</span></td>
                 </tr>
@@ -53,7 +53,9 @@
                     赠送类型
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
-                    钻石<input id="sel_type" value="1" type="hidden">
+                    <input type="radio"  name="sel_type" value="1" checked="checked" style="height: 20px;width: 20px;vertical-align:middle;" >
+                    <label>钻石</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio"  name="sel_type" value="2" style="height: 20px;width: 20px;vertical-align:middle;"><label>金豆</label>
                 </div>
             </div>
         </div>
@@ -70,9 +72,9 @@
         <div class="weui-cell">
             <button class="search_bg" style="width: 80%;margin-left: 10%;"  id="btn_buy">确认赠送</button>
         </div>
-        <div style="width:100%;text-align: center;font-size: 0.8rem;">
-            <a href="javascript:window.location.href = '/BuyCard/list'" style="color: #2dbaa7;">赠送记录</a>
-        </div>
+        {{--<div style="width:100%;text-align: center;font-size: 0.8rem;">--}}
+            {{--<a href="javascript:window.location.href = '/BuyCard/list'" style="color: #2dbaa7;">赠送记录</a>--}}
+        {{--</div>--}}
     </div>
 @endsection
 @section('easyui_script')
@@ -100,12 +102,14 @@
                         $("#head_url").attr('src',"");
                         $("#player_nick").html("");
                         $("#u_card").html("");
+                        $("#u_gold").html("");
                         $("#uid").val("");
                     } else {
                         var player = data.user;
                         $("#head_url").attr('src',player['head_img_url']);
                         $("#player_nick").html(player['nickname']);
                         $("#u_card").html(player['roomcard']);
+                        $("#u_gold").html(player['gold']);
                         $("#uid").val(player['uid']);
                     }
                 });
@@ -113,11 +117,11 @@
             $("#btn_buy").click(function () {
                 $('#btn_buy').prop('disabled',true);
                 var R = new Object();
-                R.payer_id = $("#uid").val();
-                R.sel_type = $('#sel_type').val();
+                R.payer_id = $("#payer_id").val();
+                R.sel_type = $("input[name='sel_type']:checked").val();
                 R.card_number = $('#card_number').val();
                 if(!comm.is_null(R.payer_id)){
-                    $.alert("请查询玩家信息，并仔细核对玩家信息后赠送！");
+                    $.alert("请输入玩家ID，并仔细核对玩家信息后赠送！");
                     $('#btn_buy').prop('disabled',false);
                     return;
                 }
@@ -128,10 +132,10 @@
                 }
                 $.post("/BuyCard/Gift",{data:R},function (reslut) {
                     if(comm.is_null(reslut.msg)){
-                        $.alert(reslut.msg);
+                        $.toptip(reslut.msg,4000,'error');
                     }
                     else {
-                        $.alert('赠送成功！',function () {
+                        $.toast('赠送成功！',function () {
                             window.location.reload();
                         });
                     }
