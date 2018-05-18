@@ -51,7 +51,7 @@ class BuyCardController extends Controller
                     DB::table('xx_user')->where('uid',$uid)->increment('gold',$number);
                 }
             }
-            return response()->json(['msg' => "111"]);
+            return response()->json(['msg' => ""]);
         }catch (\Exception $e){
             return response()->json(['msg' => $e->getMessage()]);
         }
