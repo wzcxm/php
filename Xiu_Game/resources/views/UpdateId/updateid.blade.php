@@ -34,6 +34,14 @@
             margin-bottom: 11px;
             margin-top: 10px;
         }
+        .search_css{
+            background-color: #2dbba7;
+            border: 0;
+            border-radius:5px;
+            font-size: 0.8rem;
+            padding: 5px 10px 5px 10px;
+            color: white;
+        }
     </style>
 @endsection
 @section('easyui_content')
@@ -47,7 +55,19 @@
                     玩家原ID：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
-                    <input class="ipt_css" type="number" id="old_uid" style="width: 50%;">
+                    <input class="ipt_css" type="number" id="old_uid" style="width: 50%;">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="search_css" id="btn_search">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell" id="play_info" style="display: none;">
+            <div style="width:100%;text-align: center;font-size: 0.8rem;">
+                <div style="float: left;width: 35%;text-align: right;">
+
+                </div>
+                <div style="float: right;width: 60%;text-align: left;">
+                    <img  id="head_url" src="" style="border-radius:6px;" width="30" align="absmiddle" >
+                    <span style="color: #545454" id="player_nick"></span>
                 </div>
             </div>
         </div>
@@ -94,7 +114,25 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
+            $("#btn_search").click(function () {
+                var payer_id = $("#old_uid").val();
+                if(!comm.is_null(payer_id)){
+                    $.alert("请输入玩家ID");
+                    return;
+                }
+                $.get('/BuyCard/Search/'+payer_id,function (data) {
+                    if(comm.is_null(data.msg)){
+                        $.alert(data.msg);
+                        $("#head_url").attr('src',"");
+                        $("#player_nick").html("");
+                    } else {
+                        var player = data.user;
+                        $("#head_url").attr('src',player['head_img_url']);
+                        $("#player_nick").html(player['nickname']);
+                        $("#play_info").show('fast');
+                    }
+                });
+            });
             $("#btn_update").click(function () {
                 var R = new Object();
                 R.old_uid = $("#old_uid").val();

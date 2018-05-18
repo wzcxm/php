@@ -47,8 +47,12 @@ class BuyCardController extends Controller
             }else {
                 if($sel_type == 1){
                     DB::table('xx_user')->where('uid',$uid)->increment('roomcard',$number);
+                    //更新游戏的钻石数量
+                    CommClass::UpGameSer($uid,'card');//玩家的钻石
                 }else if($sel_type == 2) {
                     DB::table('xx_user')->where('uid',$uid)->increment('gold',$number);
+                    //更新游戏的金币数量
+                    CommClass::UpGameSer($uid,'coin');//玩家的金币
                 }
             }
             return response()->json(['msg' => ""]);
