@@ -104,7 +104,7 @@ EOT;
             }
 
 			$sql = <<<EOT
-			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.tea_id = $teaid
+			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.state<>3 and t.tea_id = $teaid
 EOT;
 			$player_data =  DB::select($sql);
 			if(empty($player_data)) return "";
