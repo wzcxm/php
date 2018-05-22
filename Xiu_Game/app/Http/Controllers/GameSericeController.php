@@ -257,7 +257,7 @@ class GameSericeController extends Controller
                     }
                 }
                 if($type==1){
-                    return view('MyInfo.download');
+                    header('Location:http://fir.im/ysrn');
                 }else{
                     $retStr = CommClass::encrypt(json_encode($param));
                     header('Location:http://lottery.wangqianhong.com/index.html?param='.$retStr);
