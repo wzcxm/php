@@ -208,7 +208,7 @@ class GameSericeController extends Controller
     }
 
     //下载页面
-    public function  Download($uid = 0){
+    public function  Download($uid = 0,$type = 0){
         try{
             if(empty($uid)){
                 return view('MyInfo.download');
@@ -256,8 +256,12 @@ class GameSericeController extends Controller
 
                     }
                 }
-                $retStr = CommClass::encrypt(json_encode($param));
-                header('Location:http://lottery.wangqianhong.com/index.html?param='.$retStr);
+                if($type==1){
+                    return view('MyInfo.download');
+                }else{
+                    $retStr = CommClass::encrypt(json_encode($param));
+                    header('Location:http://lottery.wangqianhong.com/index.html?param='.$retStr);
+                }
             }
         }catch (\Exception $e){
             //var_dump($e->getMessage());

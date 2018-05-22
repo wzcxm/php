@@ -37,7 +37,7 @@ class MyInfoController extends Controller
         try{
             $user = Users::find(session('uid'));
             $user_head = $this->getWxHeadForBase64($user->head_img_url);
-            $url = 'http://'.$_SERVER['HTTP_HOST'].'/download/'.session('uid');
+            $url = 'http://'.$_SERVER['HTTP_HOST'].'/download/'.session('uid').'/1';
             return view('MyInfo.qrcode',['user'=>$user,'url'=>$url,'head'=>$user_head]);
         }catch (\Exception $e){
             return "Error:".$e->getMessage();
