@@ -100,3 +100,10 @@ $router->get('/setredis','GameSericeController@setRedisList');
 //实名认证
 $router->get('/realname/{uid}/{realname}/{idnum}','GameSericeController@realName');
 
+//玩家推荐人
+$router->get('/setRecommend/{teaid}/{uid}/{recid}/{sign}','GameSericeController@setRecommend');
+
+//玩家日志
+$router->get('/getPlayLog/{teaid}/{uid}/{type}/{sign}','GameSericeController@getPlayLog');
+
+

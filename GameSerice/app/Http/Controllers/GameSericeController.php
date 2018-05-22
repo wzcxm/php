@@ -124,6 +124,8 @@ EOT;
                 $teaplayer->setOnline($player->online_state);
                 $teaplayer->setTpScore($player->score);
                 $teaplayer->setHeadUrl($player->head_img_url);
+                $teaplayer->setRecid($player->recid);
+                $teaplayer->setInvite($player->invite);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
 			return $teaPlayerList->encode();
@@ -732,5 +734,39 @@ EOT;
     }
 
 
+    /*
+     * 获取玩家的日志
+     */
+    public function getPlayLog($teaid,$uid,$type,$sign){
+        //验证签名
+        if(!$this->checkSign($sign)) return "";
 
+        if(empty($teaid)) return "";
+        if(empty($uid)) return "";
+        if(empty($type)) return "";
+
+        $sql = <<<EOT
+			select * from xx_sys_log where tid = $teaid and type = $type and (uid = $uid or operate = $uid)
+EOT;
+        $data =  DB::select($sql);
+        return $data;
+    }
+
+    /*
+     * 保存玩家的推荐人
+     */
+    public function setRecommend($teaid,$uid,$recid,$sign){
+
+        //验证签名
+        if(!$this->checkSign($sign)) return "";
+
+        if(empty($teaid)) return "";
+        if(empty($uid)) return "";
+        if(empty($recid)) return "";
+        $rows = DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['recid'=>$recid]);
+        if($rows > 0){
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->increment('invite');
+        }
+        return 1;
+    }
 }
