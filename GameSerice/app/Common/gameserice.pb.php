@@ -253,7 +253,7 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
     private $remarks = '';
     private $date = '';
     private $online = 0;
-    private $tp_score = 0;
+    private $tp_score = 0.0;
     private $head_url = '';
 
     public function getNickname()
@@ -384,7 +384,7 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
 
     public function setTpScore($var)
     {
-        GPBUtil::checkInt32($var);
+        GPBUtil::checkFloat($var);
         $this->tp_score = $var;
     }
 
@@ -795,7 +795,7 @@ $pool->internalAddGeneratedFile(hex2bin(
     "0375696418072001280d120e0a0677696e6e756d18082001280d120f0a07" .
     "72656d61726b73180920012809120c0a0464617465180a20012809120e0a" .
     "066f6e6c696e65180b2001280d12100a0874705f73636f7265180c200128" .
-    "0512100a08686561645f75726c180d2001280922400a0a5265636f72644c" .
+    "0212100a08686561645f75726c180d2001280922400a0a5265636f72644c" .
     "69737412230a0b5265636f72645f6c69737418012003280b320e2e787867" .
     "616d652e5265636f7264120d0a05746f74616c18022001280d2282010a06" .
     "5265636f7264120e0a06726f6f6d696418012001280d120e0a066e756d62" .
