@@ -45,15 +45,18 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv1" class="inp_sty" value="{{empty($tea->huilv1)?0:$tea->huilv1}}">体力
                     </div>
                     <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> 体力
+                    </div>
+                    <div style="margin-top: 5px;">
+
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf1" class="inp_sty" value="{{empty($tea->mincf1)?0:$tea->mincf1}}"> 体力
+                            4、推荐人获得体力：<input type="number" id="share1" class="inp_sty" value="{{empty($tea->share1)?0:$tea->share1}}">
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_one">保存</button>
                         </div>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        4、推荐人获得体力：<input type="number" id="share1" class="inp_sty" value="{{empty($tea->share1)?0:$tea->share1}}">
                     </div>
                 </div>
 
@@ -87,15 +90,15 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv2" class="inp_sty" value="{{empty($tea->huilv2)?0:$tea->huilv2}}">体力
                     </div>
                     <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">体力
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf2" class="inp_sty" value="{{empty($tea->mincf2)?0:$tea->mincf2}}">体力
+                            4、推荐人获得体力：<input type="number" id="share2" class="inp_sty" value="{{empty($tea->share2)?0:$tea->share2}}">
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_two">保存</button>
                         </div>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        4、推荐人获得体力：<input type="number" id="share2" class="inp_sty" value="{{empty($tea->share2)?0:$tea->share2}}">
                     </div>
                 </div>
             </div>
@@ -128,15 +131,15 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力大于等于该标准值扣<input type="number" id="huilv3" class="inp_sty" value="{{empty($tea->huilv3)?0:$tea->huilv3}}">体力
                     </div>
                     <div style="margin-top: 5px;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">体力
+                    </div>
+                    <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得体力小于该标准值扣<input type="number" id="mincf3" class="inp_sty" value="{{empty($tea->mincf3)?0:$tea->mincf3}}">体力
+                            4、推荐人获得体力：<input type="number" id="share3" class="inp_sty" value="{{empty($tea->share3)?0:$tea->share3}}">
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_three">保存</button>
                         </div>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        4、推荐人获得体力：<input type="number" id="share3" class="inp_sty" value="{{empty($tea->share3)?0:$tea->share3}}">
                     </div>
                 </div>
             </div>
