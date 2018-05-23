@@ -163,6 +163,10 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
 
     //游戏详情
     Route::get('/System','MyInfoController@getSysInfo');
+
+    //更新微信
+    Route::get('/UpdateWx','HomeController@updateWx');
+    Route::post('/UpdateWx/replace','HomeController@replace');
 });
 /// end//////////////////////////////
 
@@ -178,8 +182,7 @@ Route::get('/PlayerBuy/index{at_id?}','CashController@index');
 Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
 Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
-//更新微信
-Route::get('/UpdateWx','HomeController@updateWx');
+
 //分享
 Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
 

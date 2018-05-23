@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Wechat\example\log;
 use App\Wechat\example\CLogFileHandler;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -92,8 +93,24 @@ class HomeController extends Controller
 
     public function updateWx(){
         try{
+            $arr = ['old_head'=>session('headimg'),'old_nick'=>session('nick')];
             $tools = new JsApiPay();
             $data = $tools->GetUserInfo();
+            if(!empty($data)){
+                Session::put('NewWxData', $data);
+                $arr['new_head'] = $data['headimgurl'];
+                $arr['new_nick'] = $data['nickname'];
+            }
+            return view('Home.updatewx',$arr);
+        }catch (\Exception $e){
+            //var_dump($e->getMessage());
+            //return response()->json(['status'=>0,'message'=>$e->getMessage()]);
+        }
+    }
+
+    public function replace(Request $request){
+        try{
+            $data = session('NewWxData');
             if(!empty($data)){
                 //删除该微信已有的账号
                 $old_play = DB::table('xx_user')->where('unionid',$data['unionid'])->first();
@@ -108,13 +125,13 @@ class HomeController extends Controller
                     'unionid'=>$data['unionid'],
                     'wxopenid'=>$data['openid']
                 ]);
-                return redirect('/Home');
+                return response()->json(['error'=>'']);
+            }else{
+                return response()->json(['error'=>'更新失败，请刷新重试！']);
             }
         }catch (\Exception $e){
-            //var_dump($e->getMessage());
-            //return response()->json(['status'=>0,'message'=>$e->getMessage()]);
+            return response()->json(['error'=>$e->getMessage()]);
         }
-
     }
 
 }

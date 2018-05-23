@@ -16,7 +16,6 @@ class UserLoginController extends Controller
  */
     public  function Login(Request $request){
         $user = \DB::table('v_user')->where([['uid',$request['id']],['pwd',$request['pwd']]])->first();
-//        CommClass::SetPlayerCard('149810509220180316165353');
         if(empty($user)) {
             return redirect()->back()->with('idmsg','用户ID或者密码错误！');
         }
@@ -27,6 +26,7 @@ class UserLoginController extends Controller
                 Session::put('front_uid', $user->front_uid);
                 Session::put('roleid', $user->rid);
                 Session::put('headimg', $user->head_img_url);
+                Session::put('nick', $user->nickname);
                 Session::put('roomcard', $user->roomcard);
                 Session::put('rolename', $user->rname);
                 Session::put('money', $user->money);
@@ -57,6 +57,7 @@ class UserLoginController extends Controller
                         Session::put('front_uid', $user->front_uid);
                         Session::put('roleid', $user->rid);
                         Session::put('headimg', $user->head_img_url);
+                        Session::put('nick', $user->nickname);
                         Session::put('roomcard', $user->roomcard);
                         Session::put('rolename', $user->rname);
                         Session::put('money', $user->money);
@@ -101,6 +102,7 @@ class UserLoginController extends Controller
                     Session::put('front_uid', $user->front_uid);
                     Session::put('roleid', $user->rid);
                     Session::put('headimg', $user->head_img_url);
+                    Session::put('nick', $user->nickname);
                     Session::put('roomcard', $user->roomcard);
                     Session::put('rolename', $user->rname);
                     Session::put('money', $user->money);
