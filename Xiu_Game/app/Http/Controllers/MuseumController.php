@@ -114,6 +114,16 @@ class MuseumController extends Controller
             if(isset($data['jfoff3'])){
                 $arr_tea['jfoff3']=$data['jfoff3'];
             }
+            //推荐人获得体力
+            if(isset($data['share1'])){
+                $arr_tea['share1']=$data['share1'];
+            }
+            if(isset($data['share2'])){
+                $arr_tea['share2']=$data['share2'];
+            }
+            if(isset($data['share3'])){
+                $arr_tea['share3']=$data['share3'];
+            }
             DB::table('xx_sys_tea')->where('tea_id',$teaid)
                 ->update($arr_tea);
             return response()->json(['message'=>'']);

@@ -52,6 +52,9 @@
                             <button style="margin-left: 20%;" class="open_btn" id="hall_one">保存</button>
                         </div>
                     </div>
+                    <div style="margin-top: 5px;">
+                        4、推荐人获得体力：<input type="number" id="share1" class="inp_sty" value="{{empty($tea->share1)?0:$tea->share1}}">
+                    </div>
                 </div>
 
             </div>
@@ -91,6 +94,9 @@
                             <button style="margin-left: 20%;" class="open_btn" id="hall_two">保存</button>
                         </div>
                     </div>
+                    <div style="margin-top: 5px;">
+                        4、推荐人获得体力：<input type="number" id="share2" class="inp_sty" value="{{empty($tea->share2)?0:$tea->share2}}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,6 +135,9 @@
                             <button style="margin-left: 20%;" class="open_btn" id="hall_three">保存</button>
                         </div>
                     </div>
+                    <div style="margin-top: 5px;">
+                        4、推荐人获得体力：<input type="number" id="share3" class="inp_sty" value="{{empty($tea->share3)?0:$tea->share3}}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,6 +168,7 @@
                 obj.bzfen1 = $("#bzfen1").val();
                 obj.mincf1 = $("#mincf1").val();
                 obj.jfoff1 = $("#jfoff1").val();
+                obj.share1 = $("#share1").val();
                 $.post('/Museum/save',{data:obj},function(data){
                     if(data.message==''){
                         $.toast('保存成功');
@@ -177,6 +187,7 @@
                 obj.bzfen2 = $("#bzfen2").val();
                 obj.mincf2 = $("#mincf2").val();
                 obj.jfoff2 = $("#jfoff2").val();
+                obj.share2 = $("#share2").val();
                 $.post('/Museum/save',{data:obj},function(data){
                     if(data.message==''){
                         $.toast('保存成功');
@@ -195,6 +206,7 @@
                 obj.bzfen3 = $("#bzfen3").val();
                 obj.mincf3 = $("#mincf3").val();
                 obj.jfoff3 = $("#jfoff3").val();
+                obj.share3 = $("#share3").val();
                 $.post('/Museum/save',{data:obj},function(data){
                     if(data.message==''){
                         $.toast('保存成功');
