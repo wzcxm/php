@@ -746,7 +746,7 @@ EOT;
         if(empty($type)) return "";
 
         $sql = <<<EOT
-			select * from xx_sys_log where tid = $teaid and type = $type and (uid = $uid or operate = $uid)
+			select * from xx_sys_log where tea_id = $teaid and type = $type and (uid = $uid or operate = $uid)
 EOT;
         $data =  DB::select($sql);
         return $data;
