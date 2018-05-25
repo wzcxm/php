@@ -761,7 +761,7 @@ EOT;
 
         if(empty($teaid)) return "";
         if(empty($uid)) return "";
-        if(empty($recid)) return "";
+        
         $rows = DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['recid'=>$recid]);
         if($rows > 0){
             DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->increment('invite');
