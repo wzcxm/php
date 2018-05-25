@@ -743,12 +743,11 @@ EOT;
 
         if(empty($teaid)) return "";
         if(empty($uid)) return "";
-        if(empty($type)) return "";
 
         $sql = <<<EOT
 			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid)
 EOT;
-        $data =  DB::select($sql);  
+        $data =  DB::select($sql);
         return $data;
     }
 
