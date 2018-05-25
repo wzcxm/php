@@ -737,16 +737,21 @@ EOT;
     /*
      * 获取玩家的日志
      */
-    public function getPlayLog($teaid,$uid,$sign){
+    public function getPlayLog($teaid,$uid,$role,$sign){
         //验证签名
         if(!$this->checkSign($sign)) return "";
 
         if(empty($teaid)) return "";
         if(empty($uid)) return "";
-
-        $sql = <<<EOT
+        if($role == 3){
+            $sql = <<<EOT
+			select * from xx_sys_log where tea_id = $teaid  and uid = $uid 
+EOT;
+        }else{
+            $sql = <<<EOT
 			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid)
 EOT;
+        }
         $data =  DB::select($sql);
         return $data;
     }
@@ -761,7 +766,7 @@ EOT;
 
         if(empty($teaid)) return "";
         if(empty($uid)) return "";
-        
+
         $rows = DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['recid'=>$recid]);
         if($rows > 0){
             DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->increment('invite');
