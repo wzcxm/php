@@ -80,7 +80,7 @@ class CashController extends Controller
             }
             if(!empty($front)){
                 $front_mode = Users::find($front);
-                if(empty($front_mode) || $front_mode->rid == 5 || $front_mode->rid == 1 || $front == $gameid){
+                if(empty($front_mode) || $front_mode->rid != 2 || $front == $gameid){
                     return response()->json(['Error' => "推荐人ID无效，请重新填写！",'orderno'=>0]);
                 }
             }

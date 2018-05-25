@@ -406,40 +406,40 @@ use Aliyun\DySDKLite\SignatureHelper;
          $oneback =CommClass::GetParameter("upper_one");
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
+         //剩余金额
+         $balance = 0;
          //消费金额小于等于0，return
          if($cash <= 0)
              return;
-         //如果购买的玩家为空，或者玩家不为总代也不为代理，直接return
-         if(!CommClass::isAgent($buy_id))
-             return;
+         //////////////////////////////////代理返利/////////////////////////////////////
          $buy_user = Users::find($buy_id);
-         //上级返利
-         //上级为空，或者上级不为总代也不为代理，直接return
-         if(!CommClass::isAgent($buy_user->front_uid))
+         //如果购买的玩家为空，或者不为代理，直接return
+         if(empty($buy_user) || $buy_user->rid != 2)
              return;
+         //上级返利
+         //上级为空，或者上级不为代理，直接return
          $front = Users::find($buy_user->front_uid);
-         //如果上级为总代，返25%，其他代理返20%
-         if($front->rid == 3){
-             $back = CommClass::getProxyScale($buy_user->front_uid);
-             $return_one = $cash*$back/100;
-         }else if($front->rid == 2){//其他代理返20%
-             $back = $oneback;
-             $return_one = $cash*$oneback/100;
-         }
+         if(empty($front) || $front->rid != 2)
+             return;
+         //计算上级返利
+         $return_one = $cash*$oneback/100;
          //保存返利信息
          DB::table("xx_wx_backgold")->insert(
              ['get_id'=>$buy_user->front_uid,
                  'back_id'=>$buy_id,
                  'backgold'=>$return_one,
                  'gold'=>$cash,
-                 'ratio'=>$back,
+                 'ratio'=>$oneback,
                  'level'=>1]);
+         $balance = $cash - $return_one;
          //上上级返利
-         //上上级为空，或者上上级不为总代也不为代理，直接返回
-         if(!CommClass::isAgent($front->front_uid))
+         //上上级为空，或者上上级不为代理，直接返回
+         $upper_level = Users::find($front->front_uid);
+         if(empty($upper_level) || $upper_level->rid != 2)
              return;
-         //保存返利记录
+         //计算上上级返利
          $return_two = $cash*$twoback/100;
+         //保存返利记录
          DB::table("xx_wx_backgold")->insert(
              ['get_id'=>$front->front_uid,
                  'back_id'=>$buy_id,
@@ -447,6 +447,43 @@ use Aliyun\DySDKLite\SignatureHelper;
                  'gold'=>$cash,
                  'ratio'=>$twoback,
                  'level'=>2]);
+         $balance = $cash - $return_two;
+         //////////////////////////////////总代&特级代理返利/////////////////////////////////////
+         //总代返利
+         $scale = 0 ;
+         if(!empty($buy_user->chief_aisle)){
+            $chief = DB::table('xx_user')->where('aisle',$buy_user->chief_aisle)->first();
+            if(!empty($chief) && $chief->rid == 3){
+                $scale = CommClass::getProxyScale($chief->uid);
+                $return_chief = $balance*$scale/100;
+                //保存返利信息
+                DB::table("xx_wx_backgold")->insert(
+                    ['get_id'=>$chief->uid,
+                        'back_id'=>$buy_id,
+                        'backgold'=>$return_chief,
+                        'gold'=>$balance,
+                        'ratio'=>$scale,
+                        'level'=>1]);
+            }
+         }
+         //特级代理返利
+         $super_scale = 0;
+         if(!empty($buy_user->super_aisle)){
+             $super = DB::table('xx_user')->where('aisle',$buy_user->super_aisle)->first();
+             if(!empty($super) && $super->rid == 4){
+                 $super_scale = CommClass::getProxyScale($super->uid);
+                 $super_scale -= $scale;
+                 $return_super = $balance*$super_scale/100;
+                 //保存返利信息
+                 DB::table("xx_wx_backgold")->insert(
+                     ['get_id'=>$super->uid,
+                         'back_id'=>$buy_id,
+                         'backgold'=>$return_super,
+                         'gold'=>$balance,
+                         'ratio'=>$super_scale,
+                         'level'=>1]);
+             }
+         }
      }
 
      /*
@@ -454,27 +491,12 @@ use Aliyun\DySDKLite\SignatureHelper;
       * $uid：总代ID
       */
      public static function getProxyScale($uid){
-         //总代的下级代理个数
-        $people = DB::table('xx_user')->where('front_uid',$uid)->count();
         //总代的提成规则
-        $data = DB::table('xx_sys_proxyscale')->where('uid',$uid)->get();
-        //提成比例
-        $scale = 0;
-        if(count($data)>0){ //如果总代设置了，提成规则，则取设置的提成比例
-            foreach ($data as $item){
-                if($people >= $item->people){
-                    $scale = $item->scale;
-                }
-            }
-        }else{ //如果没有设置，则取默认的提成比例
-            $data = DB::table('xx_sys_proxyscale')->where('uid',0)->get();
-            foreach ($data as $item){
-                if($people >= $item->people){
-                    $scale = $item->scale;
-                }
-            }
+        $data = DB::table('xx_sys_proxyscale')->where('uid',$uid)->first();
+        if(empty($data)){ //如果为空，则取通用比例
+            $data = DB::table('xx_sys_proxyscale')->where('uid',0)->first();
         }
-        return $scale;
+        return $data->scale;
      }
 
      /*
@@ -487,7 +509,7 @@ use Aliyun\DySDKLite\SignatureHelper;
              }
              else{
                  $user = Users::find($uid);
-                 if(empty($user) ||($user->rid !=3 && $user->rid !=2))
+                 if(empty($user) || $user->rid !=2)
                      return false;
                  else
                      return true;
@@ -647,7 +669,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!empty($play->chief_uid)){
              //玩家的推荐人必须是代理，才返现
              $font = Users::find($play->chief_uid);
-             if(!empty($font) && ($font->rid == 2 || $font->rid == 3)){
+             if(!empty($font) && $font->rid != 5 ){
                  //返利比例
                  $invitation = CommClass::GetParameter("invitation");
                  $back_cash = $cash*$invitation/100;

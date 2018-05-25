@@ -79,6 +79,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //我的代理
     Route::get('/MyAgent','MyAgentController@myAgent');
     Route::post('/MyAgent/data','MyAgentController@getData');
+    Route::post('/MyAgent/setrole','MyAgentController@setRole');
     //我的玩家
     Route::get('/MyPlayer','MyAgentController@myPlayer');
     Route::post('/MyPlayer/data','MyAgentController@getPlayer');
@@ -136,6 +137,8 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     });
     Route::post('/AgentDel/data','AgentManageController@getAgent');
     Route::post('/AgentDel/delete','AgentManageController@delete');
+    Route::post('/AgentDel/setqd','AgentManageController@setQd');
+
 
     //玩家列表
     Route::get('/Players',function (){

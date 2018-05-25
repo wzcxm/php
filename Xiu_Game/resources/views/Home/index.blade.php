@@ -46,7 +46,11 @@
             钻石：{{$User->roomcard}}
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            金豆：{{$User->gold}}
+            @if($roleid==3 || $roleid==4)
+                渠道ID：{{$User->aisle}}
+            @else
+                金豆：{{$User->gold}}
+            @endif
         </div>
     </div>
 @endif
@@ -79,16 +83,6 @@
     @if(!empty($Menus))
         @foreach($Menus as $menu)
             @if($menu->linkurl!='/Home' && $menu->linkurl!='/MyInfo')
-                {{--@if($menu->linkurl=='/UpdateWx')--}}
-                    {{--<a href="#" class="weui-grid js_grid" onclick="javascript:isUpdate()">--}}
-                        {{--<div class="weui-grid__icon">--}}
-                            {{--<img src="img/home/{{$menu->icon}}">--}}
-                        {{--</div>--}}
-                        {{--<p class="weui-grid__label">--}}
-                            {{--{{$menu->name}}--}}
-                        {{--</p>--}}
-                    {{--</a>--}}
-                {{--@else--}}
                 <a href="{{$menu->linkurl=="/BuyBubble"?$menu->linkurl."/index":$menu->linkurl}}" class="weui-grid js_grid">
                     <div class="weui-grid__icon">
                         <img src="img/home/{{$menu->icon}}">
@@ -97,7 +91,6 @@
                         {{$menu->name}}
                     </p>
                 </a>
-                {{--@endif--}}
             @endif
         @endforeach
     @endif

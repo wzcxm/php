@@ -27,6 +27,7 @@ class UserLoginController extends Controller
                 Session::put('roleid', $user->rid);
                 Session::put('headimg', $user->head_img_url);
                 Session::put('nick', $user->nickname);
+                Session::put('aisle', $user->aisle);
                 Session::put('roomcard', $user->roomcard);
                 Session::put('rolename', $user->rname);
                 Session::put('money', $user->money);
@@ -58,6 +59,7 @@ class UserLoginController extends Controller
                         Session::put('roleid', $user->rid);
                         Session::put('headimg', $user->head_img_url);
                         Session::put('nick', $user->nickname);
+                        Session::put('aisle', $user->aisle);
                         Session::put('roomcard', $user->roomcard);
                         Session::put('rolename', $user->rname);
                         Session::put('money', $user->money);
@@ -103,6 +105,7 @@ class UserLoginController extends Controller
                     Session::put('roleid', $user->rid);
                     Session::put('headimg', $user->head_img_url);
                     Session::put('nick', $user->nickname);
+                    Session::put('aisle', $user->aisle);
                     Session::put('roomcard', $user->roomcard);
                     Session::put('rolename', $user->rname);
                     Session::put('money', $user->money);

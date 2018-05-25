@@ -28,6 +28,41 @@ class AgentManageController extends Controller
         }
 
     }
+    public function setQd(Request $request){
+        try{
+            $data = isset($request['data'])?$request['data']:"";
+            $uid = isset($data['uid'])?$data['uid']:0;
+            $aisle = isset($data['aisle'])?$data['aisle']:0;
+            if(!$this->is_Int($aisle)){
+                return response()->json(['error'=>"渠道ID必须为数字！"]);
+            }
+            if(!empty($uid)){
+                $model = Users::find($uid);
+                if(!empty($model->aisle) && $model->aisle>0){
+                    return response()->json(['error'=>"该代理已经设置了渠道ID，不能重复设置！"]);
+                }else{
+                    $model->aisle = $aisle;
+                    $model->save();
+                    return response()->json(['error'=>""]);
+                }
+            }else{
+                return response()->json(['error'=>"代理ID错误！"]);
+            }
+        }catch (\Exception $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
+
+    }
+
+    private function is_Int($num){
+        if(is_numeric($num) && $num >0 && floor($num)==$num){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 
     ///代理转移  ---暂时不用
     public function transfer($target,$source){
