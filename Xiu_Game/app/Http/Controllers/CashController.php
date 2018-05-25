@@ -77,29 +77,35 @@ class CashController extends Controller
             $player = Users::find($gameid);
             if(empty($player)){
                 return response()->json(['Error' => "游戏ID错误！",'orderno'=>0]);
-            }else{
-
-                $product = ShoppingMall::find($sid);
-                //购卡数量
-                $toltal_number = $product->snumber;
-                //总金额
-                $toltal_fee = $product->sprice*100;
-                //订单号
-                $orderno = WxPayConfig::MCHID . date("YmdHis");
-                //生成订单
-                $Parameters = $this->setPay($toltal_fee,$orderno);
-                //保存订单号到数据库
-                DB::table('xx_wx_buycard')->insert([
-                    'userid' => $gameid,
-                    'cardnum' => $toltal_number,
-                    'total' => $toltal_fee/100,
-                    'nonce' => $orderno,
-                    'front' => $front,
-                    'isfirst'=>$product->isfirst
-                ]);
-                //返回订单json
-                return response()->json(['Param' => $Parameters,'orderno'=>$orderno]);
             }
+            if(!empty($front)){
+                $front_mode = Users::find($front);
+                if(empty($front_mode) || $front_mode->rid == 5 || $front_mode->rid == 1 || $front == $gameid){
+                    return response()->json(['Error' => "推荐人ID无效，请重新填写！",'orderno'=>0]);
+                }
+            }
+
+            $product = ShoppingMall::find($sid);
+            //购卡数量
+            $toltal_number = $product->snumber;
+            //总金额
+            $toltal_fee = $product->sprice*100;
+            //订单号
+            $orderno = WxPayConfig::MCHID . date("YmdHis");
+            //生成订单
+            $Parameters = $this->setPay($toltal_fee,$orderno);
+            //保存订单号到数据库
+            DB::table('xx_wx_buycard')->insert([
+                'userid' => $gameid,
+                'cardnum' => $toltal_number,
+                'total' => $toltal_fee/100,
+                'nonce' => $orderno,
+                'front' => $front,
+                'isfirst'=>$product->isfirst
+            ]);
+            //返回订单json
+            return response()->json(['Param' => $Parameters,'orderno'=>$orderno]);
+
         }catch (\Exception $e){
             return response()->json(['Error' => $e->getMessage(),'orderno'=>0]);
         }

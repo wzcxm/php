@@ -38,24 +38,48 @@ class BuyCardController extends Controller
             if($number <= 0){
                 return response()->json(['msg' => '赠送数量不能小于0！']);
             }
-            if($uid == 1) {
-                if($sel_type == 1){
-                    DB::table('xx_user')->increment('roomcard',$number);
-                }else if($sel_type == 2) {
-                    DB::table('xx_user')->increment('gold',$number);
+            if(session('roleid') == 1){
+                if($uid == 1) {
+                    if($sel_type == 1){
+                        DB::table('xx_user')->increment('roomcard',$number);
+                    }else if($sel_type == 2) {
+                        DB::table('xx_user')->increment('gold',$number);
+                    }
+                }else {
+                    if($sel_type == 1){
+                        DB::table('xx_user')->where('uid',$uid)->increment('roomcard',$number);
+                        //更新游戏的钻石数量
+                        CommClass::UpGameSer($uid,'card');//玩家的钻石
+                    }else if($sel_type == 2) {
+                        DB::table('xx_user')->where('uid',$uid)->increment('gold',$number);
+                        //更新游戏的金币数量
+                        CommClass::UpGameSer($uid,'coin');//玩家的金币
+                    }
                 }
-            }else {
+                return response()->json(['msg' => ""]);
+            }else{
+                $user_mode = Users::find(session('uid'));
                 if($sel_type == 1){
-                    DB::table('xx_user')->where('uid',$uid)->increment('roomcard',$number);
-                    //更新游戏的钻石数量
-                    CommClass::UpGameSer($uid,'card');//玩家的钻石
+                    if($number > $user_mode->roomcard){
+                        return response()->json(['msg' => "您的钻石不足！"]);
+                    }else{
+                       // DB::table('xx_user')->where('uid',$uid)->increment('roomcard',$number);
+                        CommClass::InsertCard(['cbuyid' => $uid, 'csellid' => session('uid'), 'cnumber' => $number,'buytype'=>2]) ;
+                        //更新游戏的钻石数量
+                        CommClass::UpGameSer($uid,'card');//玩家的钻石
+                    }
                 }else if($sel_type == 2) {
-                    DB::table('xx_user')->where('uid',$uid)->increment('gold',$number);
-                    //更新游戏的金币数量
-                    CommClass::UpGameSer($uid,'coin');//玩家的金币
+                    if($number > $user_mode->gold){
+                        return response()->json(['msg' => "您的金豆不足！"]);
+                    }else {
+                        CommClass::InsertCard(['cbuyid' => $uid, 'csellid' => session('uid'), 'cnumber' => $number,'ctype'=>2,'buytype'=>2]) ;
+                        //DB::table('xx_user')->where('uid', $uid)->increment('gold', $number);
+                        //更新游戏的金币数量
+                        CommClass::UpGameSer($uid, 'coin');//玩家的金币
+                    }
                 }
+                return response()->json(['msg' => ""]);
             }
-            return response()->json(['msg' => ""]);
         }catch (\Exception $e){
             return response()->json(['msg' => $e->getMessage()]);
         }

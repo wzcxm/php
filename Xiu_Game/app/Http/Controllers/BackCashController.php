@@ -124,7 +124,7 @@ class BackCashController extends Controller
             }
             //本次提取金额为正整数
             if(!$this->isInteger($gold)){
-                return response()->json(['Error'=>'提取金额必须大于0,且为正整数！']);
+                return response()->json(['Error'=>'提取金额必须大于0,且最多只能保留两位小数！']);
             }
             //先扣除积分，并返回openid
             $data = DB::select('CALL query_update_cash('.session('uid').','.$gold .')');
@@ -134,7 +134,7 @@ class BackCashController extends Controller
             else{
                 //生成订单号
                 $openid = $data[0]->wxopenid;
-                $amount = $gold*100;
+                $amount = ($gold-$gold*0.025)*100;//扣除2.5%手续费
                 $orderno = WxPayConfig::MCHID . date("YmdHis");
                 //发起提现，并返回提现结果
                 $result = $this->GetExtract($openid,$orderno,$amount);
@@ -161,7 +161,7 @@ class BackCashController extends Controller
             if($number <= 0){
                 return false;
             }else{
-                if(floor($number)==$number){
+                if (preg_match('/^[0-9]+(.[0-9]{1,2})?$/', $number)) {
                     return true;
                 }else{
                     return false;

@@ -270,6 +270,33 @@ class GameLoginController extends Controller
                     //推荐人增加一次分享次数
                     DB::table('xx_user')->where('uid',$temp_user->front)->increment('sharenum');
                     $arr['chief_uid'] = $temp_user->front;
+                    $front_mode = DB::table('xx_user')->where('uid',$temp_user->front)->first();
+                    if($front_mode->rid == 4){ //如果推荐人是特级代理，保存特级代理的渠道号
+                        if(!empty($front_mode->aisle)){
+                            $arr['super_aisle'] = $front_mode->aisle;
+                        }
+                    }else if($front_mode->rid == 3){ //如果推荐人总代，保存总代和总代对应的特级代理的渠道号
+                        if(!empty($front_mode->aisle)){
+                            $arr['chief_aisle'] = $front_mode->aisle;
+                        }
+                        if(!empty($front_mode->super_aisle)){
+                            $arr['super_aisle'] = $front_mode->super_aisle;
+                        }
+                    }else if($front_mode->rid == 2){ //如果是普通代理，保存代理的总代和特级渠道号
+                        if(!empty($front_mode->chief_aisle)){
+                            $arr['chief_aisle'] = $front_mode->chief_aisle;
+                        }
+                        if(!empty($front_mode->super_aisle)){
+                            $arr['super_aisle'] = $front_mode->super_aisle;
+                        }
+                    }else{
+                        if(!empty($front_mode->chief_aisle)){
+                            $arr['chief_aisle'] = $front_mode->chief_aisle;
+                        }
+                        if(!empty($front_mode->super_aisle)){
+                            $arr['super_aisle'] = $front_mode->super_aisle;
+                        }
+                    }
                 }
 				//保存我的微信openid
 				DB::table('xx_user')

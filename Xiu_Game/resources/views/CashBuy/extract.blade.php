@@ -1,7 +1,7 @@
 
 @extends('Layout.WeUiLayout')
 @section('style')
-    <link rel="stylesheet" href="{{asset('css/extract.css')}}?v=201805074">
+    <link rel="stylesheet" href="{{asset('css/extract.css')}}?v=201805241">
 @endsection
 @section('content')
     <div  class="weui-flex head_bg" >
@@ -26,7 +26,7 @@
                 <div style="float: right;width: 60%;text-align: left;">
                     <input class="input_number" type="number" id="gold" style="width: 50%;">
                     <div style="font-size: 0.6rem;font-weight: bold;color: coral;">
-                        提示：提取金额必须为正整数。
+                        提示：提取金额必须大于0。
                     </div>
                 </div>
             </div>
@@ -49,12 +49,14 @@
                 </div>
             </div>
         </div>
+
         <div class="weui-cell">
             <button class="search_bg" style="width: 80%;margin-left: 10%;"  id="btn_extr">提现到微信钱包</button>
         </div>
         <div style="width:100%;text-align: center;font-size: 0.8rem;">
             <a href="javascript:window.location.href = '/Extract/extlist'" style="color: #2dbaa7;">提现记录</a>
         </div>
+
     </div>
 @endsection
 @section('script')

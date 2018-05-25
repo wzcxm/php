@@ -104,6 +104,6 @@ $router->get('/realname/{uid}/{realname}/{idnum}','GameSericeController@realName
 $router->get('/setRecommend/{teaid}/{uid}/{recid}/{sign}','GameSericeController@setRecommend');
 
 //玩家日志
-$router->get('/getPlayLog/{teaid}/{uid}/{type}/{sign}','GameSericeController@getPlayLog');
+$router->get('/getPlayLog/{teaid}/{uid}/{sign}','GameSericeController@getPlayLog');
 
 

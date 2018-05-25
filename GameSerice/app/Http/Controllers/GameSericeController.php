@@ -737,7 +737,7 @@ EOT;
     /*
      * 获取玩家的日志
      */
-    public function getPlayLog($teaid,$uid,$type,$sign){
+    public function getPlayLog($teaid,$uid,$sign){
         //验证签名
         if(!$this->checkSign($sign)) return "";
 
@@ -746,9 +746,9 @@ EOT;
         if(empty($type)) return "";
 
         $sql = <<<EOT
-			select * from xx_sys_log where tea_id = $teaid and type = $type and (uid = $uid or operate = $uid)
+			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid)
 EOT;
-        $data =  DB::select($sql);
+        $data =  DB::select($sql);  
         return $data;
     }
 
