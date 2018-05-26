@@ -414,7 +414,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          //////////////////////////////////代理返利/////////////////////////////////////
          $buy_user = Users::find($buy_id);
          //如果购买的玩家为空，或者不为代理，直接return
-         if(empty($buy_user) || $buy_user->rid != 2)
+         if(empty($buy_user) || $buy_user->rid == 5)
              return;
          //上级返利
          //上级为空，或者上级不为代理，直接return
@@ -560,6 +560,8 @@ use Aliyun\DySDKLite\SignatureHelper;
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
+                    //代理返利
+                    CommClass::BackCash($wx_order->userid, $wx_order->total);
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
