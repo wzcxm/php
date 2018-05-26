@@ -59,7 +59,11 @@
                 <label class="weui-label">提成比例</label>
             </div>
             <div class="weui-cell__bd">
-                下级充值：{{$back_agent}}%；下下级充值：{{$back_agent_front}}%；玩家充值：{{$back_play}}%；
+                @if($user->rid == 3 || $user->rid == 4)
+                    渠道充值：{{$back_agent}}%；玩家充值：{{$back_play}}%；
+                @else
+                    下级充值：{{$back_agent}}%；下下级充值：{{$back_agent_front}}%；玩家充值：{{$back_play}}%；
+                @endif;
             </div>
         </div>
         <div class="weui-cell">
