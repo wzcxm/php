@@ -407,7 +407,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
          //剩余金额
-         $balance = 0;
+         $balance = $cash;
          //消费金额小于等于0，return
          if($cash <= 0)
              return;
@@ -419,35 +419,35 @@ use Aliyun\DySDKLite\SignatureHelper;
          //上级返利
          //上级为空，或者上级不为代理，直接return
          $front = Users::find($buy_user->front_uid);
-         if(empty($front) || $front->rid != 2)
-             return;
-         //计算上级返利
-         $return_one = $cash*$oneback/100;
-         //保存返利信息
-         DB::table("xx_wx_backgold")->insert(
-             ['get_id'=>$buy_user->front_uid,
-                 'back_id'=>$buy_id,
-                 'backgold'=>$return_one,
-                 'gold'=>$cash,
-                 'ratio'=>$oneback,
-                 'level'=>1]);
-         $balance = $cash - $return_one;
-         //上上级返利
-         //上上级为空，或者上上级不为代理，直接返回
-         $upper_level = Users::find($front->front_uid);
-         if(empty($upper_level) || $upper_level->rid != 2)
-             return;
-         //计算上上级返利
-         $return_two = $cash*$twoback/100;
-         //保存返利记录
-         DB::table("xx_wx_backgold")->insert(
-             ['get_id'=>$front->front_uid,
-                 'back_id'=>$buy_id,
-                 'backgold'=>$return_two,
-                 'gold'=>$cash,
-                 'ratio'=>$twoback,
-                 'level'=>2]);
-         $balance = $cash - $return_two;
+         if(!empty($front) && $front->rid == 2){
+             //计算上级返利
+             $return_one = $cash*$oneback/100;
+             //保存返利信息
+             DB::table("xx_wx_backgold")->insert(
+                 ['get_id'=>$buy_user->front_uid,
+                     'back_id'=>$buy_id,
+                     'backgold'=>$return_one,
+                     'gold'=>$cash,
+                     'ratio'=>$oneback,
+                     'level'=>1]);
+             $balance -=  $return_one;
+             //上上级返利
+             //上上级为空，或者上上级不为代理，直接返回
+             $upper_level = Users::find($front->front_uid);
+             if(!empty($upper_level) && $upper_level->rid == 2){
+                 //计算上上级返利
+                 $return_two = $cash*$twoback/100;
+                 //保存返利记录
+                 DB::table("xx_wx_backgold")->insert(
+                     ['get_id'=>$front->front_uid,
+                         'back_id'=>$buy_id,
+                         'backgold'=>$return_two,
+                         'gold'=>$cash,
+                         'ratio'=>$twoback,
+                         'level'=>2]);
+                 $balance -=  $return_two;
+             }
+         }
          //////////////////////////////////总代&特级代理返利/////////////////////////////////////
          //总代返利
          $scale = 0 ;
