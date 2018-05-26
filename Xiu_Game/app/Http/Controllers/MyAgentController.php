@@ -61,7 +61,7 @@ class MyAgentController extends Controller
                 $dl_model = Users::find($dl_uid);
                 if(!empty($dl_model) && $dl_model->rid != 3){
                     $my_aisle = $this->getAisle(session('aisle'));
-                    DB::table('xx_user')->where('uid',$dl_uid)->update(['rid'=>3,'aisle'=>$my_aisle,'super_aisle'=>session('aisle')]);
+                    DB::table('xx_user')->where('uid',$dl_uid)->update(['rid'=>3,'aisle'=>$my_aisle,'super_aisle'=>session('aisle'),'chief_aisle'=>0]);
                 }
                 $scale = DB::table('xx_sys_proxyscale')->where('uid',$dl_uid)->get();
                 if(empty($scale) || count($scale)<=0){
