@@ -21,12 +21,13 @@ class HomeController extends Controller
         $count_person=CommClass::GetPerosn();
         //当日登录
         $today_person = CommClass::GetOnlinePerosn();
-        //我的积分
-        $total_num = $user->money;
+
         //当月积分
         $start = date('Y-m-01');
         $end =  date('Y-m-t 23:59:59', strtotime($start));
         $month = BackGold::where('get_id',session('uid'))->whereBetween('create_time', [$start, $end])->sum('backgold');
+        //我的积分
+        $total_num = BackGold::where('get_id',session('uid'))->sum('backgold');
         //菜单
         $mymenus= $this->GetMyMenus(session('roleid'));
 

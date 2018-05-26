@@ -73,9 +73,9 @@
         </div>
         <div class="weui-flex__item" style="text-align: center;">
             @if($roleid == 3 || $roleid == 4)
-               提成比例：<br>渠道充值：{{$back_agent}}%
+               提成比例<br>渠道充值：{{$back_agent}}%
             @else
-                提成比例：<br>下级充值：{{$back_agent}}%<br>下下级充值：{{$back_agent_front}}%
+                提成比例<br>下级充值：{{$back_agent}}%<br>下下级充值：{{$back_agent_front}}%
             @endif
         </div>
     @endif
