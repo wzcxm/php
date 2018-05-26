@@ -67,14 +67,16 @@
         </div>
     @else
         <div class="weui-flex__item" style="text-align: center;">
-            <span>我的提成：</span>
-
-            <span style="color:#f11367;">{{$total_num}}</span>
+            当月提成：<a style="color:#f11367;">{{$month}}</a>
+            <br>
+            总提成：<a style="color:#f11367;">{{$total_num}}</a>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            <span>当月提成：</span>
-
-            <span style="color:#f11367;">{{$month}}</span>
+            @if($roleid == 3 || $roleid == 4)
+               提成比例：<br>渠道充值：{{$back_agent}}%
+            @else
+                提成比例：<br>下级充值：{{$back_agent}}%<br>下下级充值：{{$back_agent_front}}%
+            @endif
         </div>
     @endif
 

@@ -26,9 +26,17 @@ class HomeController extends Controller
         //当月积分
         $start = date('Y-m-01');
         $end =  date('Y-m-t 23:59:59', strtotime($start));
-        $month =BackGold::where('get_id',session('uid'))->whereBetween('create_time', [$start, $end])->sum('backgold');
+        $month = BackGold::where('get_id',session('uid'))->whereBetween('create_time', [$start, $end])->sum('backgold');
         //菜单
         $mymenus= $this->GetMyMenus(session('roleid'));
+
+        if(session('roleid') == 3 || session('roleid') == 4){
+            $back_agent = CommClass::getProxyScale(session('uid'));
+        }else{
+            $back_agent = CommClass::GetParameter("upper_one");
+        }
+        $back_agent_front = CommClass::GetParameter("upper_two");
+
         //返回页面的数据
         $retView = [
             'User'=>$user,
@@ -37,6 +45,8 @@ class HomeController extends Controller
             'today_person'=>$today_person,
             'total_num'=>$total_num,
             'month'=>$month,
+            'back_agent'=>$back_agent,
+            'back_agent_front'=>$back_agent_front,
             'Menus'=>$mymenus
         ];
             return view('Home.index',$retView);
