@@ -134,7 +134,7 @@ class BackCashController extends Controller
             else{
                 //生成订单号
                 $openid = $data[0]->wxopenid;
-                $amount = ($gold-$gold*0.025)*100;//扣除2.5%手续费
+                $amount = $gold*100;//扣除2.5%手续费
                 $orderno = WxPayConfig::MCHID . date("YmdHis");
                 //发起提现，并返回提现结果
                 $result = $this->GetExtract($openid,$orderno,$amount);
