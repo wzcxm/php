@@ -26,7 +26,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'<p style="font-size: 0.8rem;">我的代理：'+$("#total").val()+'</p>',
+                title:'<p style="font-size: 0.8rem;">旗下代理：'+$("#total").val()+'</p>',
                 singleSelect:true,
                 border:false,
                 fit:true,

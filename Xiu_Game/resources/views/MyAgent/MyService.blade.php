@@ -24,7 +24,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'<p style="font-size: 0.8rem;">我的玩家：'+$("#total").val()+'</p>',
+                title:'<p style="font-size: 0.8rem;">旗下玩家：'+$("#total").val()+'</p>',
                 singleSelect:true,
                 border:false,
                 fit:true,
