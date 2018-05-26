@@ -1,7 +1,7 @@
 
 @extends('Layout.WeUiLayout')
 @section('style')
-    <link rel="stylesheet" href="{{asset('css/extract.css')}}?v=201805241">
+    <link rel="stylesheet" href="{{asset('css/extract.css')}}?v=201805261">
 @endsection
 @section('content')
     <div  class="weui-flex head_bg" >
