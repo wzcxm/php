@@ -60,7 +60,7 @@
             </div>
             <div class="weui-cell__bd">
                 @if($user->rid == 3 || $user->rid == 4)
-                    渠道充值：{{$back_agent}}%；玩家充值：{{$back_play}}%；
+                    旗下充值：{{$back_agent}}%；玩家充值：{{$back_play}}%；
                 @else
                     下级充值：{{$back_agent}}%；下下级充值：{{$back_agent_front}}%；玩家充值：{{$back_play}}%；
                 @endif
