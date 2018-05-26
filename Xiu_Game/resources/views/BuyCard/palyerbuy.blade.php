@@ -66,7 +66,7 @@
         <img class="img_border " width="100%" src="/img/diamond/phone.png">
     </div>
     <div id="div_front">
-        @if(empty($player->front_uid))
+        @if(empty($player->front_uid) && $player->rid != 3 && $player->rid != 4)
             <div style="width:100%;margin-top: 5px;">
                 <div style="float: left;width: 50%;text-align: right;">
                     <p style="font-size: 0.9rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>

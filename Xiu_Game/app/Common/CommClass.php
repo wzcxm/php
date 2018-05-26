@@ -527,6 +527,7 @@ use Aliyun\DySDKLite\SignatureHelper;
         try{
             $wx_order = DB::table('v_buycard_list')->where([['nonce', $order_no],['status',0]])->first();
             if (!empty($wx_order)) {
+                $total = $wx_order->total;
                 //首冲
                 if($wx_order->flag == 0){
                     //首冲套餐
@@ -555,13 +556,14 @@ use Aliyun\DySDKLite\SignatureHelper;
                                 'gold'=>$wx_order->total,
                                 'ratio'=>0,
                                 'level'=>5]);
+                        $total -= 100;
                     }
                     //更新我的角色
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
                     //代理返利
-                    CommClass::BackCash($wx_order->userid, $wx_order->total);
+                    CommClass::BackCash($wx_order->userid, $total);
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
@@ -573,22 +575,18 @@ use Aliyun\DySDKLite\SignatureHelper;
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-                        //如果是买的300的套餐，返100提成
-                        if($wx_order->total == 300){
-                            DB::table("xx_wx_backgold")->insert(
-                                ['get_id'=>$wx_order->front,
-                                    'back_id'=>$wx_order->userid,
-                                    'backgold'=>100,
-                                    'gold'=>$wx_order->total,
-                                    'ratio'=>0,
-                                    'level'=>5]);
-                        }else{ //如果不是，按正常返利
-                            CommClass::BackCash($wx_order->userid, $wx_order->total);
-                        }
-                    }else{
-                        //代理返利
-                        CommClass::BackCash($wx_order->userid, $wx_order->total);
+
+                        DB::table("xx_wx_backgold")->insert(
+                            ['get_id'=>$wx_order->front,
+                                'back_id'=>$wx_order->userid,
+                                'backgold'=>100,
+                                'gold'=>$wx_order->total,
+                                'ratio'=>0,
+                                'level'=>5]);
+                        $total -= 100;
                     }
+                    //代理返利
+                    CommClass::BackCash($wx_order->userid, $total);
                 }
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
