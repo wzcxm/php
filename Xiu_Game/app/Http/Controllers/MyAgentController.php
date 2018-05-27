@@ -94,9 +94,16 @@ class MyAgentController extends Controller
     }
 
     public function myPlayer(){
-        $sql = ' select * from xx_user where rid = 5  and chief_uid = '.session('uid');
+        $sql = ' select count(*) as count_num from xx_user where ';
+        if(session('roleid') == 4){
+            $sql .= ' rid = 5  and super_aisle = '.session('aisle');
+        }else if(session('roleid') == 3){
+            $sql .= ' rid = 5 and chief_aisle = '.session('aisle');
+        }else{
+            $sql .= ' rid = 5  and chief_uid = '.session('uid');
+        }
         $data = DB::select($sql);
-        $total = collect($data)->count();
+        $total = $data[0]->count_num;
         return view('MyAgent.MyService',['total'=>$total]);
     }
 
@@ -105,7 +112,14 @@ class MyAgentController extends Controller
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
         $uid = isset($request['uid']) ? intval($request['uid']) : 0;
-        $where = ' rid = 5  and chief_uid = '.session('uid');
+        if(session('roleid') == 4){
+            $where = ' rid = 5 and super_aisle = '.session('aisle');
+        }
+        else if(session('roleid') == 3){
+            $where = ' rid = 5 and chief_aisle = '.session('aisle');
+        }else{
+            $where = ' rid = 5  and chief_uid = '.session('uid');
+        }
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
         }
