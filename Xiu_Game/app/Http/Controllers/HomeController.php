@@ -57,7 +57,17 @@ class HomeController extends Controller
          $Menus = Cache::rememberForever('RM', function () {
              return DB::table('role_menu')->get();
          });
-         return $Menus->where('roleid',$roleid);
+         $ret_menus = $Menus->where('roleid',$roleid);
+         if($roleid == 2){
+             $agent_power = CommClass::GetJson('/Param/agent_power.json');
+             if(in_array(session('uid'),$agent_power['power'])){
+                 return $ret_menus;
+             }else{
+                 return $ret_menus->where('menuid','<>',10);
+             }
+         }else{
+             return $ret_menus;
+         }
     }
 
     public function  updatePhone(Request $request){

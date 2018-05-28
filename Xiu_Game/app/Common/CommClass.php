@@ -5,6 +5,7 @@ use App\Models\Users;
 use App\Wechat\lib\WxPayException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Xxgame\ServerUserBase;
 use Aliyun\DySDKLite\SignatureHelper;
 
@@ -274,6 +275,33 @@ use Aliyun\DySDKLite\SignatureHelper;
         }
     }
 
+    /*
+     * 读取json配置文件
+     */
+     public static function  GetJson($paramUrl){
+         if (file_exists($_SERVER['DOCUMENT_ROOT'].$paramUrl)) {
+             // 从文件中读取数据到PHP变量
+             $json_string = file_get_contents($_SERVER['DOCUMENT_ROOT'].$paramUrl);
+             // 把JSON字符串转成PHP数组
+             return json_decode($json_string, true);
+         }
+         else{
+             return [];
+         }
+     }
+
+     /*
+      * 保存json配置文件
+      */
+     public static function SaveJson($param,$paramUrl){
+         if (file_exists($_SERVER['DOCUMENT_ROOT'].$paramUrl)) {
+             $json_string = json_encode($param);
+             file_put_contents($_SERVER['DOCUMENT_ROOT'] . $paramUrl, $json_string);
+             return true;
+         }else{
+             return false;
+         }
+     }
     /// <summary>
     /// 获取指定的参数
     /// </summary>
@@ -723,5 +751,31 @@ use Aliyun\DySDKLite\SignatureHelper;
              }
          }
          return $return_str;
+     }
+
+
+
+     /*
+      * 设置redis的uid列表
+      */
+     public static function SetRedisList(){
+         try{
+             $arr = CommClass::GetJson('/Param/PrettyNO.json');
+             $uid = DB::table("xx_user")->whereNotIn('uid',$arr)->max('uid');
+             $str = [];
+             for ($i=$uid+1;$i<1000000;$i++){
+                 if(!in_array($i,$arr['pretty'])){
+                     array_push($str,$i);
+                 }
+             }
+             //删除队列
+             Redis::del('xx_user_id_list');
+             //创建队列
+             Redis::rpush('xx_user_id_list', $str);
+             //查看队列元素个数
+              return Redis::llen('xx_user_id_list') ;
+         }catch (\Exception $e){
+             return $e->getMessage();
+         }
      }
 }

@@ -76,7 +76,12 @@
                             else{return "";}
                         }},
                     {field:'gold',title:'消费金额',width:60},
-                    {field:'backgold',title:'提成金额',width:60},
+                    {field:'backgold',title:'提成金额',width:60,
+                        formatter: function (value, row, index) {
+                            if (row != null) {
+                                return parseFloat(value).toFixed(2);
+                            }
+                        }},
                     {field:'create_time',title:'日期',width:120}
                 ]]
             });

@@ -120,14 +120,16 @@
                     $.alert("请输入玩家ID");
                     return;
                 }
-                $.get('/BuyCard/Search/'+payer_id,function (data) {
+                $.post('/UpdateId/Search',{uid:payer_id},function (data) {
                     if(comm.is_null(data.msg)){
                         $.alert(data.msg);
                         $("#head_url").attr('src',"");
                         $("#player_nick").html("");
                     } else {
                         var player = data.user;
-                        $("#head_url").attr('src',player['head_img_url']);
+                        if(!comm.is_null(player['head_img_url'])){
+                            $("#head_url").attr('src',player['head_img_url']);
+                        }
                         $("#player_nick").html(player['nickname']);
                         $("#play_info").show('fast');
                     }

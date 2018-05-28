@@ -546,6 +546,12 @@ class GameSericeController extends Controller
         }
     }
 
+    public function setUserUid(){
+
+        return CommClass::SetRedisList();
+        //var_dump($temp);
+    }
+
 
 //    private  function test(){
 //        //开始抽奖

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Common\CommClass;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,14 @@ class UpdateIdController extends Controller
             }
             if(!empty($old_uid) && !empty($new_uid)){
                 DB::select('CALL update_uid('.$old_uid.','.$new_uid .')');
+                //新增的靓号加入靓号列表
+                $pretty = CommClass::GetJson('/Param/PrettyNO.json');
+                if(!in_array($new_uid,$pretty['pretty'])){
+                    array_push($pretty['pretty'],(int)$new_uid);
+                }
+                CommClass::SaveJson($pretty,'/Param/PrettyNO.json');
+                //保存成功，从新生成uid列表
+               // CommClass::SetRedisList();
             }
             if(!empty($old_teaid) && !empty($new_teaid)){
                 DB::select('CALL update_teaid('.$old_teaid.','.$new_teaid .')');
@@ -29,6 +38,18 @@ class UpdateIdController extends Controller
             return response()->json(['Error'=>'']);
         }catch (\Exception $e){
             return response()->json(['Error'=>$e->getMessage()]);
+        }
+    }
+
+
+    //查询玩家信息
+    public function  Search(Request $request){
+        $uid = isset($request["uid"])?$request["uid"]:0;
+        $payer = Users::find($uid);
+        if(!empty($payer)){
+            return response()->json(['user'=>$payer,'msg'=>'']);
+        }else{
+            return response()->json(['user'=>$payer,'msg'=>"玩家ID不存在，请重新输入！"]);
         }
     }
 }

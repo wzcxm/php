@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Common\CommClass;
 use Closure;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,17 @@ class AuthenUser
         $menu = collect($role_menu)->where('roleid',$roleid)->where('linkurl','/'.$action)->first();
         if(empty($menu)){
             return false;
-        }else{return true;}
+        }else{
+            if($roleid == 2 && $action == 'BuyCard'){
+                $agent_power = CommClass::GetJson('/Param/agent_power.json');
+                if(in_array(session('uid'),$agent_power['power'])){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return true;
+            }
+        }
     }
 }
