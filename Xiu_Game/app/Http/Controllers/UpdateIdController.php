@@ -24,13 +24,10 @@ class UpdateIdController extends Controller
             if(!empty($old_uid) && !empty($new_uid)){
                 DB::select('CALL update_uid('.$old_uid.','.$new_uid .')');
                 //新增的靓号加入靓号列表
-                $pretty = CommClass::GetJson('/Param/PrettyNO.json');
-                if(!in_array($new_uid,$pretty['pretty'])){
-                    array_push($pretty['pretty'],(int)$new_uid);
+                $pretty = DB::table('xx_sys_liang')->where('liang_uid',$new_uid)->get();
+                if(empty($pretty) || count($pretty) <= 0 ){
+                    DB::table('xx_sys_liang')->insert(['liang_uid'=>$new_uid]);
                 }
-                CommClass::SaveJson($pretty,'/Param/PrettyNO.json');
-                //保存成功，从新生成uid列表
-               // CommClass::SetRedisList();
             }
             if(!empty($old_teaid) && !empty($new_teaid)){
                 DB::select('CALL update_teaid('.$old_teaid.','.$new_teaid .')');
