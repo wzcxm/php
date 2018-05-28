@@ -11,7 +11,7 @@
         "laravel/tinker": "~1.0",
         "nwidart/db-exporter": "1.*",
         "overtrue/laravel-wechat": "~3.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "~1.1@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
