@@ -27,6 +27,8 @@ class UpdateIdController extends Controller
                 $pretty = DB::table('xx_sys_liang')->where('liang_uid',$new_uid)->get();
                 if(empty($pretty) || count($pretty) <= 0 ){
                     DB::table('xx_sys_liang')->insert(['liang_uid'=>$new_uid]);
+
+                    $file_contents = file_get_contents('http://login.wangqianhong.com/setredis');
                 }
             }
             if(!empty($old_teaid) && !empty($new_teaid)){

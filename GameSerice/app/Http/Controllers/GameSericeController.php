@@ -742,9 +742,9 @@ EOT;
 	        //创建队列
             Redis::rpush('xx_user_id_list', $str);
             //查看队列元素个数
-            var_dump(Redis::llen('xx_user_id_list')) ;
+            return Redis::llen('xx_user_id_list') ;
         }catch (\Exception $e){
-            var_dump ($e->getMessage());
+            return  $e->getMessage();
         }
 
         //var_dump($temp);
