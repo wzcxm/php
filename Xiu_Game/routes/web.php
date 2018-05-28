@@ -209,8 +209,7 @@ Route::get('/sms/{tel}','GameSericeController@sendCodeSms');
 Route::get('/apppay/{uid}/{goods}','GameSericeController@getAppOrder');
 //删除订单
 Route::get('/delorder/{order_no}','GameSericeController@delAppOrder');
-//生成玩家uid的Reids列表
-Route::get('/setredis','GameSericeController@setUserUid');
+
 
 
 //Route::get('/testLottery','GameSericeController@testLottery');
