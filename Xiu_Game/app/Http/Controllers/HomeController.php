@@ -95,7 +95,6 @@ class HomeController extends Controller
             }else{
                 return response()->json(['Error'=>"该手机号已绑定，不能重复绑定!"]);
             }
-
         }catch (\Exception $e){
             return response()->json(['Error'=>"绑定失败！"]);
         }
