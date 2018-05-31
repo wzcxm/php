@@ -173,7 +173,7 @@ EOT;
 	public function GetVersion($version,$type){
 		$ret = "";
 		if($type==1) { //苹果版
-			if ($version == 4.1) { //
+			if ($version == 4.2) { //
 				$ret = "2";//2-审核版本；0-正常；1-强制更新
 			} else {
 				if($version < 3.6){
