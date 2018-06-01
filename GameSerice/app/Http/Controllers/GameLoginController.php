@@ -73,8 +73,8 @@ class GameLoginController extends Controller
 	//账号登录 ID(9000-9400)
 	private function account_login($uid,$gw_type)
 	{
-		if ($uid < 9000 || $uid > 9400)
-			return $this->error_message(ErrorCode::Error_Not_Found_User);
+		//if ($uid < 9000 || $uid > 9400)
+		//	return $this->error_message(ErrorCode::Error_Not_Found_User);
 		
 		$user = DB::table('xx_user')->where("uid",$uid)->first();
 		if (empty($user))
