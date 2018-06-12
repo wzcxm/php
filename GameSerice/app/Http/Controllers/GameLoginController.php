@@ -304,6 +304,8 @@ class GameLoginController extends Controller
 				DB::table('xx_user')
 					->where('unionid',$unionid)
 					->update($arr);
+			    //删除临时信息
+                DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
 			}
 		}catch (\Exception $e){
 
