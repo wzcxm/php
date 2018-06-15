@@ -52,7 +52,7 @@
                     </div>
                     <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            4、推荐人获得体力：<input type="number" id="share1" class="inp_sty" value="{{empty($tea->share1)?0:$tea->share1}}">
+                            4、推荐人获得体力：<input type="number" id="share1" class="inp_sty" value="{{empty($tea->share1)?0:$tea->share1}}">%
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_one">保存</button>
@@ -94,7 +94,7 @@
                     </div>
                     <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            4、推荐人获得体力：<input type="number" id="share2" class="inp_sty" value="{{empty($tea->share2)?0:$tea->share2}}">
+                            4、推荐人获得体力：<input type="number" id="share2" class="inp_sty" value="{{empty($tea->share2)?0:$tea->share2}}">%
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_two">保存</button>
@@ -135,7 +135,7 @@
                     </div>
                     <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-                            4、推荐人获得体力：<input type="number" id="share3" class="inp_sty" value="{{empty($tea->share3)?0:$tea->share3}}">
+                            4、推荐人获得体力：<input type="number" id="share3" class="inp_sty" value="{{empty($tea->share3)?0:$tea->share3}}">%
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="hall_three">保存</button>

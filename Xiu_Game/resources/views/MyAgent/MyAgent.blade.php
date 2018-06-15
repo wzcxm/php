@@ -10,9 +10,15 @@
                 <td><a href="#" id="btn_search" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-search'">查询</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a href="javascript:window.location.reload();"  class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-reload'">刷新</a></td>
-                @if(!empty($role) && $role == 4)
+                @if(!empty($role))
                     <td><div class="datagrid-btn-separator"></div></td>
-                    <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
+                    @if($role == 4)
+                        <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
+                    @elseif($role == 3)
+                        <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设置提成</a></td>
+                    @else
+                        <td></td>
+                    @endif
                 @endif
             </tr></table>
     </div>
@@ -51,10 +57,12 @@
                     {field:'nickname',title:'昵称',width:70},
                     {field:'rid',title:'级别',width:50,
                         formatter:function (value) {
-                            if(value == 2){
-                                return "代理";
-                            }else if(value == 3){
+                            if(value == 3){
                                 return "总代";
+                            }else if(value == 4){
+                                return "特级代理";
+                            }else{
+                                return "代理";
                             }
                         }},
                     {field:'roomcard',title:'钻石',width:60},
@@ -75,7 +83,7 @@
                     return;
                 }
                 $.prompt({
-                    title: '<p style=\'color: #3cc51f;\'>设置总代提成比例</p>',
+                    title: '<p style=\'color: #3cc51f;\'>设置提成比例</p>',
                     text: "<img  src='"+rows[0].head_img_url+"' style=\"border-radius:6px;\" width=\"30\" align=\"absmiddle\" >\n" +
                     "<span style=\"color: #545454\">"+rows[0].nickname+"</span>",
                     input: '',

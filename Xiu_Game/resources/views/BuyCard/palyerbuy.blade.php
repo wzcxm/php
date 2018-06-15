@@ -62,9 +62,9 @@
             <img class="img_border " width="95%" src="/img/diamond/warning.png" />
         @endif
     </div>
-    <div style="width: 100%;text-align: center;">
-        <img class="img_border " width="100%" src="/img/diamond/phone.png">
-    </div>
+    {{--<div style="width: 100%;text-align: center;">--}}
+        {{--<img class="img_border " width="100%" src="/img/diamond/phone.png">--}}
+    {{--</div>--}}
     <div id="div_front">
         @if(empty($player->front_uid) && $player->rid != 3 && $player->rid != 4)
             <div style="width:100%;margin-top: 5px;">

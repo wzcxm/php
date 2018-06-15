@@ -16,7 +16,10 @@ class MyAgentController extends Controller
             $sql .= '(rid = 2 or rid = 3) and super_aisle = '.session('aisle');
         }else if(session('roleid') == 3){
             $sql .= ' rid = 2 and chief_aisle = '.session('aisle');
-        }else{
+        }else if(session('roleid') == 6){
+            $sql .= ' rid = 2   and vip_aisle = '.session('aisle');
+        }
+        else{
             $sql .= ' rid = 2  and front_uid = '.session('uid');
         }
         $data = DB::select($sql);
@@ -29,11 +32,14 @@ class MyAgentController extends Controller
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
         $uid = isset($request['uid']) ? intval($request['uid']) : 0;
         if(session('roleid') == 4){
-            $where = ' (rid = 2 or rid = 3) and super_aisle = '.session('aisle');
+            $where = ' (rid = 2 or rid = 3 or rid = 6) and super_aisle = '.session('aisle');
         }
         else if(session('roleid') == 3){
-            $where = ' rid = 2 and chief_aisle = '.session('aisle');
-        }else{
+            $where = ' (rid = 2  or rid = 6) and chief_aisle = '.session('aisle');
+        }else if(session('roleid') == 6){
+            $where = ' rid = 2   and vip_aisle = '.session('aisle');
+        }
+        else{
             $where = ' rid = 2  and front_uid = '.session('uid');
         }
         if(!empty($uid)){
@@ -59,14 +65,33 @@ class MyAgentController extends Controller
                     return response()->json(['error'=>'提成比例不能大于您的提成比例！']);
                 }
                 $dl_model = Users::find($dl_uid);
-                if(!empty($dl_model) && $dl_model->rid != 3){
-                    $my_aisle = $this->getAisle(session('aisle'));
-                    DB::table('xx_user')->where('uid',$dl_uid)
-                        ->update(['rid'=>3,
-                            'aisle'=>$my_aisle,
-                            'super_aisle'=>session('aisle'),
-                            'chief_aisle'=>0,
-                            'front_uid'=>0]);
+                if(session('roleid')==4){ //设置总代
+                    if(!empty($dl_model) && $dl_model->rid != 3){
+                        $my_aisle = $this->getAisle(session('aisle'));
+                        DB::table('xx_user')->where('uid',$dl_uid)
+                            ->update(['rid'=>3,
+                                'aisle'=>$my_aisle,
+                                'super_aisle'=>session('aisle'),
+                                'vip_aisle'=>0,
+                                'chief_aisle'=>0,
+                                'front_uid'=>0]);
+                    }
+                }else if(session('roleid')==3){//设置vip代理
+                    if(!empty($dl_model) && $dl_model->rid != 6){
+                        if($dl_model->chief_uid != session('uid')){
+                            return response()->json(['error'=>'该代理不是通过您的二维码下载的，不能设置！']);
+                        }
+                        $count_dl = DB::table('xx_user')->where('front_uid',$dl_uid)->count();
+                        if($count_dl>0){
+                            return response()->json(['error'=>'该代理已经发展了下级代理，不能设置！']);
+                        }
+                        $my_aisle = $this->getAisle(session('aisle'),3);
+                        DB::table('xx_user')->where('uid',$dl_uid)
+                            ->update(['rid'=>6,
+                                'aisle'=>$my_aisle,
+                                'vip_aisle'=>0,
+                                'front_uid'=>0]);
+                    }
                 }
                 $scale = DB::table('xx_sys_proxyscale')->where('uid',$dl_uid)->get();
                 if(empty($scale) || count($scale)<=0){
@@ -84,12 +109,15 @@ class MyAgentController extends Controller
 
     }
 
-    private function getAisle($aisle){
+    private function getAisle($aisle,$type=4){
         $data = DB::select("select max(aisle) max_aisle from xx_user where aisle LIKE '".$aisle."%'");
-        if(empty($data) || empty($data[0]->max_aisle) || $data[0]->max_aisle == $aisle){
-            return $aisle.'01';
+        if(empty($data) || empty($data[0]->max_aisle) ){
+                return $aisle.'01';
         }else{
-            return ++$data[0]->max_aisle;
+            if($type == 4 && $data[0]->max_aisle == $aisle)
+                return $aisle.'01';
+            else
+                return ++$data[0]->max_aisle;
         }
     }
 
@@ -99,6 +127,8 @@ class MyAgentController extends Controller
             $sql .= ' rid = 5  and super_aisle = '.session('aisle');
         }else if(session('roleid') == 3){
             $sql .= ' rid = 5 and chief_aisle = '.session('aisle');
+        }else if(session('roleid') == 6){
+            $sql .= ' rid = 5  and vip_aisle = '.session('aisle');
         }else{
             $sql .= ' rid = 5  and chief_uid = '.session('uid');
         }
@@ -117,7 +147,11 @@ class MyAgentController extends Controller
         }
         else if(session('roleid') == 3){
             $where = ' rid = 5 and chief_aisle = '.session('aisle');
-        }else{
+        }
+        else if(session('roleid') == 6){
+            $where = ' rid = 5 and vip_aisle = '.session('aisle');
+        }
+        else{
             $where = ' rid = 5  and chief_uid = '.session('uid');
         }
         if(!empty($uid)){

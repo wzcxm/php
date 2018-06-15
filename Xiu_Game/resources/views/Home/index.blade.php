@@ -46,7 +46,7 @@
             钻石：{{$User->roomcard}}
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            @if($roleid==3 || $roleid==4)
+            @if($roleid==3 || $roleid==4 || $roleid==6)
                 渠道ID：{{$User->aisle}}
             @else
                 金豆：{{$User->gold}}

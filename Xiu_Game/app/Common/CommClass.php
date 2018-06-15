@@ -450,48 +450,74 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!empty($front) && $front->rid == 2){
              //计算上级返利
              $return_one = $cash*$oneback/100;
-             //保存返利信息
-             DB::table("xx_wx_backgold")->insert(
-                 ['get_id'=>$buy_user->front_uid,
-                     'back_id'=>$buy_id,
-                     'backgold'=>$return_one,
-                     'gold'=>$cash,
-                     'ratio'=>$oneback,
-                     'level'=>1]);
-             $balance -=  $return_one;
+             if($return_one > 0){
+                 //保存返利信息
+                 DB::table("xx_wx_backgold")->insert(
+                     ['get_id'=>$buy_user->front_uid,
+                         'back_id'=>$buy_id,
+                         'backgold'=>$return_one,
+                         'gold'=>$cash,
+                         'ratio'=>$oneback,
+                         'level'=>1]);
+                 $balance -=  $return_one;
+             }
              //上上级返利
              //上上级为空，或者上上级不为代理，直接返回
              $upper_level = Users::find($front->front_uid);
              if(!empty($upper_level) && $upper_level->rid == 2){
                  //计算上上级返利
                  $return_two = $cash*$twoback/100;
-                 //保存返利记录
-                 DB::table("xx_wx_backgold")->insert(
-                     ['get_id'=>$front->front_uid,
-                         'back_id'=>$buy_id,
-                         'backgold'=>$return_two,
-                         'gold'=>$cash,
-                         'ratio'=>$twoback,
-                         'level'=>2]);
-                 $balance -=  $return_two;
+                 if($return_two > 0){
+                     //保存返利记录
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$front->front_uid,
+                             'back_id'=>$buy_id,
+                             'backgold'=>$return_two,
+                             'gold'=>$cash,
+                             'ratio'=>$twoback,
+                             'level'=>2]);
+                     $balance -=  $return_two;
+                 }
              }
          }
          //////////////////////////////////总代&特级代理返利/////////////////////////////////////
+         //vip代理返利
+         $vip_scale = 0;
+         if(!empty($buy_user->vip_aisle)){
+             $vip_user = DB::table('xx_user')->where('aisle',$buy_user->vip_aisle)->first();
+             if(!empty($vip_user) && $vip_user->rid == 6){
+                 $vip_scale = CommClass::getProxyScale($vip_user->uid);
+                 $return_vip = $balance*$vip_scale/100;
+                 if($return_vip > 0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$vip_user->uid,
+                             'back_id'=>$buy_id,
+                             'backgold'=>$return_vip,
+                             'gold'=>$balance,
+                             'ratio'=>$vip_scale,
+                             'level'=>1]);
+                 }
+             }
+         }
          //总代返利
          $scale = 0 ;
          if(!empty($buy_user->chief_aisle)){
             $chief = DB::table('xx_user')->where('aisle',$buy_user->chief_aisle)->first();
             if(!empty($chief) && $chief->rid == 3){
                 $scale = CommClass::getProxyScale($chief->uid);
+                $scale -=$vip_scale;
                 $return_chief = $balance*$scale/100;
-                //保存返利信息
-                DB::table("xx_wx_backgold")->insert(
-                    ['get_id'=>$chief->uid,
-                        'back_id'=>$buy_id,
-                        'backgold'=>$return_chief,
-                        'gold'=>$balance,
-                        'ratio'=>$scale,
-                        'level'=>1]);
+                if($return_chief > 0){
+                    //保存返利信息
+                    DB::table("xx_wx_backgold")->insert(
+                        ['get_id'=>$chief->uid,
+                            'back_id'=>$buy_id,
+                            'backgold'=>$return_chief,
+                            'gold'=>$balance,
+                            'ratio'=>$scale,
+                            'level'=>1]);
+                }
             }
          }
          //特级代理返利
@@ -500,16 +526,19 @@ use Aliyun\DySDKLite\SignatureHelper;
              $super = DB::table('xx_user')->where('aisle',$buy_user->super_aisle)->first();
              if(!empty($super) && $super->rid == 4){
                  $super_scale = CommClass::getProxyScale($super->uid);
-                 $super_scale -= $scale;
+                 $super_scale = $super_scale - $scale - $vip_scale;
                  $return_super = $balance*$super_scale/100;
-                 //保存返利信息
-                 DB::table("xx_wx_backgold")->insert(
-                     ['get_id'=>$super->uid,
-                         'back_id'=>$buy_id,
-                         'backgold'=>$return_super,
-                         'gold'=>$balance,
-                         'ratio'=>$super_scale,
-                         'level'=>1]);
+                 if($return_super > 0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$super->uid,
+                             'back_id'=>$buy_id,
+                             'backgold'=>$return_super,
+                             'gold'=>$balance,
+                             'ratio'=>$super_scale,
+                             'level'=>1]);
+                 }
+
              }
          }
      }
@@ -572,7 +601,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                         && !empty($wx_order->front)
                         && $wx_order->front != $wx_order->userid
                         && !empty($wx_order->frid)
-                        && $wx_order->frid < 5){
+                        && $wx_order->frid == 2){
                         $up_arr["front_uid"] = $wx_order->front ;
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
@@ -599,7 +628,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                         && !empty($wx_order->front)
                         && $wx_order->front != $wx_order->userid
                         && !empty($wx_order->frid)
-                        && $wx_order->frid < 5){
+                        && $wx_order->frid == 2){
                         DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
                         //绑定代理送100钻石
                         CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
@@ -693,22 +722,87 @@ use Aliyun\DySDKLite\SignatureHelper;
      //玩家购买返现
      public static function PlayBackCash($uid,$cash){
          $play = Users::find($uid);
-         //上级返利
+         //代理返利
          if(!empty($play->chief_uid)){
+             $surplus = $cash;
              //玩家的推荐人必须是代理，才返现
              $font = Users::find($play->chief_uid);
-             if(!empty($font) && $font->rid != 5 ){
+             if(!empty($font) && $font->rid == 2 ){
                  //返利比例
                  $invitation = CommClass::GetParameter("invitation");
                  $back_cash = $cash*$invitation/100;
-                 //保存返利信息
-                 DB::table("xx_wx_backgold")->insert(
-                     ['get_id'=>$play->chief_uid,
-                         'back_id'=>$uid,
-                         'backgold'=>$back_cash,
-                         'gold'=>$cash,
-                         'ratio'=>$invitation,
-                         'level'=>3]);
+                 if($back_cash>0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$play->chief_uid,
+                             'back_id'=>$uid,
+                             'backgold'=>$back_cash,
+                             'gold'=>$cash,
+                             'ratio'=>$invitation,
+                             'level'=>3]);
+                     $surplus -= $back_cash;
+                 }
+             }
+         }
+         //////////////////////////////////总代&特级代理返利/////////////////////////////////////
+         //vip代理返利
+         $vip_scale = 0;
+         if(!empty($play->vip_aisle)){
+             $vip_user = DB::table('xx_user')->where('aisle',$play->vip_aisle)->first();
+             if(!empty($vip_user) && $vip_user->rid == 6){
+                 $vip_scale = CommClass::getProxyScale($vip_user->uid);
+                 $return_vip = $surplus*$vip_scale/100;
+                 if($return_vip > 0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$vip_user->uid,
+                             'back_id'=>$uid,
+                             'backgold'=>$return_vip,
+                             'gold'=>$surplus,
+                             'ratio'=>$vip_scale,
+                             'level'=>3]);
+                 }
+             }
+         }
+         //总代返利
+         $scale = 0 ;
+         if(!empty($play->chief_aisle)){
+             $chief = DB::table('xx_user')->where('aisle',$play->chief_aisle)->first();
+             if(!empty($chief) && $chief->rid == 3){
+                 $scale = CommClass::getProxyScale($chief->uid);
+                 $scale -=$vip_scale;
+                 $return_chief = $surplus*$scale/100;
+                 if($return_chief > 0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$chief->uid,
+                             'back_id'=>$uid,
+                             'backgold'=>$return_chief,
+                             'gold'=>$surplus,
+                             'ratio'=>$scale,
+                             'level'=>3]);
+                 }
+             }
+         }
+         //特级代理返利
+         $super_scale = 0;
+         if(!empty($play->super_aisle)){
+             $super = DB::table('xx_user')->where('aisle',$play->super_aisle)->first();
+             if(!empty($super) && $super->rid == 4){
+                 $super_scale = CommClass::getProxyScale($super->uid);
+                 $super_scale = $super_scale - $scale - $vip_scale;
+                 $return_super = $surplus*$super_scale/100;
+                 if($return_super > 0){
+                     //保存返利信息
+                     DB::table("xx_wx_backgold")->insert(
+                         ['get_id'=>$super->uid,
+                             'back_id'=>$uid,
+                             'backgold'=>$return_super,
+                             'gold'=>$surplus,
+                             'ratio'=>$super_scale,
+                             'level'=>3]);
+                 }
+
              }
          }
      }

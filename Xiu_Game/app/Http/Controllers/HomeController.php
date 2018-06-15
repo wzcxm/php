@@ -58,7 +58,7 @@ class HomeController extends Controller
              return DB::table('role_menu')->get();
          });
          $ret_menus = $Menus->where('roleid',$roleid);
-         if($roleid == 2){
+         if($roleid == 2 || $roleid == 6){
              $agent_power = CommClass::GetJson('/Param/agent_power.json');
              if(in_array(session('uid'),$agent_power['power'])){
                  return $ret_menus;

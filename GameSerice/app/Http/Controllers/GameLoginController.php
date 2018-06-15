@@ -284,6 +284,16 @@ class GameLoginController extends Controller
                         if(!empty($front_mode->super_aisle)){
                             $arr['super_aisle'] = $front_mode->super_aisle;
                         }
+                    }else if($front_mode->rid == 6){ //如果推荐人vip代理，保存总代和特级渠道号
+                        if(!empty($front_mode->chief_aisle)){
+                            $arr['chief_aisle'] = $front_mode->chief_aisle;
+                        }
+                        if(!empty($front_mode->super_aisle)){
+                            $arr['super_aisle'] = $front_mode->super_aisle;
+                        }
+                        if(!empty($front_mode->aisle)){
+                            $arr['vip_aisle'] = $front_mode->aisle;
+                        }
                     }else if($front_mode->rid == 2){ //如果是普通代理，保存代理的总代和特级渠道号
                         if(!empty($front_mode->chief_aisle)){
                             $arr['chief_aisle'] = $front_mode->chief_aisle;
@@ -291,12 +301,18 @@ class GameLoginController extends Controller
                         if(!empty($front_mode->super_aisle)){
                             $arr['super_aisle'] = $front_mode->super_aisle;
                         }
+                        if(!empty($front_mode->vip_aisle)){
+                            $arr['vip_aisle'] = $front_mode->vip_aisle;
+                        }
                     }else{
                         if(!empty($front_mode->chief_aisle)){
                             $arr['chief_aisle'] = $front_mode->chief_aisle;
                         }
                         if(!empty($front_mode->super_aisle)){
                             $arr['super_aisle'] = $front_mode->super_aisle;
+                        }
+                        if(!empty($front_mode->vip_aisle)){
+                            $arr['vip_aisle'] = $front_mode->vip_aisle;
                         }
                     }
                 }

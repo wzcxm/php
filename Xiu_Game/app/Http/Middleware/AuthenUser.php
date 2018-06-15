@@ -43,7 +43,7 @@ class AuthenUser
         if(empty($menu)){
             return false;
         }else{
-            if($roleid == 2 && $action == 'BuyCard'){
+            if(($roleid == 2 || $roleid == 6) && $action == 'BuyCard'){
                 $agent_power = CommClass::GetJson('/Param/agent_power.json');
                 if(in_array(session('uid'),$agent_power['power'])){
                     return true;
