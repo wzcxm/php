@@ -59,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="weui-cell">
@@ -145,12 +146,32 @@
         </div>
         <div class="weui-cell">
             <div style="font-size: 0.7rem;width: 100%;">
-                <div style="margin-top: 5px;">
-                    <div style="float: left;width: 80%;">
-                        成为大赢家的积分标准：<input type="number" id="winscore" class="inp_sty" value="{{empty($tea->winscore)?0:$tea->winscore}}">
+                <div style="font-size: 0.8rem;font-weight: 600;width: 100%;">
+                    有效大赢家积分设置：
+                </div>
+                <div  >
+                    <div style="margin-top: 5px;">
+                        一号厅大赢家积分达到
+                        <input type="number" id="winscore1" class="inp_sty" value="{{empty($tea->winscore1)?0:$tea->winscore1}}">
+                        ，记录为有效大赢家
+                        </div>
+                    <div style="margin-top: 5px;">
+                        二号厅大赢家积分达到
+                        <input type="number" id="winscore2" class="inp_sty" value="{{empty($tea->winscore2)?0:abs($tea->winscore2)}}">
+                        ，记录为有效大赢家
                     </div>
-                    <div style="float: right;width: 20%;">
-                        <button style="margin-left: 20%;" class="open_btn" id="win_score">保存</button>
+                    <div style="margin-top: 5px;">
+                        三号厅大赢家积分达到
+                        <input type="number" id="winscore3" class="inp_sty" value="{{empty($tea->winscore3)?0:$tea->winscore3}}">
+                        ，记录为有效大赢家
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <div style="float: left;width: 80%;">
+
+                        </div>
+                        <div style="float: right;width: 20%;">
+                            <button style="margin-left: 20%;" class="open_btn" id="btn_winscore">保存</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -230,10 +251,12 @@
                 });
             });
 
-            $("#win_score").click(function () {
+            $("#btn_winscore").click(function () {
                 var obj = new Object();
                 obj.tea_id = $("#teaid").val();
-                obj.winscore = $("#winscore").val();
+                obj.winscore1 = $("#winscore1").val();
+                obj.winscore2 = $("#winscore2").val();
+                obj.winscore3 = $("#winscore3").val();
                 $.post('/Museum/save',{data:obj},function(data){
                     if(data.message==''){
                         $.toast('保存成功');
@@ -242,6 +265,7 @@
                     }
                 });
             });
+
         });
         function ckb_setvalue(control) {
             if($("#"+control).val() == 1){

@@ -124,8 +124,15 @@ class MuseumController extends Controller
             if(isset($data['share3'])){
                 $arr_tea['share3']=$data['share3'];
             }
-            if(isset($data['winscore'])){
-                $arr_tea['winscore']= $data['winscore'];
+            //成为大赢家的积分标准
+            if(isset($data['winscore1'])){
+                $arr_tea['winscore1']= $data['winscore1'];
+            }
+            if(isset($data['winscore2'])){
+                $arr_tea['winscore2']= $data['winscore2'];
+            }
+            if(isset($data['winscore3'])){
+                $arr_tea['winscore3']= $data['winscore3'];
             }
             if(!empty($arr_tea)){
                 DB::table('xx_sys_tea')->where('tea_id',$teaid)
