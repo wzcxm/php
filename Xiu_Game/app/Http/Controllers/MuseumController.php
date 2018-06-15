@@ -124,8 +124,13 @@ class MuseumController extends Controller
             if(isset($data['share3'])){
                 $arr_tea['share3']=$data['share3'];
             }
-            DB::table('xx_sys_tea')->where('tea_id',$teaid)
-                ->update($arr_tea);
+            if(isset($data['winscore'])){
+                $arr_tea['winscore']= $data['winscore'];
+            }
+            if(!empty($arr_tea)){
+                DB::table('xx_sys_tea')->where('tea_id',$teaid)
+                    ->update($arr_tea);
+            }
             return response()->json(['message'=>'']);
         }catch (\Exception $e){
             return response()->json(['message'=>$e->getMessage()]);

@@ -98,14 +98,19 @@ EOT;
 			if(empty($teaid)) return "";
 
 			$user_mode = DB::table("xx_sys_teas")
-                ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->get();
-			if(empty($user_mode) || count($user_mode) <= 0){
+                ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->first();
+			if(empty($user_mode) ){
                 return "";
             }
 
 			$sql = <<<EOT
 			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.state<>3 and t.tea_id = $teaid
 EOT;
+			if($user_mode->manager==3){
+                $sql = <<<EOT
+			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.state<>3 and t.tea_id = $teaid and (t.recid = $uid or t.uid = $uid)
+EOT;
+            }
 			$player_data =  DB::select($sql);
 			if(empty($player_data)) return "";
 			$teaPlayerList =  new TeaPlayerList();
@@ -126,13 +131,13 @@ EOT;
                 $teaplayer->setHeadUrl($player->head_img_url);
                 $teaplayer->setRecid($player->recid);
                 $teaplayer->setInvite($player->invite);
+                $teaplayer->setInviteScore($player->invite_score);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
 			}
 			return $teaPlayerList->encode();
 		}catch (\Exception $e){
 			return "";
 		}
-
 	}
 
 	///修改茶楼玩家备注

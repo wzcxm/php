@@ -59,7 +59,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="weui-cell">
@@ -144,6 +143,18 @@
                 </div>
             </div>
         </div>
+        <div class="weui-cell">
+            <div style="font-size: 0.7rem;width: 100%;">
+                <div style="margin-top: 5px;">
+                    <div style="float: left;width: 80%;">
+                        成为大赢家的积分标准：<input type="number" id="winscore" class="inp_sty" value="{{empty($tea->winscore)?0:$tea->winscore}}">
+                    </div>
+                    <div style="float: right;width: 20%;">
+                        <button style="margin-left: 20%;" class="open_btn" id="win_score">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="weui-cell" style="color: red;font-size: 0.7rem;">
             &nbsp;&nbsp;&nbsp;&nbsp;提示：大赢家不止一位时，大赢家扣的体力除以大赢家人数，向上取整，例如：大赢家扣5体力，大赢家人数2，则每人扣3体力
         </div>
@@ -210,6 +221,19 @@
                 obj.mincf3 = $("#mincf3").val();
                 obj.jfoff3 = $("#jfoff3").val();
                 obj.share3 = $("#share3").val();
+                $.post('/Museum/save',{data:obj},function(data){
+                    if(data.message==''){
+                        $.toast('保存成功');
+                    }else{
+                        $.toptip(data.message,4000,'error');
+                    }
+                });
+            });
+
+            $("#win_score").click(function () {
+                var obj = new Object();
+                obj.tea_id = $("#teaid").val();
+                obj.winscore = $("#winscore").val();
                 $.post('/Museum/save',{data:obj},function(data){
                     if(data.message==''){
                         $.toast('保存成功');
