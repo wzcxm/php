@@ -20,7 +20,7 @@ class MyAgentController extends Controller
             $sql .= ' rid = 2   and vip_aisle = '.session('aisle');
         }
         else{
-            $sql .= ' rid = 2  and front_uid = '.session('uid');
+            $sql .= ' rid = 2  and front_uid = '.session('uid').' or front_uid in (select uid from xx_user where rid = 2  and front_uid = '.session('uid').')';
         }
         $data = DB::select($sql);
         $total = $data[0]->count_num;
@@ -40,7 +40,7 @@ class MyAgentController extends Controller
             $where = ' rid = 2   and vip_aisle = '.session('aisle');
         }
         else{
-            $where = ' rid = 2  and front_uid = '.session('uid');
+            $where = ' rid = 2  and front_uid = '.session('uid').' or front_uid in (select uid from xx_user where rid = 2  and front_uid = '.session('uid').')';
         }
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
