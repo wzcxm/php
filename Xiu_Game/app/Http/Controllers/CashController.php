@@ -186,7 +186,7 @@ class CashController extends Controller
         $uid = isset($request['uid']) ? $request['uid']:"";
         $start_date = isset($request['start_date']) ? $request['start_date']:"";
         $end_date = isset($request['end_date']) ? $request['end_date']:"";
-        $where = ' 1 = 1 ';
+        $where = ' status = 1 ';
         if(!empty($uid)){
             $where .= ' and userid ='.$uid;
         }
