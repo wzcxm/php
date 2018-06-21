@@ -6,7 +6,7 @@
     <table id="tab_grid" ></table>
     <div id="tb" style="padding:3px">
         <table><tr>
-                <td><span> 代理ID：</span><input id="uid" class="easyui-textbox" style="width: 80px;"></td>
+                <td><span> 代理ID：</span><input id="uid" class="easyui-textbox" style="width: 60px;"></td>
                 <td><a href="#" id="btn_search" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-search'">查询</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a href="javascript:window.location.reload();"  class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-reload'">刷新</a></td>
@@ -20,6 +20,10 @@
                         <td></td>
                     @endif
                 @endif
+                <td>
+                    <a href="#" id="btn_return" class="easyui-linkbutton" plain="true" style="display:none;"  data-options="iconCls:'icon-undo'">返回</a>
+                    <input type="hidden" id="return_item" value="{{$role}}&{{$role==2?$uid:$aisle}}">
+                </td>
             </tr></table>
     </div>
 @endsection
@@ -44,6 +48,21 @@
                 url:'/MyAgent/data',
                 idField:'uid',
                 toolbar:'#tb',
+                onDblClickRow :function(rowIndex,rowData){
+                    var cx_id = rowData.uid;
+                    if(rowData.rid != 2){
+                        cx_id = rowData.aisle;
+                    }
+                    $("#return_item").val($("#return_item").val()+'|'+rowData.rid+'&'+cx_id)
+                    $('#tab_grid').datagrid('load',{
+                        cxid: cx_id,
+                        cxrid:rowData.rid
+                    });
+                    $("#btn_return").show();
+                    if($("#btn_role")){
+                        $("#btn_role").hide();
+                    }
+                },
                 columns:[[
                     {field:'head_img_url',title:'头像',width:50,
                         formatter:function (value) {
@@ -74,6 +93,29 @@
                 $('#tab_grid').datagrid('load',{
                     uid: $('#uid').val()
                 });
+            });
+            $("#btn_return").click(function () {
+                var return_items = $("#return_item").val();
+                var values;
+                var items;
+                if(return_items.indexOf('|')==-1){
+                    values =  return_items.split('&');
+                }else{
+                    items = return_items.substring(0,return_items.lastIndexOf('|'));
+                    $("#return_item").val(items);
+                    values = items.substring(items.lastIndexOf('|')+1).split('&');
+                }
+                if(items.indexOf('|')==-1){
+                    $("#btn_return").hide();
+                    if($("#btn_role")){
+                        $("#btn_role").show();
+                    }
+                }
+                $('#tab_grid').datagrid('load',{
+                    retrid: values[0],
+                    retid:values[1]
+                });
+
             });
             $("#btn_role").click(function () {
 

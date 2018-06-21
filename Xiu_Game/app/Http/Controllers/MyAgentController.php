@@ -13,9 +13,9 @@ class MyAgentController extends Controller
     public function myAgent(){
         $sql = ' select count(*) as count_num from xx_user where ';
         if(session('roleid') == 4){
-            $sql .= '(rid = 2 or rid = 3) and super_aisle = '.session('aisle');
+            $sql .= '(rid = 2 or rid = 3 or rid = 6) and super_aisle = '.session('aisle');
         }else if(session('roleid') == 3){
-            $sql .= ' rid = 2 and chief_aisle = '.session('aisle');
+            $sql .= ' (rid = 2 or rid = 6) and chief_aisle = '.session('aisle');
         }else if(session('roleid') == 6){
             $sql .= ' rid = 2   and vip_aisle = '.session('aisle');
         }
@@ -24,26 +24,58 @@ class MyAgentController extends Controller
         }
         $data = DB::select($sql);
         $total = $data[0]->count_num;
-        return view('MyAgent.MyAgent',['total'=>$total,'role'=>session('roleid')]);
+        return view('MyAgent.MyAgent',['total'=>$total,'role'=>session('roleid'),'aisle'=>session('aisle'),'uid'=>session('uid')]);
     }
     //我的代理
     public function getData(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;
         $rows = isset($request['rows']) ? intval($request['rows']) : 10;
         $uid = isset($request['uid']) ? intval($request['uid']) : 0;
+        $cxid = isset($request['cxid']) ? intval($request['cxid']) : 0;
+        $cxrid = isset($request['cxrid']) ? intval($request['cxrid']) : 0;
+        $retrid = isset($request['retrid']) ? intval($request['retrid']) : 0;
+        $retid = isset($request['retid']) ? intval($request['retid']) : 0;
         if(session('roleid') == 4){
             $where = ' (rid = 2 or rid = 3 or rid = 6) and super_aisle = '.session('aisle');
-        }
-        else if(session('roleid') == 3){
+        } else if(session('roleid') == 3){
             $where = ' (rid = 2  or rid = 6) and chief_aisle = '.session('aisle');
-        }else if(session('roleid') == 6){
+        } else if(session('roleid') == 6){
             $where = ' rid = 2   and vip_aisle = '.session('aisle');
-        }
-        else{
+        } else{
             $where = ' rid = 2  and front_uid = '.session('uid').' or front_uid in (select uid from xx_user where rid = 2  and front_uid = '.session('uid').')';
         }
+        //查询代理
         if(!empty($uid)){
             $where .= " and uid = ".$uid;
+        }
+        //点击显示下级代理
+        if(!empty($cxid) && !empty($cxrid)){
+            if($cxrid==4){
+                $where = ' (rid = 2 or rid = 3 or rid = 6) and super_aisle = '.$cxid;
+            }else if($cxrid==3){
+                $where = ' (rid = 2  or rid = 6) and chief_aisle = '.$cxid;
+            }else if($cxrid==6){
+                $where = ' rid = 2   and vip_aisle = '.$cxid;
+            }else{
+                $where = ' rid = 2  and front_uid = '.$cxid;
+            }
+        }
+        //后退
+        if(!empty($retrid) && !empty($retid)){
+            if($retrid == 4){
+                $where = ' (rid = 2 or rid = 3 or rid = 6) and super_aisle = '.$retid;
+            } else if($retrid == 3){
+                $where = ' (rid = 2  or rid = 6) and chief_aisle = '.$retid;
+            } else if($retrid == 6){
+                $where = ' rid = 2   and vip_aisle = '.$retid;
+            } else{
+                if(session('uid') == $retid){
+                    $where = ' rid = 2  and front_uid = '.$retid.' or front_uid in (select uid from xx_user where rid = 2  and front_uid = '.$retid.')';
+                }else{
+                    $where = ' rid = 2  and front_uid = '.$retid;
+                }
+
+            }
         }
         $orderby = ' create_time desc ';
         $menu_arr = CommClass::PagingData($page,$rows,"xx_user" ,$where,$orderby);
