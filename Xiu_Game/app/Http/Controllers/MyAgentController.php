@@ -96,8 +96,12 @@ class MyAgentController extends Controller
                 if($rate > $my_rate->scale){
                     return response()->json(['error'=>'提成比例不能大于您的提成比例！']);
                 }
+
                 $dl_model = Users::find($dl_uid);
                 if(session('roleid')==4){ //设置总代
+                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
+                        return response()->json(['error'=>'您设置的总代数量已经达到10个！']);
+                    }
                     if(!empty($dl_model) && $dl_model->rid != 3){
                         $my_aisle = $this->getAisle(session('aisle'));
                         DB::table('xx_user')->where('uid',$dl_uid)
@@ -109,6 +113,9 @@ class MyAgentController extends Controller
                                 'front_uid'=>0]);
                     }
                 }else if(session('roleid')==3){//设置vip代理
+                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
+                        return response()->json(['error'=>'您设置的渠道代理数量已经达到10个！']);
+                    }
                     if(!empty($dl_model) && $dl_model->rid != 6){
                         if($dl_model->chief_uid != session('uid')){
                             return response()->json(['error'=>'该代理不是通过您的二维码下载的，不能设置！']);
@@ -125,11 +132,17 @@ class MyAgentController extends Controller
                                 'front_uid'=>0]);
                     }
                 }
+                //保存代理提成比例
                 $scale = DB::table('xx_sys_proxyscale')->where('uid',$dl_uid)->get();
                 if(empty($scale) || count($scale)<=0){
                     DB::table('xx_sys_proxyscale')->insert(['uid'=>$dl_uid,'scale'=>$rate]);
                 }else{
                     DB::table('xx_sys_proxyscale')->where('uid',$dl_uid)->update(['scale'=>$rate]);
+                }
+                //保存可设置的代理数量
+                $agent_num = DB::table('xx_sys_agentnum')->where('uid',$dl_uid)->get();
+                if(empty($agent_num) || count($agent_num)<=0){
+                    DB::table('xx_sys_agentnum')->insert(['uid'=>$dl_uid]);
                 }
                 return response()->json(['error'=>'']);
             }else{
@@ -139,6 +152,25 @@ class MyAgentController extends Controller
             return response()->json(['error'=>$e->getMessage()]);
         }
 
+    }
+
+    /*
+     * 判断特级代理或总代设置的渠道是否超额
+     */
+    private  function isAgentNum($uid,$rid,$aisle){
+        if($rid==4){
+            $agent = DB::table('xx_user')->where([['rid',3],['super_aisle',$aisle]])->count();
+        }else if($rid == 3){
+            $agent = DB::table('xx_user')->where([['rid',6],['chief_aisle',$aisle]])->count();
+        }else{
+            $agent = 0;
+        }
+        $agentnum = DB::table('xx_sys_agentnum')->where('uid',$uid)->first();
+        if(!empty($agentnum) && $agent < $agentnum->agent_num){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private function getAisle($aisle,$type=4){

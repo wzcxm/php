@@ -15,7 +15,7 @@
                     @if($role == 4)
                         <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
                     @elseif($role == 3)
-                        <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设置提成</a></td>
+                        <td><a href="#" id="btn_qd" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为渠道</a></td>
                     @else
                         <td></td>
                     @endif
@@ -53,7 +53,7 @@
                     if(rowData.rid != 2){
                         cx_id = rowData.aisle;
                     }
-                    $("#return_item").val($("#return_item").val()+'|'+rowData.rid+'&'+cx_id)
+                    $("#return_item").val($("#return_item").val()+'|'+rowData.rid+'&'+cx_id);
                     $('#tab_grid').datagrid('load',{
                         cxid: cx_id,
                         cxrid:rowData.rid
@@ -61,6 +61,9 @@
                     $("#btn_return").show();
                     if($("#btn_role")){
                         $("#btn_role").hide();
+                    }
+                    if($("#btn_qd")){
+                        $("#btn_qd").hide();
                     }
                 },
                 columns:[[
@@ -110,12 +113,45 @@
                     if($("#btn_role")){
                         $("#btn_role").show();
                     }
+                    if($("#btn_qd")){
+                        $("#btn_qd").show();
+                    }
                 }
                 $('#tab_grid').datagrid('load',{
                     retrid: values[0],
                     retid:values[1]
                 });
 
+            });
+            $("#btn_qd").click(function () {
+
+                var rows =  $("#tab_grid").datagrid('getChecked');
+                if(rows.length<=0){
+                    $.toptip('请选择一条记录！', 'warning');
+                    return;
+                }
+                $.confirm({
+                    title: '<p style=\'color: #3cc51f;\'>设为渠道代理</p>',
+                    text: "<img  src='"+rows[0].head_img_url+"' style=\"border-radius:6px;\" width=\"30\" align=\"absmiddle\" >\n" +
+                    "<span style=\"color: #545454\">"+rows[0].nickname+"</span><br><span style=\"color: red\">提成比例为25%</span>",
+                    onOK: function (input) {
+                        var obj = new Object();
+                        obj.uid = rows[0].uid;
+                        obj.rate = 25;
+                        $.post('/MyAgent/setrole',{data:obj},function(data){
+                            if(comm.is_null(data.error)){
+                                $.toptip(data.error,3000, 'warning');
+                            }else{
+                                $.toast("设置成功！",function () {
+                                    comm.Reload('tab_grid');
+                                });
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                        //点击取消
+                    }
+                });
             });
             $("#btn_role").click(function () {
 
@@ -125,7 +161,7 @@
                     return;
                 }
                 $.prompt({
-                    title: '<p style=\'color: #3cc51f;\'>设置提成比例</p>',
+                    title: '<p style=\'color: #3cc51f;\'>设提成比例</p>',
                     text: "<img  src='"+rows[0].head_img_url+"' style=\"border-radius:6px;\" width=\"30\" align=\"absmiddle\" >\n" +
                     "<span style=\"color: #545454\">"+rows[0].nickname+"</span>",
                     input: '',
@@ -154,7 +190,6 @@
                     }
                 });
             });
-
         })
     </script>
 @endsection
