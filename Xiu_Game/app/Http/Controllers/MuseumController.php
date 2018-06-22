@@ -143,4 +143,24 @@ class MuseumController extends Controller
             return response()->json(['message'=>$e->getMessage()]);
         }
     }
+
+
+    public function clearWin(Request $request){
+        try{
+            $data = isset($request['data'])?$request['data']:"";
+            if(empty($data)){
+                return response()->json(['message'=>'数据错误！']);
+            }
+            //id
+            $teaid = isset($data['tea_id'])?$data['tea_id']:0;
+            if(empty($teaid)) {
+                return response()->json(['message'=>'牌馆ID错误！']);
+            }
+            DB::table('xx_sys_teas')->where('tea_id',$teaid)
+                ->update(['winnum1'=>0,'winnum2'=>0,'winnum3'=>0]);
+            return response()->json(['message'=>'']);
+        }catch (\Exception $e){
+            return response()->json(['message'=>$e->getMessage()]);
+        }
+    }
 }

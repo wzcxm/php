@@ -167,7 +167,7 @@
                     </div>
                     <div style="margin-top: 5px;">
                         <div style="float: left;width: 80%;">
-
+                            <button  class="open_btn" id="clear_win">清除所有大赢家次数</button>
                         </div>
                         <div style="float: right;width: 20%;">
                             <button style="margin-left: 20%;" class="open_btn" id="btn_winscore">保存</button>
@@ -264,6 +264,28 @@
                         $.toptip(data.message,4000,'error');
                     }
                 });
+            });
+
+            $("#clear_win").click(function () {
+                $.confirm({
+                    title: '提示',
+                    text: "<span style=\"color: red\">您是否确定清除该牌馆下所有玩家的大赢家次数！</span>",
+                    onOK: function (input) {
+                        var obj = new Object();
+                        obj.tea_id = $("#teaid").val();
+                        $.post('/Museum/clear',{data:obj},function(data){
+                            if(data.message==''){
+                                $.toast('清除成功！');
+                            }else{
+                                $.toptip(data.message,4000,'error');
+                            }
+                        });
+                    },
+                    onCancel: function () {
+                        //点击取消
+                    }
+                });
+
             });
 
         });

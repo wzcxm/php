@@ -157,6 +157,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/Museum/data','MuseumController@getData');
     Route::get('/Museum/setting/{teaid}','MuseumController@setting');
     Route::post('/Museum/save','MuseumController@save_set');
+    Route::post('/Museum/clear','MuseumController@clearWin');
 
     //修改ID
     Route::get('/UpdateId',function (){
