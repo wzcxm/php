@@ -151,7 +151,6 @@ class MyAgentController extends Controller
         }catch (\Exception $e){
             return response()->json(['error'=>$e->getMessage()]);
         }
-
     }
 
     /*
