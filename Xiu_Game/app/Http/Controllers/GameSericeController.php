@@ -70,7 +70,7 @@ class GameSericeController extends Controller
     }
 
     //游戏分享
-    public function share($roomNo=0,$msg='')
+    public function share($roomNo=0,$uid=0,$msg='')
     {
         try{
             $tools = new JsApiPay();
@@ -80,7 +80,7 @@ class GameSericeController extends Controller
                 //下载人没有记录的保存记录
                 $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
                 if (empty($temp_user)) {
-                    DB::table('xx_user_temp')->insert(['wxopenid' => $openid, 'unionid' => $unionid]);
+                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid' => $openid, 'unionid' => $unionid]);
                 }
             }
             $room =  Redis::get('table_'.$roomNo);

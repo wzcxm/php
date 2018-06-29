@@ -189,7 +189,7 @@ Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
 
 //分享
-Route::get('/share/{roomNo?}/{msg?}','GameSericeController@share');
+Route::get('/share/{roomNo?}/{uid?}/{msg?}','GameSericeController@share');
 
 //抽奖
 Route::get('/lottery/{uid}','GameSericeController@getLottery');
