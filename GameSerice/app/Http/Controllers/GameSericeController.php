@@ -10,6 +10,8 @@ use Xxgame\Business;
 use Xxgame\BusinessList;
 use Xxgame\Playerinfo;
 use Xxgame\Record;
+use Xxgame\RecordCount;
+use Xxgame\RecordCountList;
 use Xxgame\RecordList;
 use Xxgame\Single;
 use Xxgame\SingleList;
@@ -115,7 +117,7 @@ EOT;
 			if(empty($player_data)) return "";
 			$teaPlayerList =  new TeaPlayerList();
 			foreach ($player_data as $player){
-				$teaplayer = new TeaPlayer();
+                $teaplayer = new TeaPlayer();
                 $teaplayer->setTeaId($player->tea_id);
                 $teaplayer->setNickname($player->nickname);
                 $teaplayer->setUid($player->uid);
@@ -135,12 +137,67 @@ EOT;
                 $teaplayer->setInvite($player->invite);
                 $teaplayer->setInviteScore($player->invite_score);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
-			}
+            }
 			return $teaPlayerList->encode();
 		}catch (\Exception $e){
 			return "";
 		}
 	}
+
+    ///昨日战榜
+    /// $teaid：茶楼ID
+    /// $uid ：玩家id
+    /// $key：KEY
+    public function GetRecordCountList($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+
+            if(empty($teaid)) return "";
+
+            $user_mode = DB::table("xx_sys_teas")
+                ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->first();
+            if(empty($user_mode) ){
+                return "";
+            }
+            $end = date('Y-m-d 08:00:00');
+            $start = date('Y-m-d 08:00:00',strtotime('-1 days'));
+            $sql = <<<EOT
+			select t.uid,u.nickname,u.head_img_url ,
+            (select count(*) from v_xx_record v where v.player_id=t.uid and v.create_time between '$start' and '$end') as before_num,
+            (select count(*) from v_xx_record v where v.player_id=t.uid and v.create_time between '$start' and '$end' and v.iswin=1) as before_win
+            from xx_sys_teas t 
+            left join xx_user u on  u.uid=t.uid 
+            where t.state<>3 and t.tea_id = $teaid
+EOT;
+            if($user_mode->manager==3){
+                $sql = <<<EOT
+			select t.uid,u.nickname,u.head_img_url ,
+            (select count(*) from v_xx_record v where v.player_id=t.uid and v.create_time between '$start' and '$end') as before_num,
+            (select count(*) from v_xx_record v where v.player_id=t.uid and v.create_time between '$start' and '$end' and v.iswin=1) as before_win
+            from xx_sys_teas t 
+            left join xx_user u on  u.uid=t.uid
+            where t.state<>3 and t.tea_id = $teaid and (t.recid = $uid or t.uid = $uid)
+EOT;
+            }
+            $player_data =  DB::select($sql);
+            if(empty($player_data)) return "";
+            $recordCountList =  new RecordCountList();
+            foreach ($player_data as $player){
+                $recordCount = new RecordCount();
+                $recordCount->setNickname($player->nickname);
+                $recordCount->setUid($player->uid);
+                $recordCount->setHeadUrl($player->head_img_url);
+                $recordCount->setNumbers($player->before_num);
+                $recordCount->setWinnum($player->before_win);
+                $recordCount->setUpdatedate($end);
+                $recordCountList->getRecordcountList()[] = $recordCount;
+            }
+            return $recordCountList->encode();
+        }catch (\Exception $e){
+            return "";
+        }
+    }
 
 	///修改茶楼玩家备注
 	/// $teaid：茶楼ID
