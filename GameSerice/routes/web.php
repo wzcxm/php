@@ -41,7 +41,8 @@ $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
 //下载地址
 $router->get('/GetUrl',function (){
-    return ['android'=>'https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk?Expires=1530318936&OSSAccessKeyId=TMP.AQGlJntgHqzGtHSF50K6y4AM404kbrtaC5SHFU0il866pOylEb0XDX2ilhuGADAtAhQA_0R20s_5uRNBBpFJTyF2SD40BgIVAPPoYbv50AOe58g4JfnDu5rCaPQZ&Signature=YgebR3Yk0yX5YTdrFLDCwbwymfw%3D',
+    return ['android'=>'
+https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk?Expires=1530322845&OSSAccessKeyId=TMP.AQGlJntgHqzGtHSF50K6y4AM404kbrtaC5SHFU0il866pOylEb0XDX2ilhuGADAtAhQA_0R20s_5uRNBBpFJTyF2SD40BgIVAPPoYbv50AOe58g4JfnDu5rCaPQZ&Signature=DGMSO6OXwzAf9AwgCGSA%2F0r29nE%3D',
         'ios'=>'http://fir.im/5byk',
         'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
