@@ -173,13 +173,13 @@ class MyAgentController extends Controller
     }
 
     private function getAisle($aisle,$type=4){
+        if($type==3){
+            $aisle = substr($aisle,0,strlen($aisle)-2);
+        }
         $data = DB::select("select max(aisle) max_aisle from xx_user where aisle LIKE '".$aisle."%'");
         if(empty($data) || empty($data[0]->max_aisle) ){
                 return $aisle.'01';
         }else{
-            if($type == 4 && $data[0]->max_aisle == $aisle)
-                return $aisle.'01';
-            else
                 return ++$data[0]->max_aisle;
         }
     }

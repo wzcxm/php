@@ -112,16 +112,16 @@ class BackCashController extends Controller
         try{
             $data = isset($request['data'])?$request['data']:"";
             $gold = isset($data['gold'])?$data['gold']:0;
-            $code = isset($data['code'])?$data['code']:0;
-            $model = Users::find(session('uid'));
-            if(empty($code)){
-                return response()->json(['Error'=>'请输入验证码！']);
-            }
-            //验证验证码
-            $oldcode = \Cache::get($model->uphone);
-            if(empty($oldcode) || $oldcode!=$code){
-                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
-            }
+            //$code = isset($data['code'])?$data['code']:0;
+            //$model = Users::find(session('uid'));
+//            if(empty($code)){
+//                return response()->json(['Error'=>'请输入验证码！']);
+//            }
+//            //验证验证码
+//            $oldcode = \Cache::get($model->uphone);
+//            if(empty($oldcode) || $oldcode!=$code){
+//                return response()->json(['Error'=>'验证码错误或已失效,请重新获取！']);
+//            }
             //本次提取金额为正整数
             if(!$this->isInteger($gold)){
                 return response()->json(['Error'=>'提取金额必须大于0,且最多只能保留两位小数！']);
@@ -190,7 +190,11 @@ class BackCashController extends Controller
                 if($result["err_code"] == "SYSTEMERROR"){
                     $this->GetExtract($openid,$orderno,$amount);
                 }else{
-                    return $result["err_code"]."|".$result["err_code_des"];
+                    if($result["err_code"] == 'NOTENOUGH'){
+                        return '系统清算中，预计48小时内完成！';
+                    }else{
+                        return $result["err_code"]."|".$result["err_code_des"];
+                    }
                 }
             }
         }catch (\Exception $e){

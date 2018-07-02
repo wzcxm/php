@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div  class="weui-flex head_bg" >
-
+        <input type="hidden" name="form_token" value="{{ str_random(40) }}">
     </div>
     <div class="weui-cells_form">
         <div class="weui-cell">
@@ -31,24 +31,24 @@
                 </div>
             </div>
         </div>
-        <div class="weui-cell">
-            <div style="width:100%;text-align: center;font-size: 0.8rem;">
-                <div style="float: left;width: 35%;text-align: right;">
-                    手机验证码：
-                </div>
-                <div style="float: right;width: 60%;text-align: left;">
-                    <input class="input_number" type="number" id="code" style="width: 50%;">
-                    <button class="code_bg" id="get_code">获取</button>
-                    @if(empty($tel))
-                        <div style="font-size: 0.6rem;font-weight: bold;color: coral;">
-                            提示：请先绑定手机。
-                        </div>
-                    @else
-                        <input type="hidden" id="tel" value="{{$tel}}">
-                    @endif
-                </div>
-            </div>
-        </div>
+        {{--<div class="weui-cell">--}}
+            {{--<div style="width:100%;text-align: center;font-size: 0.8rem;">--}}
+                {{--<div style="float: left;width: 35%;text-align: right;">--}}
+                    {{--手机验证码：--}}
+                {{--</div>--}}
+                {{--<div style="float: right;width: 60%;text-align: left;">--}}
+                    {{--<input class="input_number" type="number" id="code" style="width: 50%;">--}}
+                    {{--<button class="code_bg" id="get_code">获取</button>--}}
+                    {{--@if(empty($tel))--}}
+                        {{--<div style="font-size: 0.6rem;font-weight: bold;color: coral;">--}}
+                            {{--提示：请先绑定手机。--}}
+                        {{--</div>--}}
+                    {{--@else--}}
+                        {{--<input type="hidden" id="tel" value="{{$tel}}">--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="weui-cell">
             <button class="search_bg" style="width: 80%;margin-left: 10%;"  id="btn_extr">提现到微信钱包</button>
@@ -65,38 +65,46 @@
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+                },
+                data:{form_token:$('input[name="form_token"]').val()}
             });
-            $("#get_code").click(function () {
-                var tel = $("#tel").val();
-                if(!comm.is_null(tel)){
-                    $.alert("请先绑定手机号!");
-                    return;
-                }
-                $.get('/sms/'+tel,function(data){
-                    if(comm.is_null(data.Error)){
-                        $.alert(data.Error);
-                    }else{
-                        settime();
-                    }
-                });
-            });
+            // $("#get_code").click(function () {
+            //     var tel = $("#tel").val();
+            //     if(!comm.is_null(tel)){
+            //         $.alert("请先绑定手机号!");
+            //         return;
+            //     }
+            //     $.get('/sms/'+tel,function(data){
+            //         if(comm.is_null(data.Error)){
+            //             $.alert(data.Error);
+            //         }else{
+            //             settime();
+            //         }
+            //     });
+            // });
 
 
             $("#btn_extr").click(function () {
                 var R = new Object();
                 R.gold = $("#gold").val();
-                R.code = $("#code").val();
+                //R.code = $("#code").val();
                 $.post("/Extract/ext",{data:R},function (data) {
-                    if(comm.is_null(data.Error)){
-                        $.alert(data.Error,function () {
-                            //window.location.reload();
-                        });
+                    if(comm.is_null(data.repeat)){
+                        if(data.repeat==1){
+                           console.log('重复提交！');
+                        }
                     }else{
-                        $.alert('提现成功！',function () {
-                            window.location.reload();
-                        });
+                        if(comm.is_null(data.Error)){
+                            $.alert(data.Error,function () {
+                                window.location.reload();
+                            });
+                        }else{
+                            $.alert('提现成功！',function () {
+                                window.location.reload();
+                            });
+                        }
                     }
+
                 });
             });
         });

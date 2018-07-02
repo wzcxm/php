@@ -76,10 +76,10 @@ class GameSericeController extends Controller
             $tools = new JsApiPay();
             $openid = $tools->GetOpenid();
             $unionid = $tools->data['unionid'];
-            if(!empty($unionid)) {
+            if(!empty($unionid) ) {
                 //下载人没有记录的保存记录
                 $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
-                if (empty($temp_user)) {
+                if (empty($temp_user) && !empty($uid)) {
                     DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid' => $openid, 'unionid' => $unionid]);
                 }
             }
@@ -231,7 +231,7 @@ class GameSericeController extends Controller
                         $param['share_role'] = 1;
                     }
                 }
-                if(!empty($unionid)){
+                if(!empty($unionid) ){
                     $user = DB::table('xx_user')->where('unionid',$unionid)->first();
                     if(!empty($user)){
                         if(empty($user->wxopenid)){
@@ -250,7 +250,7 @@ class GameSericeController extends Controller
                     }else{
                         //下载人没有记录的保存记录
                         $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                        if(empty($temp_user)){
+                        if(empty($temp_user) && !empty($uid)){
                             DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                         }
 

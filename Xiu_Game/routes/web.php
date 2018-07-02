@@ -125,7 +125,7 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
 //    });
 //    Route::post('/Extract/login/submit','BackCashController@login');
 //    Route::get('/Extract/index','BackCashController@take');
-    Route::post('/Extract/ext','BackCashController@ext');
+    Route::post('/Extract/ext','BackCashController@ext')->middleware('limitformrepeatsubmit');
     Route::get('/Extract/extlist',function (){
         return view('CashBuy.ext_list');
     });

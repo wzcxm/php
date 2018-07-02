@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'authuser'=>\App\Http\Middleware\AuthenUser::class
+        'authuser'=>\App\Http\Middleware\AuthenUser::class,
+        'limitformrepeatsubmit'=>\App\Http\Middleware\LimitFormRepeatSubmit::class
     ];
 }

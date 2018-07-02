@@ -31,7 +31,7 @@ class HomeController extends Controller
         //菜单
         $mymenus= $this->GetMyMenus(session('roleid'));
 
-        if(session('roleid') == 3 || session('roleid') == 4){
+        if(session('roleid') == 3 || session('roleid') == 4 || session('roleid') == 6){
             $back_agent = CommClass::getProxyScale(session('uid'));
         }else{
             $back_agent = CommClass::GetParameter("upper_one");

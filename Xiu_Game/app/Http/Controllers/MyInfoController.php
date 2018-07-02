@@ -16,7 +16,7 @@ class MyInfoController extends Controller
      */
     public function index(){
         $user = Users::find(session('uid'));
-        if($user->rid == 3 || $user->rid == 4){
+        if($user->rid == 3 || $user->rid == 4 || $user->rid == 6){
             $back_agent = CommClass::getProxyScale(session('uid'));
         }else{
             $back_agent = CommClass::GetParameter("upper_one");

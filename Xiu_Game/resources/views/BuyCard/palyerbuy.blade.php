@@ -186,9 +186,9 @@
                         //window.location.reload();
                     });
                 }else{
-                    $.post("/PlayerBuy/delno",{no:orderno}, function (data) {
-                        $.alert('支付失败！');
-                    });
+                    // $.post("/PlayerBuy/delno",{no:orderno}, function (data) {
+                    //     $.alert('支付失败！');
+                    // });
                 }
             }
         );
