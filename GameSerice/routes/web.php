@@ -48,6 +48,8 @@ https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk?Expires=1530
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
 });
 
+
+
 //获取回放数据
 $router->get('/Playback/{gtype}/{rid}/{sign}','GameSericeController@getPlayback');
 
