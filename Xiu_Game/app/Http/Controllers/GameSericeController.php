@@ -79,8 +79,12 @@ class GameSericeController extends Controller
             if(!empty($unionid) ) {
                 //下载人没有记录的保存记录
                 $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
-                if (empty($temp_user) && !empty($uid)) {
-                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid' => $openid, 'unionid' => $unionid]);
+                if(!empty($temp_user) ){
+                    DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
+                }else{
+                    if(!empty($uid)){
+                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                    }
                 }
             }
             $room =  Redis::get('table_'.$roomNo);
@@ -250,8 +254,12 @@ class GameSericeController extends Controller
                     }else{
                         //下载人没有记录的保存记录
                         $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                        if(empty($temp_user) && !empty($uid)){
-                            DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                        if(!empty($temp_user) ){
+                            DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
+                        }else{
+                            if(!empty($uid)){
+                                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                            }
                         }
                     }
                 }
