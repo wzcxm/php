@@ -19,16 +19,16 @@ class GameLoginController extends Controller
 //				return $this->error_message(ErrorCode::Error_WeiXin_Login);
 			switch ($type)
 			{
-				case 1:
-					return $this->youke_login();
+				//case 1:
+					//return $this->youke_login();
 				case 2:
 					return $this->weixin_login($uid, $value,$gw_type);
 				case 3:
 					return $this->auto_login($uid, $value,$gw_type);
 				case 4:
 					return $this->account_login($uid,$gw_type);
-				case 5:
-					return $this->tel_login($uid,$value,$gw_type);
+				//case 5:
+					//return $this->tel_login($uid,$value,$gw_type);
 				default:
 					break;
 			}
