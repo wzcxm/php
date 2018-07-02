@@ -18,6 +18,27 @@ return [
             'PORT' => 10700,
             'STATUS' => 2,
         ],
+
+//        'gw3' => [
+//            'INDEX' => 3,
+//            'DOMAIN' => 'gw.wangqianhong.com',
+//            'PORT' => 10070,
+//            'STATUS' => 2,
+//        ],
+//
+//        'gw4' => [
+//            'INDEX' => 4,
+//            'DOMAIN' => 'gw.wangqianhong.com',
+//            'PORT' => 12000,
+//            'STATUS' => 2,
+//        ],
+//
+//        'gw5' => [
+//            'INDEX' => 5,
+//            'DOMAIN' => 'gw.wangqianhong.com',
+//            'PORT' => 10100,
+//            'STATUS' => 2,
+//        ],
     ],
     'GAME_DOMAIN_H5'=>[
         'h5_gw1' => [

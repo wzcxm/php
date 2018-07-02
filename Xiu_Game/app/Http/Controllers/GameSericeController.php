@@ -253,7 +253,6 @@ class GameSericeController extends Controller
                         if(empty($temp_user) && !empty($uid)){
                             DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                         }
-
                     }
                 }
                 if($type==1){

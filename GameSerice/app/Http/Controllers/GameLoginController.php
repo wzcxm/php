@@ -265,7 +265,7 @@ class GameLoginController extends Controller
 	//设置推荐人的人数和红包
 	private function setRedPack($unionid){
 		try{
-			$temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
+			$temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->orderByDesc('id')->first();
 			if(!empty($temp_user)){
 			    $arr = ['wxopenid'=>$temp_user->wxopenid];
 			    if(!empty($temp_user->front)){

@@ -14,6 +14,8 @@
                     <td><div class="datagrid-btn-separator"></div></td>
                     @if($role == 4)
                         <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
+                        {{--<td><div class="datagrid-btn-separator"></div></td>--}}
+                        {{--<td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">查询业绩</a></td>--}}
                     @elseif($role == 3)
                         <td><a href="#" id="btn_qd" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为渠道</a></td>
                     @else

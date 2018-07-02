@@ -613,14 +613,14 @@ use Aliyun\DySDKLite\SignatureHelper;
                                 'gold'=>$wx_order->total,
                                 'ratio'=>0,
                                 'level'=>5]);
-                        $total -= 100;
+                        //$total -= 100;
                     }
                     //更新我的角色
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
                     //首次绑定代理返利
-                    CommClass::FirstBindBackCash($wx_order->userid, $total);
+                    //CommClass::FirstBindBackCash($wx_order->userid, $total);
                 }else{
                     CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
                     //绑定代理
@@ -640,14 +640,13 @@ use Aliyun\DySDKLite\SignatureHelper;
                                 'gold'=>$wx_order->total,
                                 'ratio'=>0,
                                 'level'=>5]);
-                        $total -= 100;
+                        //$total -= 100;
                         //首次绑定代理返利
-                        CommClass::FirstBindBackCash($wx_order->userid, $total);
-                    }else{
-                        //代理返利
-                        CommClass::BackCash($wx_order->userid, $total);
+                        //CommClass::FirstBindBackCash($wx_order->userid, $total);
                     }
                 }
+                //代理返利
+                CommClass::BackCash($wx_order->userid, $total);
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
                 //更新游戏的钻石数量

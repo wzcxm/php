@@ -26,7 +26,7 @@
                 <div style="float: right;width: 60%;text-align: left;">
                     <input class="input_number" type="number" id="gold" style="width: 50%;">
                     <div style="font-size: 0.6rem;font-weight: bold;color: coral;">
-                        提示：提取金额必须大于0。
+                        提示：提取金额必须大于0，且为整数！。
                     </div>
                 </div>
             </div>
