@@ -81,6 +81,9 @@ class GameSericeController extends Controller
                 $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
                 if(!empty($temp_user) ){
                     DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
+                    if(!empty($uid)){
+                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                    }
                 }else{
                     if(!empty($uid)){
                         DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
@@ -256,6 +259,9 @@ class GameSericeController extends Controller
                         $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
                         if(!empty($temp_user) ){
                             DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
+                            if(!empty($uid)){
+                                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
+                            }
                         }else{
                             if(!empty($uid)){
                                 DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
