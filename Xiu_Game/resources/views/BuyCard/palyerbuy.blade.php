@@ -44,9 +44,9 @@
             <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
         </div>
     </div>
-    <div style="margin-top:5px;" id="mall">
+    <div style="margin-top:5px;" >
         @if(!empty($mallList))
-            <div style="margin-left:5%;">
+            <div id="mall" style="margin-left:5%;">
             @for($i=0;$i<count($mallList);$i++)
                 @if($i%3>0)
                     @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
@@ -135,10 +135,10 @@
                     $("#11").remove();
                     $("#first").empty()
                     if(reslut.user['flag'] == 0){
-                        $("#mall").prepend("<img class=\"img_border \" width=\"22%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/first.png\" />");
                     }else{
-                        $("#mall").prepend("<img class=\"img_border \" width=\"22%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/warning.png\" />");
                     }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
