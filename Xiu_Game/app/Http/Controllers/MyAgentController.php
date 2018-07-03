@@ -200,6 +200,28 @@ class MyAgentController extends Controller
         return view('MyAgent.MyService',['total'=>$total]);
     }
 
+
+    /**  查询业绩
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getGrade(Request $request){
+        try{
+            $paly_uid = isset($request['uid'])?$request['uid']:0;
+            $start = date('2018-04-01');
+            $end =  date('Y-m-t 23:59:59', strtotime($start));
+            $ret_arr = [];
+            $all = DB::select('call search_grade_all('.$paly_uid.')');
+            $ret_arr['all'] = empty($all[0]->all_grade)?0:$all[0]->all_grade;
+            $month = DB::select("call search_grade_month(".$paly_uid.",'".$start."','".$end."')");
+            $ret_arr['month'] = empty($month[0]->all_grade)?0:$month[0]->all_grade;
+            return response()->json($ret_arr);
+        }catch (\Exception $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
+    }
+
+
     //我的玩家
     public function getPlayer(Request $request){
         $page = isset($request['page']) ? intval($request['page']) : 1;

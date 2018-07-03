@@ -59,6 +59,19 @@
                         }},
                     {field:'back_id',title:'ID',width:50},
                     {field:'b_nick',title:'昵称',width:80},
+                    {field:'gold',title:'充值金额',width:60},
+                    {field:'ratio',title:'提成比例',width:60,
+                        formatter: function (value, row, index) {
+                            if (row != null) {
+                                return value + '%';
+                            }
+                        }},
+                    {field:'backgold',title:'提成金额',width:100,
+                        formatter: function (value, row, index) {
+                            if (row != null) {
+                                return parseFloat(value).toFixed(2);
+                            }
+                        }},
                     {field:'level',title:'提成来源',width:60,
                         formatter:function (value) {
                             if(value==1){
@@ -67,20 +80,10 @@
                                 return "下下级";
                             }else if(value==3){
                                 return "玩家";
-                            }
-                            else if(value==4){
-                                return "自购";
                             }else if(value==5){
-                                return "推荐代理";
+                                return "推荐奖励";
                             }
                             else{return "";}
-                        }},
-                    {field:'gold',title:'消费金额',width:60},
-                    {field:'backgold',title:'提成金额',width:60,
-                        formatter: function (value, row, index) {
-                            if (row != null) {
-                                return parseFloat(value).toFixed(2);
-                            }
                         }},
                     {field:'create_time',title:'日期',width:120}
                 ]]

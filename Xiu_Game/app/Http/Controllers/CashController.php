@@ -42,17 +42,36 @@ class CashController extends Controller
     /*
      * 购卡记录
      */
-    public function buylist($uid)
+    public function getRechargeData(Request $request)
     {
-        try{
-            $list = DB::table('xx_wx_buycard')
-                ->where([['userid',$uid],['status',1]])
-                ->orderBy('create_time','desc')
-                ->get();
-            return view('BuyCard.querybuy',['List'=>$list]);
-        }catch (\Exception $e){
-            return "";
+        $page = isset($request['page']) ? intval($request['page']) : 1;
+        $rows = isset($request['rows']) ? intval($request['rows']) : 10;
+        $start_date = isset($request['start_date']) ? $request['start_date']:"";
+        $end_date = isset($request['end_date']) ? $request['end_date']:"";
+        $where = ' status = 1 and userid = '.session('uid');
+        if (!empty($start_date) || !empty($end_date)) {
+            $where .= " and create_time between '";
+            if (!empty($start_date)) {
+                $where .= $start_date . "' and '";
+            } else {
+                $where .= date('Y-m-01', strtotime($end_date)) . "' and '";
+            }
+            if (!empty($end_date)) {
+                $where .= $end_date . " 23:59:59'";
+            } else {
+                $where .= date('Y-m-t', strtotime($start_date)) . " 23:59:59'";
+            }
         }
+        $orderby = ' create_time desc ';
+        $order_arr = CommClass::PagingData($page,$rows,"xx_wx_buycard",$where , $orderby);
+        //增加合计行
+        $sql = 'select * from xx_wx_buycard where '.$where;
+        $data = DB::select($sql);
+        $total = collect($data)->sum('total');
+        $cardnum = collect($data)->sum('cardnum');
+        $footer =[['create_time'=>'合计','total'=>$total,'cardnum'=>$cardnum]];
+        $order_arr['footer'] = $footer;
+        return response()->json($order_arr);
     }
 
     //获取昵称

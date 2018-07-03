@@ -83,11 +83,11 @@
                 <img class="img_border " width="35%" src="/img/diamond/query.png" />
             </a>
         </div>
-        <div style="width: 100%;margin-top: 3px;">
-            <a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >
-                <img class="img_border " width="20%" src="/img/diamond/buylist.png" />
-            </a>
-        </div>
+        {{--<div style="width: 100%;margin-top: 3px;">--}}
+            {{--<a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >--}}
+                {{--<img class="img_border " width="20%" src="/img/diamond/buylist.png" />--}}
+            {{--</a>--}}
+        {{--</div>--}}
     </div>
     <input type="hidden" id="sid">
 </div>

@@ -11,6 +11,7 @@ use App\Wechat\lib\WxPayConfig;
 use App\Wechat\lib\WxPayApi;
 use App\Wechat\lib\WxPayExtract;
 use Illuminate\Support\Facades\DB;
+use App\Wechat\example\JsApiPay;
 
 class BackCashController extends Controller
 {
@@ -105,6 +106,11 @@ class BackCashController extends Controller
 
     public function take(){
         $user = Users::find(session('uid'));
+        if(!empty($user) && empty($user->wxopenid )){
+            $tools = new JsApiPay();
+            $openid = $tools->GetOpenid();
+            DB::table('xx_user')->where('uid', session('uid'))->update(['wxopenid'=>$openid]);
+        }
         return view('CashBuy.extract',['backgold'=>$user->money,'tel'=>$user->uphone]);
     }
     //提现

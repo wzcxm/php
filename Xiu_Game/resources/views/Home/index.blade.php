@@ -75,7 +75,8 @@
             @if($roleid == 3 || $roleid == 4 || $roleid == 6)
                提成比例<br>旗下充值：{{$back_agent}}%
             @else
-                提成比例<br>下级充值：{{$back_agent}}%<br>下下级充值：{{$back_agent_front}}%
+                提成比例<br>下级充值：{{$back_agent}}%
+                {{--<br>下下级充值：{{$back_agent_front}}%--}}
             @endif
         </div>
     @endif

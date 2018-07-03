@@ -80,6 +80,8 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::get('/MyAgent','MyAgentController@myAgent');
     Route::post('/MyAgent/data','MyAgentController@getData');
     Route::post('/MyAgent/setrole','MyAgentController@setRole');
+    Route::post('/MyAgent/getGrade','MyAgentController@getGrade');
+
     //我的玩家
     Route::get('/MyPlayer','MyAgentController@myPlayer');
     Route::post('/MyPlayer/data','MyAgentController@getPlayer');
@@ -172,6 +174,26 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     //更新微信
     Route::get('/UpdateWx','HomeController@updateWx');
     Route::post('/UpdateWx/replace','HomeController@replace');
+
+    //充值记录
+    Route::get('/Recharge',function (){
+        return view('BuyCard.querybuy');
+    });
+    Route::post('/Recharge/data','CashController@getRechargeData');
+
+    //玩家查询
+    Route::get('/SearchPlayer',function (){
+        return view('PlayerSeach.playseachIndex');
+    });
+    Route::post('/SearchPlayer/getPlayer','UserManageController@getPlayer');
+
+    //赠钻设置
+    Route::get('/CardSet',function (){
+        return view('PlayerSeach.giftsetIndex');
+    });
+    Route::post('/CardSet/data','UserManageController@getAgentData');
+    Route::post('/CardSet/save','UserManageController@saveGift');
+
 });
 /// end//////////////////////////////
 
@@ -184,7 +206,7 @@ Route::get('/MyQrCode','MyInfoController@getQrCode');
 Route::get('/PlayerBuy/buy','CashController@buycard');
 Route::post('/PlayerBuy/delno','CashController@delNo');
 Route::get('/PlayerBuy/index{at_id?}','CashController@index');
-Route::get('/PlayerBuy/list/{uid}','CashController@buylist');
+
 Route::get('/PlayerBuy/getnick/{uid}','CashController@getnick');
 
 

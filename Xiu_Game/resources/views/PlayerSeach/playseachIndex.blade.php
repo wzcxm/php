@@ -46,13 +46,13 @@
 @endsection
 @section('easyui_content')
     <div  class="weui-flex head_bg" >
-        <div style="margin-top: 8%;">修改ID</div>
+        <div style="margin-top: 8%;">查询玩家</div>
     </div>
     <div class="weui-cells_form">
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
                 <div style="float: left;width: 35%;text-align: right;">
-                    玩家原ID：
+                    玩家ID：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
                     <input class="ipt_css" type="number" id="old_uid" style="width: 50%;">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -60,10 +60,10 @@
                 </div>
             </div>
         </div>
-        <div class="weui-cell" id="play_info" style="display: none;">
+        <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
                 <div style="float: left;width: 35%;text-align: right;">
-
+                    玩家昵称：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
                     <img  id="head_url" src="" style="border-radius:6px;" width="30" align="absmiddle" >
@@ -74,35 +74,22 @@
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
                 <div style="float: left;width: 35%;text-align: right;">
-                    玩家新ID：
+                    上级ID：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
-                    <input class="ipt_css" type="number" id="new_uid" style="width: 50%;">
+                    <span style="color: #545454" id="front_uid"></span>
                 </div>
             </div>
         </div>
         <div class="weui-cell">
             <div style="width:100%;text-align: center;font-size: 0.8rem;">
                 <div style="float: left;width: 35%;text-align: right;">
-                    牌馆原ID：
+                    推荐人ID：
                 </div>
                 <div style="float: right;width: 60%;text-align: left;">
-                    <input class="ipt_css" type="number" id="old_teaid" style="width: 50%;">
+                    <span style="color: #545454" id="chief_uid"></span>
                 </div>
             </div>
-        </div>
-        <div class="weui-cell">
-            <div style="width:100%;text-align: center;font-size: 0.8rem;">
-                <div style="float: left;width: 35%;text-align: right;">
-                    牌馆新ID：
-                </div>
-                <div style="float: right;width: 60%;text-align: left;">
-                    <input class="ipt_css" type="number" id="new_teaid" style="width: 50%;">
-                </div>
-            </div>
-        </div>
-        <div class="weui-cell">
-            <button class="btn_css" style="width: 80%;margin-left: 10%;"  id="btn_update">修改</button>
         </div>
     </div>
 @endsection
@@ -120,43 +107,25 @@
                     $.alert("请输入玩家ID");
                     return;
                 }
-                $.post('/UpdateId/Search',{uid:payer_id},function (data) {
-                    if(comm.is_null(data.msg)){
-                        $.alert(data.msg);
+                $.post('/SearchPlayer/getPlayer',{uid:payer_id},function (data) {
+                    if(comm.is_null(data.error)){
+                        $.alert(data.error);
                         $("#head_url").attr('src',"");
                         $("#player_nick").html("");
+                        $("#front_uid").html("");
+                        $("#chief_uid").html("");
                     } else {
-                        var player = data.user;
+                        var player = data.player;
+                        console.log(comm.is_null(player['head_img_url']));
                         if(comm.is_null(player['head_img_url'])){
+                            console.log(1);
                             $("#head_url").attr('src',player['head_img_url']);
                         }
                         $("#player_nick").html(player['nickname']);
-                        $("#play_info").show('fast');
+                        $("#front_uid").html(player['front_uid']);
+                        $("#chief_uid").html(player['chief_uid']);
                     }
                 });
-            });
-            $("#btn_update").click(function () {
-                var R = new Object();
-                R.old_uid = $("#old_uid").val();
-                R.new_uid = $('#new_uid').val();
-                R.old_teaid = $("#old_teaid").val();
-                R.new_teaid = $('#new_teaid').val();
-                if(comm.is_null(R.old_uid) && !comm.is_null(R.new_uid)){
-                        return;
-                }
-                if(comm.is_null(R.old_teaid) && !comm.is_null(R.new_teaid)){
-                        return;
-                }
-                $.post("/UpdateId/update",{data:R},function (reslut) {
-                    if(comm.is_null(reslut.Error)){
-                        $.alert(reslut.Error);
-                    }
-                    else {
-                        $.alert('修改成功！',function () {
-                            window.location.reload();
-                        });
-                    }
-                })
             });
         });
 

@@ -14,12 +14,14 @@
                     <td><div class="datagrid-btn-separator"></div></td>
                     @if($role == 4)
                         <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
-                        {{--<td><div class="datagrid-btn-separator"></div></td>--}}
-                        {{--<td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">查询业绩</a></td>--}}
                     @elseif($role == 3)
                         <td><a href="#" id="btn_qd" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为渠道</a></td>
                     @else
                         <td></td>
+                    @endif
+                    @if($role==4)
+                        <td><div class="datagrid-btn-separator"></div></td>
+                        <td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">查询业绩</a></td>
                     @endif
                 @endif
                 <td>
@@ -63,6 +65,9 @@
                     $("#btn_return").show();
                     if($("#btn_role")){
                         $("#btn_role").hide();
+                    }
+                    if($("#btn_grade")){
+                        $("#btn_grade").hide();
                     }
                     if($("#btn_qd")){
                         $("#btn_qd").hide();
@@ -114,6 +119,9 @@
                     $("#btn_return").hide();
                     if($("#btn_role")){
                         $("#btn_role").show();
+                    }
+                    if($("#btn_grade")){
+                        $("#btn_grade").show();
                     }
                     if($("#btn_qd")){
                         $("#btn_qd").show();
@@ -189,6 +197,28 @@
                     },
                     onCancel: function () {
                         //点击取消
+                    }
+                });
+            });
+
+
+            $("#btn_grade").click(function () {
+                var rows =  $("#tab_grid").datagrid('getChecked');
+                if(rows.length<=0){
+                    $.toptip('请选择一条记录！', 'warning');
+                    return;
+                }
+                $.post('/MyAgent/getGrade',{uid:rows[0].uid},function(data){
+                    if(comm.is_null(data.error)){
+                        $.toptip(data.error,3000, 'warning');
+                    }else{
+                        $.alert({
+                            title: "<img  src='"+rows[0].head_img_url+"' style=\"border-radius:6px;\" width=\"30\" align=\"absmiddle\" ><span style=\"color: #545454\">"+rows[0].nickname+"</span>",
+                            text: "<br><span style=\"color: #545454\">总业绩："+data.all+"</span>"+ "<br><span style=\"color: #545454\">当月业绩："+data.month+"</span>",
+                            onOK: function () {
+                                //点击确认
+                            }
+                        });
                     }
                 });
             });

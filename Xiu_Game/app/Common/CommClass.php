@@ -494,7 +494,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                          ['get_id'=>$vip_user->uid,
                              'back_id'=>$buy_id,
                              'backgold'=>$return_vip,
-                             'gold'=>$balance,
+                             'gold'=>$cash,
                              'ratio'=>$vip_scale,
                              'level'=>1]);
                  }
@@ -514,7 +514,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                         ['get_id'=>$chief->uid,
                             'back_id'=>$buy_id,
                             'backgold'=>$return_chief,
-                            'gold'=>$balance,
+                            'gold'=>$cash,
                             'ratio'=>$scale,
                             'level'=>1]);
                 }
@@ -534,7 +534,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                          ['get_id'=>$super->uid,
                              'back_id'=>$buy_id,
                              'backgold'=>$return_super,
-                             'gold'=>$balance,
+                             'gold'=>$cash,
                              'ratio'=>$super_scale,
                              'level'=>1]);
                  }
@@ -760,7 +760,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                          ['get_id'=>$vip_user->uid,
                              'back_id'=>$uid,
                              'backgold'=>$return_vip,
-                             'gold'=>$surplus,
+                             'gold'=>$cash,
                              'ratio'=>$vip_scale,
                              'level'=>3]);
                  }
@@ -780,7 +780,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                          ['get_id'=>$chief->uid,
                              'back_id'=>$uid,
                              'backgold'=>$return_chief,
-                             'gold'=>$surplus,
+                             'gold'=>$cash,
                              'ratio'=>$scale,
                              'level'=>3]);
                  }
@@ -800,7 +800,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                          ['get_id'=>$super->uid,
                              'back_id'=>$uid,
                              'backgold'=>$return_super,
-                             'gold'=>$surplus,
+                             'gold'=>$cash,
                              'ratio'=>$super_scale,
                              'level'=>3]);
                  }

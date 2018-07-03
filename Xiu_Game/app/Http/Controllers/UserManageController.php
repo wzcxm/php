@@ -62,4 +62,52 @@ class UserManageController extends Controller
         }
     }
 
+
+    public function getPlayer(Request $request){
+        try{
+            $uid = isset($request['uid'])?$request['uid']:0;
+            $user = Users::find($uid);
+            if(!empty($user)){
+                return response()->json(['player'=>$user]);
+            }else {
+                return response()->json(['error'=>'玩家不存在！']);
+            }
+        }catch (\Exception $e) {
+            return response()->json(['error'=>$e->getMessage()]);
+        }
+
+    }
+
+    public function getAgentData(Request $request){
+        $page = isset($request['page']) ? intval($request['page']) : 1;
+        $rows = isset($request['rows']) ? intval($request['rows']) : 10;
+        $uid = isset($request['uid']) ? intval($request['uid']) : 0;
+        if(!empty(session('aisle')) ){
+            $where = ' rid <> 5 and super_aisle = '.session('aisle');
+        }else{
+            $where = '1=2';
+        }
+
+        if(!empty($uid)){
+            $where .= " and uid = ".$uid;
+        }
+        $player_arr = CommClass::PagingData($page,$rows,"v_user_isgift" ,$where,"create_time desc");
+        return response()->json($player_arr);
+    }
+
+
+    public function saveGift(Request $request){
+        try{
+            $uid = isset($request['uid'])?$request['uid']:0;
+            $type = isset($request['type'])?$request['type']:1;
+            if($type==1){//开启
+                DB::table('xx_sys_isgift')->insert(['uid'=>$uid]);
+            }else if($type==2){ //关闭
+                DB::table('xx_sys_isgift')->where('uid',$uid)->delete();
+            }
+            return response()->json(['error'=>""]);
+        }catch (\Exception $e) {
+            return response()->json(['error'=>$e->getMessage()]);
+        }
+    }
 }
