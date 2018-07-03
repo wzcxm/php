@@ -134,11 +134,11 @@
                     $("#nick").html(reslut.user['nickname']);
                     $("#first").empty()
                     if(reslut.user['flag'] == 0){
-                        $("#11").attr('src','/img/diamond/f300.png');
+                        $("#11").attr('src','/img/diamond/f300.png?v=2018070301');
                         //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/first.png\" />");
                     }else{
-                        $("#11").attr('src','/img/diamond/300.png');
+                        $("#11").attr('src','/img/diamond/300.png?v=2018070301');
                         //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/warning.png\" />");
                     }
