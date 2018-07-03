@@ -50,15 +50,15 @@
             @for($i=0;$i<count($mallList);$i++)
                 @if($i%3>0)
                     @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        <img class="img_border " width="30%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
+                        <img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
                     @else
-                        <img class="img_border " width="30%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
+                        <img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
                     @endif
                 @else
                     @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        </div><div style="margin-left:5%;"><img class="img_border " width="30%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
+                        </div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
                     @else
-                        </div><div style="margin-left:5%;"><img class="img_border " width="30%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
+                        </div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
                     @endif
                 @endif
             @endfor
