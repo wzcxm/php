@@ -6,11 +6,21 @@
     <table id="tab_grid" ></table>
     <div id="tb" style="padding:3px">
         <table><tr>
-                <td><span> 代理ID：</span><input id="uid" class="easyui-textbox" style="width: 60px;"></td>
+                <td><span> 代理ID：</span><input id="uid" class="easyui-textbox" style="width: 80px;"></td>
                 <td><a href="#" id="btn_search" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-search'">查询</a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a href="javascript:window.location.reload();"  class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-reload'">刷新</a></td>
+                <td>
+                    <a href="#" id="btn_return" class="easyui-linkbutton" plain="true" style="display:none;"  data-options="iconCls:'icon-undo'">返回</a>
+                    <input type="hidden" id="return_item" value="{{$role}}&{{$role==2?$uid:$aisle}}">
+                </td>
+            </tr></table>
+        <table>
+            <tr>
                 @if(!empty($role))
+                    @if($role==4)
+                        <td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">业绩</a></td>
+                    @endif
                     <td><div class="datagrid-btn-separator"></div></td>
                     @if($role == 4)
                         <td><a href="#" id="btn_role" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-man'">设为总代</a></td>
@@ -19,16 +29,9 @@
                     @else
                         <td></td>
                     @endif
-                    @if($role==4)
-                        <td><div class="datagrid-btn-separator"></div></td>
-                        <td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">查询业绩</a></td>
-                    @endif
                 @endif
-                <td>
-                    <a href="#" id="btn_return" class="easyui-linkbutton" plain="true" style="display:none;"  data-options="iconCls:'icon-undo'">返回</a>
-                    <input type="hidden" id="return_item" value="{{$role}}&{{$role==2?$uid:$aisle}}">
-                </td>
-            </tr></table>
+            </tr>
+        </table>
     </div>
 @endsection
 @section('easyui_script')
@@ -65,9 +68,6 @@
                     $("#btn_return").show();
                     if($("#btn_role")){
                         $("#btn_role").hide();
-                    }
-                    if($("#btn_grade")){
-                        $("#btn_grade").hide();
                     }
                     if($("#btn_qd")){
                         $("#btn_qd").hide();
@@ -119,9 +119,6 @@
                     $("#btn_return").hide();
                     if($("#btn_role")){
                         $("#btn_role").show();
-                    }
-                    if($("#btn_grade")){
-                        $("#btn_grade").show();
                     }
                     if($("#btn_qd")){
                         $("#btn_qd").show();
