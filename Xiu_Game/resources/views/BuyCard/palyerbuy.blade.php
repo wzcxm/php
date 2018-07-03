@@ -132,13 +132,14 @@
                     $.alert('玩家ID错误，找不到该玩家昵称!');
                 }else{
                     $("#nick").html(reslut.user['nickname']);
-                    $("#11").remove();
                     $("#first").empty()
                     if(reslut.user['flag'] == 0){
-                        $("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#11").attr('src','/img/diamond/f300.png');
+                        //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/first.png\" />");
                     }else{
-                        $("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
+                        $("#11").attr('src','/img/diamond/300.png');
+                        //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
                         $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/warning.png\" />");
                     }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
