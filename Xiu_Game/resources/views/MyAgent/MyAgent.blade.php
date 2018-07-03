@@ -19,7 +19,7 @@
             <tr>
                 @if(!empty($role))
                     @if($role==4)
-                        <td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">业绩</a></td>
+                        <td><a href="#" id="btn_grade" class="easyui-linkbutton" plain="true"  data-options="iconCls:'icon-tip'">查看业绩</a></td>
                     @endif
                     <td><div class="datagrid-btn-separator"></div></td>
                     @if($role == 4)
