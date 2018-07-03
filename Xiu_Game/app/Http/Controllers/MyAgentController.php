@@ -208,7 +208,7 @@ class MyAgentController extends Controller
     public function getGrade(Request $request){
         try{
             $paly_uid = isset($request['uid'])?$request['uid']:0;
-            $start = date('2018-04-01');
+            $start = date('Y-m-01');
             $end =  date('Y-m-t 23:59:59', strtotime($start));
             $ret_arr = [];
             $all = DB::select('call search_grade_all('.$paly_uid.')');
