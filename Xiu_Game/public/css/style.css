@@ -63,7 +63,7 @@ body, html {
 }
 .buy_head_bg{
     width:100%;
-    height:30%;
+    height:28%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
     background:url(/img/diamond/query_head.png);
@@ -71,7 +71,7 @@ body, html {
 }
 .buy_bg{
     width:100%;
-    height:70%;
+    height:72%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
     background:url(/img/diamond/query_bg.png?v=20180515);

@@ -14,7 +14,7 @@
     <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018070301">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018070302">
 </head>
 <body>
 <div class="buy_head_bg"></div>
