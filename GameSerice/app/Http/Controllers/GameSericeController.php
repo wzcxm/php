@@ -240,7 +240,7 @@ EOT;
 			if ($version == 5.0) { //
 				$ret = "2";//2-审核版本；0-正常；1-强制更新
 			} else {
-				if($version < 4.5){
+				if($version < 4.4){
 					$ret = "1";
 				}else{
 					$ret = "0";
