@@ -45,7 +45,7 @@
                         }},
                     {field:'uid',title:'ID',width:50},
                     {field:'nickname',title:'昵称',width:90},
-                    {field:'rid',title:'级别',width:60,
+                    {field:'rid',title:'级别',width:70,
                         formatter:function (value) {
                             if(value == 3){
                                 return "总代";
