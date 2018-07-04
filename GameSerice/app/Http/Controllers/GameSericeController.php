@@ -292,8 +292,8 @@ EOT;
                 ->where('player_id',$uid)
                 ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
                 ->orderBy('create_time', 'desc')
-//                ->offset($offset*5)
-//                ->limit(5)
+                ->offset(0)
+                ->limit(50)
                 ->get();
 //            $total = DB::table('v_xx_record')
 //                ->where('player_id',$uid)
