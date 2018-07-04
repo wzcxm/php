@@ -10,8 +10,8 @@ use Xxgame\Business;
 use Xxgame\BusinessList;
 use Xxgame\Playerinfo;
 use Xxgame\Record;
-use Xxgame\RecordCount;
-use Xxgame\RecordCountList;
+//use Xxgame\RecordCount;
+//use Xxgame\RecordCountList;
 use Xxgame\RecordList;
 use Xxgame\Single;
 use Xxgame\SingleList;
@@ -180,20 +180,20 @@ EOT;
             where t.state<>3 and t.tea_id = $teaid and (t.recid = $uid or t.uid = $uid)
 EOT;
             }
-            $player_data =  DB::select($sql);
-            if(empty($player_data)) return "";
-            $recordCountList =  new RecordCountList();
-            foreach ($player_data as $player){
-                $recordCount = new RecordCount();
-                $recordCount->setNickname($player->nickname);
-                $recordCount->setUid($player->uid);
-                $recordCount->setHeadUrl($player->head_img_url);
-                $recordCount->setNumbers($player->before_num);
-                $recordCount->setWinnum($player->before_win);
-                $recordCount->setUpdatedate($end);
-                $recordCountList->getRecordcountList()[] = $recordCount;
-            }
-            return $recordCountList->encode();
+//            $player_data =  DB::select($sql);
+//            if(empty($player_data)) return "";
+//            $recordCountList =  new RecordCountList();
+//            foreach ($player_data as $player){
+//                $recordCount = new RecordCount();
+//                $recordCount->setNickname($player->nickname);
+//                $recordCount->setUid($player->uid);
+//                $recordCount->setHeadUrl($player->head_img_url);
+//                $recordCount->setNumbers($player->before_num);
+//                $recordCount->setWinnum($player->before_win);
+//                $recordCount->setUpdatedate($end);
+//                $recordCountList->getRecordcountList()[] = $recordCount;
+//            }
+//            return $recordCountList->encode();
         }catch (\Exception $e){
             return "";
         }
