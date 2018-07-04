@@ -44,9 +44,9 @@
             <div id="nick" class="buy_nick" >{{empty($player)?"":$player->nickname}}</div>
         </div>
     </div>
-    <div style="margin-top:5px;" >
+    <div style="margin-top:5px;" id="mall">
         @if(!empty($mallList))
-            <div id="mall" style="margin-left:5%;">
+            <div  style="margin-left:5%;">
             @for($i=0;$i<count($mallList);$i++)
                 @if($i%3>0)
                     @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
