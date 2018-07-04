@@ -42,7 +42,7 @@ $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 //下载地址
 $router->get('/GetUrl',function (){
     return ['android'=>'http://fir.im/ysrn',
-        'ios'=>'http://fir.im/5byk',
+        'ios'=>'itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist',
         'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
 });
