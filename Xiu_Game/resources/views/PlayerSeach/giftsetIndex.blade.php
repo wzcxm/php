@@ -51,6 +51,8 @@
                                 return "总代";
                             }else if(value == 4){
                                 return "特级代理";
+                            }else if(value == 6){
+                                return "渠道代理";
                             }else{
                                 return "代理";
                             }
