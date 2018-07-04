@@ -16,7 +16,7 @@
 </head>
 <body>
 <div style="text-align: center;">
-    <a href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.ipa">点击下载</a>
+    <a href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist">点击下载</a>
 </div>
 </body>
 </html>
