@@ -51,23 +51,7 @@ class GameSericeController extends Controller
         }
     }
 
-    private function setUserInfo($uid,$item,$user_lottery){
-        try{
-            //如果是红包，玩家的红包金额增加
-            if($item['value'] > 0){
-                DB::table('xx_user')->where('uid',$uid)->increment('redbag', $item['value']);
-            }
-            //如果是每次分享抽奖，修改每日分享标识，不减推荐人数
-            if($user_lottery == 1){
-                DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
-            }else{ //推荐人数减1
-                DB::table('xx_user')->where('uid',$uid)->decrement('sharenum');
-            }
-            //保存中奖记录
-            DB::table('xx_sys_prize')->insert(['name'=>$item['name'],'uid'=>$uid,'code'=>$item['id'],'type'=>1]);
-        }catch (\Exception $e){
-        }
-    }
+
 
     //游戏分享
     public function share($roomNo=0,$uid=0,$msg='')
@@ -230,13 +214,6 @@ class GameSericeController extends Controller
                 $share = Users::find($uid);
                 if(!empty($share)){
                     $param['share_uid'] = $share->uid;
-                    $param['share_nick'] = $share->nickname;
-                    $param['share_head'] = $share->head_img_url;
-                    if($share->rid == 2 || $share->rid == 3){
-                        $param['share_role'] = 2;
-                    }else{
-                        $param['share_role'] = 1;
-                    }
                 }
                 if(!empty($unionid) ){
                     $user = DB::table('xx_user')->where('unionid',$unionid)->first();
@@ -270,7 +247,11 @@ class GameSericeController extends Controller
                     }
                 }
                 if($type==1){
-                    header('Location:http://fir.im/ysrn');
+                    if(!empty($unionid) ){
+                        header('Location:http://fir.im/ysrn');
+                    }else{
+                        return '<h1>请确认登录，才能下载</h1>';
+                    }
                 }else{
                     $retStr = CommClass::encrypt(json_encode($param));
                     header('Location:http://lottery.wangqianhong.com/index.html?param='.$retStr);
@@ -311,7 +292,7 @@ class GameSericeController extends Controller
     /*
      * 抽奖
      */
-    public function GetLotteryItem($uid){
+    public function GetLotteryItem($uid,$num){
         $user = Users::find($uid);
         if(empty($user)) return 1; //玩家不存在
         //抽奖次数
@@ -319,24 +300,61 @@ class GameSericeController extends Controller
         if($user->lottery == 1){
             $surplus += 1;
         }
-        if($surplus>0){
-            //开始抽奖
+        if($surplus>=$num){
+            $ret_items = [];
+            $ret_json_arr = [];
             $data = collect(config("conf.Prize"));
             if(empty($data)) return ""; //奖品个数不能为空
             $poll  = $data->sum('level');
-            $rand = rand(0,$poll);
-            $nownum = 0;
-            foreach ($data as $item){
-                $nownum += $item['level'];
-                if($rand <= $nownum){
-                    $this->setUserInfo($uid,$item,$user->lottery);
-                    return $item;
-                }
+            for ($i=0;$i<$num;$i++){
+                 //开始抽奖
+                 $rand = rand(0,$poll);
+                 $nownum = 0;
+                 foreach ($data as $item){
+                     $nownum += $item['level'];
+                     if($rand <= $nownum){
+                         array_push($ret_items,$item);
+                         array_push($ret_json_arr,$item['id']);
+                         break;
+                     }
+                 }
             }
+            $red_sum = collect($ret_items)->where('type','red')->sum('value');
+            $bean_sum = collect($ret_items)->where('type','bean')->sum('value');
+            $diamond_sum = collect($ret_items)->where('type','diamond')->sum('value');
+            //保存奖品
+            $this->setUserInfo($uid,$red_sum,$bean_sum,$diamond_sum,$num,$user->lottery);
+            //保存中奖记录
+            foreach ($ret_items as $arr){
+                DB::table('xx_sys_prize')->insert(['name'=>$arr['name'],'uid'=>$uid,'code'=>$arr['id'],'type'=>1]);
+            }
+            return  json_encode($ret_json_arr);
         }else{
             return 2; //抽奖次数为0；
         }
 
+    }
+    private function setUserInfo($uid,$red_sum,$bean_sum,$diamond_sum,$num,$user_lottery){
+        try{
+            //保存奖品
+            if($red_sum > 0){
+                DB::table('xx_user')->where('uid',$uid)->increment('redbag', $red_sum);
+            }
+            if($bean_sum > 0){
+                DB::table('xx_user')->where('uid',$uid)->increment('gold', $bean_sum);
+            }
+            if($diamond_sum>0){
+                DB::table('xx_user')->where('uid',$uid)->increment('roomcard', $diamond_sum);
+            }
+            //如果是每次分享抽奖，修改每日分享标识，不减推荐人数
+            if($user_lottery == 1){
+                DB::table('xx_user')->where('uid',$uid)->update(['lottery' => 2]);
+                DB::table('xx_user')->where('uid',$uid)->decrement('sharenum',$num-1);
+            }else{ //推荐人数减1
+                DB::table('xx_user')->where('uid',$uid)->decrement('sharenum',$num);
+            }
+        }catch (\Exception $e){
+        }
     }
 
     ///购买金豆

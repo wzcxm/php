@@ -1,38 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="redbag_skin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:tween="egret.tween.*">
 	<w:Declarations>
-		<tween:TweenGroup id="showred">
-			<tween:TweenItem target="{label}">
-				<tween:Set>
-					<tween:props>
-						<e:Object scaleX="{0.1}" scaleY="{0.1}"/>
-					</tween:props>
-				</tween:Set>
-				<tween:To duration="250">
-					<tween:props>
-						<e:Object scaleX="{1}" scaleY="{1}"/>
-					</tween:props>
-				</tween:To>
-			</tween:TweenItem>
-			<tween:TweenItem target="{rb_title}">
-				<tween:Set>
-					<tween:props>
-						<e:Object scaleX="{0.1}" scaleY="{0.1}"/>
-					</tween:props>
-				</tween:Set>
-				<tween:To duration="250">
-					<tween:props>
-						<e:Object scaleX="{1}" scaleY="{1}"/>
-					</tween:props>
-				</tween:To>
-			</tween:TweenItem>
+		<tween:TweenGroup id="enlarge">
 			<tween:TweenItem target="{image}">
 				<tween:Set>
 					<tween:props>
-						<e:Object scaleX="{0.1}" scaleY="{0.1}"/>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
 					</tween:props>
 				</tween:Set>
-				<tween:To duration="250">
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_one}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_two}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_three}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_four}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_fives}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{img_jp_six}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_zs_2}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jd}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_zs_5}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_one}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_two}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_three}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleY="{0}" scaleX="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_four}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_fives}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
+					<tween:props>
+						<e:Object scaleX="{1}" scaleY="{1}"/>
+					</tween:props>
+				</tween:To>
+			</tween:TweenItem>
+			<tween:TweenItem target="{lbl_jp_six}">
+				<tween:Set>
+					<tween:props>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
+					</tween:props>
+				</tween:Set>
+				<tween:To duration="500" ease="sineIn">
 					<tween:props>
 						<e:Object scaleX="{1}" scaleY="{1}"/>
 					</tween:props>
@@ -41,22 +197,10 @@
 			<tween:TweenItem target="{rb_query}">
 				<tween:Set>
 					<tween:props>
-						<e:Object scaleX="{0.1}" scaleY="{0.1}"/>
+						<e:Object scaleX="{0}" scaleY="{0}"/>
 					</tween:props>
 				</tween:Set>
-				<tween:To duration="250">
-					<tween:props>
-						<e:Object scaleX="{1}" scaleY="{1}"/>
-					</tween:props>
-				</tween:To>
-			</tween:TweenItem>
-			<tween:TweenItem target="{rb_money}">
-				<tween:Set>
-					<tween:props>
-						<e:Object scaleX="{0.1}" scaleY="{0.1}"/>
-					</tween:props>
-				</tween:Set>
-				<tween:To duration="250">
+				<tween:To duration="500" ease="sineIn">
 					<tween:props>
 						<e:Object scaleX="{1}" scaleY="{1}"/>
 					</tween:props>
@@ -65,17 +209,28 @@
 		</tween:TweenGroup>
 	</w:Declarations>
 	<e:Rect width="750" height="1206" fillAlpha="0.8" horizontalCenter="0" verticalCenter="0"/>
-	<e:Image id="rb_light" source="light_png" horizontalCenter="0" verticalCenter="0"/>
-	<e:Label id="label" text="恭喜您" size="80" top="72" horizontalCenter="0.5" bold="true" fontFamily="KaiTi"/>
-	<e:Label id="rb_title" text="获得888元红包" size="60" horizontalCenter="1" top="192" bold="true" fontFamily="KaiTi"/>
-	<e:Image id="image" source="red_bag_png" verticalCenter="-42" horizontalCenter="0"/>
-	<e:Button id="rb_query" label="" horizontalCenter="0" bottom="211">
+	<e:Image id="image" source="gongxi_png" top="169" horizontalCenter="0.5"/>
+	<e:Image id="img_jp_one" source="diamond_one_png" left="72" top="348" visible="false"/>
+	<e:Image id="img_jp_two" source="bean_png" top="348" horizontalCenter="-8.5" visible="false"/>
+	<e:Image id="img_jp_three" source="diamond_two_png" right="98" top="346" visible="false"/>
+	<e:Image id="img_jp_four" source="0.88_png" left="87" verticalCenter="55.5" visible="false"/>
+	<e:Image id="img_jp_fives" source="5.88_png" verticalCenter="55.5" horizontalCenter="-5" visible="false"/>
+	<e:Image id="img_jp_six" source="8.88_png" right="98" verticalCenter="55.5" visible="false"/>
+	<e:Label id="lbl_zs_2" text="2" x="117.5" y="454" size="40" visible="false"/>
+	<e:Label id="lbl_jd" text="5000" x="321" y="454" size="40" visible="false"/>
+	<e:Label id="lbl_zs_5" text="5" x="610" y="449" size="40" visible="false"/>
+	<e:Label id="lbl_jp_one" text="X2" x="190" y="446.5" size="45" textColor="0xf7540e" visible="false"/>
+	<e:Label id="lbl_jp_two" text="X2" x="444" y="446.5" size="45" textColor="0xF7540E" visible="false"/>
+	<e:Label id="lbl_jp_three" text="X2" x="671" y="446.5" size="45" textColor="0xF7540E" visible="false"/>
+	<e:Label id="lbl_jp_four" text="X2" x="190" y="658.5" size="45" textColor="0xF7540E" visible="false"/>
+	<e:Label id="lbl_jp_fives" text="X2" x="444" y="658.5" size="45" textColor="0xF7540E" visible="false"/>
+	<e:Label id="lbl_jp_six" text="X2" x="671" y="658.5" size="45" textColor="0xF7540E" visible="false"/>
+	<e:Button id="rb_query" label="" bottom="211" horizontalCenter="0">
 		<e:skinName>
-			<e:Skin states="up,down,disabled">
+		<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="query_png"/>
 			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
+		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Label id="rb_money" text="888元" size="80" horizontalCenter="0" top="603" textColor="0xffec02"/>
 </e:Skin>

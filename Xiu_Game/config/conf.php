@@ -5,12 +5,12 @@ return [
             10001,10701,10071,12001,10101
         ],
         "Prize"=>[
-            ['id'=>7,'name'=>'0.18元红包','value'=>0.18,'level'=>10000],
-            ['id'=>5,'name'=>'0.88元红包','value'=>0.88,'level'=>5000],
-            ['id'=>3,'name'=>'8.88元红包','value'=>8.88,'level'=>200],
-            ['id'=>4,'name'=>'88元红包','value'=>88,'level'=>0],
-            ['id'=>6,'name'=>'888元红包','value'=>888,'level'=>0],
-            ['id'=>1,'name'=>'IphoneX','value'=>0,'level'=>0],
-            ['id'=>2,'name'=>'IpadPro','value'=>0,'level'=>0]
+            ['id'=>2,'name'=>'5000金豆','value'=>5000,'level'=>10000,'type'=>'bean'],
+            ['id'=>7,'name'=>'0.88元红包','value'=>0.88,'level'=>5000,'type'=>'red'],
+            ['id'=>6,'name'=>'2钻石','value'=>2,'level'=>2000,'type'=>'diamond'],
+            ['id'=>4,'name'=>'5钻石','value'=>5,'level'=>1000,'type'=>'diamond'],
+            ['id'=>5,'name'=>'5.88元红包','value'=>5.88,'level'=>500,'type'=>'red'],
+            ['id'=>3,'name'=>'8.88元红包','value'=>8.88,'level'=>300,'type'=>'red'],
+            ['id'=>1,'name'=>'IphoneX','value'=>0,'level'=>0,'type'=>'diamond'],
         ]
 ];

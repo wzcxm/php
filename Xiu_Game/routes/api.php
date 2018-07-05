@@ -38,4 +38,4 @@ Route::any('/GetRadList/{uid}','GameSericeController@GetRadList');
 Route::any('/GetObainList/{uid}','GameSericeController@GetObainList');
 
 //抽奖
-Route::any('/GetLottery/{uid}','GameSericeController@GetLotteryItem');
+Route::any('/GetLottery/{uid}/{num}','GameSericeController@GetLotteryItem');

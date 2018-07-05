@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,rule_png,download_png,head_png,pointer_png,prize_png,ring_one_png,ring_two_png,rule_one_png,close_png,query_png,red_bag_png,light_png,roundthumb_png,track_sb_png,def_head_png,message_png,agent_png,myprize_png,myred_png,head_two_png,notes_png,receive_png,obtain_png,receive_list_png,record_list_png,bg_png",
+			"keys": "description_json,rule_png,download_png,head_png,pointer_png,prize_png,ring_one_png,ring_two_png,rule_one_png,close_png,query_png,red_bag_png,light_png,roundthumb_png,track_sb_png,def_head_png,message_png,agent_png,myprize_png,myred_png,head_two_png,notes_png,receive_png,obtain_png,receive_list_png,record_list_png,bg_png,0.88_png,5.88_png,8.88_png,bean_png,diamond_one_png,diamond_two_png,ten_png,gongxi_png",
 			"name": "preload"
 		}
 	],
@@ -140,6 +140,46 @@
 			"name": "bg_png",
 			"type": "image",
 			"url": "assets/index/bg.png"
+		},
+		{
+			"name": "0.88_png",
+			"type": "image",
+			"url": "assets/window/0.88.png"
+		},
+		{
+			"name": "5.88_png",
+			"type": "image",
+			"url": "assets/window/5.88.png"
+		},
+		{
+			"name": "8.88_png",
+			"type": "image",
+			"url": "assets/window/8.88.png"
+		},
+		{
+			"name": "bean_png",
+			"type": "image",
+			"url": "assets/window/bean.png"
+		},
+		{
+			"name": "diamond_one_png",
+			"type": "image",
+			"url": "assets/window/diamond_one.png"
+		},
+		{
+			"name": "diamond_two_png",
+			"type": "image",
+			"url": "assets/window/diamond_two.png"
+		},
+		{
+			"name": "ten_png",
+			"type": "image",
+			"url": "assets/index/ten.png"
+		},
+		{
+			"name": "gongxi_png",
+			"type": "image",
+			"url": "assets/window/gongxi.png"
 		}
 	]
 }

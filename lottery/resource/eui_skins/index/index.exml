@@ -43,14 +43,7 @@
 		</tween:TweenGroup>
 	</w:Declarations>
 	<e:Image source="bg_png" horizontalCenter="0" verticalCenter="0"/>
-	<e:Image id="index_head" source="def_head_png" left="25" top="30"/>
-	<e:Image left="18" top="23" source="head_png"/>
-	<e:Label id="index_nick" text="" left="126" top="35" fontFamily="SimHei" size="35"/>
-	<e:Label id="index_at_name" text="代理ID：" textColor="0xfeeb09" size="35" fontFamily="SimHei" left="126" top="35" visible="false"/>
-	<e:Label id="index_uid" text="ID:" left="126" top="73" fontFamily="SimHei" size="35"/>
-	<e:Label id="index_at_uid" text="" size="35" fontFamily="SimHei" left="126" top="76" visible="false"/>
-	<e:Label id="index_at_nick" text="" fontFamily="SimHei" textColor="0xacaafc" left="18" top="120" visible="false"/>
-	<e:Button id="index_at_agent" label="" left="323" top="23" visible="false">
+	<e:Button id="index_at_agent" label="" top="19" right="28">
 		<e:skinName>
 		<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="agent_png"/>
@@ -58,11 +51,11 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Image id="index_ring_one" source="ring_one_png" y="308" horizontalCenter="0.5"/>
-	<e:Image id="index_ring_two" source="ring_two_png" horizontalCenter="0.5" y="308"/>
-	<e:Image id="index_prize" source="prize_png" horizontalCenter="1" verticalCenter="20"/>
-	<e:Image id="index_pointer" source="pointer_png" horizontalCenter="1" top="489"/>
-	<e:Label id="index_surplus" text="0" x="673" y="333.79" size="26" textColor="0xfde72c"/>
+	<e:Image id="index_ring_one" source="ring_one_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image id="index_ring_two" source="ring_two_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image id="index_prize" source="prize_png" horizontalCenter="0" verticalCenter="0"/>
+	<e:Image id="index_pointer" source="pointer_png" verticalCenter="-27.5" horizontalCenter="0"/>
+	<e:Label id="index_surplus" text="0" x="677" y="313.79" size="26" textColor="0xfde72c"/>
 	<e:Button id="index_rule" label="" left="31" bottom="99">
 		<e:skinName>
 		<e:Skin states="up,down,disabled">
@@ -83,6 +76,14 @@
 		<e:skinName>
 			<e:Skin states="up,down,disabled">
 			<e:Image width="100%" height="100%" source="myprize_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="index_btn_ten" label="" right="47" bottom="261">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="ten_png"/>
 			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
 			</e:Skin>
 		</e:skinName>

@@ -795,14 +795,54 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		return index_skin$Skin4;
 	})(eui.Skin);
 
+	var index_skin$Skin5 = 	(function (_super) {
+		__extends(index_skin$Skin5, _super);
+		function index_skin$Skin5() {
+			_super.call(this);
+			this.skinParts = ["labelDisplay"];
+			
+			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
+			this.states = [
+				new eui.State ("up",
+					[
+					])
+				,
+				new eui.State ("down",
+					[
+					])
+				,
+				new eui.State ("disabled",
+					[
+					])
+			];
+		}
+		var _proto = index_skin$Skin5.prototype;
+
+		_proto._Image1_i = function () {
+			var t = new eui.Image();
+			t.percentHeight = 100;
+			t.source = "ten_png";
+			t.percentWidth = 100;
+			return t;
+		};
+		_proto.labelDisplay_i = function () {
+			var t = new eui.Label();
+			this.labelDisplay = t;
+			t.horizontalCenter = 0;
+			t.verticalCenter = 0;
+			return t;
+		};
+		return index_skin$Skin5;
+	})(eui.Skin);
+
 	function index_skin() {
 		_super.call(this);
-		this.skinParts = ["effect","index_head","index_nick","index_at_name","index_uid","index_at_uid","index_at_nick","index_at_agent","index_ring_one","index_ring_two","index_prize","index_pointer","index_surplus","index_rule","index_download","index_myprize"];
+		this.skinParts = ["effect","index_at_agent","index_ring_one","index_ring_two","index_prize","index_pointer","index_surplus","index_rule","index_download","index_myprize","index_btn_ten"];
 		
 		this.height = 1206;
 		this.width = 750;
 		this.effect_i();
-		this.elementsContent = [this._Image1_i(),this.index_head_i(),this._Image2_i(),this.index_nick_i(),this.index_at_name_i(),this.index_uid_i(),this.index_at_uid_i(),this.index_at_nick_i(),this.index_at_agent_i(),this.index_ring_one_i(),this.index_ring_two_i(),this.index_prize_i(),this.index_pointer_i(),this.index_surplus_i(),this.index_rule_i(),this.index_download_i(),this.index_myprize_i()];
+		this.elementsContent = [this._Image1_i(),this.index_at_agent_i(),this.index_ring_one_i(),this.index_ring_two_i(),this.index_prize_i(),this.index_pointer_i(),this.index_surplus_i(),this.index_rule_i(),this.index_download_i(),this.index_myprize_i(),this.index_btn_ten_i()];
 		
 		eui.Binding.$bindProperties(this, ["index_ring_one"],[0],this._TweenItem1,"target")
 		eui.Binding.$bindProperties(this, [1],[],this._Object1,"alpha")
@@ -920,115 +960,45 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.verticalCenter = 0;
 		return t;
 	};
-	_proto.index_head_i = function () {
-		var t = new eui.Image();
-		this.index_head = t;
-		t.left = 25;
-		t.source = "def_head_png";
-		t.top = 30;
-		return t;
-	};
-	_proto._Image2_i = function () {
-		var t = new eui.Image();
-		t.left = 18;
-		t.source = "head_png";
-		t.top = 23;
-		return t;
-	};
-	_proto.index_nick_i = function () {
-		var t = new eui.Label();
-		this.index_nick = t;
-		t.fontFamily = "SimHei";
-		t.left = 126;
-		t.size = 35;
-		t.text = "";
-		t.top = 35;
-		return t;
-	};
-	_proto.index_at_name_i = function () {
-		var t = new eui.Label();
-		this.index_at_name = t;
-		t.fontFamily = "SimHei";
-		t.left = 126;
-		t.size = 35;
-		t.text = "代理ID：";
-		t.textColor = 0xfeeb09;
-		t.top = 35;
-		t.visible = false;
-		return t;
-	};
-	_proto.index_uid_i = function () {
-		var t = new eui.Label();
-		this.index_uid = t;
-		t.fontFamily = "SimHei";
-		t.left = 126;
-		t.size = 35;
-		t.text = "ID:";
-		t.top = 73;
-		return t;
-	};
-	_proto.index_at_uid_i = function () {
-		var t = new eui.Label();
-		this.index_at_uid = t;
-		t.fontFamily = "SimHei";
-		t.left = 126;
-		t.size = 35;
-		t.text = "";
-		t.top = 76;
-		t.visible = false;
-		return t;
-	};
-	_proto.index_at_nick_i = function () {
-		var t = new eui.Label();
-		this.index_at_nick = t;
-		t.fontFamily = "SimHei";
-		t.left = 18;
-		t.text = "";
-		t.textColor = 0xacaafc;
-		t.top = 120;
-		t.visible = false;
-		return t;
-	};
 	_proto.index_at_agent_i = function () {
 		var t = new eui.Button();
 		this.index_at_agent = t;
 		t.label = "";
-		t.left = 323;
-		t.top = 23;
-		t.visible = false;
+		t.right = 28;
+		t.top = 19;
 		t.skinName = index_skin$Skin1;
 		return t;
 	};
 	_proto.index_ring_one_i = function () {
 		var t = new eui.Image();
 		this.index_ring_one = t;
-		t.horizontalCenter = 0.5;
+		t.horizontalCenter = 0;
 		t.source = "ring_one_png";
-		t.y = 308;
+		t.verticalCenter = 0;
 		return t;
 	};
 	_proto.index_ring_two_i = function () {
 		var t = new eui.Image();
 		this.index_ring_two = t;
-		t.horizontalCenter = 0.5;
+		t.horizontalCenter = 0;
 		t.source = "ring_two_png";
-		t.y = 308;
+		t.verticalCenter = 0;
 		return t;
 	};
 	_proto.index_prize_i = function () {
 		var t = new eui.Image();
 		this.index_prize = t;
-		t.horizontalCenter = 1;
+		t.horizontalCenter = 0;
 		t.source = "prize_png";
-		t.verticalCenter = 20;
+		t.verticalCenter = 0;
 		return t;
 	};
 	_proto.index_pointer_i = function () {
 		var t = new eui.Image();
 		this.index_pointer = t;
-		t.horizontalCenter = 1;
+		t.horizontalCenter = 0;
 		t.source = "pointer_png";
-		t.top = 489;
+		t.verticalCenter = -27.5;
 		return t;
 	};
 	_proto.index_surplus_i = function () {
@@ -1037,8 +1007,8 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.size = 26;
 		t.text = "0";
 		t.textColor = 0xfde72c;
-		t.x = 673;
-		t.y = 333.79;
+		t.x = 677;
+		t.y = 313.79;
 		return t;
 	};
 	_proto.index_rule_i = function () {
@@ -1066,6 +1036,15 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.label = "";
 		t.right = 30;
 		t.skinName = index_skin$Skin4;
+		return t;
+	};
+	_proto.index_btn_ten_i = function () {
+		var t = new eui.Button();
+		this.index_btn_ten = t;
+		t.bottom = 261;
+		t.label = "";
+		t.right = 47;
+		t.skinName = index_skin$Skin5;
 		return t;
 	};
 	return index_skin;
@@ -1103,9 +1082,9 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	return datarow;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/message.exml'] = window.message_skin = (function (_super) {
 	__extends(message_skin, _super);
-	var message_skin$Skin5 = 	(function (_super) {
-		__extends(message_skin$Skin5, _super);
-		function message_skin$Skin5() {
+	var message_skin$Skin6 = 	(function (_super) {
+		__extends(message_skin$Skin6, _super);
+		function message_skin$Skin6() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -1124,7 +1103,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 					])
 			];
 		}
-		var _proto = message_skin$Skin5.prototype;
+		var _proto = message_skin$Skin6.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -1140,7 +1119,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			t.verticalCenter = 0;
 			return t;
 		};
-		return message_skin$Skin5;
+		return message_skin$Skin6;
 	})(eui.Skin);
 
 	function message_skin() {
@@ -1188,52 +1167,12 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 420;
 		t.horizontalCenter = 0.5;
 		t.label = "";
-		t.skinName = message_skin$Skin5;
+		t.skinName = message_skin$Skin6;
 		return t;
 	};
 	return message_skin;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/myprize.exml'] = window.myprize_skin = (function (_super) {
 	__extends(myprize_skin, _super);
-	var myprize_skin$Skin6 = 	(function (_super) {
-		__extends(myprize_skin$Skin6, _super);
-		function myprize_skin$Skin6() {
-			_super.call(this);
-			this.skinParts = ["labelDisplay"];
-			
-			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
-			this.states = [
-				new eui.State ("up",
-					[
-					])
-				,
-				new eui.State ("down",
-					[
-					])
-				,
-				new eui.State ("disabled",
-					[
-					])
-			];
-		}
-		var _proto = myprize_skin$Skin6.prototype;
-
-		_proto._Image1_i = function () {
-			var t = new eui.Image();
-			t.percentHeight = 100;
-			t.source = "close_png";
-			t.percentWidth = 100;
-			return t;
-		};
-		_proto.labelDisplay_i = function () {
-			var t = new eui.Label();
-			this.labelDisplay = t;
-			t.horizontalCenter = 0;
-			t.verticalCenter = 0;
-			return t;
-		};
-		return myprize_skin$Skin6;
-	})(eui.Skin);
-
 	var myprize_skin$Skin7 = 	(function (_super) {
 		__extends(myprize_skin$Skin7, _super);
 		function myprize_skin$Skin7() {
@@ -1260,7 +1199,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
 			t.percentHeight = 100;
-			t.source = "obtain_png";
+			t.source = "close_png";
 			t.percentWidth = 100;
 			return t;
 		};
@@ -1300,7 +1239,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
 			t.percentHeight = 100;
-			t.source = "notes_png";
+			t.source = "obtain_png";
 			t.percentWidth = 100;
 			return t;
 		};
@@ -1340,7 +1279,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
 			t.percentHeight = 100;
-			t.source = "receive_png";
+			t.source = "notes_png";
 			t.percentWidth = 100;
 			return t;
 		};
@@ -1352,6 +1291,46 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			return t;
 		};
 		return myprize_skin$Skin9;
+	})(eui.Skin);
+
+	var myprize_skin$Skin10 = 	(function (_super) {
+		__extends(myprize_skin$Skin10, _super);
+		function myprize_skin$Skin10() {
+			_super.call(this);
+			this.skinParts = ["labelDisplay"];
+			
+			this.elementsContent = [this._Image1_i(),this.labelDisplay_i()];
+			this.states = [
+				new eui.State ("up",
+					[
+					])
+				,
+				new eui.State ("down",
+					[
+					])
+				,
+				new eui.State ("disabled",
+					[
+					])
+			];
+		}
+		var _proto = myprize_skin$Skin10.prototype;
+
+		_proto._Image1_i = function () {
+			var t = new eui.Image();
+			t.percentHeight = 100;
+			t.source = "receive_png";
+			t.percentWidth = 100;
+			return t;
+		};
+		_proto.labelDisplay_i = function () {
+			var t = new eui.Label();
+			this.labelDisplay = t;
+			t.horizontalCenter = 0;
+			t.verticalCenter = 0;
+			return t;
+		};
+		return myprize_skin$Skin10;
 	})(eui.Skin);
 
 	function myprize_skin() {
@@ -1386,7 +1365,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 126;
 		t.horizontalCenter = 0;
 		t.label = "";
-		t.skinName = myprize_skin$Skin6;
+		t.skinName = myprize_skin$Skin7;
 		return t;
 	};
 	_proto.mp_head_i = function () {
@@ -1443,7 +1422,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 465;
 		t.horizontalCenter = 0.5;
 		t.label = "";
-		t.skinName = myprize_skin$Skin7;
+		t.skinName = myprize_skin$Skin8;
 		return t;
 	};
 	_proto.mp_notes_i = function () {
@@ -1452,7 +1431,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 339;
 		t.label = "";
 		t.left = 122;
-		t.skinName = myprize_skin$Skin8;
+		t.skinName = myprize_skin$Skin9;
 		return t;
 	};
 	_proto.mp_receive_i = function () {
@@ -1461,15 +1440,15 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 339;
 		t.label = "";
 		t.right = 123;
-		t.skinName = myprize_skin$Skin9;
+		t.skinName = myprize_skin$Skin10;
 		return t;
 	};
 	return myprize_skin;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/obainlist.exml'] = window.obainlist_skin = (function (_super) {
 	__extends(obainlist_skin, _super);
-	var obainlist_skin$Skin10 = 	(function (_super) {
-		__extends(obainlist_skin$Skin10, _super);
-		function obainlist_skin$Skin10() {
+	var obainlist_skin$Skin11 = 	(function (_super) {
+		__extends(obainlist_skin$Skin11, _super);
+		function obainlist_skin$Skin11() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -1488,7 +1467,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 					])
 			];
 		}
-		var _proto = obainlist_skin$Skin10.prototype;
+		var _proto = obainlist_skin$Skin11.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -1504,7 +1483,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			t.verticalCenter = 0;
 			return t;
 		};
-		return obainlist_skin$Skin10;
+		return obainlist_skin$Skin11;
 	})(eui.Skin);
 
 	function obainlist_skin() {
@@ -1539,7 +1518,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 267;
 		t.horizontalCenter = 0;
 		t.label = "";
-		t.skinName = obainlist_skin$Skin10;
+		t.skinName = obainlist_skin$Skin11;
 		return t;
 	};
 	_proto._Scroller1_i = function () {
@@ -1569,9 +1548,9 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	return obainlist_skin;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/record.exml'] = window.record_skin = (function (_super) {
 	__extends(record_skin, _super);
-	var record_skin$Skin11 = 	(function (_super) {
-		__extends(record_skin$Skin11, _super);
-		function record_skin$Skin11() {
+	var record_skin$Skin12 = 	(function (_super) {
+		__extends(record_skin$Skin12, _super);
+		function record_skin$Skin12() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -1590,7 +1569,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 					])
 			];
 		}
-		var _proto = record_skin$Skin11.prototype;
+		var _proto = record_skin$Skin12.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -1606,7 +1585,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			t.verticalCenter = 0;
 			return t;
 		};
-		return record_skin$Skin11;
+		return record_skin$Skin12;
 	})(eui.Skin);
 
 	function record_skin() {
@@ -1639,7 +1618,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 267;
 		t.horizontalCenter = 0;
 		t.label = "";
-		t.skinName = record_skin$Skin11;
+		t.skinName = record_skin$Skin12;
 		return t;
 	};
 	_proto._Scroller1_i = function () {
@@ -1669,9 +1648,9 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	return record_skin;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/redbag.exml'] = window.redbag_skin = (function (_super) {
 	__extends(redbag_skin, _super);
-	var redbag_skin$Skin12 = 	(function (_super) {
-		__extends(redbag_skin$Skin12, _super);
-		function redbag_skin$Skin12() {
+	var redbag_skin$Skin13 = 	(function (_super) {
+		__extends(redbag_skin$Skin13, _super);
+		function redbag_skin$Skin13() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -1690,7 +1669,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 					])
 			];
 		}
-		var _proto = redbag_skin$Skin12.prototype;
+		var _proto = redbag_skin$Skin13.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -1706,50 +1685,110 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			t.verticalCenter = 0;
 			return t;
 		};
-		return redbag_skin$Skin12;
+		return redbag_skin$Skin13;
 	})(eui.Skin);
 
 	function redbag_skin() {
 		_super.call(this);
-		this.skinParts = ["showred","rb_light","label","rb_title","image","rb_query","rb_money"];
+		this.skinParts = ["enlarge","image","img_jp_one","img_jp_two","img_jp_three","img_jp_four","img_jp_fives","img_jp_six","lbl_zs_2","lbl_jd","lbl_zs_5","lbl_jp_one","lbl_jp_two","lbl_jp_three","lbl_jp_four","lbl_jp_fives","lbl_jp_six","rb_query"];
 		
 		this.height = 1206;
 		this.width = 750;
-		this.showred_i();
-		this.elementsContent = [this._Rect1_i(),this.rb_light_i(),this.label_i(),this.rb_title_i(),this.image_i(),this.rb_query_i(),this.rb_money_i()];
+		this.enlarge_i();
+		this.elementsContent = [this._Rect1_i(),this.image_i(),this.img_jp_one_i(),this.img_jp_two_i(),this.img_jp_three_i(),this.img_jp_four_i(),this.img_jp_fives_i(),this.img_jp_six_i(),this.lbl_zs_2_i(),this.lbl_jd_i(),this.lbl_zs_5_i(),this.lbl_jp_one_i(),this.lbl_jp_two_i(),this.lbl_jp_three_i(),this.lbl_jp_four_i(),this.lbl_jp_fives_i(),this.lbl_jp_six_i(),this.rb_query_i()];
 		
-		eui.Binding.$bindProperties(this, ["label"],[0],this._TweenItem1,"target")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object1,"scaleX")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object1,"scaleY")
+		eui.Binding.$bindProperties(this, ["image"],[0],this._TweenItem1,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object1,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object1,"scaleY")
 		eui.Binding.$bindProperties(this, [1],[],this._Object2,"scaleX")
 		eui.Binding.$bindProperties(this, [1],[],this._Object2,"scaleY")
-		eui.Binding.$bindProperties(this, ["rb_title"],[0],this._TweenItem2,"target")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object3,"scaleX")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object3,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_one"],[0],this._TweenItem2,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object3,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object3,"scaleY")
 		eui.Binding.$bindProperties(this, [1],[],this._Object4,"scaleX")
 		eui.Binding.$bindProperties(this, [1],[],this._Object4,"scaleY")
-		eui.Binding.$bindProperties(this, ["image"],[0],this._TweenItem3,"target")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object5,"scaleX")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object5,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_two"],[0],this._TweenItem3,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object5,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object5,"scaleY")
 		eui.Binding.$bindProperties(this, [1],[],this._Object6,"scaleX")
 		eui.Binding.$bindProperties(this, [1],[],this._Object6,"scaleY")
-		eui.Binding.$bindProperties(this, ["rb_query"],[0],this._TweenItem4,"target")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object7,"scaleX")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object7,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_three"],[0],this._TweenItem4,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object7,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object7,"scaleY")
 		eui.Binding.$bindProperties(this, [1],[],this._Object8,"scaleX")
 		eui.Binding.$bindProperties(this, [1],[],this._Object8,"scaleY")
-		eui.Binding.$bindProperties(this, ["rb_money"],[0],this._TweenItem5,"target")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object9,"scaleX")
-		eui.Binding.$bindProperties(this, [0.1],[],this._Object9,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_four"],[0],this._TweenItem5,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object9,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object9,"scaleY")
 		eui.Binding.$bindProperties(this, [1],[],this._Object10,"scaleX")
 		eui.Binding.$bindProperties(this, [1],[],this._Object10,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_fives"],[0],this._TweenItem6,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object11,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object11,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object12,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object12,"scaleY")
+		eui.Binding.$bindProperties(this, ["img_jp_six"],[0],this._TweenItem7,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object13,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object13,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object14,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object14,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_zs_2"],[0],this._TweenItem8,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object15,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object15,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object16,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object16,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jd"],[0],this._TweenItem9,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object17,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object17,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object18,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object18,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_zs_5"],[0],this._TweenItem10,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object19,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object19,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object20,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object20,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_one"],[0],this._TweenItem11,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object21,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object21,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object22,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object22,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_two"],[0],this._TweenItem12,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object23,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object23,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object24,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object24,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_three"],[0],this._TweenItem13,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object25,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object25,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object26,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object26,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_four"],[0],this._TweenItem14,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object27,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object27,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object28,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object28,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_fives"],[0],this._TweenItem15,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object29,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object29,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object30,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object30,"scaleY")
+		eui.Binding.$bindProperties(this, ["lbl_jp_six"],[0],this._TweenItem16,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object31,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object31,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object32,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object32,"scaleY")
+		eui.Binding.$bindProperties(this, ["rb_query"],[0],this._TweenItem17,"target")
+		eui.Binding.$bindProperties(this, [0],[],this._Object33,"scaleX")
+		eui.Binding.$bindProperties(this, [0],[],this._Object33,"scaleY")
+		eui.Binding.$bindProperties(this, [1],[],this._Object34,"scaleX")
+		eui.Binding.$bindProperties(this, [1],[],this._Object34,"scaleY")
 	}
 	var _proto = redbag_skin.prototype;
 
-	_proto.showred_i = function () {
+	_proto.enlarge_i = function () {
 		var t = new egret.tween.TweenGroup();
-		this.showred = t;
-		t.items = [this._TweenItem1_i(),this._TweenItem2_i(),this._TweenItem3_i(),this._TweenItem4_i(),this._TweenItem5_i()];
+		this.enlarge = t;
+		t.items = [this._TweenItem1_i(),this._TweenItem2_i(),this._TweenItem3_i(),this._TweenItem4_i(),this._TweenItem5_i(),this._TweenItem6_i(),this._TweenItem7_i(),this._TweenItem8_i(),this._TweenItem9_i(),this._TweenItem10_i(),this._TweenItem11_i(),this._TweenItem12_i(),this._TweenItem13_i(),this._TweenItem14_i(),this._TweenItem15_i(),this._TweenItem16_i(),this._TweenItem17_i()];
 		return t;
 	};
 	_proto._TweenItem1_i = function () {
@@ -1770,7 +1809,8 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	};
 	_proto._To1_i = function () {
 		var t = new egret.tween.To();
-		t.duration = 250;
+		t.duration = 500;
+		t.ease = "sineIn";
 		t.props = this._Object2_i();
 		return t;
 	};
@@ -1797,7 +1837,8 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	};
 	_proto._To2_i = function () {
 		var t = new egret.tween.To();
-		t.duration = 250;
+		t.duration = 500;
+		t.ease = "sineIn";
 		t.props = this._Object4_i();
 		return t;
 	};
@@ -1824,7 +1865,8 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	};
 	_proto._To3_i = function () {
 		var t = new egret.tween.To();
-		t.duration = 250;
+		t.duration = 500;
+		t.ease = "sineIn";
 		t.props = this._Object6_i();
 		return t;
 	};
@@ -1851,7 +1893,8 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	};
 	_proto._To4_i = function () {
 		var t = new egret.tween.To();
-		t.duration = 250;
+		t.duration = 500;
+		t.ease = "sineIn";
 		t.props = this._Object8_i();
 		return t;
 	};
@@ -1878,13 +1921,350 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 	};
 	_proto._To5_i = function () {
 		var t = new egret.tween.To();
-		t.duration = 250;
+		t.duration = 500;
+		t.ease = "sineIn";
 		t.props = this._Object10_i();
 		return t;
 	};
 	_proto._Object10_i = function () {
 		var t = {};
 		this._Object10 = t;
+		return t;
+	};
+	_proto._TweenItem6_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem6 = t;
+		t.paths = [this._Set6_i(),this._To6_i()];
+		return t;
+	};
+	_proto._Set6_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object11_i();
+		return t;
+	};
+	_proto._Object11_i = function () {
+		var t = {};
+		this._Object11 = t;
+		return t;
+	};
+	_proto._To6_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object12_i();
+		return t;
+	};
+	_proto._Object12_i = function () {
+		var t = {};
+		this._Object12 = t;
+		return t;
+	};
+	_proto._TweenItem7_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem7 = t;
+		t.paths = [this._Set7_i(),this._To7_i()];
+		return t;
+	};
+	_proto._Set7_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object13_i();
+		return t;
+	};
+	_proto._Object13_i = function () {
+		var t = {};
+		this._Object13 = t;
+		return t;
+	};
+	_proto._To7_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object14_i();
+		return t;
+	};
+	_proto._Object14_i = function () {
+		var t = {};
+		this._Object14 = t;
+		return t;
+	};
+	_proto._TweenItem8_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem8 = t;
+		t.paths = [this._Set8_i(),this._To8_i()];
+		return t;
+	};
+	_proto._Set8_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object15_i();
+		return t;
+	};
+	_proto._Object15_i = function () {
+		var t = {};
+		this._Object15 = t;
+		return t;
+	};
+	_proto._To8_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object16_i();
+		return t;
+	};
+	_proto._Object16_i = function () {
+		var t = {};
+		this._Object16 = t;
+		return t;
+	};
+	_proto._TweenItem9_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem9 = t;
+		t.paths = [this._Set9_i(),this._To9_i()];
+		return t;
+	};
+	_proto._Set9_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object17_i();
+		return t;
+	};
+	_proto._Object17_i = function () {
+		var t = {};
+		this._Object17 = t;
+		return t;
+	};
+	_proto._To9_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object18_i();
+		return t;
+	};
+	_proto._Object18_i = function () {
+		var t = {};
+		this._Object18 = t;
+		return t;
+	};
+	_proto._TweenItem10_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem10 = t;
+		t.paths = [this._Set10_i(),this._To10_i()];
+		return t;
+	};
+	_proto._Set10_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object19_i();
+		return t;
+	};
+	_proto._Object19_i = function () {
+		var t = {};
+		this._Object19 = t;
+		return t;
+	};
+	_proto._To10_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object20_i();
+		return t;
+	};
+	_proto._Object20_i = function () {
+		var t = {};
+		this._Object20 = t;
+		return t;
+	};
+	_proto._TweenItem11_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem11 = t;
+		t.paths = [this._Set11_i(),this._To11_i()];
+		return t;
+	};
+	_proto._Set11_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object21_i();
+		return t;
+	};
+	_proto._Object21_i = function () {
+		var t = {};
+		this._Object21 = t;
+		return t;
+	};
+	_proto._To11_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object22_i();
+		return t;
+	};
+	_proto._Object22_i = function () {
+		var t = {};
+		this._Object22 = t;
+		return t;
+	};
+	_proto._TweenItem12_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem12 = t;
+		t.paths = [this._Set12_i(),this._To12_i()];
+		return t;
+	};
+	_proto._Set12_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object23_i();
+		return t;
+	};
+	_proto._Object23_i = function () {
+		var t = {};
+		this._Object23 = t;
+		return t;
+	};
+	_proto._To12_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object24_i();
+		return t;
+	};
+	_proto._Object24_i = function () {
+		var t = {};
+		this._Object24 = t;
+		return t;
+	};
+	_proto._TweenItem13_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem13 = t;
+		t.paths = [this._Set13_i(),this._To13_i()];
+		return t;
+	};
+	_proto._Set13_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object25_i();
+		return t;
+	};
+	_proto._Object25_i = function () {
+		var t = {};
+		this._Object25 = t;
+		return t;
+	};
+	_proto._To13_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object26_i();
+		return t;
+	};
+	_proto._Object26_i = function () {
+		var t = {};
+		this._Object26 = t;
+		return t;
+	};
+	_proto._TweenItem14_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem14 = t;
+		t.paths = [this._Set14_i(),this._To14_i()];
+		return t;
+	};
+	_proto._Set14_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object27_i();
+		return t;
+	};
+	_proto._Object27_i = function () {
+		var t = {};
+		this._Object27 = t;
+		return t;
+	};
+	_proto._To14_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object28_i();
+		return t;
+	};
+	_proto._Object28_i = function () {
+		var t = {};
+		this._Object28 = t;
+		return t;
+	};
+	_proto._TweenItem15_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem15 = t;
+		t.paths = [this._Set15_i(),this._To15_i()];
+		return t;
+	};
+	_proto._Set15_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object29_i();
+		return t;
+	};
+	_proto._Object29_i = function () {
+		var t = {};
+		this._Object29 = t;
+		return t;
+	};
+	_proto._To15_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object30_i();
+		return t;
+	};
+	_proto._Object30_i = function () {
+		var t = {};
+		this._Object30 = t;
+		return t;
+	};
+	_proto._TweenItem16_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem16 = t;
+		t.paths = [this._Set16_i(),this._To16_i()];
+		return t;
+	};
+	_proto._Set16_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object31_i();
+		return t;
+	};
+	_proto._Object31_i = function () {
+		var t = {};
+		this._Object31 = t;
+		return t;
+	};
+	_proto._To16_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object32_i();
+		return t;
+	};
+	_proto._Object32_i = function () {
+		var t = {};
+		this._Object32 = t;
+		return t;
+	};
+	_proto._TweenItem17_i = function () {
+		var t = new egret.tween.TweenItem();
+		this._TweenItem17 = t;
+		t.paths = [this._Set17_i(),this._To17_i()];
+		return t;
+	};
+	_proto._Set17_i = function () {
+		var t = new egret.tween.Set();
+		t.props = this._Object33_i();
+		return t;
+	};
+	_proto._Object33_i = function () {
+		var t = {};
+		this._Object33 = t;
+		return t;
+	};
+	_proto._To17_i = function () {
+		var t = new egret.tween.To();
+		t.duration = 500;
+		t.ease = "sineIn";
+		t.props = this._Object34_i();
+		return t;
+	};
+	_proto._Object34_i = function () {
+		var t = {};
+		this._Object34 = t;
 		return t;
 	};
 	_proto._Rect1_i = function () {
@@ -1896,42 +2276,162 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.width = 750;
 		return t;
 	};
-	_proto.rb_light_i = function () {
-		var t = new eui.Image();
-		this.rb_light = t;
-		t.horizontalCenter = 0;
-		t.source = "light_png";
-		t.verticalCenter = 0;
-		return t;
-	};
-	_proto.label_i = function () {
-		var t = new eui.Label();
-		this.label = t;
-		t.bold = true;
-		t.fontFamily = "KaiTi";
-		t.horizontalCenter = 0.5;
-		t.size = 80;
-		t.text = "恭喜您";
-		t.top = 72;
-		return t;
-	};
-	_proto.rb_title_i = function () {
-		var t = new eui.Label();
-		this.rb_title = t;
-		t.bold = true;
-		t.fontFamily = "KaiTi";
-		t.horizontalCenter = 1;
-		t.size = 60;
-		t.text = "获得888元红包";
-		t.top = 192;
-		return t;
-	};
 	_proto.image_i = function () {
 		var t = new eui.Image();
 		this.image = t;
-		t.horizontalCenter = 0;
-		t.source = "red_bag_png";
-		t.verticalCenter = -42;
+		t.horizontalCenter = 0.5;
+		t.source = "gongxi_png";
+		t.top = 169;
+		return t;
+	};
+	_proto.img_jp_one_i = function () {
+		var t = new eui.Image();
+		this.img_jp_one = t;
+		t.left = 72;
+		t.source = "diamond_one_png";
+		t.top = 348;
+		t.visible = false;
+		return t;
+	};
+	_proto.img_jp_two_i = function () {
+		var t = new eui.Image();
+		this.img_jp_two = t;
+		t.horizontalCenter = -8.5;
+		t.source = "bean_png";
+		t.top = 348;
+		t.visible = false;
+		return t;
+	};
+	_proto.img_jp_three_i = function () {
+		var t = new eui.Image();
+		this.img_jp_three = t;
+		t.right = 98;
+		t.source = "diamond_two_png";
+		t.top = 346;
+		t.visible = false;
+		return t;
+	};
+	_proto.img_jp_four_i = function () {
+		var t = new eui.Image();
+		this.img_jp_four = t;
+		t.left = 87;
+		t.source = "0.88_png";
+		t.verticalCenter = 55.5;
+		t.visible = false;
+		return t;
+	};
+	_proto.img_jp_fives_i = function () {
+		var t = new eui.Image();
+		this.img_jp_fives = t;
+		t.horizontalCenter = -5;
+		t.source = "5.88_png";
+		t.verticalCenter = 55.5;
+		t.visible = false;
+		return t;
+	};
+	_proto.img_jp_six_i = function () {
+		var t = new eui.Image();
+		this.img_jp_six = t;
+		t.right = 98;
+		t.source = "8.88_png";
+		t.verticalCenter = 55.5;
+		t.visible = false;
+		return t;
+	};
+	_proto.lbl_zs_2_i = function () {
+		var t = new eui.Label();
+		this.lbl_zs_2 = t;
+		t.size = 40;
+		t.text = "2";
+		t.visible = false;
+		t.x = 117.5;
+		t.y = 454;
+		return t;
+	};
+	_proto.lbl_jd_i = function () {
+		var t = new eui.Label();
+		this.lbl_jd = t;
+		t.size = 40;
+		t.text = "5000";
+		t.visible = false;
+		t.x = 321;
+		t.y = 454;
+		return t;
+	};
+	_proto.lbl_zs_5_i = function () {
+		var t = new eui.Label();
+		this.lbl_zs_5 = t;
+		t.size = 40;
+		t.text = "5";
+		t.visible = false;
+		t.x = 610;
+		t.y = 449;
+		return t;
+	};
+	_proto.lbl_jp_one_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_one = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xf7540e;
+		t.visible = false;
+		t.x = 190;
+		t.y = 446.5;
+		return t;
+	};
+	_proto.lbl_jp_two_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_two = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xF7540E;
+		t.visible = false;
+		t.x = 444;
+		t.y = 446.5;
+		return t;
+	};
+	_proto.lbl_jp_three_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_three = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xF7540E;
+		t.visible = false;
+		t.x = 671;
+		t.y = 446.5;
+		return t;
+	};
+	_proto.lbl_jp_four_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_four = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xF7540E;
+		t.visible = false;
+		t.x = 190;
+		t.y = 658.5;
+		return t;
+	};
+	_proto.lbl_jp_fives_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_fives = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xF7540E;
+		t.visible = false;
+		t.x = 444;
+		t.y = 658.5;
+		return t;
+	};
+	_proto.lbl_jp_six_i = function () {
+		var t = new eui.Label();
+		this.lbl_jp_six = t;
+		t.size = 45;
+		t.text = "X2";
+		t.textColor = 0xF7540E;
+		t.visible = false;
+		t.x = 671;
+		t.y = 658.5;
 		return t;
 	};
 	_proto.rb_query_i = function () {
@@ -1940,25 +2440,15 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 211;
 		t.horizontalCenter = 0;
 		t.label = "";
-		t.skinName = redbag_skin$Skin12;
-		return t;
-	};
-	_proto.rb_money_i = function () {
-		var t = new eui.Label();
-		this.rb_money = t;
-		t.horizontalCenter = 0;
-		t.size = 80;
-		t.text = "888元";
-		t.textColor = 0xffec02;
-		t.top = 603;
+		t.skinName = redbag_skin$Skin13;
 		return t;
 	};
 	return redbag_skin;
 })(eui.Skin);generateEUI.paths['resource/eui_skins/window/rule.exml'] = window.rule_skin = (function (_super) {
 	__extends(rule_skin, _super);
-	var rule_skin$Skin13 = 	(function (_super) {
-		__extends(rule_skin$Skin13, _super);
-		function rule_skin$Skin13() {
+	var rule_skin$Skin14 = 	(function (_super) {
+		__extends(rule_skin$Skin14, _super);
+		function rule_skin$Skin14() {
 			_super.call(this);
 			this.skinParts = ["labelDisplay"];
 			
@@ -1977,7 +2467,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 					])
 			];
 		}
-		var _proto = rule_skin$Skin13.prototype;
+		var _proto = rule_skin$Skin14.prototype;
 
 		_proto._Image1_i = function () {
 			var t = new eui.Image();
@@ -1993,7 +2483,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 			t.verticalCenter = 0;
 			return t;
 		};
-		return rule_skin$Skin13;
+		return rule_skin$Skin14;
 	})(eui.Skin);
 
 	function rule_skin() {
@@ -2026,7 +2516,7 @@ generateEUI.paths['resource/eui_skins/ButtonSkin.exml'] = window.skins.ButtonSki
 		t.bottom = 267;
 		t.horizontalCenter = 0.5;
 		t.label = "";
-		t.skinName = rule_skin$Skin13;
+		t.skinName = rule_skin$Skin14;
 		return t;
 	};
 	return rule_skin;
