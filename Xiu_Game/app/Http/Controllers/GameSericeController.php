@@ -294,7 +294,7 @@ class GameSericeController extends Controller
      */
     public function GetLotteryItem($uid,$num){
         $user = Users::find($uid);
-        if(empty($user)) return 1; //玩家不存在
+        if(empty($user)) return "UID_ERROR"; //玩家不存在
         //抽奖次数
         $surplus = $user->sharenum;
         if($user->lottery == 1){
@@ -330,7 +330,7 @@ class GameSericeController extends Controller
             }
             return  json_encode($ret_json_arr);
         }else{
-            return 2; //抽奖次数为0；
+            return "NUMBER_ERROR"; //抽奖次数为0；
         }
 
     }
