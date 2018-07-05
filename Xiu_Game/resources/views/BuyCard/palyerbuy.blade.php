@@ -89,7 +89,7 @@
                     <p style="font-size: 0.9rem;color: #0f695f;font-weight: 500;">推荐代理ID：</p>
                 </div>
                 <div style="float: right;width: 50%;text-align: left;">
-                    <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:''}}">
+                    <input id="front" type="number" class="front_input" value="{{!empty($at_id)?$at_id:$player->chief_uid}}">
                 </div>
             </div>
         @endif
@@ -150,7 +150,7 @@
                             "<div style='float: left;width: 50%;text-align: right;'>"+
                             "<p style='font-size: 1rem;color: #0f695f;font-weight: 500;'>推荐代理ID：</p></div>"+
                             "<div style='float: right;width: 50%;text-align: left;'>"+
-                            "<input id='front' type='number' class='front_input' ></div></div>");
+                            "<input id='front' type='number' class='front_input' value='"+reslut.user['chief_uid']+"' ></div></div>");
                     }
                 }
             });
