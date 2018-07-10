@@ -41,7 +41,7 @@ $router->get('/V/{version}/{type}','GameSericeController@GetVersion');
 
 //下载地址
 $router->get('/GetUrl',function (){
-    return ['android'=>'http://fir.im/ysrn',
+    return ['android'=>'http://fir.im/ysrn',//https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk',
         'ios'=>'itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist',
         'resources'=>'http://cspp-collection.oss-cn-shenzhen.aliyuncs.com/update_package/',
         'files'=>'AB,resources.ab,image.ab,lua.ab'] ;
@@ -112,4 +112,7 @@ $router->get('/setRecommend/{teaid}/{uid}/{recid}/{sign}','GameSericeController@
 //玩家日志
 $router->get('/getPlayLog/{teaid}/{uid}/{role}/{sign}','GameSericeController@getPlayLog');
 
+
+//获取用户头像昵称
+$router->get('/getUserHead/{uid}/{sign}','GameSericeController@getUserHead');
 

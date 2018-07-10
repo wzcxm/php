@@ -6,6 +6,7 @@ use App\Common\CommonFunc;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\DB;
+use Userinfo\UserInfo;
 use Xxgame\Business;
 use Xxgame\BusinessList;
 use Xxgame\Playerinfo;
@@ -286,7 +287,7 @@ EOT;
                 $uid = 23606;
             }
             //验证签名
-            if(!$this->checkSign($sign)) return "";
+            //if(!$this->checkSign($sign)) return "";
             if(empty($uid)) return "";
             $data = DB::table('v_xx_record')
                 ->where('player_id',$uid)
@@ -302,6 +303,7 @@ EOT;
             $recordList =  new RecordList();
             $recordList->setTotal(-1);
             if(!empty($data)){
+                $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
                 foreach ($data as $da){
                     $record = new Record();
                     $record->setGameno($da->id);
@@ -309,7 +311,7 @@ EOT;
                     $record->setNumber($da->number);
                     $record->setGametype($da->gametype);
                     $record->setCreatetime($da->create_time);
-                    $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                    $plays = $play_list->where('id',$da->id);
                     if(!empty($plays)){
                         foreach ($plays as $item) {
                             $player =  new Playerinfo();
@@ -317,7 +319,6 @@ EOT;
                             $player->setNickname($item->player_name);
                             $player->setScore($item->score);
                             $record->getPlayer()[] = $player;
-
                         }
                     }
                     $recordList->getRecordList()[] = $record;
@@ -418,6 +419,7 @@ EOT;
                 $recordList =  new RecordList();
                 $recordList->setTotal($total);
                 if(!empty($data)){
+                    $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
                     foreach ($data as $da){
                         $record = new Record();
                         $record->setGameno($da->id);
@@ -425,7 +427,7 @@ EOT;
                         $record->setNumber($da->number);
                         $record->setGametype($da->gametype);
                         $record->setCreatetime($da->create_time);
-                        $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                        $plays = $play_list->where('id',$da->id);
                         if(!empty($plays)){
                             foreach ($plays as $item) {
                                 $player =  new Playerinfo();
@@ -467,6 +469,7 @@ EOT;
             $recordList =  new RecordList();
             $recordList->setTotal(-1);
             if(!empty($data)){
+                $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
                 foreach ($data as $da){
                     $record = new Record();
                     $record->setGameno($da->id);
@@ -474,7 +477,7 @@ EOT;
                     $record->setNumber($da->number);
                     $record->setGametype($da->gametype);
                     $record->setCreatetime($da->create_time);
-                    $plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                    $plays = $play_list->where('id',$da->id);
                     if(!empty($plays)){
                         foreach ($plays as $item) {
                             $player =  new Playerinfo();
@@ -516,6 +519,7 @@ EOT;
 			$recordList =  new RecordList();
 			$recordList->setTotal(-1);
 			if(!empty($data)){
+                $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
 				foreach ($data as $da){
 					$record = new Record();
                     $record->setGameno($da->id);
@@ -523,7 +527,7 @@ EOT;
 					$record->setNumber($da->number);
 					$record->setGametype($da->gametype);
 					$record->setCreatetime($da->create_time);
-					$plays = DB::table('xx_player_record_info')->where('id',$da->id)->get();
+                    $plays = $play_list->where('id',$da->id);
 					if(!empty($plays)){
 						foreach ($plays as $item) {
 							$player =  new Playerinfo();
@@ -855,5 +859,29 @@ EOT;
             DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->increment('invite');
         }
         return 1;
+    }
+
+    /**
+     * 获取玩家的头像和昵称
+     * $uid：玩家id
+     * $sign：签名
+     */
+    public function getUserHead($uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+            $user = DB::table('xx_user')->where('uid',$uid)->first();
+            if(!empty($user)){
+                $userinfo = new UserInfo();
+                $userinfo->setUid($uid);
+                $userinfo->setNickname($user->nickname);
+                $userinfo->setHead($user->head_img_url);
+                return $userinfo->encode();
+            }else{
+                return "";
+            }
+        }catch (\Exception $e){
+            return "";
+        }
     }
 }
