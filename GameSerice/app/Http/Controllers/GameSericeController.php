@@ -222,7 +222,7 @@ EOT;
 	private  function checkSign($sign){
 		try{
 			if(empty($sign)) return false;
-			if(decrypt($sign) == env('SIGN'))
+			if($sign == md5(env('SIGN')))
 				return true;
 			else
 				return false;
