@@ -137,6 +137,7 @@ EOT;
                 $teaplayer->setRecid($player->recid);
                 $teaplayer->setInvite($player->invite);
                 $teaplayer->setInviteScore($player->invite_score);
+                $teaplayer->setZtNum($player->yesterday_num);
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
             }
 			return $teaPlayerList->encode();

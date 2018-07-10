@@ -232,10 +232,18 @@ class GameLoginController extends Controller
 	}
 
 	//获取玩家的茶楼大厅、游戏类型、公告、紧急通知
-	private function GetMessage($uid,$teaid){
+	private function GetMessage($teaid,$room_id){
 		//所在的茶楼大厅号
-		$hallid = DB::table('xx_sys_teas')->where([['uid',$uid],['tea_id',$teaid]])->value('hall_id');
-		$hallid = empty($hallid)?0:$hallid;
+		$desk = $room_id%100;
+		if($desk>0 && $desk<9){
+            $hallid = 1;
+        }else if($desk>8 && $desk<17){
+            $hallid = 2;
+        }else if($desk>16 && $desk<25){
+            $hallid = 3;
+        }else{
+            $hallid = 0;
+        }
 		//所在茶楼大厅的游戏类型
 		if($hallid > 0 && $hallid < 4){
             $type_id = 'type'.$hallid;
@@ -349,13 +357,14 @@ class GameLoginController extends Controller
             $server_login_info->setRoomId($user->room_id);
             $server_login_info->setTeaId($user->tea_id);
             $server_login_info->setToken($user->openid);
-            $server_login_info->setSign(encrypt(env('SIGN')));
+            $server_login_info->setSign(md5(env('SIGN')));
             if(empty($user->tea_id)){
                 $temp_teaid = floor($user->room_id/100);
             }else{
                 $temp_teaid = $user->tea_id;
             }
-            $sysMssage = $this->GetMessage($user->uid,$temp_teaid);
+
+            $sysMssage = $this->GetMessage($temp_teaid,$user->room_id);
             $server_login_info->setHallId($sysMssage['hallid']);//大厅号
             $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
             $server_login_info->setVoice($sysMssage['voice']);//语音开关

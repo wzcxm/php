@@ -6,6 +6,7 @@ require_once __DIR__.'/../app/Common/gameserice.pb.php';
 require_once __DIR__.'/../app/Common/login.pb.php';
 require_once __DIR__.'/../app/Common/CommonFunc.php';
 require_once __DIR__.'/../app/Common/SignatureHelper.php';
+require_once __DIR__.'/../app/Common/userinfo.pb.php';
 
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
