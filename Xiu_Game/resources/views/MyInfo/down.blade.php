@@ -23,7 +23,7 @@
             <img class="img-rounded " width="60%" src="/img/download/download.png" />
         </a>
 
-        <a id="add" href="prefs:root=General&path=ManagedConfigurationList" >
+        <a id="add" href="https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/XXKJ_Distri.mobileprovision" >
             <img class="img-rounded " width="60%" src="/img/download/add.png" style="margin-top: 15px;" />
         </a>
     </div>
