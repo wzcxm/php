@@ -58,7 +58,7 @@
     </div>
     <div class="weixin-tip">
         <p>
-            <img src="live_weixin.png" alt="微信打开"/>
+            <img src="/img/download/live_weixin.png" alt="微信打开"/>
         </p>
     </div>
 </div>
