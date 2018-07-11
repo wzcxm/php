@@ -114,5 +114,5 @@ $router->get('/getPlayLog/{teaid}/{uid}/{role}/{sign}','GameSericeController@get
 
 
 //获取用户头像昵称
-$router->get('/getUserHead/{uid}/{sign}','GameSericeController@getUserHead');
+$router->get('/getUserHead/{type}/{uid}/{sign}','GameSericeController@getUserHead');
 

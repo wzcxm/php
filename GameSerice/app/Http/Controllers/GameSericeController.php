@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\DB;
 use Userinfo\UserInfo;
+use Userinfo\UserList;
 use Xxgame\Business;
 use Xxgame\BusinessList;
 use Xxgame\Playerinfo;
@@ -865,19 +866,39 @@ EOT;
      * $uid：玩家id
      * $sign：签名
      */
-    public function getUserHead($uid,$sign){
+    public function getUserHead($type,$uid,$sign){
         try{
             //验证签名
             if(!$this->checkSign($sign)) return "";
-            $user = DB::table('xx_user')->where('uid',$uid)->first();
-            if(!empty($user)){
-                $userinfo = new UserInfo();
-                $userinfo->setUid($uid);
-                $userinfo->setNickname($user->nickname);
-                $userinfo->setHead($user->head_img_url);
-                return $userinfo->encode();
+            if($type==1){
+                $user = DB::table('xx_user')->where('uid',$uid)->first();
+                if(!empty($user)){
+                    $userinfo = new UserInfo();
+                    $userinfo->setUid($uid);
+                    $userinfo->setNickname($user->nickname);
+                    $userinfo->setHead($user->head_img_url);
+                    return $userinfo->encode();
+                }else{
+                    return "";
+                }
             }else{
-                return "";
+                $sql = <<<EOT
+select uid,nickname,head_img_url from xx_user where uid in (select uid from xx_sys_teas where tea_id= $uid)
+EOT;
+                $datas = DB::select($sql);
+                if(!empty($datas)){
+                    $userlist = new UserList();
+                    foreach ($datas as $data){
+                        $userinfo = new UserInfo();
+                        $userinfo->setUid($data->uid);
+                        $userinfo->setNickname($data->nickname);
+                        $userinfo->setHead($data->head_img_url);
+                        $userlist->getUserList()[] = $userinfo;
+                    }
+                    return $userlist->encode();
+                }else{
+                    return "";
+                }
             }
         }catch (\Exception $e){
             return "";
