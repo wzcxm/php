@@ -61,17 +61,9 @@ class GameSericeController extends Controller
             $openid = $tools->GetOpenid();
             $unionid = $tools->data['unionid'];
             if(!empty($unionid) ) {
-                //下载人没有记录的保存记录
-                $temp_user = DB::table('xx_user_temp')->where('unionid', $unionid)->first();
-                if(!empty($temp_user) ){
+                if(!empty($uid)){
                     DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
-                    if(!empty($uid)){
-                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                    }
-                }else{
-                    if(!empty($uid)){
-                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                    }
+                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                 }
             }
             $room =  Redis::get('table_'.$roomNo);
@@ -232,17 +224,9 @@ class GameSericeController extends Controller
                         }
                         $param['login_surplus'] = $surplus;
                     }else{
-                        //下载人没有记录的保存记录
-                        $temp_user = DB::table('xx_user_temp')->where('unionid',$unionid)->first();
-                        if(!empty($temp_user) ){
+                        if(!empty($uid)){
                             DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
-                            if(!empty($uid)){
-                                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                            }
-                        }else{
-                            if(!empty($uid)){
-                                DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                            }
+                            DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                         }
                     }
                 }
@@ -259,7 +243,8 @@ class GameSericeController extends Controller
             }
         }catch (\Exception $e){
             //var_dump($e->getMessage());
-            return view('MyInfo.download');
+            //return view('MyInfo.download');
+            return '<h1>信息错误，请重试！</h1><br><h4>错误信息：'.$e->getMessage().'</h4>';
         }
     }
 
@@ -491,8 +476,6 @@ class GameSericeController extends Controller
         }else{
             return 0 ;
         }
-
-
     }
 
 
@@ -604,7 +587,7 @@ class GameSericeController extends Controller
 //        $ret5 = 0;
 //        $ret6 = 0;
 //        $ret7 = 0;
-//        for ($i=1 ;$i<1000;$i++){
+//        for ($i=1 ;$i<10000;$i++){
 //           $ret = $this->test();
 //            if($ret == 1){
 //                $ret1++;
@@ -638,12 +621,12 @@ class GameSericeController extends Controller
 //        $ret8 = $ret1+$ret2+$ret3+$ret4+$ret5+$ret6+$ret6;
 ////        return '谢谢：'.$ret1.'%\n0.88:'.$ret2.'%\n1.88:'.$ret3.'%\n2.88:'.$ret4.'%\n3.88:'.$ret5.'%\n8.88:'.$ret6;
 //        var_dump('X：'.$ret11.'$'.$ret1) ;
-//        var_dump( 'pad:'.$ret22.'$'.$ret2);
-//        var_dump( '8.88:'.$ret33.'$'.$ret3);
-//        var_dump( '88：'.$ret44.'$'.$ret4);
-//        var_dump( '0.88：'.$ret55.'$'.$ret5);
-//        var_dump( '888：'.$ret66.'$'.$ret6);
-//        var_dump( '0.18：'.$ret77.'$'.$ret7);
+//        var_dump( '5000金豆:'.$ret22.'$'.$ret2);
+//        var_dump( '8.88元红包:'.$ret33.'$'.$ret3);
+//        var_dump( '5钻石：'.$ret44.'$'.$ret4);
+//        var_dump( '5.88元红包：'.$ret55.'$'.$ret5);
+//        var_dump( '2钻石：'.$ret66.'$'.$ret6);
+//        var_dump( '0.88元红包：'.$ret77.'$'.$ret7);
 //        var_dump( 'sum：'.$ret8.'$');
 //    }
 }
