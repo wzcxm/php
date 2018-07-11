@@ -11,8 +11,16 @@
     <!-- 添加到主屏幕后全屏显示 -->
     <meta name="apple-touch-fullscreen" content="yes" />
     <title>休休游戏--测试</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css')">
+    <style>
+        .download_bg {
+            width:100%;
+            height:100%;
+            display:-webkit-flex;
+            -webkit-flex-direction:column;
+            background:url(/img/download/download_bg.png);
+            background-size:100% 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="download_bg">
