@@ -33,6 +33,7 @@
 <script type="text/javascript">
    $(function(){
        var ua = navigator.userAgent.toLowerCase();
+       alert(ua);
        if(ua.match(/MicroMessenger/i) == "micromessenger") {
            $('#bg_down').removeClass().addClass("download_tz_bg");
            $("#down").hide();
