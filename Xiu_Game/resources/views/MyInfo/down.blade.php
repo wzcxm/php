@@ -13,36 +13,44 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--游戏下载</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180711">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018071103">
 </head>
 <body>
 <div class="download_bg" id="bg_down">
-    <div style="height: 40%;"></div>
-    <div style="height: 40%;">
-    </div>
-    <div style="height: 20%;" align="center" id="down">
+    <div style="height: 75%;"></div>
+    <div style="height: 25%;" align="center" id="down">
         <a id="down_load">
-            <img class="img-rounded " width="180" src="/img/download/download.png" />
+            <img class="img-rounded " width="65%" src="/img/download/download.png" />
+        </a>
+
+        <a id="add" style="display: none;" href="oldcat.me/web/NOOTA9.mobileconfig">
+            <img class="img-rounded " width="65%" src="/img/download/add.png" style="margin-top: 15px;" />
         </a>
     </div>
+
 </div>
 <script src="{{asset('js/weui/js/jquery-2.1.4.js')}}"></script>
 <script type="text/javascript">
    $(function(){
-       $("#down_load").click(function () {
-           var ua = navigator.userAgent.toLowerCase();
-           if(ua.match(/MicroMessenger/i) == "micromessenger") {
-               $('#bg_down').removeClass().addClass("download_tz_bg");
-               $("#down").hide();
-           } else {
-               if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机
-                    window.location.href = 'https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk';
-               } else if (ua.indexOf('iphone') > -1) {//苹果手机
-                    window.location.href = 'itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist';
-               }else{
+       var ua = navigator.userAgent.toLowerCase();
+       if(ua.match(/MicroMessenger/i) == "micromessenger") {
+           $('#bg_down').removeClass().addClass("download_tz_bg");
+           $("#down").hide();
+       }else {
+           if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机
+               $("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');
+           } else if (ua.indexOf('iphone') > -1) {//苹果手机
+               $("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');
+           }else{
 
-               }
            }
+       }
+
+       $("#down_load").click(function(){
+           var ua = navigator.userAgent.toLowerCase();
+            if(ua.indexOf('iphone') > -1){
+                $("#add").show();
+            }
        });
    });
 </script>

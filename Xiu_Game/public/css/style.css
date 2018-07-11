@@ -33,7 +33,7 @@ body, html {
     height:100%;
     display:-webkit-flex;
     -webkit-flex-direction:column;
-    background:url(/img/download/download_bg.png);
+    background:url(/img/download/download_bg.jpg);
     background-size:100% 100%;
 }
 .download_tz_bg {
