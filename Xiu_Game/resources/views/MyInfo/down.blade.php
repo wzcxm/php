@@ -47,6 +47,7 @@
        }
 
        $("#down_load").click(function(){
+           alert(11);
            var ua = navigator.userAgent.toLowerCase();
             if(ua.indexOf('iphone') > -1){
                 $("#add").show();
