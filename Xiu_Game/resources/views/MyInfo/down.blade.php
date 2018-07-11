@@ -20,11 +20,11 @@
     <div style="height: 75%;"></div>
     <div style="height: 25%;" align="center" id="down">
         <a id="down_load">
-            <img class="img-rounded " width="65%" src="/img/download/download.png" />
+            <img class="img-rounded " width="60%" src="/img/download/download.png" />
         </a>
 
-        <a id="add" style="display: none;" href="oldcat.me/web/NOOTA9.mobileconfig">
-            <img class="img-rounded " width="65%" src="/img/download/add.png" style="margin-top: 15px;" />
+        <a id="add" style="display: none;" >
+            <img class="img-rounded " width="60%" src="/img/download/add.png" style="margin-top: 15px;" />
         </a>
     </div>
 
@@ -53,6 +53,9 @@
             if(ua.indexOf('iphone') > -1){
                 $("#add").show();
             }
+       });
+       $("#add").click(function(){
+           window.location.href = 'oldcat.me/web/NOOTA9.mobileconfig';
        });
    });
 </script>
