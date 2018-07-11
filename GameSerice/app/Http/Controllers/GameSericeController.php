@@ -883,7 +883,7 @@ EOT;
                 }
             }else{
                 $sql = <<<EOT
-select uid,nickname,head_img_url from xx_user where uid in (select uid from xx_sys_teas where tea_id= $uid)
+select uid,nickname,head_img_url from xx_user where uid in (select uid from xx_sys_teas where state=1 and  tea_id= $uid)
 EOT;
                 $datas = DB::select($sql);
                 if(!empty($datas)){
