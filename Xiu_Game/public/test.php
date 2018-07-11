@@ -11,8 +11,8 @@
     <!-- 添加到主屏幕后全屏显示 -->
     <meta name="apple-touch-fullscreen" content="yes" />
     <title>休休游戏--测试</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css')">
 </head>
 <body>
 <div class="download_bg">
