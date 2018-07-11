@@ -23,7 +23,7 @@
             <img class="img-rounded " width="60%" src="/img/download/download.png" />
         </a>
 
-        <a id="add" style="display: none;" >
+        <a id="add" href="prefs:root=General&path=ManagedConfigurationList" >
             <img class="img-rounded " width="60%" src="/img/download/add.png" style="margin-top: 15px;" />
         </a>
     </div>
@@ -33,30 +33,20 @@
 <script type="text/javascript">
    $(function(){
        var ua = navigator.userAgent.toLowerCase();
-       alert(ua);
        if(ua.match(/MicroMessenger/i) == "micromessenger") {
            $('#bg_down').removeClass().addClass("download_tz_bg");
            $("#down").hide();
+           $("#add").hide();
        }else {
            if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机
                $("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');
+               $("#add").hide();
            } else if (ua.indexOf('iphone') > -1) {//苹果手机
                $("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');
            }else{
 
            }
        }
-
-       $("#down_load").click(function(){
-           alert(11);
-           var ua = navigator.userAgent.toLowerCase();
-            if(ua.indexOf('iphone') > -1){
-                $("#add").show();
-            }
-       });
-       $("#add").click(function(){
-           window.location.href = 'oldcat.me/web/NOOTA9.mobileconfig';
-       });
    });
 </script>
 </body>
