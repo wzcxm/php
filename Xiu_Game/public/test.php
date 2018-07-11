@@ -21,6 +21,36 @@
             background-size:100% 100%;
         }
     </style>
+    <style type="text/css">
+    *{
+    margin:0;
+    padding:0;
+    }
+    a{
+    text-decoration: none;
+    }
+    img{
+    max-width: 100%;
+    height: auto;
+    }
+    .weixin-tip{
+    display: none;
+    position: fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.8);
+    filter:alpha(opacity=80);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    }
+    .weixin-tip p{
+    text-align: center;
+    margin-top: 10%;
+    padding:0 5%;
+    }
+    </style>
 </head>
 <body>
 <div class="download_bg">
@@ -34,5 +64,28 @@
         <a href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist">点击下载</a>
     </div>
 </div>
-</body>
+
+<div class="weixin-tip">
+    <p>
+        <img src="live_weixin.png" alt="微信打开"/>
+    </p>
+</div>
+<script type="text/javascript">
+    $(window).on("load",function(){
+        var winHeight = $(window).height();
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        var isWeixin = is_weixin();
+        if(isWeixin){
+            $(".weixin-tip").css("height",winHeight);
+            $(".weixin-tip").show();
+        }
+    })
+</script>
 </html>
