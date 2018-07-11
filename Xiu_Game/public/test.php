@@ -10,13 +10,21 @@
     <meta name="apple-mobile-web-app-title" content="游戏充值">
     <!-- 添加到主屏幕后全屏显示 -->
     <meta name="apple-touch-fullscreen" content="yes" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休游戏--测试</title>
-
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
 </head>
 <body>
-<div style="text-align: center;">
-    <a href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist">点击下载</a>
+<div class="download_bg">
+    <div style="height: 40%;"></div>
+    <div style="height: 40%;">
+    </div>
+    <div style="height: 20%;" align="center">
+        <a href="https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk">
+            <img class="img-rounded " width="180" src="/img/download/download.png" />
+        </a>
+        <a href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist">点击下载</a>
+    </div>
 </div>
 </body>
 </html>
