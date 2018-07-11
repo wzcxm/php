@@ -13,10 +13,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--游戏下载</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180711">
 </head>
 <body>
-<div class="download_bg" >
+<div class="download_bg" id="bg_down">
     <div style="height: 40%;"></div>
     <div style="height: 40%;">
     </div>
@@ -32,7 +32,7 @@
        $("#down_load").click(function () {
            var ua = navigator.userAgent.toLowerCase();
            if(ua.match(/MicroMessenger/i) == "micromessenger") {
-               $('.download_bg').css('background','url(/img/download/tz_bg.jpg)');
+               $('#bg_down').removeClass().addClass("download_tz_bg");
                $("#down").hide();
            } else {
                if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机

@@ -36,6 +36,14 @@ body, html {
     background:url(/img/download/download_bg.png);
     background-size:100% 100%;
 }
+.download_tz_bg {
+    width:100%;
+    height:100%;
+    display:-webkit-flex;
+    -webkit-flex-direction:column;
+    background:url(/img/download/tz_bg.jpg);
+    background-size:100% 100%;
+}
 .qrcode_bg {
     width:100%;
     height:100%;
