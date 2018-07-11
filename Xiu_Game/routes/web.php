@@ -233,7 +233,10 @@ Route::get('/apppay/{uid}/{goods}','GameSericeController@getAppOrder');
 //删除订单
 Route::get('/delorder/{order_no}','GameSericeController@delAppOrder');
 
-
+//下载测试
+Route::get('/newdown',function (){
+    return view('MyInfo.down');
+});
 
 //Route::get('/testLottery','GameSericeController@testLottery');
 
