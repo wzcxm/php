@@ -117,7 +117,7 @@ class GameLoginController extends Controller
 			{
 				$nickname = $user_data['nickname'];
 				$sex = $user_data['sex'];
-				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/64';
+				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/46';
 				$unionid = $user_data['unionid'];
 				$roomcard = 5;
 				$gold = 3000;
@@ -204,7 +204,7 @@ class GameLoginController extends Controller
 			{
 				$nickname = $user_data['nickname'];
 				$sex = $user_data['sex'];
-				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/64';
+				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/46';
 
 				//更新数据
 				$affected = DB::update('update xx_user set nickname = ?, head_img_url = ?, sex = ?, refresh_token = ?,gw_type = ? where uid = ?',
