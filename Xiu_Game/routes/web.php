@@ -219,8 +219,12 @@ Route::get('/lottery/{uid}','GameSericeController@getLottery');
 //发红包
 Route::get('/redpack/{uid}','GameSericeController@RedPack');
 
-//游戏下载页面
+//游戏下载
 Route::get('/download/{uid?}/{type?}','GameSericeController@Download');
+
+Route::get('/DownLoadGames',function (){
+    return view('MyInfo.download');
+});
 
 //购买金豆
 Route::get('/buybeans/{uid}/{bid}','GameSericeController@buyBeans');
@@ -233,10 +237,6 @@ Route::get('/apppay/{uid}/{goods}','GameSericeController@getAppOrder');
 //删除订单
 Route::get('/delorder/{order_no}','GameSericeController@delAppOrder');
 
-//下载测试
-Route::get('/newdown',function (){
-    return view('MyInfo.down');
-});
 
 //Route::get('/testLottery','GameSericeController@testLottery');
 

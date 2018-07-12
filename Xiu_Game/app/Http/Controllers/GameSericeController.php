@@ -57,15 +57,6 @@ class GameSericeController extends Controller
     public function share($roomNo=0,$uid=0,$msg='')
     {
         try{
-            $tools = new JsApiPay();
-            $openid = $tools->GetOpenid();
-            $unionid = $tools->data['unionid'];
-            if(!empty($unionid) ) {
-                if(!empty($uid)){
-                    DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
-                    DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                }
-            }
             $room =  Redis::get('table_'.$roomNo);
             if(!empty($room))
             {
@@ -113,7 +104,7 @@ class GameSericeController extends Controller
                 for($i = 0;$i <count($uid_arr) ;$i++){
                     array_push($user_arr,['head'=>$head_arr[$i],'nick'=>$nick_arr[$i],'ready'=>$ready_arr[$i]]);
                 }
-                return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr]);
+                return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr,'share_uid'=>$uid]);
             }else {
                 return  view('Share.Index');
             }
@@ -194,7 +185,7 @@ class GameSericeController extends Controller
     public function  Download($uid = 0,$type = 0){
         try{
             if(empty($uid)){
-                return view('MyInfo.download');
+                return redirect('/DownLoadGames');
             }else{
                 //推荐人，不为空，保存记录
                 $tools = new JsApiPay();
@@ -202,17 +193,14 @@ class GameSericeController extends Controller
                 $unionid = $tools->data['unionid'];
                 //参数
                 $param = [];
-                //分享人信息
-                $share = Users::find($uid);
-                if(!empty($share)){
-                    $param['share_uid'] = $share->uid;
-                }
                 if(!empty($unionid) ){
                     $user = DB::table('xx_user')->where('unionid',$unionid)->first();
                     if(!empty($user)){
                         if(empty($user->wxopenid)){
                             DB::table('xx_user')->where('unionid',$unionid)->update(['wxopenid'=>$openid]);
                         }
+                        //分享人ID
+                        $param['share_uid'] = $uid;
                         //当前登录人信息
                         $param['login_uid'] = $user->uid;
                         $param['login_nick'] = $user->nickname;
@@ -224,15 +212,13 @@ class GameSericeController extends Controller
                         }
                         $param['login_surplus'] = $surplus;
                     }else{
-                        if(!empty($uid)){
-                            DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
-                            DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
-                        }
+                        DB::table('xx_user_temp')->where('unionid',$unionid)->delete();
+                        DB::table('xx_user_temp')->insert(['front'=>$uid,'wxopenid'=>$openid,'unionid'=>$unionid]);
                     }
                 }
                 if($type==1){
                     if(!empty($unionid) ){
-                        header('Location:http://fir.im/ysrn');
+                        return redirect('/DownLoadGames');
                     }else{
                         return '<h1>请确认登录，才能下载</h1>';
                     }

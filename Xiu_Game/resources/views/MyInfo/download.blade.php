@@ -13,18 +13,36 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>休休科技--游戏下载</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180207">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180712">
 </head>
 <body>
 <div class="download_bg">
-    <div style="height: 40%;"></div>
-    <div style="height: 40%;">
-    </div>
+    <div style="height: 80%;"></div>
     <div style="height: 20%;" align="center">
-        <a href="http://fir.im/ysrn">
-            <img class="img-rounded " width="180" src="/img/download/download.png" />
+        <a id="down_load">
+            <img class="img-rounded " width="180" src="/img/download/download.png?v=20180712" />
         </a>
     </div>
 </div>
+<script src="{{asset('js/weui/js/jquery-2.1.4.js')}}"></script>
+<script type="text/javascript">
+    $(function(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) == "micromessenger") {
+            $('#bg_down').removeClass().addClass("download_tz_bg");
+            $("#down").hide();
+            //$("#add").hide();
+        }else {
+            if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机
+                $("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');
+                $("#add").hide();
+            } else if (ua.indexOf('iphone') > -1) {//苹果手机
+                $("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');
+            }else{
+
+            }
+        }
+    });
+</script>
 </body>
 </html>

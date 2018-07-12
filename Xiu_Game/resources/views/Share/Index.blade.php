@@ -116,7 +116,7 @@
     </div>
 </div>
 <div class="share_foor_bg" align="center">
-    <a href="http://fir.im/ysrn">
+    <a href="/download/{{!empty($share_uid)?$share_uid:0}}/1">
         <img class="img-rounded " style="margin-top: 20%;" width="160" src="/img/share/download.png" />
     </a>
 </div>
