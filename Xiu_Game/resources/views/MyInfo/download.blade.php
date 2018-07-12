@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=20180712">
 </head>
 <body>
-<div class="download_bg">
+<div class="download_bg" id="bg_down">
     <div style="height: 80%;"></div>
     <div style="height: 20%;" align="center">
         <a id="down_load">
@@ -30,12 +30,12 @@
         var ua = navigator.userAgent.toLowerCase();
         if(ua.match(/MicroMessenger/i) == "micromessenger") {
             $('#bg_down').removeClass().addClass("download_tz_bg");
-            $("#down").hide();
+            $("#down_load").hide();
             //$("#add").hide();
         }else {
             if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机
                 $("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');
-                $("#add").hide();
+                // $("#add").hide();
             } else if (ua.indexOf('iphone') > -1) {//苹果手机
                 $("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');
             }else{
