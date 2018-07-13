@@ -777,11 +777,11 @@ EOT;
         if(empty($uid)) return "";
         if($role == 3){
             $sql = <<<EOT
-			select * from xx_sys_log where tea_id = $teaid  and uid = $uid 
+			select * from xx_sys_log where tea_id = $teaid  and uid = $uid LIMIT 0,50
 EOT;
         }else{
             $sql = <<<EOT
-			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid)
+			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid) LIMIT 0,50
 EOT;
         }
         $data =  DB::select($sql);
