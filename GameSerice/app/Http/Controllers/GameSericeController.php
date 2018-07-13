@@ -777,11 +777,11 @@ EOT;
         if(empty($uid)) return "";
         if($role == 3){
             $sql = <<<EOT
-			select * from xx_sys_log where tea_id = $teaid  and uid = $uid ORDER BY create_date desc LIMIT 0,50
+			select * from (select * from xx_sys_log where tea_id = $teaid  and uid = $uid ORDER BY create_date desc LIMIT 0,50) t ORDER BY t.create_date
 EOT;
         }else{
             $sql = <<<EOT
-			select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid) ORDER BY create_date desc LIMIT 0,50
+			select * from (select * from xx_sys_log where tea_id = $teaid  and (uid = $uid or operate = $uid) ORDER BY create_date desc LIMIT 0,50) t ORDER BY t.create_date
 EOT;
         }
         $data =  DB::select($sql);
