@@ -219,7 +219,7 @@ use Aliyun\DySDKLite\SignatureHelper;
      /// <param name="type">更新类型</param>
      /// <param name="str">通知内容</param>
      /// <returns></returns>
-     public static function UpGameSer($uid,$type,$str=null,$play_num = -1){
+     public static function UpGameSer($uid,$type,$str=null,$play_num = 0){
         try{
             $ser_user = new ServerUserBase();
             if($uid != 1){

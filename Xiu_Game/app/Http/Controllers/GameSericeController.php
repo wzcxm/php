@@ -184,10 +184,8 @@ class GameSericeController extends Controller
     //下载页面
     public function  Download($uid = 0,$type = 0){
         try{
-            $url = 'http://thirdwx.qlogo.cn/mmopen/vi_32/IiacPiabBFIreH2QnQib4GbYV8MoFh9V2UdI74BvVbvsiaZa9grHP0XLVdjy3NiaMbcQkhLPpvcTeD4nd67XUHzPtibw/132';
-            $str = substr($url,0,strrpos($url,'/')).'/64';
             if(empty($uid)){
-                return redirect('/DownLoadGames');
+                return view('MyInfo.download');
             }else{
                 //推荐人，不为空，保存记录
                 $tools = new JsApiPay();
@@ -220,7 +218,8 @@ class GameSericeController extends Controller
                 }
                 if($type==1){
                     if(!empty($unionid) ){
-                        return redirect('/DownLoadGames');
+                        header('Location:http://fir.im/ysrn');
+                        //return redirect('/DownLoadGames');http://fir.im/ysrn
                     }else{
                         return '<h1>请确认登录，才能下载</h1>';
                     }
@@ -392,7 +391,6 @@ class GameSericeController extends Controller
             $total_fee = $product->sprice*100;
             //订单号
             $orderno = WxPayConfig::MCHID . date("YmdHis");
-
             //生成订单
             $param = $this->generateAppOrder($total_fee,$orderno);
             if(empty($param)){
