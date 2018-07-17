@@ -181,6 +181,17 @@ class GameSericeController extends Controller
 
     }
 
+    public function GetRadAmount($uid){
+        $play = Users::find($uid);
+        if(!empty($play)){
+            return $play->redbag;
+        }else{
+            return "";
+        }
+    }
+
+
+
     //下载页面
     public function  Download($uid = 0,$type = 0){
         try{

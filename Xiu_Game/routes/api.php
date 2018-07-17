@@ -39,3 +39,7 @@ Route::any('/GetObainList/{uid}','GameSericeController@GetObainList');
 
 //抽奖
 Route::any('/GetLottery/{uid}/{num}','GameSericeController@GetLotteryItem');
+
+//获取玩家红包金额
+Route::any('/GetRadAmount/{uid}','GameSericeController@GetRadAmount');
+
