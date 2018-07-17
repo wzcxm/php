@@ -221,7 +221,7 @@ class GameSericeController extends Controller
                         header('Location:http://fir.im/ysrn');
                         //return redirect('/DownLoadGames');http://fir.im/ysrn
                     }else{
-                        return '<h1>请确认登录，才能下载</h1>';
+                        return '<h1>请允许获取您的头像和昵称！</h1>';
                     }
                 }else{
                     $retStr = CommClass::encrypt(json_encode($param));
