@@ -106,7 +106,7 @@ class GameSericeController extends Controller
                 }
                 return view('Share.Index', ['item' => $ret_arr,'user'=>$user_arr,'share_uid'=>$uid]);
             }else {
-                return  view('Share.Index');
+                return  view('Share.Index',['share_uid'=>$uid]);
             }
         }catch (\Exception $e){
             return view('Share.Index');
