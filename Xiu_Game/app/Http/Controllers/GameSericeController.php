@@ -185,12 +185,13 @@ class GameSericeController extends Controller
     public function  Download($uid = 0,$type = 0){
         try{
             if(empty($uid)){
-                return view('MyInfo.download');
+                header('Location:http://fir.im/ysrn');
             }else{
                 //推荐人，不为空，保存记录
                 $tools = new JsApiPay();
-                $openid = $tools->GetOpenid();
-                $unionid = $tools->data['unionid'];
+                $data = $tools->GetUserInfo();
+                $openid = $data['openid'];
+                $unionid = $data['unionid'];
                 //参数
                 $param = [];
                 if(!empty($unionid) ){
