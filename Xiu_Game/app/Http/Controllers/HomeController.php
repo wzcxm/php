@@ -118,7 +118,7 @@ class HomeController extends Controller
             $data = $tools->GetUserInfo();
             if(!empty($data)){
                 Session::put('NewWxData', $data);
-                $arr['new_head'] = substr($data['headimgurl'],0,strrpos($data['headimgurl'],'/')).'/46';
+                $arr['new_head'] = substr($data['headimgurl'],0,strrpos($data['headimgurl'],'/')).'/64';
                 $arr['new_nick'] = $data['nickname'];
             }
             return view('Home.updatewx',$arr);
@@ -140,7 +140,7 @@ class HomeController extends Controller
                 //微信信息绑定到游戏账号
                 DB::table('xx_user')->where('uid',session('uid'))->update([
                     'nickname'=>$data['nickname'],
-                    'head_img_url'=>substr($data['headimgurl'],0,strrpos($data['headimgurl'],'/')).'/46',
+                    'head_img_url'=>substr($data['headimgurl'],0,strrpos($data['headimgurl'],'/')).'/64',
                     'sex'=>$data['sex'],
                     'unionid'=>$data['unionid'],
                     'wxopenid'=>$data['openid']
