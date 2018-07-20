@@ -647,8 +647,21 @@ use Aliyun\DySDKLite\SignatureHelper;
                 }
                 //代理返利
                 CommClass::BackCash($wx_order->userid, $total);
+
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
+
+                //1小时内购买超过5000，赠送2980钻石
+                $start =  date('Y-m-d h:i:s', strtotime('-1 hour'));
+                $end = date('Y-m-d h:i:s');
+                $sum_total = DB::table('xx_wx_buycard')
+                    ->where('userid',$wx_order->userid)
+                    ->where('status',1)
+                    ->whereBetween('create_time',[$start,$end])
+                    ->sum('total');
+                if($sum_total>=5000){
+                    CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 2980]);
+                }
                 //更新游戏的钻石数量
                 CommClass::UpGameSer($wx_order->userid,'card');//玩家的钻石
             }

@@ -14,7 +14,7 @@
     <title>休休游戏--游戏充值</title>
     <link rel="stylesheet" href="{{asset('js/weui/css/weui.min.css')}}">
     <link rel="stylesheet" href="{{asset('js/weui/css/jquery-weui.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018070302">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}?v=2018072001">
 </head>
 <body>
 <div class="buy_head_bg"></div>
@@ -46,30 +46,30 @@
     </div>
     <div style="margin-top:5px;" id="mall">
         @if(!empty($mallList))
-            <div  style="margin-left:5%;">
-            @for($i=0;$i<count($mallList);$i++)
-                @if($i%3>0)
-                    @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        <img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
-                    @else
-                        <img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
-                    @endif
-                @else
-                    @if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)
-                        </div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />
-                    @else
-                        </div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>
-                    @endif
-                @endif
-            @endfor
-            </div>
-            {{--@foreach($mallList as $item)--}}
-                {{--@if($item->isfirst == 1 && !empty($player) && $player->flag == 0)--}}
-                    {{--<img class="img_border " width="22%" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />--}}
+            {{--<div  style="margin-left:5%;">--}}
+            {{--@for($i=0;$i<count($mallList);$i++)--}}
+                {{--@if($i%3>0)--}}
+                    {{--@if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)--}}
+                        {{--<img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />--}}
+                    {{--@else--}}
+                        {{--<img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>--}}
+                    {{--@endif--}}
                 {{--@else--}}
-                    {{--<img class="img_border " width="22%" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>--}}
+                    {{--@if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)--}}
+                        {{--</div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />--}}
+                    {{--@else--}}
+                        {{--</div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>--}}
+                    {{--@endif--}}
                 {{--@endif--}}
-            {{--@endforeach--}}
+            {{--@endfor--}}
+            {{--</div>--}}
+            @foreach($mallList as $item)
+                @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
+                    <img class="img_border " width="22%" src="/img/diamond/f{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)" />
+                @else
+                    <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}" id="{{$item->sid}}" onclick="img_click(this)"/>
+                @endif
+            @endforeach
         @endif
     </div>
     <div style="margin-top:5px;text-align: center;" id="first">
@@ -79,9 +79,9 @@
             <img class="img_border " width="95%" src="/img/diamond/warning.png" />
         @endif
     </div>
-    {{--<div style="width: 100%;text-align: center;">--}}
-        {{--<img class="img_border " width="100%" src="/img/diamond/phone.png">--}}
-    {{--</div>--}}
+    <div style="width: 100%;text-align: center;">
+        <img class="img_border " width="100%" src="/img/diamond/title.png">
+    </div>
     <div id="div_front">
         @if(empty($player->front_uid) && $player->rid != 3 && $player->rid != 4)
             <div style="width:100%;margin-top: 5px;">
