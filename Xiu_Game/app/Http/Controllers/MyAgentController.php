@@ -111,6 +111,11 @@ class MyAgentController extends Controller
                                 'vip_aisle'=>0,
                                 'chief_aisle'=>0,
                                 'front_uid'=>0]);
+                        //保存可设置的代理数量
+                        $agent_num = DB::table('xx_sys_agentnum')->where('uid',$dl_uid)->get();
+                        if(empty($agent_num) || count($agent_num)<=0){
+                            DB::table('xx_sys_agentnum')->insert(['uid'=>$dl_uid]);
+                        }
                     }
                 }else if(session('roleid')==3){//设置vip代理
                     if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
@@ -138,11 +143,6 @@ class MyAgentController extends Controller
                     DB::table('xx_sys_proxyscale')->insert(['uid'=>$dl_uid,'scale'=>$rate]);
                 }else{
                     DB::table('xx_sys_proxyscale')->where('uid',$dl_uid)->update(['scale'=>$rate]);
-                }
-                //保存可设置的代理数量
-                $agent_num = DB::table('xx_sys_agentnum')->where('uid',$dl_uid)->get();
-                if(empty($agent_num) || count($agent_num)<=0){
-                    DB::table('xx_sys_agentnum')->insert(['uid'=>$dl_uid]);
                 }
                 return response()->json(['error'=>'']);
             }else{
