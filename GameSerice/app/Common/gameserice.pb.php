@@ -246,21 +246,15 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
     private $tea_id = 0;
     private $state = 0;
     private $manager = 0;
-    private $numbers = 0;
     private $hall_id = 0;
     private $uid = 0;
-    private $winnum1 = 0;
     private $remarks = '';
     private $date = '';
     private $online = 0;
     private $tp_score = 0.0;
     private $head_url = '';
     private $recid = 0;
-    private $invite = 0;
-    private $invite_score = 0.0;
-    private $winnum2 = 0;
-    private $winnum3 = 0;
-    private $zt_num = 0;
+    private $wan_list;
 
     public function getNickname()
     {
@@ -306,17 +300,6 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
         $this->manager = $var;
     }
 
-    public function getNumbers()
-    {
-        return $this->numbers;
-    }
-
-    public function setNumbers($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->numbers = $var;
-    }
-
     public function getHallId()
     {
         return $this->hall_id;
@@ -337,17 +320,6 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->uid = $var;
-    }
-
-    public function getWinnum1()
-    {
-        return $this->winnum1;
-    }
-
-    public function setWinnum1($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->winnum1 = $var;
     }
 
     public function getRemarks()
@@ -416,59 +388,104 @@ class TeaPlayer extends \Google\Protobuf\Internal\Message
         $this->recid = $var;
     }
 
-    public function getInvite()
+    public function getWanList()
     {
-        return $this->invite;
+        return $this->wan_list;
     }
 
-    public function setInvite($var)
+    public function setWanList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\WinAndNum::class);
+        $this->wan_list = $var;
+    }
+
+}
+
+class WinAndNum extends \Google\Protobuf\Internal\Message
+{
+    private $one_hall_win = 0;
+    private $two_hall_win = 0;
+    private $three_hall_win = 0;
+    private $one_hall_num = 0;
+    private $two_hall_num = 0;
+    private $three_hall_num = 0;
+    private $days = 0;
+
+    public function getOneHallWin()
+    {
+        return $this->one_hall_win;
+    }
+
+    public function setOneHallWin($var)
     {
         GPBUtil::checkUint32($var);
-        $this->invite = $var;
+        $this->one_hall_win = $var;
     }
 
-    public function getInviteScore()
+    public function getTwoHallWin()
     {
-        return $this->invite_score;
+        return $this->two_hall_win;
     }
 
-    public function setInviteScore($var)
-    {
-        GPBUtil::checkFloat($var);
-        $this->invite_score = $var;
-    }
-
-    public function getWinnum2()
-    {
-        return $this->winnum2;
-    }
-
-    public function setWinnum2($var)
+    public function setTwoHallWin($var)
     {
         GPBUtil::checkUint32($var);
-        $this->winnum2 = $var;
+        $this->two_hall_win = $var;
     }
 
-    public function getWinnum3()
+    public function getThreeHallWin()
     {
-        return $this->winnum3;
+        return $this->three_hall_win;
     }
 
-    public function setWinnum3($var)
-    {
-        GPBUtil::checkUint32($var);
-        $this->winnum3 = $var;
-    }
-
-    public function getZtNum()
-    {
-        return $this->zt_num;
-    }
-
-    public function setZtNum($var)
+    public function setThreeHallWin($var)
     {
         GPBUtil::checkUint32($var);
-        $this->zt_num = $var;
+        $this->three_hall_win = $var;
+    }
+
+    public function getOneHallNum()
+    {
+        return $this->one_hall_num;
+    }
+
+    public function setOneHallNum($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->one_hall_num = $var;
+    }
+
+    public function getTwoHallNum()
+    {
+        return $this->two_hall_num;
+    }
+
+    public function setTwoHallNum($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->two_hall_num = $var;
+    }
+
+    public function getThreeHallNum()
+    {
+        return $this->three_hall_num;
+    }
+
+    public function setThreeHallNum($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->three_hall_num = $var;
+    }
+
+    public function getDays()
+    {
+        return $this->days;
+    }
+
+    public function setDays($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->days = $var;
     }
 
 }
@@ -847,7 +864,7 @@ class BusinessList extends \Google\Protobuf\Internal\Message
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0af00a0a1067616d657365726963652e70726f746f1206787867616d6522" .
+    "0abf0b0a1067616d657365726963652e70726f746f1206787867616d6522" .
     "2c0a075465614c69737412210a087465615f6c69737418012003280b320f" .
     "2e787867616d652e546561496e666f2282020a07546561496e666f12100a" .
     "087465615f6e616d65180120012809120b0a0375696418022001280d120e" .
@@ -860,39 +877,42 @@ $pool->internalAddGeneratedFile(hex2bin(
     "2001280d120c0a0468656164180f2001280912100a086e69636b6e616d65" .
     "18102001280922370a0d546561506c617965724c69737412260a0b706c61" .
     "7965725f6c69737418012003280b32112e787867616d652e546561506c61" .
-    "79657222c7020a09546561506c6179657212100a086e69636b6e616d6518" .
+    "79657222f2010a09546561506c6179657212100a086e69636b6e616d6518" .
     "0120012809120e0a067465615f696418022001280d120d0a057374617465" .
-    "18032001280d120f0a076d616e6167657218042001280d120f0a076e756d" .
-    "6265727318052001280d120f0a0768616c6c5f696418062001280d120b0a" .
-    "0375696418072001280d120f0a0777696e6e756d3118082001280d120f0a" .
-    "0772656d61726b73180920012809120c0a0464617465180a20012809120e" .
-    "0a066f6e6c696e65180b2001280d12100a0874705f73636f7265180c2001" .
-    "280212100a08686561645f75726c180d20012809120d0a05726563696418" .
-    "0e2001280d120e0a06696e76697465180f2001280d12140a0c696e766974" .
-    "655f73636f7265181020012802120f0a0777696e6e756d3218112001280d" .
-    "120f0a0777696e6e756d3318122001280d120e0a067a745f6e756d181320" .
-    "01280d22400a0a5265636f72644c69737412230a0b5265636f72645f6c69" .
-    "737418012003280b320e2e787867616d652e5265636f7264120d0a05746f" .
-    "74616c18022001280d2282010a065265636f7264120e0a06726f6f6d6964" .
-    "18012001280d120e0a066e756d62657218022001280d12120a0a63726561" .
-    "746574696d6518032001280912220a06706c6179657218042003280b3212" .
-    "2e787867616d652e506c61796572696e666f12100a0867616d6574797065" .
-    "18052001280d120e0a0667616d656e6f18062001280d22400a0a53696e67" .
-    "6c654c69737412230a0b53696e676c655f6c69737418012003280b320e2e" .
-    "787867616d652e53696e676c65120d0a05746f74616c18022001280d2262" .
-    "0a0653696e676c6512110a097265636f72645f696418012001280d12120a" .
-    "0a63726561746574696d6518022001280912220a06706c61796572180320" .
-    "03280b32122e787867616d652e506c61796572696e666f120d0a05696e64" .
-    "657818042001280d2289010a0a506c61796572696e666f12100a086e6963" .
-    "6b6e616d65180120012809120c0a046865616418022001280912100a0872" .
-    "6f6f6d6361726418032001280d120c0a04726f6c6518042001280d120f0a" .
-    "076d617271756565180520012809120e0a06757267656e74180620012809" .
-    "120d0a0573636f7265180720012805120b0a0375696418082001280d2269" .
-    "0a08427573696e657373120f0a077465615f6e756d18012001280d12120a" .
-    "0a68616c6c5f6e756d5f3118022001280d12120a0a68616c6c5f6e756d5f" .
-    "3218032001280d12120a0a68616c6c5f6e756d5f3318042001280d12100a" .
-    "08646174655f64617918052001280922320a0c427573696e6573734c6973" .
-    "7412220a086275735f6c69737418012003280b32102e787867616d652e42" .
-    "7573696e657373620670726f746f33"
+    "18032001280d120f0a076d616e6167657218042001280d120f0a0768616c" .
+    "6c5f696418052001280d120b0a0375696418062001280d120f0a0772656d" .
+    "61726b73180720012809120c0a0464617465180820012809120e0a066f6e" .
+    "6c696e6518092001280d12100a0874705f73636f7265180a200128021210" .
+    "0a08686561645f75726c180b20012809120d0a057265636964180c200128" .
+    "0d12230a0877616e5f6c697374180d2003280b32112e787867616d652e57" .
+    "696e416e644e756d22a1010a0957696e416e644e756d12140a0c6f6e655f" .
+    "68616c6c5f77696e18012001280d12140a0c74776f5f68616c6c5f77696e" .
+    "18022001280d12160a0e74687265655f68616c6c5f77696e18032001280d" .
+    "12140a0c6f6e655f68616c6c5f6e756d18042001280d12140a0c74776f5f" .
+    "68616c6c5f6e756d18052001280d12160a0e74687265655f68616c6c5f6e" .
+    "756d18062001280d120c0a046461797318072001280d22400a0a5265636f" .
+    "72644c69737412230a0b5265636f72645f6c69737418012003280b320e2e" .
+    "787867616d652e5265636f7264120d0a05746f74616c18022001280d2282" .
+    "010a065265636f7264120e0a06726f6f6d696418012001280d120e0a066e" .
+    "756d62657218022001280d12120a0a63726561746574696d651803200128" .
+    "0912220a06706c6179657218042003280b32122e787867616d652e506c61" .
+    "796572696e666f12100a0867616d657479706518052001280d120e0a0667" .
+    "616d656e6f18062001280d22400a0a53696e676c654c69737412230a0b53" .
+    "696e676c655f6c69737418012003280b320e2e787867616d652e53696e67" .
+    "6c65120d0a05746f74616c18022001280d22620a0653696e676c6512110a" .
+    "097265636f72645f696418012001280d12120a0a63726561746574696d65" .
+    "18022001280912220a06706c6179657218032003280b32122e787867616d" .
+    "652e506c61796572696e666f120d0a05696e64657818042001280d228901" .
+    "0a0a506c61796572696e666f12100a086e69636b6e616d65180120012809" .
+    "120c0a046865616418022001280912100a08726f6f6d6361726418032001" .
+    "280d120c0a04726f6c6518042001280d120f0a076d617271756565180520" .
+    "012809120e0a06757267656e74180620012809120d0a0573636f72651807" .
+    "20012805120b0a0375696418082001280d22690a08427573696e65737312" .
+    "0f0a077465615f6e756d18012001280d12120a0a68616c6c5f6e756d5f31" .
+    "18022001280d12120a0a68616c6c5f6e756d5f3218032001280d12120a0a" .
+    "68616c6c5f6e756d5f3318042001280d12100a08646174655f6461791805" .
+    "2001280922320a0c427573696e6573734c69737412220a086275735f6c69" .
+    "737418012003280b32102e787867616d652e427573696e65737362067072" .
+    "6f746f33"
 ));
 

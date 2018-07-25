@@ -19,6 +19,7 @@ use Xxgame\TeaInfo;
 use Xxgame\TeaList;
 use Xxgame\TeaPlayer;
 use Xxgame\TeaPlayerList;
+use Xxgame\WinAndNum;
 
 class GameSericeController extends Controller
 {
@@ -95,26 +96,23 @@ EOT;
 	public function GetTeaPlayerList($teaid,$uid,$sign){
 		try{
 			//验证签名
-			if(!$this->checkSign($sign)) return "";
+			//if(!$this->checkSign($sign)) return "";
 
 			if(empty($teaid)) return "";
 
-			$user_mode = DB::table("xx_sys_teas")
-                ->where([['tea_id',$teaid],['uid',$uid],['state',1]])->first();
-			if(empty($user_mode) ){
-                return "";
-            }
-
-			$sql = <<<EOT
-			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.state<>3 and t.tea_id = $teaid
-EOT;
-			if($user_mode->manager==3){
-                $sql = <<<EOT
-			select t.*,u.nickname,u.head_img_url,u.online_state from xx_sys_teas t left join xx_user u on  u.uid=t.uid where t.state<>3 and t.tea_id = $teaid and (t.recid = $uid or t.uid = $uid)
-EOT;
-            }
-			$player_data =  DB::select($sql);
+            //获取玩家列表
+			$player_data =  DB::select('CALL search_tealist('.$teaid.','.$uid .')');
 			if(empty($player_data)) return "";
+            $id_arr = collect($player_data)->implode ('uid',',');
+            $sql = <<<EOT
+                select count(*) as count_num,sum(iswin) as count_win,hall_no,player_id,DATE_FORMAT(create_time,'%Y-%m-%d') as cdate 
+                from v_xx_record  
+                where tea_id =$teaid 
+                and player_id in($id_arr)
+                and create_time >  SUBDATE(DATE_FORMAT(NOW(),'%Y-%m-%d'), 2)
+                GROUP BY hall_no,tea_id,player_id,cdate
+EOT;
+            $three_data = DB::select($sql);
 			$teaPlayerList =  new TeaPlayerList();
 			foreach ($player_data as $player){
                 $teaplayer = new TeaPlayer();
@@ -124,19 +122,64 @@ EOT;
                 $teaplayer->setState($player->state);
                 $teaplayer->setManager($player->manager);
                 $teaplayer->setHallId($player->hall_id);
-                $teaplayer->setWinnum1($player->winnum1);
-                $teaplayer->setWinnum2($player->winnum2);
-                $teaplayer->setWinnum3($player->winnum3);
                 $teaplayer->setRemarks($player->remarks);
-                $teaplayer->setNumbers($player->numbers);
                 $teaplayer->setDate($player->create_time);
                 $teaplayer->setOnline($player->online_state);
                 $teaplayer->setTpScore($player->score);
                 $teaplayer->setHeadUrl($player->head_img_url);
                 $teaplayer->setRecid($player->recid);
-                $teaplayer->setInvite($player->invite);
-                $teaplayer->setInviteScore($player->invite_score);
-                $teaplayer->setZtNum($player->yesterday_num);
+                $play_data_three = collect($three_data)->where('player_id',$player->uid);
+                //今天局数和赢家次数
+                $play_data_one = collect($play_data_three)->where('cdate',date('Y-m-d'));
+                $wan_jt = new WinAndNum();
+                $wan_jt->setDays(1);
+                foreach ($play_data_one as $item){
+                    if($item->hall_no==1){
+                        $wan_jt->setOneHallNum($item->count_num);//1号厅总局数
+                        $wan_jt->setOneHallWin($item->count_win);//1号厅大赢家次数
+                    } else if($item->hall_no==2){
+                        $wan_jt->setTwoHallNum($item->count_num);//2号厅总局数
+                        $wan_jt->setTwoHallWin($item->count_win);//2号厅大赢家次数
+                    } else if($item->hall_no==3){
+                        $wan_jt->setThreeHallNum($item->count_num);//3号厅总局数
+                        $wan_jt->setThreeHallWin($item->count_win);//3号大赢家次数
+                    }
+                }
+                $teaplayer->getWanList()[] = $wan_jt;
+                //昨天局数和赢家次数
+                $play_data_two = collect($play_data_three)->where('cdate',date('Y-m-d',strtotime('-1 days')));
+                $wan_zt = new WinAndNum();
+                $wan_zt->setDays(2);
+                foreach ($play_data_two as $item){
+                    if($item->hall_no==1){
+                        $wan_zt->setOneHallNum($item->count_num);//1号厅总局数
+                        $wan_zt->setOneHallWin($item->count_win);//1号厅大赢家次数
+                    } else if($item->hall_no==2){
+                        $wan_zt->setTwoHallNum($item->count_num);//2号厅总局数
+                        $wan_zt->setTwoHallWin($item->count_win);//2号厅大赢家次数
+                    } else if($item->hall_no==3){
+                        $wan_zt->setThreeHallNum($item->count_num);//3号厅总局数
+                        $wan_zt->setThreeHallWin($item->count_win);//3号大赢家次数
+                    }
+                }
+                $teaplayer->getWanList()[] = $wan_zt;
+                //前天局数和赢家次数
+                $play_data_three = collect($play_data_three)->where('cdate',date('Y-m-d',strtotime('-2 days')));
+                $wan_qt = new WinAndNum();
+                $wan_qt->setDays(3);
+                foreach ($play_data_three as $item){
+                    if($item->hall_no==1){
+                        $wan_qt->setOneHallNum($item->count_num);//1号厅总局数
+                        $wan_qt->setOneHallWin($item->count_win);//1号厅大赢家次数
+                    } else if($item->hall_no==2){
+                        $wan_qt->setTwoHallNum($item->count_num);//2号厅总局数
+                        $wan_qt->setTwoHallWin($item->count_win);//2号厅大赢家次数
+                    } else if($item->hall_no==3){
+                        $wan_qt->setThreeHallNum($item->count_num);//3号厅总局数
+                        $wan_qt->setThreeHallWin($item->count_win);//3号大赢家次数
+                    }
+                }
+                $teaplayer->getWanList()[] = $wan_qt;
                 $teaPlayerList->getPlayerList()[] = $teaplayer;
             }
 			return $teaPlayerList->encode();
@@ -144,6 +187,8 @@ EOT;
 			return "";
 		}
 	}
+
+
 
 	///修改茶楼玩家备注
 	/// $teaid：茶楼ID

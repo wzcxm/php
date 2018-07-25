@@ -112,7 +112,6 @@
 <script src="{{asset('js/weui/js/jquery-weui.min.js')}}"></script>
 <script src="{{asset('js/weui/js/fastclick.js')}}"></script>
 <script src="{{asset('/js/common.js')}}"></script>
-
 <script>
     $(function () {
         $('body').height($('body')[0].clientHeight);
