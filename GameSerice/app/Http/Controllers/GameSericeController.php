@@ -392,7 +392,7 @@ EOT;
                 $end = date('Y-m-d 23:59:59');
             }
             //查询战绩
-            $data = DB::select('CALL search_play_record('.$teaid.','.$uid .','.$start.','.$end.')');
+            $data = DB::select("CALL search_play_record(".$teaid.",".$uid .",'".$start."','".$end."')");
             //为空，返回
             if(empty($data)) return "";
             $recordList =  new RecordList();
