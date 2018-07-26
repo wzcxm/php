@@ -96,10 +96,8 @@ EOT;
 	public function GetTeaPlayerList($teaid,$uid,$sign){
 		try{
 			//验证签名
-			//if(!$this->checkSign($sign)) return "";
-
+			if(!$this->checkSign($sign)) return "";
 			if(empty($teaid)) return "";
-
             //获取玩家列表
 			$player_data =  DB::select('CALL search_tealist('.$teaid.','.$uid .')');
 			if(empty($player_data)) return "";
@@ -277,7 +275,7 @@ EOT;
                 $uid = 23606;
             }
             //验证签名
-            //if(!$this->checkSign($sign)) return "";
+            if(!$this->checkSign($sign)) return "";
             if(empty($uid)) return "";
             $data = DB::table('v_xx_record')
                 ->where('player_id',$uid)
@@ -308,6 +306,8 @@ EOT;
                             $player->setUid($item->player_id);
                             $player->setNickname($item->player_name);
                             $player->setScore($item->score);
+                            $player->setTili($item->tili);
+                            $player->setIswin($item->iswin);
                             $record->getPlayer()[] = $player;
                         }
                     }
@@ -376,63 +376,52 @@ EOT;
 		try{
 			//验证签名
 			if(!$this->checkSign($sign)) return "";
-			if(empty($teaid)) return "";
-            if(empty($uid)) return "";
-            $model = DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->first();
-            if(!empty($model)){
-                if($model->manager == 3){
-                    $start = date('Y-m-d',strtotime('-7 days'));
-                    $end = date('Y-m-d 23:59:59');
-                    $offset = $offset*5;
-                    $sql = <<<EOT
-			select * from v_xx_record  where tea_id = $teaid and player_id in (select uid from xx_sys_teas where recid=$uid) and create_time BETWEEN  '$start' and  '$end' ORDER BY create_time desc  LIMIT $offset,5;
-EOT;
-                    $data = DB::select($sql);
-                    $count_sql = <<<EOT
-			select count(*) as count_num from v_xx_record  where tea_id = $teaid and player_id in (select uid from xx_sys_teas where recid=$uid)  and create_time BETWEEN  '$start' and  '$end'  ;
-EOT;
-                    $total_data = DB::select($count_sql);
-                    $total =$total_data[0]->count_num;
-                }else{
-                    $data = DB::table('xx_player_record')
-                        ->where('tea_id',$teaid)
-                        ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
-                        ->orderBy('create_time', 'desc')
-                        ->offset($offset*5)
-                        ->limit(5)
-                        ->get();
-                    $total = DB::table('xx_player_record')
-                        ->where('tea_id',$teaid)
-                        ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
-                        ->count();
-                }
-                $recordList =  new RecordList();
-                $recordList->setTotal($total);
-                if(!empty($data)){
-                    $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
-                    foreach ($data as $da){
-                        $record = new Record();
-                        $record->setGameno($da->id);
-                        $record->setRoomid($da->roomid);
-                        $record->setNumber($da->number);
-                        $record->setGametype($da->gametype);
-                        $record->setCreatetime($da->create_time);
-                        $plays = $play_list->where('id',$da->id);
-                        if(!empty($plays)){
-                            foreach ($plays as $item) {
-                                $player =  new Playerinfo();
-                                $player->setUid($item->player_id);
-                                $player->setNickname($item->player_name);
-                                $player->setScore($item->score);
-                                $record->getPlayer()[] = $player;
-                            }
-                        }
-                        $recordList->getRecordList()[] = $record;
+			if(empty($teaid) || empty($uid)) return "";
+            //战绩日期
+            if($offset == 1){//今天的战绩
+                $start = date('Y-m-d');
+                $end = date('Y-m-d 23:59:59');
+            }else if($offset == 2){ //昨天的战绩
+                $start = date('Y-m-d' ,strtotime('-1 days'));
+                $end = date('Y-m-d 23:59:59',strtotime('-1 days'));
+            }else if($offset == 3){//前天的战绩
+                $start = date('Y-m-d',strtotime('-2 days'));
+                $end = date('Y-m-d 23:59:59',strtotime('-2 days'));
+            }else{ //默认今天
+                $start = date('Y-m-d');
+                $end = date('Y-m-d 23:59:59');
+            }
+            //查询战绩
+            $data = DB::select('CALL search_play_record('.$teaid.','.$uid .','.$start.','.$end.')');
+            //为空，返回
+            if(empty($data)) return "";
+            $recordList =  new RecordList();
+            $recordList->setTotal(-1);
+            //所有人的消息分数
+            $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
+            foreach ($data as $da){
+                $record = new Record();
+                $record->setGameno($da->id);
+                $record->setRoomid($da->roomid);
+                $record->setNumber($da->number);
+                $record->setGametype($da->gametype);
+                $record->setCreatetime($da->create_time);
+                $record->setHallNum($da->hall_no);
+                $plays = $play_list->where('id',$da->id);
+                if(!empty($plays)){
+                    foreach ($plays as $item) {
+                        $player =  new Playerinfo();
+                        $player->setUid($item->player_id);
+                        $player->setNickname($item->player_name);
+                        $player->setScore($item->score);
+                        $player->setTili($item->tili);
+                        $player->setIswin($item->iswin);
+                        $record->getPlayer()[] = $player;
                     }
                 }
-                return $recordList->encode();
+                $recordList->getRecordList()[] = $record;
             }
-            return "";
+            return $recordList->encode();
 		}catch (\Exception $e){
 			return "";
 		}

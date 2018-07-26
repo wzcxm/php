@@ -115,7 +115,7 @@ class GameLoginController extends Controller
 			$user_data = json_decode($user_data, true);
 			if (!array_key_exists("errcode", $user_data))
 			{
-				$nickname = addslashes($user_data['nickname']);
+				$nickname = $user_data['nickname'];
 				$sex = $user_data['sex'];
 				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/64';
 				$unionid = $user_data['unionid'];
@@ -202,7 +202,7 @@ class GameLoginController extends Controller
 			$user_data = json_decode($user_data, true);
 			if (!array_key_exists("errcode", $user_data))
 			{
-				$nickname = addslashes($user_data['nickname']);
+				$nickname = $user_data['nickname'];
 				$sex = $user_data['sex'];
 				$head_img_url = substr($user_data['headimgurl'],0,strrpos($user_data['headimgurl'],'/')).'/64';
 
