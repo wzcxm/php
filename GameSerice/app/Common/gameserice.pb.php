@@ -897,10 +897,116 @@ class BusinessList extends \Google\Protobuf\Internal\Message
 
 }
 
+class PlayWinList extends \Google\Protobuf\Internal\Message
+{
+    private $playwin_list;
+
+    public function getPlaywinList()
+    {
+        return $this->playwin_list;
+    }
+
+    public function setPlaywinList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\PlayWin::class);
+        $this->playwin_list = $var;
+    }
+
+}
+
+class PlayWin extends \Google\Protobuf\Internal\Message
+{
+    private $nickname = '';
+    private $head = '';
+    private $uid = 0;
+    private $hall_win_one = 0;
+    private $hall_win_two = 0;
+    private $hall_win_three = 0;
+    private $total_win = 0;
+
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->nickname = $var;
+    }
+
+    public function getHead()
+    {
+        return $this->head;
+    }
+
+    public function setHead($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->head = $var;
+    }
+
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    public function setUid($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->uid = $var;
+    }
+
+    public function getHallWinOne()
+    {
+        return $this->hall_win_one;
+    }
+
+    public function setHallWinOne($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_win_one = $var;
+    }
+
+    public function getHallWinTwo()
+    {
+        return $this->hall_win_two;
+    }
+
+    public function setHallWinTwo($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_win_two = $var;
+    }
+
+    public function getHallWinThree()
+    {
+        return $this->hall_win_three;
+    }
+
+    public function setHallWinThree($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->hall_win_three = $var;
+    }
+
+    public function getTotalWin()
+    {
+        return $this->total_win;
+    }
+
+    public function setTotalWin($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->total_win = $var;
+    }
+
+}
+
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0aee0b0a1067616d657365726963652e70726f746f1206787867616d6522" .
+    "0ab40d0a1067616d657365726963652e70726f746f1206787867616d6522" .
     "2c0a075465614c69737412210a087465615f6c69737418012003280b320f" .
     "2e787867616d652e546561496e666f2282020a07546561496e666f12100a" .
     "087465615f6e616d65180120012809120b0a0375696418022001280d120e" .
@@ -950,6 +1056,13 @@ $pool->internalAddGeneratedFile(hex2bin(
     "6c5f6e756d5f3218032001280d12120a0a68616c6c5f6e756d5f33180420" .
     "01280d12100a08646174655f64617918052001280922320a0c427573696e" .
     "6573734c69737412220a086275735f6c69737418012003280b32102e7878" .
-    "67616d652e427573696e657373620670726f746f33"
+    "67616d652e427573696e65737322340a0b506c617957696e4c6973741225" .
+    "0a0c706c617977696e5f6c69737418012003280b320f2e787867616d652e" .
+    "506c617957696e228d010a07506c617957696e12100a086e69636b6e616d" .
+    "65180120012809120c0a0468656164180220012809120b0a037569641803" .
+    "2001280d12140a0c68616c6c5f77696e5f6f6e6518042001280d12140a0c" .
+    "68616c6c5f77696e5f74776f18052001280d12160a0e68616c6c5f77696e" .
+    "5f746872656518062001280d12110a09746f74616c5f77696e1807200128" .
+    "0d620670726f746f33"
 ));
 

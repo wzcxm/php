@@ -11,6 +11,8 @@ use Userinfo\UserList;
 use Xxgame\Business;
 use Xxgame\BusinessList;
 use Xxgame\Playerinfo;
+use Xxgame\PlayWin;
+use Xxgame\PlayWinList;
 use Xxgame\Record;
 use Xxgame\RecordList;
 use Xxgame\Single;
@@ -428,7 +430,7 @@ EOT;
 	}
 
 
-	///获取牌馆下，某玩家所有战绩
+	///获取牌馆玩家的大赢家次数
     /// $teaid:茶楼ID
     /// $uid：玩家ID
     /// $sign：签名
@@ -436,40 +438,23 @@ EOT;
         try{
             //验证签名
             if(!$this->checkSign($sign)) return "";
-            if(empty($teaid)) return "";
-            $data = DB::table('v_xx_record')
-                ->where([['tea_id',$teaid],['player_id',$uid]])
-                ->whereBetween('create_time',[date('Y-m-d',strtotime('-7 days')),date('Y-m-d 23:59:59') ])
-                ->orderBy('create_time', 'desc')
-                ->offset(0)
-                ->limit(50)
-                ->get();
-
-            $recordList =  new RecordList();
-            $recordList->setTotal(-1);
-            if(!empty($data)){
-                $play_list = DB::table('xx_player_record_info')->whereIn('id',$data->pluck('id'))->get();
-                foreach ($data as $da){
-                    $record = new Record();
-                    $record->setGameno($da->id);
-                    $record->setRoomid($da->roomid);
-                    $record->setNumber($da->number);
-                    $record->setGametype($da->gametype);
-                    $record->setCreatetime($da->create_time);
-                    $plays = $play_list->where('id',$da->id);
-                    if(!empty($plays)){
-                        foreach ($plays as $item) {
-                            $player =  new Playerinfo();
-                            $player->setUid($item->player_id);
-                            $player->setNickname($item->player_name);
-                            $player->setScore($item->score);
-                            $record->getPlayer()[] = $player;
-                        }
-                    }
-                    $recordList->getRecordList()[] = $record;
-                }
+            if(empty($teaid) || empty($uid)) return "";
+            $data = DB::select("CALL search_play_winnum(".$teaid.",".$uid .")");
+            if(empty($data)) return "";
+            $playwinList =  new PlayWinList();
+            foreach ($data as $item){
+                if($item->sum_winnum <= 0) continue;
+                $playwin = new PlayWin();
+                $playwin->setHead($item->head_img_url);
+                $playwin->setNickname($item->nickname);
+                $playwin->setUid($item->uid);
+                $playwin->setHallWinOne($item->winnum1);
+                $playwin->setHallWinTwo($item->winnum2);
+                $playwin->setHallWinThree($item->winnum3);
+                $playwin->setTotalWin($item->sum_winnum);
+                $playwinList->getPlaywinList()[] = $playwin;
             }
-            return $recordList->encode();
+            return $playwinList->encode();
         }catch (\Exception $e){
             return "";
         }
@@ -907,5 +892,7 @@ EOT;
             return "";
         }
     }
+
+
 
 }

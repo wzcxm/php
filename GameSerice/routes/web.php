@@ -81,7 +81,7 @@ $router->get('/setwx/{uid}/{code}/{sign}','GameSericeController@setWxinfo');
 //茶楼总战绩
 $router->get('/tearec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getTeaRec');
 
-//获取茶楼，某个玩家的战绩
+//获取茶楼玩家大赢家次数
 $router->get('/getplayrec/{teaid}/{uid}/{sign}','GameSericeController@getPlayRec');
 
 //茶楼我的战绩
