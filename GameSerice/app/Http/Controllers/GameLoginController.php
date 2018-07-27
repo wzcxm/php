@@ -248,9 +248,15 @@ class GameLoginController extends Controller
 		if($hallid > 0 && $hallid < 4){
             $type_id = 'type'.$hallid;
             $tea_data = DB::table('xx_sys_tea')->where('tea_id',$teaid)->first();
-            $game_type = $tea_data->$type_id;
-            $voice = $tea_data->voice;
-            $embar = $tea_data->embar;
+            if(!empty($tea_data)){
+                $game_type = $tea_data->$type_id;
+                $voice = $tea_data->voice;
+                $embar = $tea_data->embar;
+            }else{
+                $game_type = 0;
+                $voice = 1;
+                $embar = 2;
+            }
 		}else{
             $game_type = 0;
             $voice = 1;
@@ -363,7 +369,6 @@ class GameLoginController extends Controller
             }else{
                 $temp_teaid = $user->tea_id;
             }
-
             $sysMssage = $this->GetMessage($temp_teaid,$user->room_id);
             $server_login_info->setHallId($sysMssage['hallid']);//大厅号
             $server_login_info->setServerType($sysMssage['game_type']);//大厅游戏类型
