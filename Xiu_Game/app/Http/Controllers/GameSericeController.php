@@ -512,15 +512,15 @@ class GameSericeController extends Controller
             $uid = $request['uid'] ;
             $goodsid = $request['shopid'] ;
             $receipt =  $request['receipt'] ;
-             if('szxx_1' == $goodsid){
+             if('xxyx_1' == $goodsid){
                 $goods = 5;
-            }else if ('szxx_2' == $goodsid){
+            }else if ('xxyx_2' == $goodsid){
                 $goods = 6;
             }
-            else if ('szxx_3' == $goodsid){
+            else if ('xxyx_3' == $goodsid){
                 $goods = 7;
             }
-            else if ('szxx_4' == $goodsid){
+            else if ('xxyx_4' == $goodsid){
                 $goods = 8;
             }
 
