@@ -253,7 +253,7 @@ class GameLoginController extends Controller
                 $voice = $tea_data->voice;
                 $embar = $tea_data->embar;
             }else{
-                $game_type = 0;
+                $game_type = 100;
                 $voice = 1;
                 $embar = 2;
             }
