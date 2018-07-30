@@ -932,7 +932,7 @@ EOT;
                 }
             }else{
                 $sql = <<<EOT
-select t.uid,u.nickname,u.head_img_url,t.manager from xx_sys_teas t left join xx_user u on u.uid=t.uid where t.state=1 and  t.tea_id=$uid
+select t.uid,u.nickname,u.head_img_url,t.manager,t.recid from xx_sys_teas t left join xx_user u on u.uid=t.uid where t.state=1 and  t.tea_id=$uid
 EOT;
                 $datas = DB::select($sql);
                 if(!empty($datas)){
@@ -943,6 +943,7 @@ EOT;
                         $userinfo->setNickname($data->nickname);
                         $userinfo->setHead($data->head_img_url);
                         $userinfo->setManager($data->manager);
+                        $userinfo->setRecid($data->recid);
                         $userlist->getUserList()[] = $userinfo;
                     }
                     return $userlist->encode();
