@@ -31,6 +31,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
     private $uid = 0;
     private $head = '';
     private $nickname = '';
+    private $manager = 0;
 
     public function getUid()
     {
@@ -65,15 +66,27 @@ class UserInfo extends \Google\Protobuf\Internal\Message
         $this->nickname = $var;
     }
 
+    public function getManager()
+    {
+        return $this->manager;
+    }
+
+    public function setManager($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->manager = $var;
+    }
+
 }
 
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0a8e010a0e75736572696e666f2e70726f746f120875736572696e666f22" .
+    "0a9f010a0e75736572696e666f2e70726f746f120875736572696e666f22" .
     "310a08557365724c69737412250a09757365725f6c69737418012003280b" .
-    "32122e75736572696e666f2e55736572496e666f22370a0855736572496e" .
+    "32122e75736572696e666f2e55736572496e666f22480a0855736572496e" .
     "666f120b0a0375696418012001280d120c0a046865616418022001280912" .
-    "100a086e69636b6e616d65180320012809620670726f746f33"
+    "100a086e69636b6e616d65180320012809120f0a076d616e616765721804" .
+    "2001280d620670726f746f33"
 ));
 
