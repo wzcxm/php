@@ -10,6 +10,7 @@ use Userinfo\UserInfo;
 use Userinfo\UserList;
 use Xxgame\Business;
 use Xxgame\BusinessList;
+use Xxgame\PartnerPlayList;
 use Xxgame\Playerinfo;
 use Xxgame\PlayWin;
 use Xxgame\PlayWinList;
@@ -19,6 +20,7 @@ use Xxgame\Single;
 use Xxgame\SingleList;
 use Xxgame\TeaInfo;
 use Xxgame\TeaList;
+use Xxgame\TeaPartnerList;
 use Xxgame\TeaPlayer;
 use Xxgame\TeaPlayerList;
 use Xxgame\WinAndNum;
@@ -459,6 +461,65 @@ EOT;
             return "";
         }
     }
+
+    /*
+     * 获取牌馆的合伙人信息
+     */
+    public function getPartner($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+            if(empty($teaid) || empty($uid)) return "";
+            $data = DB::select("CALL search_tea_partner(".$teaid.",".$uid .")");
+            if(empty($data)) return "";
+            $teapartner =  new TeaPartnerList();
+            foreach ($data as $item){
+                $playwin = new PlayWin();
+                $playwin->setHead($item->head_img_url);
+                $playwin->setNickname($item->nickname);
+                $playwin->setUid($item->uid);
+                $playwin->setHallWinOne($item->total_win_one);
+                $playwin->setHallWinTwo($item->total_win_two);
+                $playwin->setHallWinThree($item->total_win_three);
+                $playwin->setTotalNumber($item->total_numbers);
+                $playwin->setTotalInvite($item->total_invite);
+                $teapartner->getTeapartnerList()[] = $playwin;
+            }
+            return $teapartner->encode();
+        }catch (\Exception $e){
+            return "";
+        }
+    }
+
+    /*
+     * 获取合伙人的玩家
+     */
+    public function getPartnerPlay($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+            if(empty($teaid) || empty($uid)) return "";
+            $data = DB::select("CALL search_partner_play(".$teaid.",".$uid .")");
+            if(empty($data)) return "";
+            $partnerplay =  new PartnerPlayList();
+            foreach ($data as $item){
+                $playwin = new PlayWin();
+                $playwin->setHead($item->head_img_url);
+                $playwin->setNickname($item->nickname);
+                $playwin->setUid($item->uid);
+                $playwin->setHallWinOne($item->winnum1);
+                $playwin->setHallWinTwo($item->winnum2);
+                $playwin->setHallWinThree($item->winnum3);
+                $playwin->setTotalNumber($item->numbers);
+                $playwin->setClearTime($item->clear_time);
+                $partnerplay->getPartnerplayerList()[] = $playwin;
+            }
+            return $partnerplay->encode();
+        }catch (\Exception $e){
+            return "";
+        }
+    }
+
 	///获取茶楼我的战绩
 	/// $teaid:茶楼ID
 	/// $uid：玩家ID

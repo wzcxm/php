@@ -84,6 +84,13 @@ $router->get('/tearec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getTe
 //获取茶楼玩家大赢家次数
 $router->get('/getplayrec/{teaid}/{uid}/{sign}','GameSericeController@getPlayRec');
 
+//获取茶楼合伙人
+$router->get('/getPartner/{teaid}/{uid}/{sign}','GameSericeController@getPartner');
+
+//获取茶楼合伙人的玩家
+$router->get('/getPartnerPlay/{teaid}/{uid}/{sign}','GameSericeController@getPartnerPlay');
+
+
 //茶楼我的战绩
 $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getMyTeaRec');
 

@@ -923,6 +923,9 @@ class PlayWin extends \Google\Protobuf\Internal\Message
     private $hall_win_two = 0;
     private $hall_win_three = 0;
     private $total_win = 0;
+    private $total_number = 0;
+    private $total_invite = 0;
+    private $clear_time = '';
 
     public function getNickname()
     {
@@ -1001,12 +1004,79 @@ class PlayWin extends \Google\Protobuf\Internal\Message
         $this->total_win = $var;
     }
 
+    public function getTotalNumber()
+    {
+        return $this->total_number;
+    }
+
+    public function setTotalNumber($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->total_number = $var;
+    }
+
+    public function getTotalInvite()
+    {
+        return $this->total_invite;
+    }
+
+    public function setTotalInvite($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->total_invite = $var;
+    }
+
+    public function getClearTime()
+    {
+        return $this->clear_time;
+    }
+
+    public function setClearTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->clear_time = $var;
+    }
+
+}
+
+class TeaPartnerList extends \Google\Protobuf\Internal\Message
+{
+    private $teapartner_list;
+
+    public function getTeapartnerList()
+    {
+        return $this->teapartner_list;
+    }
+
+    public function setTeapartnerList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\PlayWin::class);
+        $this->teapartner_list = $var;
+    }
+
+}
+
+class PartnerPlayList extends \Google\Protobuf\Internal\Message
+{
+    private $partnerplayer_list;
+
+    public function getPartnerplayerList()
+    {
+        return $this->partnerplayer_list;
+    }
+
+    public function setPartnerplayerList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\PlayWin::class);
+        $this->partnerplayer_list = $var;
+    }
+
 }
 
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0ab40d0a1067616d657365726963652e70726f746f1206787867616d6522" .
+    "0af00e0a1067616d657365726963652e70726f746f1206787867616d6522" .
     "2c0a075465614c69737412210a087465615f6c69737418012003280b320f" .
     "2e787867616d652e546561496e666f2282020a07546561496e666f12100a" .
     "087465615f6e616d65180120012809120b0a0375696418022001280d120e" .
@@ -1058,11 +1128,17 @@ $pool->internalAddGeneratedFile(hex2bin(
     "6573734c69737412220a086275735f6c69737418012003280b32102e7878" .
     "67616d652e427573696e65737322340a0b506c617957696e4c6973741225" .
     "0a0c706c617977696e5f6c69737418012003280b320f2e787867616d652e" .
-    "506c617957696e228d010a07506c617957696e12100a086e69636b6e616d" .
+    "506c617957696e22cd010a07506c617957696e12100a086e69636b6e616d" .
     "65180120012809120c0a0468656164180220012809120b0a037569641803" .
     "2001280d12140a0c68616c6c5f77696e5f6f6e6518042001280d12140a0c" .
     "68616c6c5f77696e5f74776f18052001280d12160a0e68616c6c5f77696e" .
     "5f746872656518062001280d12110a09746f74616c5f77696e1807200128" .
-    "0d620670726f746f33"
+    "0d12140a0c746f74616c5f6e756d62657218082001280d12140a0c746f74" .
+    "616c5f696e7669746518092001280d12120a0a636c6561725f74696d6518" .
+    "0a20012809223a0a0e546561506172746e65724c69737412280a0f746561" .
+    "706172746e65725f6c69737418012003280b320f2e787867616d652e506c" .
+    "617957696e223e0a0f506172746e6572506c61794c697374122b0a127061" .
+    "72746e6572706c617965725f6c69737418012003280b320f2e787867616d" .
+    "652e506c617957696e620670726f746f33"
 ));
 
