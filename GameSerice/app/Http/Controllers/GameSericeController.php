@@ -520,6 +520,31 @@ EOT;
         }
     }
 
+    /** 添加合伙人
+     * @param $teaid 牌馆id
+     * @param $uid   添加人id
+     * @param $sign  签名
+     * @return bool  成功true；失败false
+     */
+    public function addPartner($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign))
+                return 0;
+            if(empty($teaid) || empty($uid))
+                return 0;
+            $data = DB::select("CALL add_tea_partner(".$teaid.",".$uid .")");
+            if(empty($data)|| $data[0]->ret_value == 0){
+                return 0;
+            } else{
+                return 1;
+            }
+        }catch (\Exception $e){
+            return 0;
+        }
+
+    }
+
 	///获取茶楼我的战绩
 	/// $teaid:茶楼ID
 	/// $uid：玩家ID
@@ -872,18 +897,21 @@ EOT;
      * 保存玩家的推荐人
      */
     public function setRecommend($teaid,$uid,$recid,$sign){
-
-        //验证签名
-        if(!$this->checkSign($sign)) return "";
-
-        if(empty($teaid)) return "";
-        if(empty($uid)) return "";
-
-        $rows = DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['recid'=>$recid]);
-        if($rows > 0){
-            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->increment('invite');
+        try{
+            //验证签名
+            if(!$this->checkSign($sign))
+                return "";
+            if(empty($teaid) || empty($uid))
+                return "";
+            $data = DB::select("CALL add_partner_play(".$teaid.",".$uid .",".$recid.")");
+            if(empty($data)|| $data[0]->ret_value == 0){
+                return "";
+            } else{
+                return 1;
+            }
+        }catch (\Exception $e){
+            return "";
         }
-        return 1;
     }
 
     /**

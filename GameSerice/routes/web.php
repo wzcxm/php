@@ -90,6 +90,8 @@ $router->get('/getPartner/{teaid}/{uid}/{sign}','GameSericeController@getPartner
 //获取茶楼合伙人的玩家
 $router->get('/getPartnerPlay/{teaid}/{uid}/{sign}','GameSericeController@getPartnerPlay');
 
+//获取茶楼添加合伙人
+$router->get('/addPartner/{teaid}/{uid}/{sign}','GameSericeController@addPartner');
 
 //茶楼我的战绩
 $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getMyTeaRec');
