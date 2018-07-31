@@ -545,6 +545,48 @@ EOT;
 
     }
 
+    /**   删除合伙人
+     * @param $teaid 牌馆id
+     * @param $uid  合伙人id
+     * @param $sign 签名
+     * @return int|string 成功返回1；失败0；
+     */
+    public function delPartner($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign))
+                return 0;
+            if(empty($teaid) || empty($uid))
+                return 0;
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['manager'=>3,'invite'=>0]);
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['recid',$uid]])->update(['recid'=>0]);
+            return 1;
+        }catch (\Exception $e){
+            return "";
+        }
+    }
+
+    /**   删除合伙人
+     * @param $teaid 牌馆id
+     * @param $uid  玩家id
+     * @param $sign 签名
+     * @return int|string 成功返回1；失败0；
+     */
+    public function delPartnerPlay($teaid,$uid,$recid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign))
+                return 0;
+            if(empty($teaid) || empty($uid))
+                return 0;
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['recid'=>0]);
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->decrement('invite');
+            return 1;
+        }catch (\Exception $e){
+            return "";
+        }
+    }
+
 	///获取茶楼我的战绩
 	/// $teaid:茶楼ID
 	/// $uid：玩家ID
