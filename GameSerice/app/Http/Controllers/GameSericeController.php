@@ -478,10 +478,10 @@ EOT;
                 $playwin->setHead($item->head_img_url);
                 $playwin->setNickname($item->nickname);
                 $playwin->setUid($item->uid);
-                $playwin->setHallWinOne($item->total_win_one);
-                $playwin->setHallWinTwo($item->total_win_two);
-                $playwin->setHallWinThree($item->total_win_three);
-                $playwin->setTotalNumber($item->total_numbers);
+                $playwin->setHallWinOne(empty($item->total_win_one)?0:$item->total_win_one);
+                $playwin->setHallWinTwo(empty($item->total_win_two)?0:$item->total_win_two);
+                $playwin->setHallWinThree(empty($item->total_win_three)?0:$item->total_win_three);
+                $playwin->setTotalNumber(empty($item->total_numbers)?0:$item->total_numbers);
                 $playwin->setTotalInvite($item->total_invite);
                 $teapartner->getTeapartnerList()[] = $playwin;
             }
