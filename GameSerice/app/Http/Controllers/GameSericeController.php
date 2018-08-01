@@ -513,7 +513,6 @@ EOT;
                 $playwin->setHallWinTwo($item->winnum2);
                 $playwin->setHallWinThree($item->winnum3);
                 $playwin->setTotalNumber($item->numbers);
-                $playwin->setClearTime($item->clear_time);
                 $partnerplay->getPartnerplayerList()[] = $playwin;
             }
             return $partnerplay->encode();
