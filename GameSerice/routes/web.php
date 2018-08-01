@@ -95,9 +95,12 @@ $router->get('/addPartner/{teaid}/{uid}/{sign}','GameSericeController@addPartner
 
 //获取茶楼删除合伙人
 $router->get('/delPartner/{teaid}/{uid}/{sign}','GameSericeController@delPartner');
+
 //获取茶楼删除合伙人的玩家
 $router->get('/delPartnerPlay/{teaid}/{uid}/{recid}/{sign}','GameSericeController@delPartnerPlay');
 
+//获取茶楼清除合伙人大赢家总次数
+$router->get('/clearWinNum/{teaid}/{uid}/{sign}','GameSericeController@clearWinNum');
 
 //茶楼我的战绩
 $router->get('/teamyrec/{teaid}/{uid}/{offset}/{sign}','GameSericeController@getMyTeaRec');

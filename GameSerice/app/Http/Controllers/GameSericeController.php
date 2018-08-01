@@ -478,11 +478,12 @@ EOT;
                 $playwin->setHead($item->head_img_url);
                 $playwin->setNickname($item->nickname);
                 $playwin->setUid($item->uid);
-                $playwin->setHallWinOne(empty($item->total_win_one)?0:$item->total_win_one);
-                $playwin->setHallWinTwo(empty($item->total_win_two)?0:$item->total_win_two);
-                $playwin->setHallWinThree(empty($item->total_win_three)?0:$item->total_win_three);
-                $playwin->setTotalNumber(empty($item->total_numbers)?0:$item->total_numbers);
-                $playwin->setTotalInvite($item->total_invite);
+                $playwin->setHallWinOne($item->win1);
+                $playwin->setHallWinTwo($item->win2);
+                $playwin->setHallWinThree($item->win3);
+                $playwin->setTotalNumber($item->all_num);
+                $playwin->setTotalInvite($item->invite);
+                $playwin->setRemarks($item->remarks);
                 $teapartner->getTeapartnerList()[] = $playwin;
             }
             return $teapartner->encode();
@@ -583,7 +584,23 @@ EOT;
             DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$recid]])->decrement('invite');
             return 1;
         }catch (\Exception $e){
-            return "";
+            return 0;
+        }
+    }
+
+
+
+    public function clearWinNum($teaid,$uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign))
+                return 0;
+            if(empty($teaid) || empty($uid))
+                return 0;
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['win1'=>0,'win2'=>0,'win3'=>0]);
+            return 1;
+        }catch (\Exception $e){
+            return 0;
         }
     }
 
