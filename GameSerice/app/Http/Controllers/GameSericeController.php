@@ -468,7 +468,7 @@ EOT;
     public function getPartner($teaid,$uid,$sign){
         try{
             //验证签名
-            if(!$this->checkSign($sign)) return "";
+           // if(!$this->checkSign($sign)) return "";
             if(empty($teaid) || empty($uid)) return "";
             $data = DB::select("CALL search_tea_partner(".$teaid.",".$uid .")");
             if(empty($data)) return "";
@@ -484,6 +484,7 @@ EOT;
                 $playwin->setTotalNumber($item->all_num);
                 $playwin->setTotalInvite($item->invite);
                 $playwin->setRemarks($item->remarks);
+                $playwin->setClearTime($item->clear_time);
                 $teapartner->getTeapartnerList()[] = $playwin;
             }
             return $teapartner->encode();
@@ -597,7 +598,7 @@ EOT;
                 return 0;
             if(empty($teaid) || empty($uid))
                 return 0;
-            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['win1'=>0,'win2'=>0,'win3'=>0]);
+            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['win1'=>0,'win2'=>0,'win3'=>0,'clear_time'=>date('Y-m-d H:i:s')]);
             return 1;
         }catch (\Exception $e){
             return 0;
