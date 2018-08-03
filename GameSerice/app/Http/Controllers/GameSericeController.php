@@ -10,6 +10,8 @@ use Userinfo\UserInfo;
 use Userinfo\UserList;
 use Xxgame\Business;
 use Xxgame\BusinessList;
+use Xxgame\Msg;
+use Xxgame\MsgList;
 use Xxgame\PartnerPlayList;
 use Xxgame\Playerinfo;
 use Xxgame\PlayWin;
@@ -468,7 +470,7 @@ EOT;
     public function getPartner($teaid,$uid,$sign){
         try{
             //验证签名
-           // if(!$this->checkSign($sign)) return "";
+            if(!$this->checkSign($sign)) return "";
             if(empty($teaid) || empty($uid)) return "";
             $data = DB::select("CALL search_tea_partner(".$teaid.",".$uid .")");
             if(empty($data)) return "";
@@ -1038,6 +1040,41 @@ EOT;
                     return "";
                 }
             }
+        }catch (\Exception $e){
+            return "";
+        }
+    }
+
+    /** 获取玩家的消息列表
+     * @param $uid 玩家id
+     * @param $sign 签名
+     */
+    public function getMsg($uid,$sign){
+        try{
+            //验证签名
+            if(!$this->checkSign($sign)) return "";
+
+            if(empty($uid)) return "";
+
+            $data = DB::table('xx_sys_email')->where('uid',$uid)->get();
+            if(empty($data)) return "";
+            $msgList =  new MsgList();
+            foreach ($data as $item){
+                $msg = new Msg();
+                $arr =  explode('|',$item->title);
+                $temp_user = DB::table('xx_user')->where('uid',$arr[0])->first();
+                $msg->setUid($arr[0]);
+                $msg->setTeaid($arr[1]);
+                $msg->setHead($temp_user->head_img_url);
+                $msg->setNickname($temp_user->nickname);
+                $msg->setType($item->type);
+                $msg->setTitle($item->title);
+                $msg->setHave($item->have);
+                $msg->setId($item->id);
+                $msg->setCreateDate($item->create_date);
+                $msgList->getMsgList()[] = $msg;
+            }
+            return $msgList->encode();
         }catch (\Exception $e){
             return "";
         }

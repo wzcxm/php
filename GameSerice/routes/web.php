@@ -87,6 +87,10 @@ $router->get('/getplayrec/{teaid}/{uid}/{sign}','GameSericeController@getPlayRec
 //获取茶楼合伙人
 $router->get('/getPartner/{teaid}/{uid}/{sign}','GameSericeController@getPartner');
 
+//获取消息列表
+$router->get('/getMsg/{uid}/{sign}','GameSericeController@getMsg');
+
+
 //获取茶楼合伙人的玩家
 $router->get('/getPartnerPlay/{teaid}/{uid}/{sign}','GameSericeController@getPartnerPlay');
 

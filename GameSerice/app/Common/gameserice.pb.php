@@ -1085,10 +1085,140 @@ class PartnerPlayList extends \Google\Protobuf\Internal\Message
 
 }
 
+class MsgList extends \Google\Protobuf\Internal\Message
+{
+    private $msg_list;
+
+    public function getMsgList()
+    {
+        return $this->msg_list;
+    }
+
+    public function setMsgList(&$var)
+    {
+        GPBUtil::checkRepeatedField($var, GPBType::MESSAGE, \Xxgame\Msg::class);
+        $this->msg_list = $var;
+    }
+
+}
+
+class Msg extends \Google\Protobuf\Internal\Message
+{
+    private $nickname = '';
+    private $head = '';
+    private $uid = 0;
+    private $teaid = 0;
+    private $type = 0;
+    private $title = '';
+    private $have = 0;
+    private $create_date = '';
+    private $id = 0;
+
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->nickname = $var;
+    }
+
+    public function getHead()
+    {
+        return $this->head;
+    }
+
+    public function setHead($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->head = $var;
+    }
+
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    public function setUid($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->uid = $var;
+    }
+
+    public function getTeaid()
+    {
+        return $this->teaid;
+    }
+
+    public function setTeaid($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->teaid = $var;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setType($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->type = $var;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->title = $var;
+    }
+
+    public function getHave()
+    {
+        return $this->have;
+    }
+
+    public function setHave($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->have = $var;
+    }
+
+    public function getCreateDate()
+    {
+        return $this->create_date;
+    }
+
+    public function setCreateDate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->create_date = $var;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->id = $var;
+    }
+
+}
+
 $pool = DescriptorPool::getGeneratedPool();
 
 $pool->internalAddGeneratedFile(hex2bin(
-    "0a810f0a1067616d657365726963652e70726f746f1206787867616d6522" .
+    "0abb100a1067616d657365726963652e70726f746f1206787867616d6522" .
     "2c0a075465614c69737412210a087465615f6c69737418012003280b320f" .
     "2e787867616d652e546561496e666f2282020a07546561496e666f12100a" .
     "087465615f6e616d65180120012809120b0a0375696418022001280d120e" .
@@ -1151,7 +1281,13 @@ $pool->internalAddGeneratedFile(hex2bin(
     "6172746e65724c69737412280a0f746561706172746e65725f6c69737418" .
     "012003280b320f2e787867616d652e506c617957696e223e0a0f50617274" .
     "6e6572506c61794c697374122b0a12706172746e6572706c617965725f6c" .
-    "69737418012003280b320f2e787867616d652e506c617957696e62067072" .
-    "6f746f33"
+    "69737418012003280b320f2e787867616d652e506c617957696e22280a07" .
+    "4d73674c697374121d0a086d73675f6c69737418012003280b320b2e7878" .
+    "67616d652e4d7367228d010a034d736712100a086e69636b6e616d651801" .
+    "20012809120c0a0468656164180220012809120b0a037569641803200128" .
+    "0d120d0a05746561696418042001280d120c0a047479706518052001280d" .
+    "120d0a057469746c65180620012809120c0a046861766518072001280d12" .
+    "130a0b6372656174655f64617465180820012809120a0a02696418092001" .
+    "280d620670726f746f33"
 ));
 
