@@ -74,7 +74,7 @@
     </div>
     <div style="margin-top:5px;text-align: center;" id="first">
         @if(!empty($player) && $player->flag == 0)
-            <img class="img_border " width="95%" src="/img/diamond/first.png" />
+            <img class="img_border " width="95%" src="/img/diamond/first.png?v=2018080901" />
         @else
             <img class="img_border " width="95%" src="/img/diamond/warning.png" />
         @endif
