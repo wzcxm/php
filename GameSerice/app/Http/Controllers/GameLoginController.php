@@ -376,8 +376,8 @@ class GameLoginController extends Controller
             $server_login_info->setEmbar($sysMssage['embar']);//是否禁止分享
             $server_login_info->setMarquee($sysMssage['marquee']);//跑马灯
             $server_login_info->setUrgent($sysMssage['urgent']);//紧急通知
-//            $msg_num =  DB::table('xx_sys_email')->where('uid',$user->uid)->count();
-//            $server_login_info->setMsgnum($msg_num);//新消息条数
+            $msg_num =  DB::table('xx_sys_email')->where('uid',$user->uid)->count();
+            $server_login_info->setMsgnum($msg_num);//新消息条数
             if($gw_type == 1){
                 $domain_info = config('conf.GAME_DOMAIN_APP');
             }else if($gw_type == 2){
