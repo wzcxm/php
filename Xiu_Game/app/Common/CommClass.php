@@ -584,74 +584,35 @@ use Aliyun\DySDKLite\SignatureHelper;
         try{
             $wx_order = DB::table('v_buycard_list')->where([['nonce', $order_no],['status',0]])->first();
             if (!empty($wx_order)) {
-                $total = $wx_order->total;
-                //首冲
-                if($wx_order->flag == 0){
-                    //首冲套餐
-                    if($wx_order->isfirst == 1){
-                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 400]) ;
-                    }else{
-                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
-                    }
-                    $up_arr = ['flag' => 1];
-                    if($wx_order->rid == 5){
-                        $up_arr["rid"] = 2 ;
-                    }
-                    if(empty($wx_order->front_uid)
-                        && !empty($wx_order->front)
-                        && $wx_order->front != $wx_order->userid
-                        && !empty($wx_order->frid)
-                        && $wx_order->frid == 2){
-                        $up_arr["front_uid"] = $wx_order->front ;
-                        //绑定代理送100钻石
-                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-                        //上级送100返利
-                        DB::table("xx_wx_backgold")->insert(
-                            ['get_id'=>$wx_order->front,
-                                'back_id'=>$wx_order->userid,
-                                'backgold'=>100,
-                                'gold'=>$wx_order->total,
-                                'ratio'=>0,
-                                'level'=>5]);
-                        //$total -= 100;
-                    }
+                //冲钻
+                CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
+                $up_arr = [];
+                //如果是玩家冲钻，设为普通代理
+                if($wx_order->rid == 5){
+                    $up_arr["rid"] = 2 ;
+                }
+                //填写了推荐人，赠送100钻石
+                if(empty($wx_order->front_uid)
+                    && !empty($wx_order->front)
+                    && $wx_order->front != $wx_order->userid
+                    && !empty($wx_order->frid)
+                    && $wx_order->frid == 2) {
+                    $up_arr["front_uid"] = $wx_order->front;
+                    //绑定代理送100钻石
+                    CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
+                }
+                //如果不为空，更新玩家的信息
+                if(!empty($up_arr)){
                     //更新我的角色
                     DB::table('xx_user')->where('uid', $wx_order->userid)->update($up_arr);
                     //更新玩家角色
                     CommClass::UpGameSer($wx_order->userid,'role');
-                    //首次绑定代理返利
-                    //CommClass::FirstBindBackCash($wx_order->userid, $total);
-                }else{
-                    CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
-                    //绑定代理
-                    if(empty($wx_order->front_uid)
-                        && !empty($wx_order->front)
-                        && $wx_order->front != $wx_order->userid
-                        && !empty($wx_order->frid)
-                        && $wx_order->frid == 2){
-                        DB::table('xx_user')->where('uid',$wx_order->userid)->update(['front_uid'=>$wx_order->front]);
-                        //绑定代理送100钻石
-                        CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => 100, 'buytype' => 3]);
-
-                        DB::table("xx_wx_backgold")->insert(
-                            ['get_id'=>$wx_order->front,
-                                'back_id'=>$wx_order->userid,
-                                'backgold'=>100,
-                                'gold'=>$wx_order->total,
-                                'ratio'=>0,
-                                'level'=>5]);
-                        //$total -= 100;
-                        //首次绑定代理返利
-                        //CommClass::FirstBindBackCash($wx_order->userid, $total);
-                    }
                 }
                 //代理返利
-                CommClass::BackCash($wx_order->userid, $total);
-
+                CommClass::BackCash($wx_order->userid, $wx_order->total);
                 //更新订单状态
                 DB::table('xx_wx_buycard')->where('nonce', $order_no)->update(['status'=>1]);
-
-                //1小时内购买超过5000，赠送2980钻石   yi
+                //1小时内购买超过5000，赠送2980钻石，每天一次
                 $play_user = Users::find($wx_order->userid);
                 if(!empty($play_user) && $play_user->iszs == 0){
                     $start =  date('Y-m-d h:i:s', strtotime('-1 hour'));

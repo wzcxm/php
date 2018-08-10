@@ -46,38 +46,13 @@
     </div>
     <div style="margin-top:5px;" id="mall">
         @if(!empty($mallList))
-            {{--<div  style="margin-left:5%;">--}}
-            {{--@for($i=0;$i<count($mallList);$i++)--}}
-                {{--@if($i%3>0)--}}
-                    {{--@if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)--}}
-                        {{--<img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />--}}
-                    {{--@else--}}
-                        {{--<img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>--}}
-                    {{--@endif--}}
-                {{--@else--}}
-                    {{--@if($mallList[$i]->isfirst == 1 && !empty($player) && $player->flag == 0)--}}
-                        {{--</div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/f{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)" />--}}
-                    {{--@else--}}
-                        {{--</div><div style="margin-left:5%;"><img class="img_border " width="28%" src="/img/diamond/{{$mallList[$i]->img}}?v=20180703" id="{{$mallList[$i]->sid}}" onclick="img_click(this)"/>--}}
-                    {{--@endif--}}
-                {{--@endif--}}
-            {{--@endfor--}}
-            {{--</div>--}}
             @foreach($mallList as $item)
-                @if($item->isfirst == 1 && !empty($player) && $player->flag == 0)
-                    <img class="img_border " width="22%" src="/img/diamond/f{{$item->img}}?v=2018072001" id="{{$item->sid}}" onclick="img_click(this)" />
-                @else
-                    <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}?v=2018072001" id="{{$item->sid}}" onclick="img_click(this)"/>
-                @endif
+                <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}?v=20180810" id="{{$item->sid}}" onclick="img_click(this)"/>
             @endforeach
         @endif
     </div>
     <div style="margin-top:5px;text-align: center;" id="first">
-        @if(!empty($player) && $player->flag == 0)
-            <img class="img_border " width="95%" src="/img/diamond/first.png?v=2018080901" />
-        @else
-            <img class="img_border " width="95%" src="/img/diamond/warning.png" />
-        @endif
+        <img class="img_border " width="95%" src="/img/diamond/first.png?v=2018080901" />
     </div>
     <div style="width: 100%;text-align: center;">
         <img class="img_border " width="95%" src="/img/diamond/title.png">
@@ -100,11 +75,6 @@
                 <img class="img_border " width="35%" src="/img/diamond/query.png" />
             </a>
         </div>
-        {{--<div style="width: 100%;margin-top: 3px;">--}}
-            {{--<a href="javascript:window.location.href='/PlayerBuy/list/'+$('#plyerid').val()"  >--}}
-                {{--<img class="img_border " width="20%" src="/img/diamond/buylist.png" />--}}
-            {{--</a>--}}
-        {{--</div>--}}
     </div>
     <input type="hidden" id="sid">
 </div>
@@ -134,23 +104,12 @@
                     $.alert('玩家ID错误，找不到该玩家昵称!');
                 }else{
                     $("#nick").html(reslut.user['nickname']);
-                    $("#first").empty()
-                    if(reslut.user['flag'] == 0){
-                        $("#11").attr('src','/img/diamond/f300.png?v=2018072001');
-                        //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/f300.png\" id='11' onclick=\"img_click(this)\" />")
-                        $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/first.png\" />");
-                    }else{
-                        $("#11").attr('src','/img/diamond/300.png?v=2018072001');
-                        //$("#mall").prepend("<img class=\"img_border \" width=\"28%\" src=\"/img/diamond/300.png\" id='11' onclick=\"img_click(this)\" />")
-                        $("#first").append("<img class=\"img_border \" width=\"95%\" src=\"/img/diamond/warning.png\" />");
-                    }
                     if(comm.is_null(reslut.user['front_uid']) && reslut.user['front_uid']!=0){
-                        //$("#front").val(reslut.user['front_uid']).attr("readonly","readonly").removeClass().addClass("front_input_red");
                         $("#div_front").empty()
                     }else {
                         $("#div_front").empty().append("<div style='width:100%;margin-top: 5px;'>"+
                             "<div style='float: left;width: 50%;text-align: right;'>"+
-                            "<p style='font-size: 1rem;color: #0f695f;font-weight: 500;'>推荐代理ID：</p></div>"+
+                            "<p style='font-size: 0.9rem;color: #0f695f;font-weight: 500;'>推荐代理ID：</p></div>"+
                             "<div style='float: right;width: 50%;text-align: left;'>"+
                             "<input id='front' type='number' class='front_input' value='"+reslut.user['chief_uid']+"' ></div></div>");
                     }
