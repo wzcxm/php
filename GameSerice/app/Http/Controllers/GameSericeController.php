@@ -511,10 +511,10 @@ EOT;
                 $playwin->setHead($item->head_img_url);
                 $playwin->setNickname($item->nickname);
                 $playwin->setUid($item->uid);
-                $playwin->setHallWinOne($item->winnum1);
-                $playwin->setHallWinTwo($item->winnum2);
-                $playwin->setHallWinThree($item->winnum3);
-                $playwin->setTotalNumber($item->numbers);
+                $playwin->setHallWinOne($item->win1);
+                $playwin->setHallWinTwo($item->win2);
+                $playwin->setHallWinThree($item->win3);
+                $playwin->setTotalNumber($item->all_num);
                 $partnerplay->getPartnerplayerList()[] = $playwin;
             }
             return $partnerplay->encode();
@@ -569,7 +569,7 @@ EOT;
         }
     }
 
-    /**   删除合伙人
+    /**   删除合伙人玩家
      * @param $teaid 牌馆id
      * @param $uid  玩家id
      * @param $sign 签名
@@ -599,7 +599,11 @@ EOT;
                 return 0;
             if(empty($teaid) || empty($uid))
                 return 0;
-            DB::table('xx_sys_teas')->where([['tea_id',$teaid],['uid',$uid]])->update(['win1'=>0,'win2'=>0,'win3'=>0,'clear_time'=>date('Y-m-d H:i:s')]);
+            $clear_time = date('Y-m-d H:i:s');
+            $sql = <<<EOT
+            update xx_sys_teas set win1=0,win2=0,win3=0,clear_time='$clear_time' where tea_id= $teaid and (recid = $uid or uid=$uid)
+EOT;
+            DB::select($sql);
             return 1;
         }catch (\Exception $e){
             return 0;
