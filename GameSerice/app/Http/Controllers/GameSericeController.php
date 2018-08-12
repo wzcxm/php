@@ -132,9 +132,9 @@ EOT;
                 $teaplayer->setTpScore($player->score);
                 $teaplayer->setHeadUrl($player->head_img_url);
                 $teaplayer->setRecid($player->recid);
-                $play_data_three = collect($three_data)->where('player_id',$player->uid);
+                $play_datas = collect($three_data)->where('player_id',$player->uid);
                 //今天局数和赢家次数
-                $play_data_one = collect($play_data_three)->where('cdate',date('Y-m-d'));
+                $play_data_one = collect($play_datas)->where('cdate',date('Y-m-d'));
                 $wan_jt = new WinAndNum();
                 $wan_jt->setDays(1);
                 foreach ($play_data_one as $item){
@@ -151,7 +151,7 @@ EOT;
                 }
                 $teaplayer->getWanList()[] = $wan_jt;
                 //昨天局数和赢家次数
-                $play_data_two = collect($play_data_three)->where('cdate',date('Y-m-d',strtotime('-1 days')));
+                $play_data_two = collect($play_datas)->where('cdate',date('Y-m-d',strtotime('-1 days')));
                 $wan_zt = new WinAndNum();
                 $wan_zt->setDays(2);
                 foreach ($play_data_two as $item){
@@ -168,7 +168,7 @@ EOT;
                 }
                 $teaplayer->getWanList()[] = $wan_zt;
                 //前天局数和赢家次数
-                $play_data_three = collect($play_data_three)->where('cdate',date('Y-m-d',strtotime('-2 days')));
+                $play_data_three = collect($play_datas)->where('cdate',date('Y-m-d',strtotime('-2 days')));
                 $wan_qt = new WinAndNum();
                 $wan_qt->setDays(3);
                 foreach ($play_data_three as $item){
@@ -235,14 +235,14 @@ EOT;
 			if ($version == 5.2) { //
 				$ret = "2";//2-审核版本；0-正常；1-强制更新
 			} else {
-				if($version < 4.6){
+				if($version < 4.7){
 					$ret = "1";
 				}else{
 					$ret = "0";
 				}
 			}
 		}else if($type==2){
-			if($version < 4.6){
+			if($version < 4.7){
 				$ret = "1";
 			}else{
 				$ret = "0";
@@ -591,7 +591,12 @@ EOT;
     }
 
 
-
+    /** 清除合伙人大赢家次数
+     * @param $teaid
+     * @param $uid
+     * @param $sign
+     * @return int
+     */
     public function clearWinNum($teaid,$uid,$sign){
         try{
             //验证签名

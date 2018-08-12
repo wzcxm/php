@@ -19,30 +19,33 @@
 <div class="download_bg" >
     <div style="height: 80%;"></div>
     <div style="height: 20%;" align="center">
-        <a  href="http://fir.im/ysrn">
-            <img class="img-rounded " width="180" src="/img/download/download.png?v=20180712" />
+        <a  href="https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk">
+            <img class="img-rounded " width="180" src="/img/download/download.png" />
+        </a>
+        <a  href="itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist">
+            <img class="img-rounded " width="180" src="/img/download/download.png" />
         </a>
     </div>
 </div>
 {{--<script src="{{asset('js/weui/js/jquery-2.1.4.js')}}"></script>--}}
 {{--<script type="text/javascript">--}}
-    {{--$(function(){--}}
-        {{--var ua = navigator.userAgent.toLowerCase();--}}
-        {{--if(ua.match(/MicroMessenger/i) == "micromessenger") {--}}
-            {{--$('#bg_down').removeClass().addClass("download_tz_bg");--}}
-            {{--$("#down_load").hide();--}}
-            {{--//$("#add").hide();--}}
-        {{--}else {--}}
-            {{--if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机--}}
-                {{--$("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');--}}
-                {{--// $("#add").hide();--}}
-            {{--} else if (ua.indexOf('iphone') > -1) {//苹果手机--}}
-                {{--$("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');--}}
-            {{--}else{--}}
+{{--$(function(){--}}
+{{--var ua = navigator.userAgent.toLowerCase();--}}
+{{--if(ua.match(/MicroMessenger/i) == "micromessenger") {--}}
+{{--$('#bg_down').removeClass().addClass("download_tz_bg");--}}
+{{--$("#down_load").hide();--}}
+{{--//$("#add").hide();--}}
+{{--}else {--}}
+{{--if (ua.indexOf('android') > -1 || ua.indexOf('linux') > -1) {//安卓手机--}}
+{{--$("#down_load").attr('href','https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.apk');--}}
+{{--// $("#add").hide();--}}
+{{--} else if (ua.indexOf('iphone') > -1) {//苹果手机--}}
+{{--$("#down_load").attr('href','itms-services://?action=download-manifest&url=https://xiuxiu-game.oss-cn-shenzhen.aliyuncs.com/Demo/xxqp/xxqp.plist');--}}
+{{--}else{--}}
 
-            {{--}--}}
-        {{--}--}}
-    {{--});--}}
+{{--}--}}
+{{--}--}}
+{{--});--}}
 {{--</script>--}}
 </body>
 </html>
