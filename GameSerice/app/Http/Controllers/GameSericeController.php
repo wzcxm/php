@@ -400,44 +400,41 @@ EOT;
             $start = '2018-08-13';
             $end = '2018-08-13 23:59:59';
             //查询战绩
-            var_dump(1);
-            var_dump(date('Y-m-d H:m:s'));
             $data = DB::select("CALL search_play_record(".$teaid.",".$uid .",'".$start."','".$end."')");
             //为空，返回
             if(empty($data)) return "";
             $recordList =  new RecordList();
             $recordList->setTotal(count($data));
-            var_dump(2);
-            var_dump(date('Y-m-d H:m:s'));
             //所有人的消息分数
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
-            var_dump(3);
-            var_dump(date('Y-m-d H:m:s'));
+            $palyinfo = json_decode($play_list,true);
             $record = new Record();
             $player =  new Playerinfo();
+            $data = json_decode(collect($data),true);
             foreach ($data as $da){
-                $record->setGameno($da->id);
-                $record->setRoomid($da->roomid);
-                $record->setNumber($da->number);
-                $record->setGametype($da->gametype);
-                $record->setCreatetime($da->create_time);
-                $record->setHallNum($da->hall_no);
-                $plays = $play_list->where('id',$da->id);
+                $record->setGameno($da['id']);
+                $record->setRoomid($da['roomid']);
+                $record->setNumber($da['number']);
+                $record->setGametype($da['gametype']);
+                $record->setCreatetime($da['create_time']);
+                $record->setHallNum($da['hall_no']);
+                $da_id = $da['id'];
+                $plays = array_filter($palyinfo,function ($palyinfo) use($da_id){
+                        return ($palyinfo['id'] == $da_id);
+                });
                 if(!empty($plays)){
                     foreach ($plays as $item) {
-                        $player->setUid($item->player_id);
-                        $player->setNickname($item->player_name);
-                        $player->setScore($item->score);
-                        $player->setTili($item->tili);
-                        $player->setIswin($item->iswin);
+                        $player->setUid($item['player_id']);
+                        $player->setNickname($item['player_name']);
+                        $player->setScore($item['score']);
+                        $player->setTili($item['tili']);
+                        $player->setIswin($item['iswin']);
                         $record->getPlayer()[] = $player;
                     }
                 }
                 $recordList->getRecordList()[] = $record;
             }
-            var_dump(4);
-            var_dump(date('Y-m-d H:m:s'));
-            //return $recordList->encode();
+            return $recordList->encode();
 		}catch (\Exception $e){
 			return "";
 		}

@@ -588,7 +588,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                 //充值活动
                 $activity = DB::table('xx_sys_activity')->where('id',1)->first();
                 if(!empty($activity) && $activity->isopen==1){
-                    $card_num += $card_num*$activity->proportion/100;
+                    $card_num += floor($card_num*$activity->proportion/100);
                 }
                 //冲钻
                 CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $card_num]);
