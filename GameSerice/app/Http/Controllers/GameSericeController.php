@@ -397,8 +397,6 @@ EOT;
                 $start = date('Y-m-d');
                 $end = date('Y-m-d 23:59:59');
             }
-            $start = '2018-08-13';
-            $end = '2018-08-13 23:59:59';
             //查询战绩
             $data = DB::select("CALL search_play_record(".$teaid.",".$uid .",'".$start."','".$end."')");
             //为空，返回
@@ -408,7 +406,6 @@ EOT;
             //所有人的消息分数
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
             $palyinfo = json_decode($play_list,true);
-
             foreach ($data as $da){
                 $record = new Record();
                 $record->setGameno($da->id);
