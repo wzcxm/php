@@ -397,14 +397,22 @@ EOT;
                 $start = date('Y-m-d');
                 $end = date('Y-m-d 23:59:59');
             }
+            $start = '2018-08-13';
+            $end = '2018-08-13 23:59:59';
             //查询战绩
+            var_dump(1);
+            var_dump(date('Y-m-d H:m:s'));
             $data = DB::select("CALL search_play_record(".$teaid.",".$uid .",'".$start."','".$end."')");
             //为空，返回
             if(empty($data)) return "";
             $recordList =  new RecordList();
-            $recordList->setTotal(-1);
+            $recordList->setTotal(count($data));
+            var_dump(2);
+            var_dump(date('Y-m-d H:m:s'));
             //所有人的消息分数
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
+            var_dump(3);
+            var_dump(date('Y-m-d H:m:s'));
             foreach ($data as $da){
                 $record = new Record();
                 $record->setGameno($da->id);
@@ -427,6 +435,8 @@ EOT;
                 }
                 $recordList->getRecordList()[] = $record;
             }
+            var_dump(4);
+            var_dump(date('Y-m-d H:m:s'));
             return $recordList->encode();
 		}catch (\Exception $e){
 			return "";
