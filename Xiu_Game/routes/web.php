@@ -194,6 +194,10 @@ Route::group(['prefix' => '','middleware' => 'authuser'],function (){
     Route::post('/CardSet/data','UserManageController@getAgentData');
     Route::post('/CardSet/save','UserManageController@saveGift');
 
+    //活动设置
+    //赠钻设置
+    Route::get('/Activity','ParamController@activity');
+    Route::post('/Activity/save','ParamController@save_activity');
 });
 /// end//////////////////////////////
 

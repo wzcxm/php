@@ -59,8 +59,8 @@
                         }},
                     {field:'userid',title:'UID',width:60},
                     {field:'nickname',title:'昵称',width:70},
-                    {field:'cardnum',title:'数量',width:40},
-                    {field:'total',title:'金额',width:40},
+                    {field:'cardnum',title:'数量',width:60},
+                    {field:'total',title:'金额',width:60},
                     {field:'create_time',title:'购买日期',width:140}
                 ]]
             });

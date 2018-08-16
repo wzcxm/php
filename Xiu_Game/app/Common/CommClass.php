@@ -584,8 +584,14 @@ use Aliyun\DySDKLite\SignatureHelper;
         try{
             $wx_order = DB::table('v_buycard_list')->where([['nonce', $order_no],['status',0]])->first();
             if (!empty($wx_order)) {
+                $card_num = $wx_order->cardnum;
+                //充值活动
+                $activity = DB::table('xx_sys_activity')->where('id',1)->first();
+                if(!empty($activity) && $activity->isopen==1){
+                    $card_num += $card_num*$activity->proportion/100;
+                }
                 //冲钻
-                CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $wx_order->cardnum]);
+                CommClass::InsertCard(['cbuyid' => $wx_order->userid, 'csellid' => 999, 'cnumber' => $card_num]);
                 $up_arr = [];
                 //如果是玩家冲钻，设为普通代理
                 if($wx_order->rid == 5){
