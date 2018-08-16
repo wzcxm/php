@@ -413,8 +413,9 @@ EOT;
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
             var_dump(3);
             var_dump(date('Y-m-d H:m:s'));
+            $record = new Record();
+            $player =  new Playerinfo();
             foreach ($data as $da){
-                $record = new Record();
                 $record->setGameno($da->id);
                 $record->setRoomid($da->roomid);
                 $record->setNumber($da->number);
@@ -424,7 +425,6 @@ EOT;
                 $plays = $play_list->where('id',$da->id);
                 if(!empty($plays)){
                     foreach ($plays as $item) {
-                        $player =  new Playerinfo();
                         $player->setUid($item->player_id);
                         $player->setNickname($item->player_name);
                         $player->setScore($item->score);
@@ -437,7 +437,7 @@ EOT;
             }
             var_dump(4);
             var_dump(date('Y-m-d H:m:s'));
-            return $recordList->encode();
+            //return $recordList->encode();
 		}catch (\Exception $e){
 			return "";
 		}
