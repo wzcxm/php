@@ -404,23 +404,22 @@ EOT;
             //为空，返回
             if(empty($data)) return "";
             $recordList =  new RecordList();
-            $recordList->setTotal(count($data));
+            $recordList->setTotal(-1);
             //所有人的消息分数
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
             $palyinfo = json_decode($play_list,true);
             $record = new Record();
             $player =  new Playerinfo();
-            $data = json_decode(collect($data),true);
             foreach ($data as $da){
-                $record->setGameno($da['id']);
-                $record->setRoomid($da['roomid']);
-                $record->setNumber($da['number']);
-                $record->setGametype($da['gametype']);
-                $record->setCreatetime($da['create_time']);
-                $record->setHallNum($da['hall_no']);
-                $da_id = $da['id'];
-                $plays = array_filter($palyinfo,function ($palyinfo) use($da_id){
-                        return ($palyinfo['id'] == $da_id);
+                $record->setGameno($da->id);
+                $record->setRoomid($da->roomid);
+                $record->setNumber($da->number);
+                $record->setGametype($da->gametype);
+                $record->setCreatetime($da->create_time);
+                $record->setHallNum($da->hall_no);
+                $daid = $da->id;
+                $plays = array_filter($palyinfo,function ($palyinfo) use($daid){
+                        return ($palyinfo['id'] == $daid);
                 });
                 if(!empty($plays)){
                     foreach ($plays as $item) {
