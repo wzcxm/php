@@ -409,7 +409,6 @@ EOT;
             $play_list = DB::table('xx_player_record_info')->whereIn('id',collect($data)->pluck('id'))->get();
             $palyinfo = json_decode($play_list,true);
             $record = new Record();
-            $player =  new Playerinfo();
             foreach ($data as $da){
                 $record->setGameno($da->id);
                 $record->setRoomid($da->roomid);
@@ -422,6 +421,7 @@ EOT;
                         return ($palyinfo['id'] == $daid);
                 });
                 if(!empty($plays)){
+                    $player =  new Playerinfo();
                     foreach ($plays as $item) {
                         $player->setUid($item['player_id']);
                         $player->setNickname($item['player_name']);
