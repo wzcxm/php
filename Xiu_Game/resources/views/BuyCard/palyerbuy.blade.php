@@ -52,7 +52,7 @@
         @endif
     </div>
     <div style="margin-top:5px;text-align: center;" id="first">
-        <img class="img_border " width="95%" src="/img/diamond/first.png?v=2018080901" />
+        <img class="img_border " width="95%" src="/img/diamond/first.png?v=20180817" />
     </div>
     <div style="width: 100%;text-align: center;">
         <img class="img_border " width="95%" src="/img/diamond/title.png">
