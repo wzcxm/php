@@ -79,7 +79,7 @@ class UserManageController extends Controller
                     $ret_arr["nick"] = $user->nickname;
                     if($user->rid==4){
                         $ret_arr["rname"] = "特级代理";
-                    }else if($user->rid==4){
+                    }else if($user->rid==3){
                         $ret_arr["rname"] = "总代";
                     }else if($user->rid==6){
                         $ret_arr["rname"] = "渠道代理";
