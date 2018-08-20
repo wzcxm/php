@@ -596,6 +596,7 @@ use Aliyun\DySDKLite\SignatureHelper;
                 //如果是玩家冲钻，设为普通代理
                 if($wx_order->rid == 5){
                     $up_arr["rid"] = 2 ;
+                    $up_arr["create_time"] = date('Y-m-d h:i:s') ;
                 }
                 //填写了推荐人，赠送100钻石
                 if(empty($wx_order->front_uid)
