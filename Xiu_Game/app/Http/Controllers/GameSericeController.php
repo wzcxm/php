@@ -196,7 +196,7 @@ class GameSericeController extends Controller
     public function  Download($uid = 0,$type = 0){
         try{
             if(empty($uid)){
-                header('Location:http://www.guanzhu.mobi/app/VEJV');
+                header('Location:https://fir.im/6yba');
             }else{
                 //推荐人，不为空，保存记录
                 $tools = new JsApiPay();
@@ -230,8 +230,8 @@ class GameSericeController extends Controller
                 }
                 if($type==1){
                     if(!empty($unionid) ){
-                        header('Location:http://www.guanzhu.mobi/app/VEJV');
-                        //return redirect('/DownLoadGames');http://fir.im/ysrn
+                        header('Location:https://fir.im/6yba');
+                        //return redirect('/DownLoadGames');https://fir.im/6yba
                     }else{
                         return '<h1>请允许获取您的头像和昵称！</h1>';
                     }
