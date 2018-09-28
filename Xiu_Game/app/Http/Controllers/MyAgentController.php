@@ -99,9 +99,9 @@ class MyAgentController extends Controller
 
                 $dl_model = Users::find($dl_uid);
                 if(session('roleid')==4){ //设置总代
-                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
-                        return response()->json(['error'=>'您设置的总代数量已经达到10个！']);
-                    }
+//                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
+//                        return response()->json(['error'=>'您设置的总代数量已经达到10个！']);
+//                    }
                     if(!empty($dl_model) && $dl_model->rid != 3){
                         $my_aisle = $this->getAisle(session('aisle'));
                         DB::table('xx_user')->where('uid',$dl_uid)
@@ -118,13 +118,13 @@ class MyAgentController extends Controller
                         }
                     }
                 }else if(session('roleid')==3){//设置vip代理
-                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
-                        return response()->json(['error'=>'您设置的渠道代理数量已经达到10个！']);
-                    }
+//                    if(!$this->isAgentNum(session('uid'),session('roleid'),session('aisle'))){
+//                        return response()->json(['error'=>'您设置的渠道代理数量已经达到10个！']);
+//                    }
                     if(!empty($dl_model) && $dl_model->rid != 6){
-                        if($dl_model->chief_uid != session('uid')){
-                            return response()->json(['error'=>'该代理不是通过您的二维码下载的，不能设置！']);
-                        }
+//                        if($dl_model->chief_uid != session('uid')){
+//                            return response()->json(['error'=>'该代理不是通过您的二维码下载的，不能设置！']);
+//                        }
                         $count_dl = DB::table('xx_user')->where('front_uid',$dl_uid)->count();
                         if($count_dl>0){
                             return response()->json(['error'=>'该代理已经发展了下级代理，不能设置！']);
