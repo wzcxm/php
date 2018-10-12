@@ -461,24 +461,24 @@ use Aliyun\DySDKLite\SignatureHelper;
                          'level'=>1]);
                  $balance -=  $return_one;
              }
-             //上上级返利
-             //上上级为空，或者上上级不为代理，直接返回
-             $upper_level = Users::find($front->front_uid);
-             if(!empty($upper_level) && $upper_level->rid == 2){
-                 //计算上上级返利
-                 $return_two = $cash*$twoback/100;
-                 if($return_two > 0){
-                     //保存返利记录
-                     DB::table("xx_wx_backgold")->insert(
-                         ['get_id'=>$front->front_uid,
-                             'back_id'=>$buy_id,
-                             'backgold'=>$return_two,
-                             'gold'=>$cash,
-                             'ratio'=>$twoback,
-                             'level'=>2]);
-                     $balance -=  $return_two;
-                 }
-             }
+//             //上上级返利
+//             //上上级为空，或者上上级不为代理，直接返回
+//             $upper_level = Users::find($front->front_uid);
+//             if(!empty($upper_level) && $upper_level->rid == 2){
+//                 //计算上上级返利
+//                 $return_two = $cash*$twoback/100;
+//                 if($return_two > 0){
+//                     //保存返利记录
+//                     DB::table("xx_wx_backgold")->insert(
+//                         ['get_id'=>$front->front_uid,
+//                             'back_id'=>$buy_id,
+//                             'backgold'=>$return_two,
+//                             'gold'=>$cash,
+//                             'ratio'=>$twoback,
+//                             'level'=>2]);
+//                     $balance -=  $return_two;
+//                 }
+//             }
          }
          //////////////////////////////////总代&特级代理返利/////////////////////////////////////
          //vip代理返利
@@ -486,7 +486,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!empty($buy_user->vip_aisle)){
              $vip_user = DB::table('xx_user')->where('aisle',$buy_user->vip_aisle)->first();
              if(!empty($vip_user) && $vip_user->rid == 6){
-                 $vip_scale = CommClass::getProxyScale($vip_user->uid);
+                 $vip_scale = 20;//CommClass::getProxyScale($vip_user->uid);
                  $return_vip = $balance*$vip_scale/100;
                  if($return_vip > 0){
                      //保存返利信息
@@ -505,7 +505,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!empty($buy_user->chief_aisle)){
             $chief = DB::table('xx_user')->where('aisle',$buy_user->chief_aisle)->first();
             if(!empty($chief) && $chief->rid == 3){
-                $scale = CommClass::getProxyScale($chief->uid);
+                $scale = 30;//CommClass::getProxyScale($chief->uid);
                 $scale -=$vip_scale;
                 $return_chief = $balance*$scale/100;
                 if($return_chief > 0){
@@ -525,7 +525,7 @@ use Aliyun\DySDKLite\SignatureHelper;
          if(!empty($buy_user->super_aisle)){
              $super = DB::table('xx_user')->where('aisle',$buy_user->super_aisle)->first();
              if(!empty($super) && $super->rid == 4){
-                 $super_scale = CommClass::getProxyScale($super->uid);
+                 $super_scale = 40;//CommClass::getProxyScale($super->uid);
                  $super_scale = $super_scale - $scale - $vip_scale;
                  $return_super = $balance*$super_scale/100;
                  if($return_super > 0){
