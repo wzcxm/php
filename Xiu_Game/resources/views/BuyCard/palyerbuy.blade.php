@@ -47,7 +47,7 @@
     <div style="margin-top:5px;" id="mall">
         @if(!empty($mallList))
             @foreach($mallList as $item)
-                <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}?v=20181012" id="{{$item->sid}}" onclick="img_click(this)"/>
+                <img class="img_border " width="22%" src="/img/diamond/{{$item->img}}?v=20181013" id="{{$item->sid}}" onclick="img_click(this)"/>
             @endforeach
         @endif
     </div>
