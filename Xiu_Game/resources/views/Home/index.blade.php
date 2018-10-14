@@ -72,10 +72,14 @@
             总提成：<a style="color:#f11367;">{{$total_num}}</a>
         </div>
         <div class="weui-flex__item" style="text-align: center;">
-            @if($roleid == 3 || $roleid == 4 || $roleid == 6)
-               提成比例<br>旗下充值：{{$back_agent}}%
+            @if($roleid == 3 )
+               提成比例<br>旗下充值：30%
+            @elseif($roleid == 4 )
+                提成比例<br>旗下充值：40%
+            @elseif($roleid == 6 )
+                提成比例<br>旗下充值：20%
             @else
-                提成比例<br>下级充值：{{$back_agent}}%
+                提成比例<br>下级充值：40%
                 {{--<br>下下级充值：{{$back_agent_front}}%--}}
             @endif
         </div>

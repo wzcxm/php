@@ -59,13 +59,23 @@
                 <label class="weui-label">提成比例</label>
             </div>
             <div class="weui-cell__bd">
-                @if($user->rid == 3 || $user->rid == 4)
-                    旗下充值：{{$back_agent}}%；
-                    {{--玩家充值：{{$back_play}}%；--}}
+                @if($user->rid == 3 )
+                    旗下充值：30%
+                @elseif($user->rid == 4 )
+                    旗下充值：40%
+                @elseif($user->rid == 6 )
+                    旗下充值：20%
                 @else
-                    下级充值：{{$back_agent}}%；下下级充值：{{$back_agent_front}}%；
-                    {{--玩家充值：{{$back_play}}%；--}}
+                    下级充值：40%
+                    {{--<br>下下级充值：{{$back_agent_front}}%--}}
                 @endif
+                {{--@if($user->rid == 3 || $user->rid == 4)--}}
+                    {{--旗下充值：{{$back_agent}}%；--}}
+                    {{--玩家充值：{{$back_play}}%；--}}
+                {{--@else--}}
+                    {{--下级充值：{{$back_agent}}%；下下级充值：{{$back_agent_front}}%；--}}
+                    {{--玩家充值：{{$back_play}}%；--}}
+                {{--@endif--}}
             </div>
         </div>
         <div class="weui-cell">
