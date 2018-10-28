@@ -34,7 +34,7 @@
                 }
             });
             $("#tab_grid").datagrid({
-                title:'返利查询（返利比例：下级20%；下下级5%；）',
+                title:'返利查询',
                 singleSelect:true,
                 border:false,
                 fit:true,

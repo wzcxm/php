@@ -431,7 +431,7 @@ use Aliyun\DySDKLite\SignatureHelper;
      /// <returns></returns>
      public static function BackCash($buy_id,$cash){
         //上级
-         $oneback =CommClass::GetParameter("upper_one");
+         $oneback = 40;//CommClass::GetParameter("upper_one");
          //上上级
          $twoback = CommClass::GetParameter("upper_two");
          //剩余金额
